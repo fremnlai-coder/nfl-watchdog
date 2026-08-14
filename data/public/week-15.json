@@ -7,60 +7,78 @@
   "packages": {
     "a": {
       "package": "A",
+      "mode": "quota",
+      "quota": {
+        "full": 2,
+        "game_in_40": 3
+      },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 240,
-      "own_team_minutes": 225,
-      "own_team_skipped": 1,
-      "picked_minutes": 0,
+      "budget_minutes": 490,
+      "own_team_minutes": 410,
+      "own_team_skipped": 0,
+      "picked_minutes": 80,
       "recap_minutes": 0,
-      "total_minutes": 225,
+      "total_minutes": 490,
       "overflow_minutes": 0,
+      "unused_slots": {
+        "full": 0,
+        "game_in_40": 0
+      },
       "counts": {
-        "full": 1,
-        "game_in_40": 1,
-        "skip": 14
+        "full": 2,
+        "game_in_40": 3,
+        "skip": 11
       },
       "recap_covers": 0,
-      "unseen": 14
+      "unseen": 11
     },
     "b": {
       "package": "B",
-      "recap_included": false,
-      "recap_dropped": true,
-      "budget_minutes": 240,
-      "own_team_minutes": 225,
-      "own_team_skipped": 1,
-      "picked_minutes": 0,
-      "recap_minutes": 0,
-      "total_minutes": 225,
-      "overflow_minutes": 0,
-      "counts": {
-        "full": 1,
-        "game_in_40": 1,
-        "skip": 14
+      "mode": "quota",
+      "quota": {
+        "full": 2,
+        "game_in_40": 3
       },
-      "recap_covers": 0,
-      "unseen": 14
+      "recap_included": true,
+      "recap_dropped": false,
+      "budget_minutes": 490,
+      "own_team_minutes": 410,
+      "own_team_skipped": 0,
+      "picked_minutes": 80,
+      "recap_minutes": 60,
+      "total_minutes": 550,
+      "overflow_minutes": 0,
+      "unused_slots": {
+        "full": 0,
+        "game_in_40": 0
+      },
+      "counts": {
+        "full": 2,
+        "game_in_40": 3,
+        "skip": 11
+      },
+      "recap_covers": 9,
+      "unseen": 2
     }
   },
   "package_b_plan": [
     {
       "game_id": "401772948",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772904",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772796",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -71,74 +89,74 @@
     },
     {
       "game_id": "401772795",
-      "format_advice": "skip",
-      "format_reason": "budget",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772905",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772906",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772797",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772903",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772800",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772909",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401772908",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772907",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
     },
     {
-      "game_id": "401772908",
-      "format_advice": "skip",
-      "format_reason": "budget",
-      "runtime_minutes": 0
-    },
-    {
-      "game_id": "401772907",
-      "format_advice": "skip",
-      "format_reason": "own_team_degraded",
-      "runtime_minutes": 0
-    },
-    {
       "game_id": "401772799",
-      "format_advice": "skip",
-      "format_reason": "budget",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772933",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772823",
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     }
   ],
@@ -177,7 +195,7 @@
       "stakes_pre": 4,
       "watchability": 4,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -216,7 +234,7 @@
       "stakes_pre": 3,
       "watchability": 2,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -253,7 +271,7 @@
       "stakes_pre": 4,
       "watchability": 3,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -330,9 +348,9 @@
       "all22_from_nl": "di 16 dec, 10:30",
       "stakes_pre": 5,
       "watchability": 4,
-      "format_advice": "skip",
-      "format_reason": "budget",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772905",
@@ -368,7 +386,7 @@
       "stakes_pre": 3,
       "watchability": 3,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -407,7 +425,7 @@
       "stakes_pre": 2,
       "watchability": 1,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -444,7 +462,7 @@
       "stakes_pre": 3,
       "watchability": 2,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -483,7 +501,7 @@
       "stakes_pre": 3,
       "watchability": 2,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -523,7 +541,7 @@
       "stakes_pre": 5,
       "watchability": 4,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -561,9 +579,9 @@
       "all22_from_nl": "di 16 dec, 13:55",
       "stakes_pre": 5,
       "watchability": null,
-      "format_advice": "game_in_40",
-      "format_reason": "own_team_degraded",
-      "runtime_minutes": 40
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
     },
     {
       "game_id": "401772908",
@@ -599,7 +617,7 @@
       "stakes_pre": 4,
       "watchability": 4,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -637,9 +655,9 @@
       "all22_from_nl": "di 16 dec, 13:55",
       "stakes_pre": 2,
       "watchability": null,
-      "format_advice": "skip",
+      "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
-      "runtime_minutes": 0
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772799",
@@ -677,9 +695,9 @@
       "all22_from_nl": "di 16 dec, 13:55",
       "stakes_pre": 5,
       "watchability": 5,
-      "format_advice": "skip",
-      "format_reason": "budget",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772933",
@@ -717,7 +735,7 @@
       "stakes_pre": 4,
       "watchability": 3,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     },
     {
@@ -754,7 +772,7 @@
       "stakes_pre": 4,
       "watchability": 2,
       "format_advice": "skip",
-      "format_reason": "budget",
+      "format_reason": "quota_full",
       "runtime_minutes": 0
     }
   ]

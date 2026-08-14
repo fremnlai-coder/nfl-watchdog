@@ -9,7 +9,7 @@ budgetplanner en CLI-weekoverzicht.
 ```bash
 npm run ingest -- --season 2025 --weeks 1-18   # backfill, ~14s met lege cache
 node src/cli.js --week 14                       # weekoverzicht
-node src/cli.js --week 14 --budget 300 --own-format game_in_40
+node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
@@ -70,15 +70,27 @@ Wie ook die vormindicatie niet wil: `--no-rating`, of `show_watchability: false`
 De planner schakelt dan naar `planning_basis: "pre_game_only"` en rangschikt op
 `stakes_pre`, dat puur uit de records vóór de week volgt en niets lekt.
 
-## Bekende eigenschap: eigen teams vullen het budget
+## Planningsmodus
 
-In 14 van de 18 weken spelen KC, DET en SF alle drie. Op `full` is dat 555 minuten.
-Met `own_team_default_format: "full"` en een budget van 240 komt de rest van de week
-daarom nooit aan bod. Zet 'm op `game_in_40` (120 minuten voor drie teams) als je
-wil dat de planner echt iets te verdelen heeft.
+`planning_mode: "quota"` is de actieve modus: een vaste weekvorm van 2 full replays
+plus 3x Game in 40, samen 490 minuten. Slots worden verdeeld op prioriteit — eigen
+teams op rang eerst, daarna de rest op rating.
+
+Full-plekken gaan nooit naar een niet-favoriet. In 14 van de 18 weken spelen KC, DET
+en SF alle drie, dus in de praktijk kost die regel niets, en het voorkomt dat "full"
+een betrouwbaar merkteken voor een hoge rating wordt. Een ongebruikte full-plek wordt
+een extra 40-plek in plaats van een cadeau aan de hoogst gerate wedstrijd.
+
+De oude `planning_mode: "budget"` bestaat nog: die vult een minutenbudget op met een
+degradatieladder over de eigen teams. Getest en werkend, maar niet de default.
+
+Let op bij budgetmodus: drie eigen teams op `full` kosten 555 minuten. Tegen een
+budget van 240 komt de rest van de week dan nooit aan bod — zet
+`own_team_default_format` op `game_in_40` als je die modus gebruikt.
 
 ## Nog te doen
 
+- Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
 - F2: teasers + deterministische spoiler-linter + minimaal 20 lektests
 - F3: statische web-UI, spoilerniveaus achter kliks
 - F4: uitleglaag, glossarium, playoff-bracket

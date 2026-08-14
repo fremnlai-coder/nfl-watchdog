@@ -34,10 +34,15 @@ const showWatchability = !hasFlag('no-rating') && prefs.show_watchability !== fa
 // same function client-side.
 const budget = Number(argValue('budget', prefs.weekly_budget_minutes));
 const ownFormat = argValue('own-format', prefs.own_team_default_format ?? 'full');
+const quota = {
+  full: Number(argValue('full', prefs.weekly_quota?.full ?? 2)),
+  game_in_40: Number(argValue('in40', prefs.weekly_quota?.game_in_40 ?? 3)),
+};
 const packages = planBoth(data.games, {
   ...prefs,
   weekly_budget_minutes: budget,
   own_team_default_format: ownFormat,
+  weekly_quota: quota,
   planning_basis: showWatchability ? (prefs.planning_basis ?? 'watchability') : 'pre_game_only',
 });
 const planA = new Map(packages.a.games.map((p) => [p.game_id, p]));
@@ -52,11 +57,15 @@ const FORMAT_LABEL = {
   game_in_40: 'Game in 40',
   skip: 'Overslaan',
 };
+const quotaMode = (prefs.planning_mode ?? 'budget') === 'quota';
 const REASON_LABEL = {
   own_team: 'eigen team',
-  own_team_degraded: 'eigen team, ingekort voor budget',
+  own_team_degraded: quotaMode
+    ? 'eigen team, geen full-plek meer over'
+    : 'eigen team, ingekort voor budget',
   quality: 'rating',
   budget: 'budget op',
+  quota_full: 'weekvorm vol',
   avoid: 'op je avoid-lijst',
 };
 
@@ -154,11 +163,15 @@ for (const g of rest) console.log(line(g, { showRating: true }));
 const a = packages.a.summary;
 const b = packages.b.summary;
 const describe = (p) => {
+  const unused = p.unused_slots
+    ? Object.entries(p.unused_slots).filter(([, n]) => n > 0).map(([k, n]) => `${n} ${k}-plek over`)
+    : [];
   const bits = [
     `${p.counts.full}x full`,
     `${p.counts.game_in_40}x Game in 40`,
+    ...unused,
     p.recap_included ? `${p.recap_minutes}m ${prefs.slate_recap.name}` : null,
-    `${p.total_minutes} van ${p.budget_minutes} min`,
+    `${p.total_minutes} min`,
   ].filter(Boolean);
   const tail = p.recap_included
     ? `${p.recap_covers} wedstrijden alleen als ~5 min samenvatting, ${p.unseen} helemaal ongezien`

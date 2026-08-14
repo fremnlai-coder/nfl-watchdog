@@ -125,6 +125,71 @@ test('de uitkomst is deterministisch bij gelijke rating', () => {
   assert.deepEqual(a.games, b.games);
 });
 
+// --- quotamodus: een vaste weekvorm in plaats van een minutenbudget -----------
+
+const quotaPrefs = {
+  ...prefs,
+  planning_mode: 'quota',
+  weekly_quota: { full: 2, game_in_40: 3 },
+};
+
+test('quota levert precies de gevraagde weekvorm', () => {
+  const plan = planWeek(week, quotaPrefs, { withRecap: false });
+  assert.equal(plan.summary.counts.full, 2);
+  assert.equal(plan.summary.counts.game_in_40, 3);
+  assert.equal(plan.summary.total_minutes, 2 * 185 + 3 * 40);
+});
+
+test('de full-plekken gaan naar je hoogste rangen', () => {
+  const p = byId(planWeek(week, quotaPrefs, { withRecap: false }));
+  assert.equal(p.get('1').format_advice, 'full'); // KC, rang 1
+  assert.equal(p.get('2').format_advice, 'full'); // DET, rang 2
+  assert.equal(p.get('3').format_advice, 'game_in_40'); // SF, rang 3
+  assert.equal(p.get('3').format_reason, 'own_team_degraded');
+});
+
+test('een niet-favoriet krijgt nooit een full-plek', () => {
+  const plan = planWeek(week, quotaPrefs, { withRecap: false });
+  const ownIds = new Set(['1', '2', '3']);
+  for (const p of plan.games) {
+    if (p.format_advice === 'full') {
+      assert.ok(ownIds.has(p.game_id), `game ${p.game_id} kreeg een full-plek zonder eigen team`);
+    }
+  }
+});
+
+test('een ongebruikte full-plek wordt een 40-plek, geen cadeau aan de hoogste rating', () => {
+  // Only one favourite plays, so one full slot is left over.
+  const thin = [
+    game('1', 'HOU', 'KC', null),
+    game('x', 'PHI', 'MIA', 5),
+    game('y', 'GB', 'ARI', 4),
+    game('z', 'BUF', 'HOU', 3),
+    game('w', 'ARI', 'PHI', 2),
+  ];
+  const plan = planWeek(thin, quotaPrefs, { withRecap: false });
+  assert.equal(plan.summary.counts.full, 1);
+  // The spare full slot becomes a fourth condensed slot.
+  assert.equal(plan.summary.counts.game_in_40, 4);
+  assert.notEqual(byId(plan).get('x').format_advice, 'full');
+});
+
+test('wat buiten de weekvorm valt zegt dat ook', () => {
+  const plan = planWeek(week, quotaPrefs, { withRecap: false });
+  const skipped = plan.games.filter((p) => p.format_advice === 'skip');
+  assert.ok(skipped.length > 0);
+  for (const p of skipped) {
+    assert.ok(['quota_full', 'avoid'].includes(p.format_reason));
+  }
+});
+
+test('de recap komt bovenop de weekvorm, niet ervanaf', () => {
+  const plan = planWeek(week, quotaPrefs, { withRecap: true });
+  assert.equal(plan.summary.counts.full, 2);
+  assert.equal(plan.summary.counts.game_in_40, 3);
+  assert.equal(plan.summary.total_minutes, 2 * 185 + 3 * 40 + 60);
+});
+
 test('beide pakketten worden altijd berekend', () => {
   const both = planBoth(week, prefs);
   assert.equal(both.a.summary.package, 'A');

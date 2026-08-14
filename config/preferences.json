@@ -7,6 +7,12 @@
   ],
   "_live_friendly_note": "Aftrapvenster in NL-tijd waarbinnen je een wedstrijd realistisch live kunt kijken.",
   "season": 2025,
+  "planning_mode": "quota",
+  "weekly_quota": {
+    "full": 2,
+    "game_in_40": 3
+  },
+  "_weekly_quota_note": "Vaste weekvorm: 2 full replays + 3x Game in 40 = 490 min. Full-plekken gaan alleen naar je eigen teams; ongebruikte full-plekken worden 40-plekken.",
   "weekly_budget_minutes": 240,
   "own_team_policy": "degrade_by_rank",
   "show_watchability": true,

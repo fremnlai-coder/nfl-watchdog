@@ -29,7 +29,131 @@ function favoriteRank(game, teamsByAbbr) {
   return ranks.length ? Math.min(...ranks) : null;
 }
 
+// Quota mode: a fixed weekly shape ("two full replays and three condensed")
+// rather than a minute budget. Slots are handed out in priority order — own
+// teams by rank first, then everything else by rating.
+//
+// Full slots never go to a non-favourite. With three favourites playing in every
+// week of the schedule that costs nothing in practice, and it keeps "full" from
+// becoming a reliable marker for a high rating. Surplus full slots turn into
+// condensed slots instead.
+function planQuota(games, prefs, { withRecap }) {
+  const teamsByAbbr = new Map(prefs.teams.map((t) => [t.abbr, t]));
+  const dur = prefs.format_durations_minutes;
+  const quota = { full: 0, game_in_40: 0, ...(prefs.weekly_quota ?? {}) };
+  const basis = prefs.planning_basis ?? 'watchability';
+  const rankValue = (g) => (basis === 'pre_game_only' ? g.stakes_pre : g.watchability) ?? 0;
+  const watchlistBonus = prefs.watchlist_bonus ?? 0.5;
+  const allowFull = prefs.allow_full_for_non_favorites === true;
+
+  const own = games
+    .filter((g) => tierOf(g, teamsByAbbr) === 'favorite')
+    .map((g) => ({ game: g, rank: favoriteRank(g, teamsByAbbr) }))
+    .sort((a, b) => a.rank - b.rank);
+
+  const others = games
+    .filter((g) => tierOf(g, teamsByAbbr) !== 'favorite')
+    .map((g) => ({ game: g, tier: tierOf(g, teamsByAbbr) }))
+    .filter(({ tier }) => tier !== 'avoid')
+    .sort((a, b) => {
+      const sa = rankValue(a.game) + (a.tier === 'watchlist' ? watchlistBonus : 0);
+      const sb = rankValue(b.game) + (b.tier === 'watchlist' ? watchlistBonus : 0);
+      if (sb !== sa) return sb - sa;
+      return a.game.game_id.localeCompare(b.game.game_id);
+    });
+
+  const decisions = new Map();
+  for (const g of games) {
+    if (tierOf(g, teamsByAbbr) === 'avoid') {
+      decisions.set(g.game_id, { format: 'skip', reason: 'avoid' });
+    }
+  }
+
+  let fullLeft = quota.full;
+  let condensedLeft = quota.game_in_40;
+
+  for (const { game } of own) {
+    if (fullLeft > 0) {
+      decisions.set(game.game_id, { format: 'full', reason: 'own_team' });
+      fullLeft--;
+    } else if (condensedLeft > 0) {
+      decisions.set(game.game_id, { format: 'game_in_40', reason: 'own_team_degraded' });
+      condensedLeft--;
+    } else {
+      decisions.set(game.game_id, { format: 'skip', reason: 'quota_full' });
+    }
+  }
+
+  // Any full slot your own teams did not use becomes a condensed slot.
+  if (fullLeft > 0 && !allowFull) {
+    condensedLeft += fullLeft;
+    fullLeft = 0;
+  }
+
+  for (const { game } of others) {
+    if (decisions.has(game.game_id)) continue;
+    if (fullLeft > 0 && allowFull) {
+      decisions.set(game.game_id, { format: 'full', reason: 'quality' });
+      fullLeft--;
+    } else if (condensedLeft > 0) {
+      decisions.set(game.game_id, { format: 'game_in_40', reason: 'quality' });
+      condensedLeft--;
+    } else {
+      decisions.set(game.game_id, { format: 'skip', reason: 'quota_full' });
+    }
+  }
+
+  const planned = games.map((g) => {
+    const d = decisions.get(g.game_id);
+    return {
+      game_id: g.game_id,
+      format_advice: d.format,
+      format_reason: d.reason,
+      runtime_minutes: dur[d.format] ?? 0,
+    };
+  });
+
+  const minutes = planned.reduce((s, p) => s + p.runtime_minutes, 0);
+  const ownMinutes = own.reduce(
+    (s, { game }) => s + (dur[decisions.get(game.game_id).format] ?? 0), 0,
+  );
+  const skipped = games.filter((g) => decisions.get(g.game_id).format === 'skip');
+  const anySunday = games.some((g) => g.in_sunday_slate);
+  const recapActive = withRecap && prefs.slate_recap?.enabled !== false && anySunday;
+  const recapMinutes = prefs.slate_recap?.minutes ?? 60;
+  const recapCovers = recapActive ? skipped.filter((g) => g.in_sunday_slate) : [];
+
+  return {
+    games: planned,
+    summary: {
+      package: withRecap ? 'B' : 'A',
+      mode: 'quota',
+      quota,
+      recap_included: recapActive,
+      recap_dropped: false,
+      budget_minutes: quota.full * dur.full + quota.game_in_40 * dur.game_in_40,
+      own_team_minutes: ownMinutes,
+      own_team_skipped: own.filter(({ game }) => decisions.get(game.game_id).format === 'skip').length,
+      picked_minutes: minutes - ownMinutes,
+      recap_minutes: recapActive ? recapMinutes : 0,
+      total_minutes: minutes + (recapActive ? recapMinutes : 0),
+      overflow_minutes: 0,
+      unused_slots: { full: fullLeft, game_in_40: condensedLeft },
+      counts: {
+        full: planned.filter((p) => p.format_advice === 'full').length,
+        game_in_40: planned.filter((p) => p.format_advice === 'game_in_40').length,
+        skip: skipped.length,
+      },
+      recap_covers: recapCovers.length,
+      unseen: skipped.length - recapCovers.length,
+    },
+  };
+}
+
 export function planWeek(games, prefs, { withRecap }) {
+  if ((prefs.planning_mode ?? 'budget') === 'quota') {
+    return planQuota(games, prefs, { withRecap });
+  }
   const teamsByAbbr = new Map(prefs.teams.map((t) => [t.abbr, t]));
   const dur = prefs.format_durations_minutes;
   const recapMinutes = prefs.slate_recap?.minutes ?? 60;
