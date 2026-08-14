@@ -1,0 +1,683 @@
+{
+  "season": 2025,
+  "week": 9,
+  "timezone": "Europe/Amsterdam",
+  "nl_et_offset_hours": 5,
+  "teams_on_bye": [
+    "CLE",
+    "NYJ",
+    "PHI",
+    "TB"
+  ],
+  "packages": {
+    "a": {
+      "package": "A",
+      "recap_included": false,
+      "recap_dropped": false,
+      "budget_minutes": 240,
+      "own_team_minutes": 225,
+      "own_team_skipped": 1,
+      "picked_minutes": 0,
+      "recap_minutes": 0,
+      "total_minutes": 225,
+      "overflow_minutes": 0,
+      "counts": {
+        "full": 1,
+        "game_in_40": 1,
+        "skip": 12
+      },
+      "recap_covers": 0,
+      "unseen": 12
+    },
+    "b": {
+      "package": "B",
+      "recap_included": false,
+      "recap_dropped": true,
+      "budget_minutes": 240,
+      "own_team_minutes": 225,
+      "own_team_skipped": 1,
+      "picked_minutes": 0,
+      "recap_minutes": 0,
+      "total_minutes": 225,
+      "overflow_minutes": 0,
+      "counts": {
+        "full": 1,
+        "game_in_40": 1,
+        "skip": 12
+      },
+      "recap_covers": 0,
+      "unseen": 12
+    }
+  },
+  "package_b_plan": [
+    {
+      "game_id": "401772943",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772765",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772871",
+      "format_advice": "game_in_40",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401772872",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772764",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772763",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772767",
+      "format_advice": "skip",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772766",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772870",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772873",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772874",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772768",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401772926",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772818",
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    }
+  ],
+  "games": [
+    {
+      "game_id": "401772943",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-10-31T00:15:00.000Z",
+      "kickoff_nl": "vr 31 okt, 01:15",
+      "slot": "Thursday Night",
+      "is_international": false,
+      "venue": "Miami Gardens",
+      "home": {
+        "abbr": "MIA",
+        "name": "Miami Dolphins",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "away": {
+        "abbr": "BAL",
+        "name": "Baltimore Ravens",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "records_before": {
+        "home": "2-6",
+        "away": "2-5"
+      },
+      "game_type": "conference",
+      "primetime": true,
+      "tags": [],
+      "in_sunday_slate": false,
+      "live_friendly_nl": false,
+      "all22_from_nl": "za 1 nov, 16:45",
+      "stakes_pre": 2,
+      "watchability": 2,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772765",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Cincinnati",
+      "home": {
+        "abbr": "CIN",
+        "name": "Cincinnati Bengals",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bears",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "records_before": {
+        "home": "3-5",
+        "away": "4-3"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 3,
+      "watchability": 4,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772871",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Detroit",
+      "home": {
+        "abbr": "DET",
+        "name": "Detroit Lions",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Vikings",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "records_before": {
+        "home": "5-2",
+        "away": "3-4"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 4,
+      "watchability": null,
+      "format_advice": "game_in_40",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401772872",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Green Bay",
+      "home": {
+        "abbr": "GB",
+        "name": "Green Bay Packers",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "CAR",
+        "name": "Carolina Panthers",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "records_before": {
+        "home": "5-1-1",
+        "away": "4-4"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie",
+        "indirect belangrijk"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 3,
+      "watchability": 4,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772764",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Nashville",
+      "home": {
+        "abbr": "TEN",
+        "name": "Tennessee Titans",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "away": {
+        "abbr": "LAC",
+        "name": "Los Angeles Chargers",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "records_before": {
+        "home": "1-7",
+        "away": "5-3"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 1,
+      "watchability": 2,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772763",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Foxborough",
+      "home": {
+        "abbr": "NE",
+        "name": "New England Patriots",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Falcons",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "records_before": {
+        "home": "6-2",
+        "away": "3-4"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 3,
+      "watchability": 3,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772767",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "East Rutherford",
+      "home": {
+        "abbr": "NYG",
+        "name": "New York Giants",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "away": {
+        "abbr": "SF",
+        "name": "San Francisco 49ers",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "records_before": {
+        "home": "2-6",
+        "away": "5-3"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 2,
+      "watchability": null,
+      "format_advice": "skip",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772766",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Pittsburgh",
+      "home": {
+        "abbr": "PIT",
+        "name": "Pittsburgh Steelers",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "away": {
+        "abbr": "IND",
+        "name": "Indianapolis Colts",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "records_before": {
+        "home": "4-3",
+        "away": "7-1"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "indirect belangrijk"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 3,
+      "watchability": 3,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772870",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T18:00:00.000Z",
+      "kickoff_nl": "zo 2 nov, 19:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Houston",
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Texans",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "away": {
+        "abbr": "DEN",
+        "name": "Denver Broncos",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "records_before": {
+        "home": "3-4",
+        "away": "6-2"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 4 nov, 10:30",
+      "stakes_pre": 3,
+      "watchability": 4,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772873",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T21:05:00.000Z",
+      "kickoff_nl": "zo 2 nov, 22:05",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Las Vegas",
+      "home": {
+        "abbr": "LV",
+        "name": "Las Vegas Raiders",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "away": {
+        "abbr": "JAX",
+        "name": "Jacksonville Jaguars",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "records_before": {
+        "home": "2-5",
+        "away": "4-3"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": false,
+      "all22_from_nl": "di 4 nov, 13:35",
+      "stakes_pre": 2,
+      "watchability": 4,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772874",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T21:05:00.000Z",
+      "kickoff_nl": "zo 2 nov, 22:05",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Inglewood",
+      "home": {
+        "abbr": "LAR",
+        "name": "Los Angeles Rams",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "away": {
+        "abbr": "NO",
+        "name": "New Orleans Saints",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "records_before": {
+        "home": "5-2",
+        "away": "1-7"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": false,
+      "all22_from_nl": "di 4 nov, 13:35",
+      "stakes_pre": 1,
+      "watchability": 1,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772768",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-02T21:25:00.000Z",
+      "kickoff_nl": "zo 2 nov, 22:25",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Orchard Park",
+      "home": {
+        "abbr": "BUF",
+        "name": "Buffalo Bills",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "away": {
+        "abbr": "KC",
+        "name": "Kansas City Chiefs",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "records_before": {
+        "home": "5-2",
+        "away": "5-3"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": false,
+      "all22_from_nl": "di 4 nov, 13:55",
+      "stakes_pre": 4,
+      "watchability": null,
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401772926",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-03T01:20:00.000Z",
+      "kickoff_nl": "ma 3 nov, 02:20",
+      "slot": "Sunday Night",
+      "is_international": false,
+      "venue": "Landover",
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Commanders",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "away": {
+        "abbr": "SEA",
+        "name": "Seattle Seahawks",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "records_before": {
+        "home": "3-5",
+        "away": "5-2"
+      },
+      "game_type": "conference",
+      "primetime": true,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": false,
+      "all22_from_nl": "di 4 nov, 17:50",
+      "stakes_pre": 2,
+      "watchability": 2,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401772818",
+      "season": 2025,
+      "week": 9,
+      "kickoff_utc": "2025-11-04T01:15:00.000Z",
+      "kickoff_nl": "di 4 nov, 02:15",
+      "slot": "Monday Night",
+      "is_international": false,
+      "venue": "Arlington",
+      "home": {
+        "abbr": "DAL",
+        "name": "Dallas Cowboys",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "away": {
+        "abbr": "ARI",
+        "name": "Arizona Cardinals",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "records_before": {
+        "home": "3-4-1",
+        "away": "2-5"
+      },
+      "game_type": "conference",
+      "primetime": true,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": false,
+      "live_friendly_nl": false,
+      "all22_from_nl": "wo 5 nov, 17:45",
+      "stakes_pre": 2,
+      "watchability": 2,
+      "format_advice": "skip",
+      "format_reason": "budget",
+      "runtime_minutes": 0
+    }
+  ]
+}

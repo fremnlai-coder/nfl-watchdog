@@ -1,0 +1,13 @@
+{
+  "name": "nfl-watchdog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Spoilervrije NFL kijkgids met DAZN-formaatadvies en weektijdsbudget",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "ingest": "node src/ingest.js",
+    "week": "node src/cli.js",
+    "test": "node --test 'test/*.test.js'"
+  }
+}

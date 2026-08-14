@@ -1,0 +1,340 @@
+{
+  "401772758": {
+    "final_score": {
+      "home": 38,
+      "away": 39
+    },
+    "score_line": "NYJ 39 - 38 CIN",
+    "winner": "NYJ",
+    "records_after": {
+      "home": "3-5",
+      "away": "1-7"
+    },
+    "metrics": {
+      "excitement": 1.3613,
+      "tension": 0.44809047619047593,
+      "volatility": 3,
+      "pace": 0.21666666666666667,
+      "stakes": 0.2579365079365079
+    },
+    "percentiles": {
+      "excitement": 0.7224,
+      "tension": 0.7555,
+      "volatility": 0.443,
+      "pace": 0.9724,
+      "stakes": 0.0717
+    }
+  },
+  "401772759": {
+    "final_score": {
+      "home": 30,
+      "away": 16
+    },
+    "score_line": "CHI 16 - 30 BAL",
+    "winner": "BAL",
+    "records_after": {
+      "home": "2-5",
+      "away": "4-3"
+    },
+    "metrics": {
+      "excitement": 0.7843000000000001,
+      "tension": 0.25209310344827596,
+      "volatility": 3,
+      "pace": 0.16666666666666666,
+      "stakes": 0.32499999999999996
+    },
+    "percentiles": {
+      "excitement": 0.3621,
+      "tension": 0.5607,
+      "volatility": 0.443,
+      "pace": 0.7353,
+      "stakes": 0.1397
+    }
+  },
+  "401772760": {
+    "final_score": {
+      "home": 10,
+      "away": 34
+    },
+    "score_line": "MIA 34 - 10 ATL",
+    "winner": "MIA",
+    "records_after": {
+      "home": "3-4",
+      "away": "2-6"
+    },
+    "metrics": {
+      "excitement": 0.7137,
+      "tension": 0.002223255813953773,
+      "volatility": 11,
+      "pace": 0.13333333333333333,
+      "stakes": 0.32499999999999996
+    },
+    "percentiles": {
+      "excitement": 0.2813,
+      "tension": 0.079,
+      "volatility": 0.8051,
+      "pace": 0.4154,
+      "stakes": 0.1397
+    }
+  },
+  "401772761": {
+    "final_score": {
+      "home": 38,
+      "away": 14
+    },
+    "score_line": "TEN 14 - 38 IND",
+    "winner": "IND",
+    "records_after": {
+      "home": "7-1",
+      "away": "1-7"
+    },
+    "metrics": {
+      "excitement": 0.3419,
+      "tension": 0.0019512195121952347,
+      "volatility": 0,
+      "pace": 0.13333333333333333,
+      "stakes": 0.39920634920634923
+    },
+    "percentiles": {
+      "excitement": 0.0349,
+      "tension": 0.0294,
+      "volatility": 0.1544,
+      "pace": 0.4154,
+      "stakes": 0.2702
+    }
+  },
+  "401772762": {
+    "final_score": {
+      "home": 44,
+      "away": 24
+    },
+    "score_line": "DAL 24 - 44 DEN",
+    "winner": "DEN",
+    "records_after": {
+      "home": "6-2",
+      "away": "3-4-1"
+    },
+    "metrics": {
+      "excitement": 0.6581,
+      "tension": 0.013659574468085522,
+      "volatility": 2,
+      "pace": 0.18333333333333332,
+      "stakes": 0.4900793650793651
+    },
+    "percentiles": {
+      "excitement": 0.2188,
+      "tension": 0.182,
+      "volatility": 0.3805,
+      "pace": 0.8585,
+      "stakes": 0.5423
+    }
+  },
+  "401772817": {
+    "final_score": {
+      "home": 28,
+      "away": 7
+    },
+    "score_line": "WSH 7 - 28 KC",
+    "winner": "KC",
+    "records_after": {
+      "home": "5-3",
+      "away": "3-5"
+    },
+    "metrics": {
+      "excitement": 0.7566999999999999,
+      "tension": 0.01880000000000015,
+      "volatility": 0,
+      "pace": 0.08333333333333333,
+      "stakes": 0.4642857142857143
+    },
+    "percentiles": {
+      "excitement": 0.318,
+      "tension": 0.2077,
+      "volatility": 0.1544,
+      "pace": 0.0551,
+      "stakes": 0.4467
+    }
+  },
+  "401772865": {
+    "final_score": {
+      "home": 9,
+      "away": 40
+    },
+    "score_line": "BUF 40 - 9 CAR",
+    "winner": "BUF",
+    "records_after": {
+      "home": "4-4",
+      "away": "5-2"
+    },
+    "metrics": {
+      "excitement": 0.7138999999999999,
+      "tension": 0.0022388888888885683,
+      "volatility": 0,
+      "pace": 0.15,
+      "stakes": 0.5296296296296297
+    },
+    "percentiles": {
+      "excitement": 0.2849,
+      "tension": 0.0827,
+      "volatility": 0.1544,
+      "pace": 0.5846,
+      "stakes": 0.6121
+    }
+  },
+  "401772866": {
+    "final_score": {
+      "home": 26,
+      "away": 15
+    },
+    "score_line": "SF 15 - 26 HOU",
+    "winner": "HOU",
+    "records_after": {
+      "home": "3-4",
+      "away": "5-3"
+    },
+    "metrics": {
+      "excitement": 0.6141000000000001,
+      "tension": 0.07079090909090946,
+      "volatility": 0,
+      "pace": 0.13333333333333333,
+      "stakes": 0.4058201058201058
+    },
+    "percentiles": {
+      "excitement": 0.1857,
+      "tension": 0.3474,
+      "volatility": 0.1544,
+      "pace": 0.4154,
+      "stakes": 0.2849
+    }
+  },
+  "401772867": {
+    "final_score": {
+      "home": 38,
+      "away": 20
+    },
+    "score_line": "NYG 20 - 38 PHI",
+    "winner": "PHI",
+    "records_after": {
+      "home": "6-2",
+      "away": "2-6"
+    },
+    "metrics": {
+      "excitement": 0.6447999999999998,
+      "tension": 0.01964117647058783,
+      "volatility": 0,
+      "pace": 0.16666666666666666,
+      "stakes": 0.4817460317460317
+    },
+    "percentiles": {
+      "excitement": 0.2077,
+      "tension": 0.2151,
+      "volatility": 0.1544,
+      "pace": 0.7353,
+      "stakes": 0.5165
+    }
+  },
+  "401772868": {
+    "final_score": {
+      "home": 32,
+      "away": 13
+    },
+    "score_line": "CLE 13 - 32 NE",
+    "winner": "NE",
+    "records_after": {
+      "home": "6-2",
+      "away": "2-6"
+    },
+    "metrics": {
+      "excitement": 0.7204999999999998,
+      "tension": 0.006142857142857339,
+      "volatility": 2,
+      "pace": 0.15,
+      "stakes": 0.3817460317460317
+    },
+    "percentiles": {
+      "excitement": 0.2923,
+      "tension": 0.1415,
+      "volatility": 0.3805,
+      "pace": 0.5846,
+      "stakes": 0.2408
+    }
+  },
+  "401772869": {
+    "final_score": {
+      "home": 3,
+      "away": 23
+    },
+    "score_line": "TB 23 - 3 NO",
+    "winner": "TB",
+    "records_after": {
+      "home": "1-7",
+      "away": "6-2"
+    },
+    "metrics": {
+      "excitement": 0.8116,
+      "tension": 0.01487924528301976,
+      "volatility": 0,
+      "pace": 0.1,
+      "stakes": 0.4095238095238095
+    },
+    "percentiles": {
+      "excitement": 0.3842,
+      "tension": 0.1893,
+      "volatility": 0.1544,
+      "pace": 0.1287,
+      "stakes": 0.3143
+    }
+  },
+  "401772925": {
+    "final_score": {
+      "home": 25,
+      "away": 35
+    },
+    "score_line": "GB 35 - 25 PIT",
+    "winner": "GB",
+    "records_after": {
+      "home": "4-3",
+      "away": "5-1-1"
+    },
+    "metrics": {
+      "excitement": 0.9534,
+      "tension": 0.13090370370370408,
+      "volatility": 10,
+      "pace": 0.2,
+      "stakes": 0.5717592592592592
+    },
+    "percentiles": {
+      "excitement": 0.4945,
+      "tension": 0.454,
+      "volatility": 0.7647,
+      "pace": 0.9338,
+      "stakes": 0.7188
+    }
+  },
+  "401772942": {
+    "final_score": {
+      "home": 37,
+      "away": 10
+    },
+    "score_line": "MIN 10 - 37 LAC",
+    "winner": "LAC",
+    "records_after": {
+      "home": "5-3",
+      "away": "3-4"
+    },
+    "metrics": {
+      "excitement": 0.5054000000000001,
+      "tension": 0.007357142857142951,
+      "volatility": 4,
+      "pace": 0.15,
+      "stakes": 0.5003968253968254
+    },
+    "percentiles": {
+      "excitement": 0.1121,
+      "tension": 0.1636,
+      "volatility": 0.5,
+      "pace": 0.5846,
+      "stakes": 0.568
+    }
+  }
+}
