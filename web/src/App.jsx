@@ -13,6 +13,8 @@ import Controls from './components/Controls.jsx';
 import GameRow from './components/GameRow.jsx';
 import PackageSummary from './components/PackageSummary.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
+import Explainer from './components/Explainer.jsx';
+import Term from './components/Term.jsx';
 
 function Section({ title, note, games, rowProps, empty = 'Niets deze week.' }) {
   return (
@@ -62,12 +64,15 @@ export default function App() {
       .catch((e) => setError(e.message));
   }, []);
 
+  // Persisting belongs in an effect, not in the state updater: StrictMode calls
+  // updaters twice on purpose to surface impure ones, and a write to storage
+  // from inside one is exactly that.
+  useEffect(() => {
+    if (overrides) saveOverrides(overrides);
+  }, [overrides]);
+
   function updateOverrides(fn) {
-    setOverrides((prev) => {
-      const next = fn(prev);
-      saveOverrides(next);
-      return next;
-    });
+    setOverrides((prev) => fn(prev));
   }
 
   function resetOverrides() {
@@ -182,7 +187,7 @@ export default function App() {
         </p>
         {data.teams_on_bye.length > 0 && (
           <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
-            Bye: {data.teams_on_bye.join(', ')}
+            <Term id="bye">Bye</Term>: {data.teams_on_bye.join(', ')}
           </p>
         )}
       </header>
@@ -230,6 +235,8 @@ export default function App() {
       />
 
       <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
+
+      <Explainer timezone={data.timezone} offsetHours={data.nl_et_offset_hours} />
 
       <footer className="mt-10 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-stone-800 dark:text-stone-400">
         <p>

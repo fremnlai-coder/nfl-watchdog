@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TeamLogo from './TeamLogo.jsx';
+import Term from './Term.jsx';
 
 const FORMAT_LABEL = {
   full: 'Full replay',
@@ -14,6 +15,19 @@ const REASON_LABEL = {
   budget: 'budget op',
   quota_full: 'weekvorm vol',
   avoid: 'op je avoid-lijst',
+};
+
+// Badge and format labels that have a glossary entry behind them.
+const BADGE_TERM = {
+  divisie: 'division',
+  primetime: 'primetime',
+  'jouw divisie': 'own_division',
+  'indirect belangrijk': 'seeding_impact',
+};
+
+const FORMAT_TERM = {
+  full: 'full_replay',
+  game_in_40: 'game_in_40',
 };
 
 const FORMAT_STYLE = {
@@ -77,7 +91,11 @@ export default function GameRow({ game, hints, result, onRevealHints, onRevealRe
         <span
           className={`shrink-0 rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}
         >
-          {FORMAT_LABEL[game.format_advice]}
+          {FORMAT_TERM[game.format_advice] ? (
+            <Term id={FORMAT_TERM[game.format_advice]}>{FORMAT_LABEL[game.format_advice]}</Term>
+          ) : (
+            FORMAT_LABEL[game.format_advice]
+          )}
           {game.runtime_minutes ? ` · ${game.runtime_minutes}m` : ''}
         </span>
       </div>
@@ -89,13 +107,15 @@ export default function GameRow({ game, hints, result, onRevealHints, onRevealRe
       <div className="mt-2 flex flex-wrap items-center gap-2">
         {badges.map((b) => (
           <Badge key={b} tone={b === 'indirect belangrijk' ? 'accent' : 'neutral'}>
-            {b}
+            {BADGE_TERM[b] ? <Term id={BADGE_TERM[b]}>{b}</Term> : b}
           </Badge>
         ))}
         <span className="text-xs text-stone-400">
           {REASON_LABEL[game.format_reason] ?? game.format_reason}
         </span>
-        <span className="text-xs text-stone-400">· All-22 vanaf {game.all22_from_nl}</span>
+        <span className="text-xs text-stone-400">
+          · <Term id="all22">All-22</Term> vanaf {game.all22_from_nl}
+        </span>
       </div>
 
       {/* Level 2 and 3. Nothing below this line exists until it is clicked. */}

@@ -1,8 +1,9 @@
 # NFL Watchdog — v1
 
 Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
-Fase 1 t/m 3 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
-planner, CLI-weekoverzicht, teasers met spoiler-linter, en de statische web-UI.
+Fase 1 t/m 4 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
+planner, CLI-weekoverzicht, teasers met spoiler-linter, de statische web-UI, en de
+NFL-uitleglaag met glossarium en playoff-bracket.
 
 ## Draaien
 
@@ -13,7 +14,7 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 70 tests
+npm test                                        # 75 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
@@ -39,7 +40,9 @@ src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij inges
 web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
 web/src/lib/prefs.js   favorieten in localStorage, over de config heen
-web/src/components/    GameRow (met de twee onthulstappen), Controls, PackageSummary
+web/src/components/    GameRow (met de twee onthulstappen), Controls, PackageSummary,
+                       TeamSettings, Explainer, PlayoffBracket, Term, TeamLogo
+web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
 scripts/copy-data.js   stagen van data naar de build
 ```
 
@@ -160,6 +163,24 @@ gebruiken dezelfde functie, dus ze kunnen niet uit elkaar lopen.
 terug naar 96px (45 kB → 7 kB per stuk) en zet ze in `assets/logos/`. Gecommit, dus
 de pagina doet geen enkele request naar een derde partij. De dark-variant van ESPN
 is byte-identiek aan de lichte, dus één set volstaat.
+
+## Uitleglaag
+
+Uitklapbaar onderaan: competitiestructuur, wanneer het hier is, de playoff-bracket
+en een glossarium van zestien begrippen. Termen in de UI zelf — de badges, de
+formaatlabels, All-22, bye — hangen aan tooltips die ook op toetsenbordfocus
+openen, niet alleen op hover.
+
+De bracket staat bewust op **seednummers en niet op ploegen**. Een ingevulde bracket
+is de grootste spoiler die deze tool zou kunnen bevatten: die verraadt in één blik
+wie de divisies won, wie de wildcards pakte en wie er per ronde doorging. Als
+formaatdiagram is het level 0, want niets ervan hangt van een uitslag af.
+
+Wil je hem ooit wél ingevuld: dat vraagt een aparte ingest van `seasontype=3` en
+hoort dan achter level 3 met bevestiging, net als een eindstand.
+
+Glossariumteksten zijn spelregels, geen seizoensdata. Een test bewaakt dat er geen
+jaartallen, ploegnamen of uitslagwoorden in sluipen.
 
 ## Nog te doen
 
