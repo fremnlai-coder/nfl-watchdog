@@ -10,25 +10,26 @@ import {
   loadOverrides, saveOverrides, clearOverrides, overridesFromTeams, mergeTeams,
 } from './lib/prefs.js';
 import Controls from './components/Controls.jsx';
-import GameRow from './components/GameRow.jsx';
+import GameCard from './components/GameCard.jsx';
 import PackageSummary from './components/PackageSummary.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
 import Explainer from './components/Explainer.jsx';
 import Term from './components/Term.jsx';
 
-function Section({ title, note, games, rowProps, empty = 'Niets deze week.' }) {
+function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact }) {
   return (
     <section className="mt-8">
       <h2 className="text-sm font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
         {title}
+        <span className="ml-2 font-normal normal-case">{games.length}</span>
       </h2>
-      {note && <p className="mt-0.5 text-xs text-stone-400">{note}</p>}
+      {note && <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">{note}</p>}
       {games.length === 0 ? (
-        <p className="mt-2 text-sm text-stone-400">{empty}</p>
+        <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{empty}</p>
       ) : (
-        <ul className="mt-2">
+        <ul className="mt-3 grid items-stretch gap-3 sm:grid-cols-2">
           {games.map((g) => (
-            <GameRow key={g.game_id} game={g} {...rowProps(g)} />
+            <GameCard key={g.game_id} game={g} compact={compact} {...rowProps(g)} />
           ))}
         </ul>
       )}
@@ -171,6 +172,7 @@ export default function App() {
     .sort((a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc));
 
   const rowProps = (g) => ({
+    rank: rankOf.get(g.home.abbr) ?? rankOf.get(g.away.abbr) ?? null,
     hints: hints[g.game_id],
     result: results[g.game_id],
     onRevealHints: () => revealHints(g),
@@ -181,12 +183,12 @@ export default function App() {
     <main className="mx-auto max-w-5xl p-6">
       <header>
         <h1 className="text-2xl font-bold">NFL Watchdog</h1>
-        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
           Week {data.week} · seizoen {data.season} · tijden in {data.timezone} ·
           verschil met New York deze week: {data.nl_et_offset_hours} uur
         </p>
         {data.teams_on_bye.length > 0 && (
-          <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
+          <p className="mt-0.5 text-sm text-stone-600 dark:text-stone-400">
             <Term id="bye">Bye</Term>: {data.teams_on_bye.join(', ')}
           </p>
         )}
@@ -230,8 +232,10 @@ export default function App() {
 
       <Section
         title="Rest van de week"
+        note="Buiten je weekvorm gevallen. Compacter weergegeven, want je slaat ze over."
         games={rest}
         rowProps={rowProps}
+        compact
       />
 
       <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />

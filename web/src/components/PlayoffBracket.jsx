@@ -32,7 +32,7 @@ function Seed({ label }) {
       className={`inline-flex min-w-8 items-center justify-center rounded px-1.5 py-0.5 text-xs ${
         isNumber
           ? 'bg-stone-200 font-semibold text-stone-800 dark:bg-stone-800 dark:text-stone-200'
-          : 'text-stone-400 italic'
+          : 'text-stone-500 italic dark:text-stone-400'
       }`}
     >
       {isNumber ? `#${label}` : label}
@@ -63,7 +63,7 @@ function Conference({ name }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-1 text-xs text-stone-400">{round.note}</p>
+            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{round.note}</p>
           </li>
         ))}
       </ol>
@@ -86,7 +86,7 @@ export default function PlayoffBracket() {
         </p>
       </div>
 
-      <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
+      <p className="mt-3 text-xs text-stone-600 dark:text-stone-400">
         Dit schema staat bewust op seednummers en niet op ploegen. Een ingevulde
         bracket zou in één oogopslag verraden wie de divisies won, wie de wildcards
         pakte en wie er per ronde doorging — het hele seizoen tegelijk.

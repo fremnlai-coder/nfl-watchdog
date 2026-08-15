@@ -14,7 +14,7 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 75 tests
+npm test                                        # 82 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
@@ -31,6 +31,7 @@ src/score.js     percentielen over het seizoen -> 1-5, plus stakes_pre (level 0)
 src/planner.js   budgetverdeling, degradatieladder, pakket A/B
 src/schema.js    DE SPOILERGRENS — allowlist van publieke velden
 src/tags.js      level 0-tags; gedeeld met de browser omdat favorieten daar wijzigen
+src/explain.js   waarom-uitleg per wedstrijd; legt de kéuze uit, niet de wedstrijd
 src/linter.js    deterministische spoiler-linter; geen model, geen randomness
 src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallback
 src/time.js      Intl met named zones, nooit een vaste offset
@@ -40,7 +41,7 @@ src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij inges
 web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
 web/src/lib/prefs.js   favorieten in localStorage, over de config heen
-web/src/components/    GameRow (met de twee onthulstappen), Controls, PackageSummary,
+web/src/components/    GameCard (met de twee onthulstappen), Controls, PackageSummary,
                        TeamSettings, Explainer, PlayoffBracket, Term, TeamLogo
 web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
 scripts/copy-data.js   stagen van data naar de build
@@ -236,6 +237,27 @@ serveert.
 Railway is bewust niet gebruikt: die staat op de niet-gebruiken-lijst in de brief,
 en voor een statische site zonder server of database draait dat een container die
 kost wat een CDN gratis doet.
+
+## Kaartontwerp en de waarom-uitleg
+
+Elke wedstrijd is een kaart in een grid van twee kolommen. Uit- en thuisploeg staan
+gestapeld met de `@` in de goot; dat is niet cosmetisch maar de oplossing voor de
+mobiele wrap, waar één regel uiteenviel in drie en de `@` verweesd achterbleef.
+
+Klikken op het teamblok opent **waarom deze wedstrijd in je pakket zit**. Bewust die
+formulering en niet "waarom dit een mooie wedstrijd is": dat laatste is een oordeel
+over een gespeelde wedstrijd, en dus uitkomstinformatie. De uitleg komt volledig uit
+level 0 — voorkeursrang, positie in de weekvorm, records vóór de week, divisie,
+seeding-impact, aftraptijd — met een vast voorbehoud eronder. `test/explain.test.js`
+draait alle 272 wedstrijden langs een verboden-woordenlijst.
+
+Toegankelijkheid, gemeten op de live site en daarna hersteld:
+
+- Light mode had vijf contrastfouten (`stone-400` op `stone-50` = 2,48; badges 3,65
+  en 4,02). Nu nul: badges op `-700`, secundaire tekst op `stone-500`/`600`.
+- Horizontale overflow op mobiel (scrollWidth 495 bij viewport 375), veroorzaakt
+  door de teamrijen in het instellingenpaneel. Nu 375 = 375.
+- Raakvlakken onder de 24×24 in het teampaneel zijn opgehoogd.
 
 ## Nog te doen
 

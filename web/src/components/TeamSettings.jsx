@@ -13,7 +13,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
   const rank = override?.rank ?? null;
 
   return (
-    <li className="flex items-center gap-2 py-1">
+    <li className="flex flex-wrap items-center gap-x-2 gap-y-1 py-1.5">
       <TeamLogo abbr={team.abbr} size={22} />
       <span className="w-10 shrink-0 font-mono text-xs text-stone-500 dark:text-stone-400">
         {team.abbr}
@@ -29,7 +29,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} hoger`}
             disabled={rank === 1}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, -1))}
-            className="rounded px-1 text-xs disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="rounded p-1.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
           >
             ↑
           </button>
@@ -38,13 +38,13 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} lager`}
             disabled={rank === favoriteCount}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, 1))}
-            className="rounded px-1 text-xs disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="rounded p-1.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
           >
             ↓
           </button>
       </span>
 
-      <span className="flex shrink-0 gap-0.5">
+      <span className="ml-auto flex shrink-0 gap-0.5">
         {TIERS.map((t) => (
           <button
             key={t}
@@ -52,7 +52,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             onClick={() => onChange((o) => setTier(o, team.abbr, t))}
             aria-pressed={tier === t}
             title={TIER_LABEL[t]}
-            className={`w-12 rounded px-1 py-0.5 text-center text-xs ${
+            className={`w-14 rounded px-1 py-1.5 text-center text-xs ${
               tier === t
                 ? TIER_STYLE[t]
                 : 'text-stone-500 hover:bg-stone-200 dark:text-stone-400 dark:hover:bg-stone-800'
@@ -101,7 +101,7 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
         <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">
           {[...divisions.entries()].map(([label, group]) => (
             <div key={label}>
-              <h3 className="text-xs font-semibold tracking-wide text-stone-400 uppercase">
+              <h3 className="text-xs font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
                 {label}
               </h3>
               <ul className="mt-1">
