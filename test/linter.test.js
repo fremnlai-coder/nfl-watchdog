@@ -201,7 +201,21 @@ test('een teaser die een speler noemt wordt niet gepubliceerd', () => {
 });
 
 test('teasergeneratie is deterministisch', () => {
-  const a = teaserFor(baseGame, { playerNames: PLAYERS });
-  const b = teaserFor(baseGame, { playerNames: PLAYERS });
+  const a = teaserFor({ ...baseGame, game_id: '401772900' }, { playerNames: PLAYERS });
+  const b = teaserFor({ ...baseGame, game_id: '401772900' }, { playerNames: PLAYERS });
   assert.deepEqual(a, b);
+});
+
+test('gelijksoortige wedstrijden krijgen niet allemaal dezelfde zin', () => {
+  // Week 18 is entirely division games with high stakes, so without variants
+  // every row on the page read identically.
+  const ids = ['401772900', '401772901', '401772902', '401772903', '401772910', '401772933'];
+  const teasers = ids.map(
+    (game_id) => teaserFor({ ...baseGame, game_id, stakes_pre: 5 }, { playerNames: PLAYERS }).teaser,
+  );
+  const unique = new Set(teasers);
+  assert.ok(unique.size >= 3, `slechts ${unique.size} verschillende zinnen: ${[...unique].join(' | ')}`);
+  for (const t of teasers) {
+    assert.ok(lintTeaser(t, { playerNames: PLAYERS }).ok, `variant lekt: ${t}`);
+  }
 });

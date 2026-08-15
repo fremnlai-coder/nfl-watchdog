@@ -194,7 +194,7 @@
       "all22_from_nl": "za 6 sep, 17:50",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC East, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Bekende tegenstanders: NFC East, twee keer per jaar op het programma.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -273,7 +273,7 @@
       "all22_from_nl": "di 9 sep, 10:30",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC South, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Onderling duel binnen de NFC South.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -349,7 +349,7 @@
       "all22_from_nl": "di 9 sep, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -389,7 +389,7 @@
       "all22_from_nl": "di 9 sep, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -583,7 +583,7 @@
       "all22_from_nl": "di 9 sep, 13:35",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -663,7 +663,7 @@
       "all22_from_nl": "di 9 sep, 13:55",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC North, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Bekende tegenstanders: NFC North, twee keer per jaar op het programma.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -781,7 +781,7 @@
       "all22_from_nl": "wo 10 sep, 17:45",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC North, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Onderling duel binnen de NFC North.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40

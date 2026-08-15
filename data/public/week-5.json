@@ -189,7 +189,7 @@
       "all22_from_nl": "za 4 okt, 17:45",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "NFC West-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
@@ -230,7 +230,7 @@
       "all22_from_nl": "di 7 okt, 07:00",
       "stakes_pre": 1,
       "watchability": null,
-      "teaser": "Overzees duel in London, hier gewoon op een normaal tijdstip te kijken.",
+      "teaser": "London als speelstad, en dus een aftrap die hier prima uitkomt.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -308,7 +308,7 @@
       "all22_from_nl": "di 7 okt, 10:30",
       "stakes_pre": 1,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -346,7 +346,7 @@
       "all22_from_nl": "di 7 okt, 10:30",
       "stakes_pre": 1,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -425,7 +425,7 @@
       "all22_from_nl": "di 7 okt, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -544,7 +544,7 @@
       "all22_from_nl": "di 7 okt, 13:35",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Twee ploegen met een winnend record komen elkaar tegen.",
+      "teaser": "Allebei staan ze aan de goede kant van de streep.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -584,7 +584,7 @@
       "all22_from_nl": "di 7 okt, 13:55",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
+      "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -665,7 +665,7 @@
       "all22_from_nl": "di 7 okt, 17:50",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de AFC East, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Onderling duel binnen de AFC East.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -705,7 +705,7 @@
       "all22_from_nl": "wo 8 okt, 17:45",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Monday Night: Kansas City Chiefs op bezoek bij Jacksonville Jaguars.",
+      "teaser": "Monday Night met Kansas City Chiefs als bezoeker.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185

@@ -196,7 +196,7 @@
       "all22_from_nl": "za 29 nov, 10:30",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC North met veel op het spel voor beide ploegen.",
+      "teaser": "NFC North-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -236,7 +236,7 @@
       "all22_from_nl": "za 29 nov, 14:00",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Voor allebei telt deze wedstrijd zwaar mee in het eindklassement.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -315,7 +315,7 @@
       "all22_from_nl": "zo 30 nov, 12:30",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -393,7 +393,7 @@
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Divisieduel in de AFC South, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Bekende tegenstanders: AFC South, twee keer per jaar op het programma.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -471,7 +471,7 @@
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -630,7 +630,7 @@
       "all22_from_nl": "di 2 dec, 13:35",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
+      "teaser": "NFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -670,7 +670,7 @@
       "all22_from_nl": "di 2 dec, 13:55",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -710,7 +710,7 @@
       "all22_from_nl": "di 2 dec, 13:55",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de AFC West, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Bekende tegenstanders: AFC West, twee keer per jaar op het programma.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -750,7 +750,7 @@
       "all22_from_nl": "di 2 dec, 17:50",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Sunday Night: Denver Broncos op bezoek bij Washington Commanders.",
+      "teaser": "Sunday Night met Denver Broncos als bezoeker.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -788,7 +788,7 @@
       "all22_from_nl": "wo 3 dec, 17:45",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Monday Night: New York Giants op bezoek bij New England Patriots.",
+      "teaser": "Monday Night met New York Giants als bezoeker.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0

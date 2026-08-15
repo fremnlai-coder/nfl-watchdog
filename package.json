@@ -4,10 +4,27 @@
   "private": true,
   "type": "module",
   "description": "Spoilervrije NFL kijkgids met DAZN-formaatadvies en weektijdsbudget",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "ingest": "node src/ingest.js",
     "week": "node src/cli.js",
-    "test": "node --test 'test/*.test.js'"
+    "stage": "node scripts/copy-data.js",
+    "dev": "npm run stage && vite",
+    "build": "npm run stage && vite build",
+    "preview": "vite preview",
+    "test": "node --test 'test/*.test.js'",
+    "verify": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }

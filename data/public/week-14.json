@@ -189,7 +189,7 @@
       "all22_from_nl": "za 6 dec, 17:45",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Voor allebei telt deze wedstrijd zwaar mee in het eindklassement.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -229,7 +229,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
+      "teaser": "NFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -267,7 +267,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -305,7 +305,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -421,7 +421,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC South, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Onderling duel binnen de NFC South.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -461,7 +461,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Divisieduel in de AFC South met veel op het spel voor beide ploegen.",
+      "teaser": "Onderlinge strijd in de AFC South, en allebei hebben ze het nodig.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -501,7 +501,7 @@
       "all22_from_nl": "di 9 dec, 10:30",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Divisieduel in de AFC North met veel op het spel voor beide ploegen.",
+      "teaser": "Twee ploegen uit de AFC North die elkaar dit jaar niets gunnen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -622,7 +622,7 @@
       "all22_from_nl": "di 9 dec, 13:55",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC West, deze twee treffen elkaar elk seizoen tweemaal.",
+      "teaser": "Onderling duel binnen de NFC West.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -662,7 +662,7 @@
       "all22_from_nl": "di 9 dec, 17:50",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -703,7 +703,7 @@
       "all22_from_nl": "wo 10 dec, 17:45",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40

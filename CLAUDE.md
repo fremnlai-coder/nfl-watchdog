@@ -1,8 +1,8 @@
 # NFL Watchdog — v1
 
 Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
-Fase 1 en 2 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
-planner, CLI-weekoverzicht, teasers en de deterministische spoiler-linter.
+Fase 1 t/m 3 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
+planner, CLI-weekoverzicht, teasers met spoiler-linter, en de statische web-UI.
 
 ## Draaien
 
@@ -13,7 +13,11 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 54 tests
+npm test                                        # 60 tests
+
+npm run dev                                     # web-UI op localhost:5173
+npm run build                                   # statische build naar dist/
+npm run verify                                  # build + alle tests, inclusief dist-scan
 ```
 
 ## Architectuur
@@ -29,7 +33,16 @@ src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallbac
 src/time.js      Intl met named zones, nooit een vaste offset
 src/ingest.js    orchestratie, schrijft public/ en private/
 src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij ingest
+
+web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
+web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
+web/src/components/    GameRow (met de twee onthulstappen), Controls, PackageSummary
+scripts/copy-data.js   stagen van data naar de build
 ```
+
+De planner uit `src/planner.js` draait ongewijzigd in de browser. Dat kan alleen
+omdat hij uitsluitend publieke velden leest — dat was bij F1 al de reden om hem zo
+te schrijven.
 
 ## Databronnen
 
@@ -114,10 +127,21 @@ Uitzondering op de cijferregel: `49ers`, het enige legitieme token met cijfers.
 29 lekvoorbeelden in `test/linter.test.js`, plus een end-to-end test die alle 272
 gepubliceerde teasers lint tegen de echte spelerslijst van die wedstrijd.
 
+## Web-UI en de spoilergrens
+
+De initiële pagina haalt alleen `data/index.json` en `data/public/week-N.json` op.
+`hints.json` komt pas bij de eerste klik, `results.json` pas na de tweede plus een
+expliciete bevestiging. Empirisch geverifieerd in de browser via het netwerkpaneel,
+niet alleen beredeneerd.
+
+`dist/data/private/` staat wél in de build — anders werkt level 3 niet. "Privé"
+betekent hier "niet in de initiële payload", niet "afgeschermd". `test/build-leak.test.js`
+toetst daarom de juiste dingen: alle 272 scoreregels tegen `index.html` plus de JS- en
+CSS-bundel, en het bestaan van de privé-bestanden in dist.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
-- F3: statische web-UI, spoilerniveaus achter kliks
 - F4: uitleglaag, glossarium, playoff-bracket
 - Seizoen 2026 opent 9 september 2026; zet `season` op 2026 in de config
 - Remote: github.com/fremnlai-coder/nfl-watchdog (privé)

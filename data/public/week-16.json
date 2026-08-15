@@ -235,7 +235,7 @@
       "all22_from_nl": "ma 22 dec, 14:30",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC East met veel op het spel voor beide ploegen.",
+      "teaser": "Onderlinge strijd in de NFC East, en allebei hebben ze het nodig.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -276,7 +276,7 @@
       "all22_from_nl": "ma 22 dec, 17:50",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Divisieduel in de NFC North met veel op het spel voor beide ploegen.",
+      "teaser": "NFC North-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -354,7 +354,7 @@
       "all22_from_nl": "di 23 dec, 10:30",
       "stakes_pre": 4,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -394,7 +394,7 @@
       "all22_from_nl": "di 23 dec, 10:30",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "teaser": "Voor geen van beide ploegen valt er nog veel te halen.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -470,7 +470,7 @@
       "all22_from_nl": "di 23 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
-      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
+      "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -591,7 +591,7 @@
       "all22_from_nl": "di 23 dec, 13:35",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Voor allebei telt deze wedstrijd zwaar mee in het eindklassement.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -671,7 +671,7 @@
       "all22_from_nl": "di 23 dec, 13:55",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -711,7 +711,7 @@
       "all22_from_nl": "di 23 dec, 13:55",
       "stakes_pre": 2,
       "watchability": null,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -791,7 +791,7 @@
       "all22_from_nl": "wo 24 dec, 17:45",
       "stakes_pre": 5,
       "watchability": null,
-      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
