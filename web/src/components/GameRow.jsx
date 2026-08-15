@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TeamLogo from './TeamLogo.jsx';
 
 const FORMAT_LABEL = {
   full: 'Full replay',
@@ -51,12 +52,18 @@ export default function GameRow({ game, hints, result, onRevealHints, onRevealRe
         <span className="w-44 shrink-0 text-sm text-stone-500 dark:text-stone-400">
           {game.slot}
         </span>
-        <span className="font-medium">
-          {game.away.abbr}{' '}
-          <span className="text-stone-400">({game.records_before.away})</span>
-          <span className="mx-1.5 text-stone-400">@</span>
-          {game.home.abbr}{' '}
-          <span className="text-stone-400">({game.records_before.home})</span>
+        <span className="flex items-center gap-1.5 font-medium">
+          <TeamLogo abbr={game.away.abbr} />
+          <span>
+            {game.away.abbr}{' '}
+            <span className="text-stone-400">({game.records_before.away})</span>
+          </span>
+          <span className="text-stone-400">@</span>
+          <TeamLogo abbr={game.home.abbr} />
+          <span>
+            {game.home.abbr}{' '}
+            <span className="text-stone-400">({game.records_before.home})</span>
+          </span>
         </span>
         <span
           className={`ml-auto rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}

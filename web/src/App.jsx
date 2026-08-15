@@ -2,10 +2,17 @@ import { useEffect, useMemo, useState } from 'react';
 // The same planner the CLI uses. It only ever reads public fields, which is why
 // it can run in the browser at all.
 import { planBoth } from '../../src/planner.js';
+// Tags are recomputed here rather than read from the payload: favourites can be
+// changed in the UI, and tags baked at ingest time would describe the old ones.
+import { computeTags } from '../../src/tags.js';
 import { loadIndex, loadPrefs, loadWeek, loadHints, loadResults } from './lib/data.js';
+import {
+  loadOverrides, saveOverrides, clearOverrides, overridesFromTeams, mergeTeams,
+} from './lib/prefs.js';
 import Controls from './components/Controls.jsx';
 import GameRow from './components/GameRow.jsx';
 import PackageSummary from './components/PackageSummary.jsx';
+import TeamSettings from './components/TeamSettings.jsx';
 
 function Section({ title, note, games, rowProps, empty = 'Niets deze week.' }) {
   return (
@@ -33,6 +40,7 @@ export default function App() {
   const [prefs, setPrefs] = useState(null);
   const [data, setData] = useState(null);
   const [quota, setQuota] = useState({ full: 2, game_in_40: 3 });
+  const [overrides, setOverrides] = useState(null);
   const [error, setError] = useState(null);
 
   // Revealed level 2 / level 3 data, keyed by game id. Empty on load, and it
@@ -46,10 +54,26 @@ export default function App() {
         setWeeks(index.weeks);
         setPrefs(p);
         setQuota(p.weekly_quota ?? { full: 2, game_in_40: 3 });
+        // A first visit starts from preferences.json; after that your own
+        // choices win.
+        setOverrides(loadOverrides() ?? overridesFromTeams(p.teams));
         setWeek(index.weeks[index.weeks.length - 1]);
       })
       .catch((e) => setError(e.message));
   }, []);
+
+  function updateOverrides(fn) {
+    setOverrides((prev) => {
+      const next = fn(prev);
+      saveOverrides(next);
+      return next;
+    });
+  }
+
+  function resetOverrides() {
+    clearOverrides();
+    setOverrides(overridesFromTeams(prefs.teams));
+  }
 
   useEffect(() => {
     if (week == null) return;
@@ -60,15 +84,31 @@ export default function App() {
     loadWeek(week).then(setData).catch((e) => setError(e.message));
   }, [week]);
 
+  const teams = useMemo(
+    () => (prefs ? mergeTeams(prefs.teams, overrides) : []),
+    [prefs, overrides],
+  );
+
   const planned = useMemo(() => {
     if (!data || !prefs) return null;
-    const packages = planBoth(data.games, { ...prefs, weekly_quota: quota });
+    // Retag first, then plan: everything downstream depends on who counts as
+    // your team right now, not on who did at ingest time.
+    const retagged = data.games.map((g) => {
+      const tags = computeTags(g, teams);
+      return {
+        ...g,
+        tags,
+        // Your own teams never show a rating, whichever teams those are today.
+        watchability: tags.includes('own_team') ? null : g.watchability,
+      };
+    });
+    const packages = planBoth(retagged, { ...prefs, teams, weekly_quota: quota });
     const byId = new Map(packages.a.games.map((p) => [p.game_id, p]));
     return {
       packages,
-      games: data.games.map((g) => ({ ...g, ...byId.get(g.game_id) })),
+      games: retagged.map((g) => ({ ...g, ...byId.get(g.game_id) })),
     };
-  }, [data, prefs, quota]);
+  }, [data, prefs, teams, quota]);
 
   async function revealHints(game) {
     const doc = await loadHints(week);
@@ -99,7 +139,7 @@ export default function App() {
     );
   }
 
-  if (!planned || !prefs) {
+  if (!planned || !prefs || !overrides) {
     return (
       <main className="mx-auto max-w-5xl p-6">
         <p className="text-stone-500">Laden…</p>
@@ -108,7 +148,7 @@ export default function App() {
   }
 
   const rankOf = new Map(
-    prefs.teams.filter((t) => t.tier === 'favorite').map((t) => [t.abbr, t.rank ?? 99]),
+    teams.filter((t) => t.tier === 'favorite').map((t) => [t.abbr, t.rank ?? 99]),
   );
   const rankFor = (g) =>
     Math.min(rankOf.get(g.home.abbr) ?? 99, rankOf.get(g.away.abbr) ?? 99);
@@ -154,6 +194,12 @@ export default function App() {
           onWeek={setWeek}
           quota={quota}
           onQuota={setQuota}
+        />
+        <TeamSettings
+          teams={prefs.teams}
+          overrides={overrides}
+          onChange={updateOverrides}
+          onReset={resetOverrides}
         />
       </div>
 

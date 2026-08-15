@@ -35,6 +35,18 @@ const weeks = publicFiles
 // An index so the app does not have to probe for which weeks exist.
 await writeFile(new URL('index.json', TARGET), JSON.stringify({ weeks }, null, 2));
 
+// Team crests, fetched once by scripts/fetch-logos.js and committed.
+const logosFrom = new URL('assets/logos/', ROOT);
+const logosTo = new URL('web/public/logos/', ROOT);
+await rm(logosTo, { recursive: true, force: true });
+await mkdir(logosTo, { recursive: true });
+let logoCount = 0;
+for (const file of await readdir(logosFrom).catch(() => [])) {
+  if (!file.endsWith('.png')) continue;
+  await copyFile(new URL(file, logosFrom), new URL(file, logosTo));
+  logoCount++;
+}
+
 await mkdir(new URL('config/', new URL('web/public/', ROOT)), { recursive: true });
 await copyFile(
   new URL('config/preferences.json', ROOT),
@@ -43,5 +55,5 @@ await copyFile(
 
 console.log(
   `Gestaged: ${publicFiles.length} publieke, ${privateFiles.length} privé bestanden, ` +
-  `weken ${weeks[0]}-${weeks[weeks.length - 1]}.`,
+  `${logoCount} logos, weken ${weeks[0]}-${weeks[weeks.length - 1]}.`,
 );

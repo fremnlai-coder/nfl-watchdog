@@ -13,11 +13,12 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 60 tests
+npm test                                        # 70 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
 npm run verify                                  # build + alle tests, inclusief dist-scan
+node scripts/fetch-logos.js                     # eenmalig, logos staan in assets/logos/
 ```
 
 ## Architectuur
@@ -28,6 +29,7 @@ src/metrics.js   win-prob-metrics; leest nooit de score
 src/score.js     percentielen over het seizoen -> 1-5, plus stakes_pre (level 0)
 src/planner.js   budgetverdeling, degradatieladder, pakket A/B
 src/schema.js    DE SPOILERGRENS — allowlist van publieke velden
+src/tags.js      level 0-tags; gedeeld met de browser omdat favorieten daar wijzigen
 src/linter.js    deterministische spoiler-linter; geen model, geen randomness
 src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallback
 src/time.js      Intl met named zones, nooit een vaste offset
@@ -36,6 +38,7 @@ src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij inges
 
 web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
+web/src/lib/prefs.js   favorieten in localStorage, over de config heen
 web/src/components/    GameRow (met de twee onthulstappen), Controls, PackageSummary
 scripts/copy-data.js   stagen van data naar de build
 ```
@@ -138,6 +141,25 @@ niet alleen beredeneerd.
 betekent hier "niet in de initiële payload", niet "afgeschermd". `test/build-leak.test.js`
 toetst daarom de juiste dingen: alle 272 scoreregels tegen `index.html` plus de JS- en
 CSS-bundel, en het bestaan van de privé-bestanden in dist.
+
+## Favorieten wijzigen in de browser
+
+Het Teams-paneel zet elk van de 32 teams op favorite, watchlist, neutral of avoid,
+met een rangvolgorde voor de favorieten. Dat staat in localStorage en gaat over
+`config/preferences.json` heen; die blijft de bron voor de CLI en de ingest.
+
+Consequentie die niet vanzelf zichtbaar is: `own_team`, `jouw divisie` en
+`indirect belangrijk` werden bij ingest berekend uit de config. Zodra je favorieten
+in de browser wijzigt, beschrijven die tags iemand anders. Daarom staat de logica in
+`src/tags.js` en berekent de browser ze opnieuw uit level 0-velden. Ingest en browser
+gebruiken dezelfde functie, dus ze kunnen niet uit elkaar lopen.
+
+## Logos
+
+`scripts/fetch-logos.js` haalt de 32 crests eenmalig bij ESPN op, schaalt ze met sips
+terug naar 96px (45 kB → 7 kB per stuk) en zet ze in `assets/logos/`. Gecommit, dus
+de pagina doet geen enkele request naar een derde partij. De dark-variant van ESPN
+is byte-identiek aan de lichte, dus één set volstaat.
 
 ## Nog te doen
 

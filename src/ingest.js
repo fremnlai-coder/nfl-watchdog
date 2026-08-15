@@ -13,6 +13,7 @@ import { planBoth } from './planner.js';
 import { buildPublicGame, assertPublicShape } from './schema.js';
 import { playerNamesFromPlays, lintTeaser } from './linter.js';
 import { teaserFor } from './teasers.js';
+import { computeTags } from './tags.js';
 import { formatNL, slotLabel, isSundaySlate, isLiveFriendly, offsetHours } from './time.js';
 
 const ROOT = new URL('../', import.meta.url);
@@ -191,29 +192,25 @@ for (const week of weeks) {
     const home = teamMeta(g.home_abbr);
     const away = teamMeta(g.away_abbr);
 
-    const tags = [];
-    const involved = [home, away];
-    if (involved.some((t) => t.tier === 'favorite')) tags.push('own_team');
-    else {
-      if (involved.some((t) => favoriteDivisions.has(t.division))) tags.push('jouw divisie');
-      const rec = {
-        home: recordsBefore.get(`${week}:${g.home_abbr}`) ?? { w: 0, l: 0, t: 0 },
-        away: recordsBefore.get(`${week}:${g.away_abbr}`) ?? { w: 0, l: 0, t: 0 },
-      };
-      const winning = (r) => r.w + r.l + r.t > 0 && r.w >= r.l;
-      if (
-        involved.every((t) => favoriteConferences.has(t.conference)) &&
-        winning(rec.home) && winning(rec.away)
-      ) {
-        tags.push('indirect belangrijk');
-      }
-    }
-    if (isInternational) tags.push('internationaal');
+    // Level 0 tags, computed by the shared helper so the browser can redo them
+    // when favourites change without drifting from what the CLI shows.
+    const tags = computeTags(
+      {
+        home: { abbr: home.abbr, conference: home.conference, division: home.division },
+        away: { abbr: away.abbr, conference: away.conference, division: away.division },
+        records_before: {
+          home: fmtRecord(recordsBefore.get(`${week}:${g.home_abbr}`) ?? { w: 0, l: 0, t: 0 }),
+          away: fmtRecord(recordsBefore.get(`${week}:${g.away_abbr}`) ?? { w: 0, l: 0, t: 0 }),
+        },
+        is_international: isInternational,
+      },
+      prefs.teams,
+    );
+    const isOwn = tags.includes('own_team');
 
     const liveWindow = prefs.live_friendly_hours ?? [11, 21];
     const slot = slotLabel(g.date, { isInternational, timeZone: prefs.timezone, window: liveWindow });
     const liveFriendly = isLiveFriendly(g.date, { timeZone: prefs.timezone, window: liveWindow });
-    const isOwn = involved.some((t) => t.tier === 'favorite');
 
     return buildPublicGame({
       game_id: g.game_id,
