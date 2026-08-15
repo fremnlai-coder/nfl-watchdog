@@ -120,4 +120,6 @@ gepubliceerde teasers lint tegen de echte spelerslijst van die wedstrijd.
 - F3: statische web-UI, spoilerniveaus achter kliks
 - F4: uitleglaag, glossarium, playoff-bracket
 - Seizoen 2026 opent 9 september 2026; zet `season` op 2026 in de config
-- Geen git remote. Repo hoort onder github.com/fremnlai-coder
+- Remote: github.com/fremnlai-coder/nfl-watchdog (privé)
+- Let op bij F3: GitHub Pages op een privérepo vereist een betaald plan. Kies bij
+  het hosten tussen de repo publiek maken of Vercel free tier.
