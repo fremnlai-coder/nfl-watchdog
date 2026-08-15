@@ -203,6 +203,20 @@ contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd
 
 ## Hosting
 
+**Live: https://nfl-watchdog.vercel.app** (Vercel Hobby, privérepo, deployt op elke
+push naar main — dus ook op die van de dinsdagochtend-cron).
+
+Geverifieerd op de live site, niet alleen lokaal:
+
+- `X-Robots-Tag: noindex, nofollow, noarchive` staat op de pagina én op de
+  privé-databestanden. `robots.txt` zet alles dicht.
+- 0 van de 272 scoreregels in de initiële payload (index.html plus de JS- en
+  CSS-bundel, samen 236 kB). Ook geen hint-teksten.
+- Requestvolgorde in de browser: bij laden alleen `index.json` en het publieke
+  weekbestand; `hints.json` pas na de eerste klik; `results.json` pas na de
+  bevestiging. De bevestigingsvraag zelf doet geen prefetch.
+
+
 `vercel.json` legt de buildinstellingen vast, zodat er in de Vercel-UI niets
 handmatig ingevuld hoeft te worden: framework vite, build `npm run build`, output
 `dist`. Vercel free werkt met een privérepo; GitHub Pages zou de repo publiek
