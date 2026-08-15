@@ -74,9 +74,9 @@
     },
     {
       "game_id": "401772635",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772861",
@@ -104,9 +104,9 @@
     },
     {
       "game_id": "401772862",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772860",
@@ -122,9 +122,9 @@
     },
     {
       "game_id": "401772756",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772864",
@@ -134,9 +134,9 @@
     },
     {
       "game_id": "401772863",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772924",
@@ -190,7 +190,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "za 18 okt, 17:45",
       "stakes_pre": 3,
-      "watchability": 4,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC North, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -231,10 +232,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 07:00",
       "stakes_pre": 4,
-      "watchability": 2,
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "watchability": null,
+      "teaser": "Overzees duel in London, hier gewoon op een normaal tijdstip te kijken.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772861",
@@ -270,7 +272,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -307,7 +310,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -344,7 +348,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -384,6 +389,7 @@
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "teaser": "Divisieduel in de AFC West, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -423,10 +429,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 3,
-      "watchability": 4,
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "watchability": null,
+      "teaser": "Twee ploegen met een winnend record komen elkaar tegen.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772860",
@@ -460,7 +467,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 21 okt, 10:30",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -499,7 +507,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 21 okt, 13:35",
       "stakes_pre": 2,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -539,10 +548,11 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 21 okt, 13:35",
       "stakes_pre": 3,
-      "watchability": 2,
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "watchability": null,
+      "teaser": "Twee ploegen met een winnend record komen elkaar tegen.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772864",
@@ -576,7 +586,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 21 okt, 13:55",
       "stakes_pre": 3,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Divisieduel in de NFC East, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -615,10 +626,11 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 21 okt, 13:55",
       "stakes_pre": 2,
-      "watchability": 4,
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772924",
@@ -655,6 +667,7 @@
       "all22_from_nl": "di 21 okt, 17:50",
       "stakes_pre": 3,
       "watchability": null,
+      "teaser": "Sunday Night tussen twee ploegen die allebei aan de goede kant staan.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
@@ -694,6 +707,7 @@
       "all22_from_nl": "wo 22 okt, 16:30",
       "stakes_pre": 3,
       "watchability": null,
+      "teaser": "Monday Night tussen twee ploegen die allebei aan de goede kant staan.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -732,7 +746,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "wo 22 okt, 19:30",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Monday Night: Houston Texans op bezoek bij Seattle Seahawks.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0

@@ -91,6 +91,8 @@ function line(g, { showRating }) {
   ].join('');
 }
 
+const teaserLine = (g) => (g.teaser ? `${' '.repeat(19)}${g.teaser}` : null);
+
 // --- Explicit spoiler reveals -------------------------------------------------
 
 if (hasFlag('result')) {
@@ -111,9 +113,16 @@ if (hasFlag('hints')) {
   const hints = JSON.parse(
     await readFile(new URL(`data/private/week-${week}.hints.json`, ROOT), 'utf8'),
   );
+  const results = JSON.parse(
+    await readFile(new URL(`data/private/week-${week}.results.json`, ROOT), 'utf8'),
+  );
   console.log(`\nHINTS (level 2) — week ${week}\n`);
   for (const g of data.games) {
-    console.log(`  ${pad(`${g.away.abbr} @ ${g.home.abbr}`, 14)} ${(hints[g.game_id] ?? []).join(', ')}`);
+    const r = results[g.game_id]?.watchability;
+    console.log(
+      `  ${pad(`${g.away.abbr} @ ${g.home.abbr}`, 14)}${pad(r ? stars(r) : '', 7)}` +
+      `${(hints[g.game_id] ?? []).join(', ')}`,
+    );
   }
   console.log();
   process.exit(0);
@@ -149,11 +158,17 @@ if (!own.length) console.log('  geen van je teams speelt deze week');
 for (const g of own) {
   console.log(line(g, { showRating: false }));
   console.log(`${' '.repeat(19)}${REASON_LABEL[g.format_reason] ?? g.format_reason}`);
+  const t = teaserLine(g);
+  if (t) console.log(t);
 }
 
 console.log(`\nKIJKWAARDIG  (op ${showWatchability ? 'rating' : 'inzet vooraf'})`);
 if (!worth.length) console.log('  budget volledig opgegaan aan je eigen teams');
-for (const g of worth) console.log(line(g, { showRating: true }));
+for (const g of worth) {
+  console.log(line(g, { showRating: true }));
+  const t = teaserLine(g);
+  if (t) console.log(t);
+}
 
 console.log('\nREST VAN DE WEEK');
 for (const g of rest) console.log(line(g, { showRating: true }));

@@ -1,8 +1,8 @@
 # NFL Watchdog — v1
 
 Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
-Fase 1 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
-budgetplanner en CLI-weekoverzicht.
+Fase 1 en 2 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
+planner, CLI-weekoverzicht, teasers en de deterministische spoiler-linter.
 
 ## Draaien
 
@@ -13,7 +13,7 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 38 tests
+npm test                                        # 54 tests
 ```
 
 ## Architectuur
@@ -24,6 +24,8 @@ src/metrics.js   win-prob-metrics; leest nooit de score
 src/score.js     percentielen over het seizoen -> 1-5, plus stakes_pre (level 0)
 src/planner.js   budgetverdeling, degradatieladder, pakket A/B
 src/schema.js    DE SPOILERGRENS — allowlist van publieke velden
+src/linter.js    deterministische spoiler-linter; geen model, geen randomness
+src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallback
 src/time.js      Intl met named zones, nooit een vaste offset
 src/ingest.js    orchestratie, schrijft public/ en private/
 src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij ingest
@@ -66,9 +68,13 @@ Wie er won is wél volledig afgeschermd — de test `de rating voorspelt de winn
 niet` bewaakt dat de thuiswinst-verdeling per ratingbucket tussen 30 en 70 procent
 blijft.
 
-Wie ook die vormindicatie niet wil: `--no-rating`, of `show_watchability: false`.
-De planner schakelt dan naar `planning_basis: "pre_game_only"` en rangschikt op
-`stakes_pre`, dat puur uit de records vóór de week volgt en niets lekt.
+`show_watchability` staat op **false**. De rating staat daarmee niet in de publieke
+payload — hij zou anders in F3 gewoon in view-source zichtbaar zijn — en leeft op
+level 2, achter `--hints`. De planner draait op `planning_basis: "pre_game_only"`
+en rangschikt op `stakes_pre`, dat puur uit de records vóór de week volgt.
+
+Zet je hem terug op true, dan is een nieuwe ingest nodig; het veld wordt bij het
+schrijven weggelaten, niet bij het tonen.
 
 ## Planningsmodus
 
@@ -88,10 +94,29 @@ Let op bij budgetmodus: drie eigen teams op `full` kosten 555 minuten. Tegen een
 budget van 240 komt de rest van de week dan nooit aan bod — zet
 `own_team_default_format` op `game_in_40` als je die modus gebruikt.
 
+## Teasers en de linter
+
+Eén zin per wedstrijd, maximaal 15 woorden, alleen uit level 0- en 1-velden. Geen
+model in dit pad. Elke kandidaat gaat door `lintTeaser()`; de eerste die schoon is
+wint, anders de vaste fallback. Een afgekeurde teaser wordt nooit gerepareerd —
+dat is precies waar een lek terugkruipt.
+
+Regels: `max_words`, `digits`, `spoiler_word` (exacte lijst plus stammen voor
+Nederlandse verbuiging), `player_name`. Die laatste toetst tegen de achternamen uit
+de play-by-play van díe wedstrijd, opgehaald uit de `Z.Gonzalez`-notatie.
+
+Bewust overblokkeren: een valse treffer kost een generieke teaser, een gemist lek
+kost het hele project. Twee echte gaten die de tests vonden: "wonnen" ontbrak, en
+"kansloos" ving "kansloze" niet — vandaar de stammenlijst naast de woordenlijst.
+
+Uitzondering op de cijferregel: `49ers`, het enige legitieme token met cijfers.
+
+29 lekvoorbeelden in `test/linter.test.js`, plus een end-to-end test die alle 272
+gepubliceerde teasers lint tegen de echte spelerslijst van die wedstrijd.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
-- F2: teasers + deterministische spoiler-linter + minimaal 20 lektests
 - F3: statische web-UI, spoilerniveaus achter kliks
 - F4: uitleglaag, glossarium, playoff-bracket
 - Seizoen 2026 opent 9 september 2026; zet `season` op 2026 in de config

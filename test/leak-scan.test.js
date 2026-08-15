@@ -6,6 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { assertPublicShape, PUBLIC_KEYS } from '../src/schema.js';
+import { lintTeaser } from '../src/linter.js';
 
 const ROOT = new URL('../', import.meta.url);
 
@@ -175,6 +176,34 @@ test('internationaal betekent niet automatisch overdag hier', () => {
         true,
         `week ${n} game ${g.game_id}: International-slot om ${g.kickoff_nl}`,
       );
+    }
+  }
+});
+
+test('elke gepubliceerde teaser overleeft de linter tegen de echte spelers', () => {
+  // End-to-end: the teaser as actually shipped, checked against the surnames of
+  // everyone who appeared in that specific game.
+  let checked = 0;
+  for (const { n, pub, results } of weeks) {
+    for (const g of pub.games) {
+      if (!g.teaser) continue;
+      const names = results[g.game_id]?.player_names ?? [];
+      const verdict = lintTeaser(g.teaser, { playerNames: names });
+      assert.ok(
+        verdict.ok,
+        `week ${n} game ${g.game_id}: "${g.teaser}" -> ${JSON.stringify(verdict.violations)}`,
+      );
+      checked++;
+    }
+  }
+  assert.ok(checked > 250, `slechts ${checked} teasers gecontroleerd`);
+});
+
+test('elke wedstrijd heeft een teaser', () => {
+  for (const { n, pub } of weeks) {
+    for (const g of pub.games) {
+      assert.ok(g.teaser, `week ${n} game ${g.game_id} heeft geen teaser`);
+      assert.ok(g.teaser.length < 120, `teaser te lang: ${g.teaser}`);
     }
   }
 });

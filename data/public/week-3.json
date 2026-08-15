@@ -89,9 +89,9 @@
     },
     {
       "game_id": "401772732",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772839",
@@ -125,9 +125,9 @@
     },
     {
       "game_id": "401772735",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772736",
@@ -193,7 +193,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "za 20 sep, 17:45",
       "stakes_pre": 1,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC East, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -232,7 +233,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 1,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -269,7 +271,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC South, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -309,7 +312,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -348,10 +352,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 2,
-      "watchability": 3,
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "watchability": null,
+      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772839",
@@ -388,7 +393,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 4,
-      "watchability": 5,
+      "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -425,7 +431,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 1,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -465,7 +472,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -502,7 +510,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Divisieduel in de NFC South, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -539,7 +548,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 23 sep, 10:30",
       "stakes_pre": 1,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC South, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -579,10 +589,11 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 23 sep, 13:35",
       "stakes_pre": 3,
-      "watchability": 3,
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC West, deze twee treffen elkaar elk seizoen tweemaal.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772736",
@@ -618,7 +629,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 23 sep, 13:35",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -657,7 +669,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 23 sep, 13:55",
       "stakes_pre": 1,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -697,6 +710,7 @@
       "all22_from_nl": "di 23 sep, 13:55",
       "stakes_pre": 5,
       "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
@@ -736,6 +750,7 @@
       "all22_from_nl": "di 23 sep, 17:50",
       "stakes_pre": 1,
       "watchability": null,
+      "teaser": "Sunday Night: Kansas City Chiefs op bezoek bij New York Giants.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -775,6 +790,7 @@
       "all22_from_nl": "wo 24 sep, 17:45",
       "stakes_pre": 2,
       "watchability": null,
+      "teaser": "Monday Night: Detroit Lions op bezoek bij Baltimore Ravens.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185

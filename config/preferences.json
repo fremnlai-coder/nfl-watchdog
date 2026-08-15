@@ -15,8 +15,8 @@
   "_weekly_quota_note": "Vaste weekvorm: 2 full replays + 3x Game in 40 = 490 min. Full-plekken gaan alleen naar je eigen teams; ongebruikte full-plekken worden 40-plekken.",
   "weekly_budget_minutes": 240,
   "own_team_policy": "degrade_by_rank",
-  "show_watchability": true,
-  "planning_basis": "watchability",
+  "show_watchability": false,
+  "planning_basis": "pre_game_only",
   "_planning_basis_note": "watchability = op basis van het verloop (correleert -0.70 met de eindmarge, verraadt nooit de winnaar). pre_game_only = alleen op inzet vooraf, lekt niets.",
   "own_team_default_format": "full",
   "_own_team_default_format_note": "full | game_in_40. Op full kosten drie eigen teams 555 min per week en komt de rest van de week nooit aan bod.",
@@ -270,5 +270,6 @@
       "tier": "favorite",
       "rank": 3
     }
-  ]
+  ],
+  "_show_watchability_note": "false = de rating staat niet in de publieke payload en is alleen zichtbaar op level 2 (--hints). Planning loopt dan op stakes_pre."
 }

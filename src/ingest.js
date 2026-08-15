@@ -11,6 +11,8 @@ import { joinSeries, rawMetrics, stakes, finalScore } from './metrics.js';
 import { scoreSeason } from './score.js';
 import { planBoth } from './planner.js';
 import { buildPublicGame, assertPublicShape } from './schema.js';
+import { playerNamesFromPlays, lintTeaser } from './linter.js';
+import { teaserFor } from './teasers.js';
 import { formatNL, slotLabel, isSundaySlate, isLiveFriendly, offsetHours } from './time.js';
 
 const ROOT = new URL('../', import.meta.url);
@@ -116,7 +118,14 @@ const enriched = await mapLimit(raw, 6, async (g) => {
   ]);
   const rows = joinSeries(playsDoc, probsDoc);
   if (++done % 40 === 0) console.log(`  ${done}/${raw.filter((r) => r.final).length}`);
-  return { ...g, rows, metrics: rows.length ? rawMetrics(rows) : null };
+  return {
+    ...g,
+    rows,
+    metrics: rows.length ? rawMetrics(rows) : null,
+    // Everyone who touched the ball in this game. The teaser linter treats any
+    // of these names as a leak, whatever is said about them.
+    playerNames: playerNamesFromPlays(playsDoc),
+  };
 });
 
 const teamMeta = (abbr) => teamsByAbbr.get(abbr) ?? { abbr, name: abbr, conference: '?', division: '?' };
@@ -231,11 +240,28 @@ for (const week of weeks) {
       // Pre-game importance. Level 0: derived purely from the records carried
       // into the week, so it is safe even before you have watched anything.
       stakes_pre: scored.get(g.game_id)?.stakes_pre ?? null,
-      // Own teams get no rating shown: you watch them regardless, and hiding it
-      // keeps the section from being sortable by outcome-correlated data.
-      watchability: isOwn ? null : (scored.get(g.game_id)?.watchability ?? null),
+      // The rating is outcome-derived: it correlates -0.70 with the final margin,
+      // so it says a game stayed close without saying who won. With
+      // show_watchability off it is left out of the public payload entirely and
+      // lives on at level 2 instead, where that shape hint belongs.
+      // Own teams never carry one either way: you watch them regardless, and
+      // omitting it keeps the section from being sortable by outcome data.
+      watchability: (prefs.show_watchability === false || isOwn)
+        ? null
+        : (scored.get(g.game_id)?.watchability ?? null),
     });
   });
+
+  // Teasers are generated from the public game only, then linted against the
+  // players who actually appeared. A failing teaser falls back to a fixed
+  // template rather than being rewritten.
+  let fallbacks = 0;
+  for (const pg of publicGames) {
+    const src = weekGames.find((g) => g.game_id === pg.game_id);
+    const { teaser, source } = teaserFor(pg, { playerNames: src?.playerNames ?? [] });
+    if (source === 'fallback') fallbacks++;
+    pg.teaser = teaser;
+  }
 
   const packages = planBoth(publicGames, prefs);
   const planById = new Map(packages.a.games.map((p) => [p.game_id, p]));
@@ -283,6 +309,8 @@ for (const week of weeks) {
           score_line: `${g.away_abbr} ${fs.away} - ${fs.home} ${g.home_abbr}`,
           winner: fs.home === fs.away ? 'TIE' : (fs.home > fs.away ? g.home_abbr : g.away_abbr),
           records_after: { home: after(g.home_abbr), away: after(g.away_abbr) },
+          watchability: scored.get(g.game_id)?.watchability ?? null,
+          player_names: g.playerNames ?? [],
           metrics: metricsById.get(g.game_id) ?? null,
           percentiles: scored.get(g.game_id)?._percentiles ?? null,
         }];
@@ -290,7 +318,10 @@ for (const week of weeks) {
     ), null, 2),
   );
 
-  console.log(`week ${week}: ${publicGames.length} wedstrijden geschreven`);
+  console.log(
+    `week ${week}: ${publicGames.length} wedstrijden geschreven` +
+    (fallbacks ? `, ${fallbacks}x teaser-fallback` : ''),
+  );
 }
 
 console.log('\nKlaar. Publiek in data/public/, privé in data/private/.');

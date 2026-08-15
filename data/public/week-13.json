@@ -58,8 +58,8 @@
         "game_in_40": 3,
         "skip": 11
       },
-      "recap_covers": 8,
-      "unseen": 3
+      "recap_covers": 9,
+      "unseen": 2
     }
   },
   "package_b_plan": [
@@ -83,9 +83,9 @@
     },
     {
       "game_id": "401772621",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772785",
@@ -101,9 +101,9 @@
     },
     {
       "game_id": "401772787",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772892",
@@ -113,9 +113,9 @@
     },
     {
       "game_id": "401772893",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772895",
@@ -125,9 +125,9 @@
     },
     {
       "game_id": "401772894",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772896",
@@ -196,6 +196,7 @@
       "all22_from_nl": "za 29 nov, 10:30",
       "stakes_pre": 5,
       "watchability": null,
+      "teaser": "Divisieduel in de NFC North met veel op het spel voor beide ploegen.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -235,6 +236,7 @@
       "all22_from_nl": "za 29 nov, 14:00",
       "stakes_pre": 4,
       "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 185
@@ -271,7 +273,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "za 29 nov, 17:50",
       "stakes_pre": 4,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC North met veel op het spel voor beide ploegen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -311,10 +314,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "zo 30 nov, 12:30",
       "stakes_pre": 5,
-      "watchability": 3,
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772785",
@@ -351,6 +355,7 @@
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
@@ -387,7 +392,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC South, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -426,10 +432,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 5,
-      "watchability": 3,
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC South met veel op het spel voor beide ploegen.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772892",
@@ -463,7 +470,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 2,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -500,10 +508,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 2,
-      "watchability": 4,
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "watchability": null,
+      "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772895",
@@ -539,7 +548,8 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 3,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -579,10 +589,11 @@
       "live_friendly_nl": true,
       "all22_from_nl": "di 2 dec, 10:30",
       "stakes_pre": 4,
-      "watchability": 4,
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772896",
@@ -618,7 +629,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 2 dec, 13:35",
       "stakes_pre": 3,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -657,7 +669,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 2 dec, 13:55",
       "stakes_pre": 4,
-      "watchability": 3,
+      "watchability": null,
+      "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -696,7 +709,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 2 dec, 13:55",
       "stakes_pre": 3,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Divisieduel in de AFC West, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -735,7 +749,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "di 2 dec, 17:50",
       "stakes_pre": 2,
-      "watchability": 4,
+      "watchability": null,
+      "teaser": "Sunday Night: Denver Broncos op bezoek bij Washington Commanders.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -772,7 +787,8 @@
       "live_friendly_nl": false,
       "all22_from_nl": "wo 3 dec, 17:45",
       "stakes_pre": 2,
-      "watchability": 2,
+      "watchability": null,
+      "teaser": "Monday Night: New York Giants op bezoek bij New England Patriots.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0

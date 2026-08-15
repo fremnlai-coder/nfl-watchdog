@@ -24,6 +24,7 @@ export const PUBLIC_KEYS = [
   'all22_from_nl',
   'stakes_pre',
   'watchability',
+  'teaser',
   'format_advice',
   'format_reason',
   'runtime_minutes',
