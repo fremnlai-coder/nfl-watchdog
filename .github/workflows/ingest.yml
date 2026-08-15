@@ -1,0 +1,82 @@
+name: Wekelijkse ingest
+
+# Dinsdagochtend 07:00 UTC, dus 09:00 Nederlandse tijd in de zomer en 08:00 in
+# de winter. Monday Night eindigt hier rond 05:30, dus alles van de speelronde
+# is dan binnen. De All-22 van de maandagavondwedstrijd nog niet — die verschijnt
+# pas woensdag, en dat staat per wedstrijd in de UI.
+on:
+  schedule:
+    - cron: '0 7 * * 2'
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Seizoen (leeg = automatisch bepalen)'
+        required: false
+      weeks:
+        description: 'Weken, bijvoorbeeld 1-18'
+        required: false
+        default: '1-18'
+
+# Alleen nodig om de bijgewerkte data terug te committen.
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Seizoen bepalen
+        id: season
+        run: |
+          if [ -n "${{ inputs.season }}" ]; then
+            echo "value=${{ inputs.season }}" >> "$GITHUB_OUTPUT"
+          else
+            # Een seizoen loopt van september tot februari, dus januari en
+            # februari horen nog bij het jaar ervoor.
+            Y=$(date -u +%Y); M=$(date -u +%-m)
+            [ "$M" -lt 3 ] && Y=$((Y - 1))
+            echo "value=$Y" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: ESPN-responses cachen
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          # Afgelopen wedstrijden veranderen niet meer, dus alleen de nieuwe
+          # week hoeft opgehaald te worden. De sleutel schuift per run mee.
+          key: espn-${{ steps.season.outputs.value }}-${{ github.run_id }}
+          restore-keys: |
+            espn-${{ steps.season.outputs.value }}-
+
+      - run: npm ci
+
+      - name: Ingest
+        run: npm run ingest -- --season ${{ steps.season.outputs.value }} --weeks ${{ inputs.weeks || '1-18' }}
+
+      # Build en tests draaien vóór de commit, niet erna. Faalt de leak-scan,
+      # dan wordt er niets gepubliceerd — de cron kan geen lekkende data pushen.
+      - name: Bouwen en controleren
+        run: npm run verify
+
+      - name: Committen als er iets veranderd is
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/public data/private
+          if git diff --cached --quiet; then
+            echo 'Geen wijzigingen in de data.'
+            exit 0
+          fi
+          git commit -m "Data bijgewerkt: seizoen ${{ steps.season.outputs.value }}, $(date -u +%Y-%m-%d)"
+          git push
