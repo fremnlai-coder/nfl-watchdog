@@ -44,42 +44,49 @@ export default function GameRow({ game, hints, result, onRevealHints, onRevealRe
   for (const t of game.tags) if (t !== 'own_team') badges.push(t);
 
   return (
-    <li className="border-b border-stone-200 py-3 last:border-0 dark:border-stone-800">
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <span className="w-40 shrink-0 font-mono text-sm text-stone-500 dark:text-stone-400">
-          {game.kickoff_nl}
-        </span>
-        <span className="w-44 shrink-0 text-sm text-stone-500 dark:text-stone-400">
-          {game.slot}
-        </span>
-        <span className="flex items-center gap-1.5 font-medium">
-          <TeamLogo abbr={game.away.abbr} />
-          <span>
-            {game.away.abbr}{' '}
-            <span className="text-stone-400">({game.records_before.away})</span>
-          </span>
-          <span className="text-stone-400">@</span>
-          <TeamLogo abbr={game.home.abbr} />
-          <span>
-            {game.home.abbr}{' '}
-            <span className="text-stone-400">({game.records_before.home})</span>
-          </span>
-        </span>
+    <li className="border-b border-stone-200 py-4 last:border-0 dark:border-stone-800">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          {/* Kickoff first, matchup underneath it — the time is how you find the
+              game back in the DAZN app, the matchup is what you are choosing. */}
+          <p className="font-mono text-sm text-stone-500 dark:text-stone-400">
+            {game.kickoff_nl}
+            <span className="mx-2 text-stone-300 dark:text-stone-700">·</span>
+            <span className="font-sans">{game.slot}</span>
+          </p>
+
+          <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xl font-semibold">
+            <span className="flex items-center gap-2">
+              <TeamLogo abbr={game.away.abbr} size={34} />
+              {game.away.abbr}
+              <span className="text-base font-normal text-stone-400">
+                ({game.records_before.away})
+              </span>
+            </span>
+            <span className="text-base font-normal text-stone-400">@</span>
+            <span className="flex items-center gap-2">
+              <TeamLogo abbr={game.home.abbr} size={34} />
+              {game.home.abbr}
+              <span className="text-base font-normal text-stone-400">
+                ({game.records_before.home})
+              </span>
+            </span>
+          </p>
+        </div>
+
         <span
-          className={`ml-auto rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}
+          className={`shrink-0 rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}
         >
           {FORMAT_LABEL[game.format_advice]}
           {game.runtime_minutes ? ` · ${game.runtime_minutes}m` : ''}
         </span>
       </div>
 
-      <div className="mt-1 flex flex-wrap items-center gap-2 pl-0 sm:pl-84">
-        {game.teaser && (
-          <p className="text-sm text-stone-600 dark:text-stone-400">{game.teaser}</p>
-        )}
-      </div>
+      {game.teaser && (
+        <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">{game.teaser}</p>
+      )}
 
-      <div className="mt-1.5 flex flex-wrap items-center gap-2 sm:pl-84">
+      <div className="mt-2 flex flex-wrap items-center gap-2">
         {badges.map((b) => (
           <Badge key={b} tone={b === 'indirect belangrijk' ? 'accent' : 'neutral'}>
             {b}
@@ -92,7 +99,7 @@ export default function GameRow({ game, hints, result, onRevealHints, onRevealRe
       </div>
 
       {/* Level 2 and 3. Nothing below this line exists until it is clicked. */}
-      <div className="mt-2 flex flex-wrap items-center gap-2 sm:pl-84">
+      <div className="mt-2 flex flex-wrap items-center gap-2">
         {!hints && (
           <button
             type="button"
