@@ -182,6 +182,25 @@ hoort dan achter level 3 met bevestiging, net als een eindstand.
 Glossariumteksten zijn spelregels, geen seizoensdata. Een test bewaakt dat er geen
 jaartallen, ploegnamen of uitslagwoorden in sluipen.
 
+## Wekelijkse ingest (GitHub Actions)
+
+`.github/workflows/ingest.yml` draait dinsdag 07:00 UTC — 09:00 Nederlandse tijd in
+de zomer, 08:00 in de winter. Monday Night eindigt hier rond 05:30, dus de hele
+speelronde is dan binnen. Handmatig draaien kan via workflow_dispatch met een eigen
+seizoen en weekbereik.
+
+Twee dingen die er bewust in zitten:
+
+- **Build en tests draaien vóór de commit.** Faalt de leak-scan, dan wordt er niets
+  gepusht. De cron kan dus geen lekkende data publiceren.
+- **ESPN-responses gaan door actions/cache** met een restore-key per seizoen.
+  Afgelopen wedstrijden veranderen niet meer, dus na de eerste run hoeft alleen de
+  nieuwe week opgehaald te worden in plaats van alle 272.
+
+Geverifieerd met twee handmatige runs: 272 wedstrijden, build, 75 tests, ~20 seconden.
+De repo-default voor `GITHUB_TOKEN` staat op read; de expliciete `permissions:
+contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
