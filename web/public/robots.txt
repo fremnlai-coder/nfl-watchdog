@@ -1,0 +1,9 @@
+# Deze site hoort niet in een zoekmachine.
+#
+# Niet uit preutsheid: data/private/ bevat eindstanden. Zou Google die indexeren,
+# dan verschijnen ze in zoekresultaten en autocomplete — precies het lek waar de
+# rest van dit project omheen gebouwd is. De X-Robots-Tag in vercel.json dekt
+# hetzelfde af op headerniveau, voor crawlers die dit bestand negeren.
+
+User-agent: *
+Disallow: /

@@ -201,6 +201,28 @@ Geverifieerd met twee handmatige runs: 272 wedstrijden, build, 75 tests, ~20 sec
 De repo-default voor `GITHUB_TOKEN` staat op read; de expliciete `permissions:
 contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd.
 
+## Hosting
+
+`vercel.json` legt de buildinstellingen vast, zodat er in de Vercel-UI niets
+handmatig ingevuld hoeft te worden: framework vite, build `npm run build`, output
+`dist`. Vercel free werkt met een privérepo; GitHub Pages zou de repo publiek
+vereisen.
+
+Koppelen moet Joppe zelf doen — dat vraagt om het autoriseren van de Vercel GitHub
+App: vercel.com → Add New → Project → `fremnlai-coder/nfl-watchdog`. Daarna deployt
+elke push automatisch, inclusief die van de dinsdagochtend-cron.
+
+`X-Robots-Tag: noindex` staat op alles, plus een `robots.txt` die alles dichtzet.
+Dat is geen preutsheid: `data/private/` bevat eindstanden, en een zoekmachine die
+die indexeert zet ze in zoekresultaten en autocomplete — precies het lek waar de
+rest van dit project omheen gebouwd is. Data-bestanden krijgen bovendien
+`must-revalidate`, zodat de browser na de dinsdagupdate niet de week ervoor
+serveert.
+
+Railway is bewust niet gebruikt: die staat op de niet-gebruiken-lijst in de brief,
+en voor een statische site zonder server of database draait dat een container die
+kost wat een CDN gratis doet.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
