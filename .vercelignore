@@ -1,0 +1,12 @@
+# Alleen wat de CLI-upload onnodig zwaar maakt. Bewust NIET dist of
+# web/public/*: die worden tijdens de build aangemaakt, en Vercel past dit
+# bestand ook toe bij het verzamelen van de build-output. Stond dist hier, dan
+# faalt de deploy met "No Output Directory named dist found".
+#
+# data/cache is 259 MB aan ruwe ESPN-responses van de lokale seizoensingest.
+# Staat al in .gitignore, dus Git-deployments hebben er geen last van, maar de
+# Vercel CLI volgt .gitignore niet.
+
+data/cache
+node_modules
+.git
