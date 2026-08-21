@@ -209,7 +209,7 @@ contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd
 
 ## Hosting
 
-**Live: https://nfl-watchdog-test.vercel.app** (Vercel Hobby, privérepo). **Let op: er is
+**Live: https://fremnlai-coder.github.io/nfl-watchdog/** (GitHub Pages) (Vercel Hobby, privérepo). **Let op: er is
 geen Git-koppeling** — pushes en de dinsdagcron deployen niet automatisch. Zie
 hieronder.
 
@@ -346,10 +346,8 @@ zitten:
 Pages serveert vanaf `/<repo>/`, dus de build krijgt `VITE_BASE=/nfl-watchdog/`
 mee. Een relatieve base breekt daar zodra een URL zijn afsluitende slash mist.
 
-**Wat je zelf moet doen, eenmalig** (per 21 augustus 2026 nog open):
-
-1. Repo op **publiek** zetten. Pages op een privérepo vereist een betaald plan.
-2. Settings → Pages → Source op **GitHub Actions**.
+**Gedaan op 21 augustus 2026:** repo publiek, Pages-source op GitHub Actions.
+De site draait; Vercel is niet meer in gebruik.
 
 **Wat je daarmee inlevert:** Pages kan geen response-headers zetten, dus de
 `X-Robots-Tag: noindex` uit `vercel.json` vervalt. Voor de HTML blijft de
