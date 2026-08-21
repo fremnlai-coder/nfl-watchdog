@@ -247,20 +247,25 @@ export default function App() {
 
   return (
     <main className="app-shell mx-auto max-w-5xl">
-      <header>
-        <h1 className="text-2xl font-bold">NFL Watchdog</h1>
-        <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
-          Week {data.week} · seizoen {data.season} · tijden in {data.timezone} ·
-          verschil met New York deze week: {data.nl_et_offset_hours} uur
+      {/* Eén regel. De kop stond op drie regels van 24px plus twee alinea's van
+          14px; dat is een kwart scherm voordat er ook maar één wedstrijd in
+          beeld komt. De volledige uitleg over het tijdverschil staat in de
+          uitleglaag onderaan. */}
+      <header className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+        <h1 className="text-xl font-bold">NFL Watchdog</h1>
+        <p className="text-xs text-stone-600 dark:text-stone-400">
+          week {data.week} · {data.season} · {data.timezone} (+{data.nl_et_offset_hours} u
+          t.o.v. New York)
+          {data.teams_on_bye.length > 0 && (
+            <>
+              {' · '}
+              <Term id="bye">bye</Term>: {data.teams_on_bye.join(', ')}
+            </>
+          )}
         </p>
-        {data.teams_on_bye.length > 0 && (
-          <p className="mt-0.5 text-sm text-stone-600 dark:text-stone-400">
-            <Term id="bye">Bye</Term>: {data.teams_on_bye.join(', ')}
-          </p>
-        )}
       </header>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <Controls
           seasons={Object.keys(index.seasons).sort().reverse()}
           season={season}

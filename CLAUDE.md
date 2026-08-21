@@ -459,6 +459,34 @@ ruil is er één om te onthouden — het pakket bovenaan duwde de eerste wedstri
 onder de vouw, en pas door de instellingen naar beneden te halen kwam die weer
 terug (eerste kaart op y=718 bij een venster van 812).
 
+## Alles wat geen wedstrijd is, is ingeklapt
+
+Vervolg op de vorige ronde, op één regel gebracht: het gaat om de wedstrijden.
+Wat er stond en wat het nu is, op een venster van 375×812:
+
+| | vóór | na |
+|---|---|---|
+| Kop | 112px (titel op 24px, twee alinea's) | 46px, één regel |
+| Weekkiezer + weekvorm | 200px | 90px |
+| Kijkpakket | 284px (twee kaders) | 105px (twee regels) |
+| Eerste wedstrijd begint op | y=718 | y=391 |
+| Hele pagina | 5557px (6,8 schermen) | 3087px (3,8) |
+
+Drie beslissingen daarachter:
+
+- **De weekvorm zit achter een `details`.** Die twee stappers zet je één keer per
+  seizoen. De summary toont de stand ("Weekvorm 2× full · 3× Game in 40 · 490 min"),
+  dus inklappen kost je geen informatie.
+- **De weekkiezer heeft een vaste breedte (`w-20`).** De optie "· nog niet gekeken"
+  bepaalde anders de breedte van het hele veld, waardoor Seizoen naar een tweede
+  regel viel. De lijst zelf toont de volledige tekst nog gewoon.
+- **Het tijdverschil met New York staat nog voluit in de uitleglaag.** In de kop is
+  het teruggebracht tot "(+6 u t.o.v. New York)".
+
+Wat bewust blijft staan: pakket A herhaalt de aantallen uit de weekvorm. Dat lijkt
+dubbelop maar is het niet — zodra de planner degradeert (budget op, quota vol) lopen
+ze uiteen, en juist dan wil je het zien.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
