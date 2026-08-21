@@ -252,13 +252,20 @@ kost wat een CDN gratis doet.
 
 ## Kaartontwerp en de waarom-uitleg
 
-Elke wedstrijd is een kaart in een grid van twee kolommen. Uit- en thuisploeg staan
-gestapeld met de `@` in de goot; dat is niet cosmetisch maar de oplossing voor de
-mobiele wrap, waar één regel uiteenviel in drie en de `@` verweesd achterbleef.
+Elke geplande wedstrijd is een kaart in de tijdlijn (één kolom). Uit- en thuisploeg
+staan gestapeld met de `@` in de goot; dat is niet cosmetisch maar de oplossing voor
+de mobiele wrap, waar één regel uiteenviel in drie en de `@` verweesd achterbleef.
 
-Klikken op het teamblok opent **waarom deze wedstrijd in je pakket zit**. Bewust die
+De knop **Waarom dit advies?** onderaan de kaart opent de uitleg. Bewust die
 formulering en niet "waarom dit een mooie wedstrijd is": dat laatste is een oordeel
-over een gespeelde wedstrijd, en dus uitkomstinformatie. De uitleg komt volledig uit
+over een gespeelde wedstrijd, en dus uitkomstinformatie. Het gaat over het advies,
+niet over de wedstrijd.
+
+Die knop stond eerder als `waarom?` rechts op de scheidingsstreep tússen de twee
+ploegen — en dus in dezelfde kolom als de records, waar hij las als een derde
+waarde onder `0-0` in plaats van als bediening. Het teamblok is nu geen knop meer
+maar gewoon gegevens; de twee acties (`Waarom dit advies?`, `Toon hints`) staan naast
+elkaar onderaan, en de uitleg opent onder de knop die hem opent. De uitleg komt volledig uit
 level 0 — voorkeursrang, positie in de weekvorm, records vóór de week, divisie,
 seeding-impact, aftraptijd — met een vast voorbehoud eronder. `test/explain.test.js`
 draait alle 272 wedstrijden langs een verboden-woordenlijst.

@@ -141,37 +141,20 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
         </span>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setWhy((v) => !v)}
-        aria-expanded={why}
-        className="w-full cursor-pointer px-3 py-3 text-left hover:bg-stone-50 dark:hover:bg-stone-800/40"
-      >
+      {/* Het teamblok is geen knop meer. "waarom?" stond rechts op de streep
+          tussen de twee ploegen, precies in de kolom van de records — daar las
+          het als een derde waarde onder 0-0 in plaats van als bediening. De
+          knop staat nu onderaan bij "Toon hints", waar de andere acties zitten. */}
+      <div className="px-3 py-3">
         <TeamLine team={game.away} record={game.records_before.away} size={logoSize} />
         <div className="my-1 flex items-center gap-2">
           <span className="w-[30px] text-center text-xs text-stone-500 dark:text-stone-400" aria-hidden="true">
             @
           </span>
           <span className="h-px flex-1 bg-stone-100 dark:bg-stone-800" />
-          <span className="text-xs text-stone-500 dark:text-stone-400">
-            {why ? 'verberg waarom' : 'waarom?'}
-          </span>
         </div>
         <TeamLine team={game.home} record={game.records_before.home} size={logoSize} />
-      </button>
-
-      {why && (
-        <div className="mx-3 mb-3 rounded border border-stone-200 bg-stone-50 p-2.5 dark:border-stone-800 dark:bg-stone-950/50">
-          <ul className="list-disc space-y-1 pl-4 text-xs text-stone-700 dark:text-stone-300">
-            {explanation.reasons.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
-          <p className="mt-2 text-xs text-stone-500 italic dark:text-stone-400">
-            {explanation.caveat}
-          </p>
-        </div>
-      )}
+      </div>
 
       <div className="flex flex-1 flex-col gap-2 px-3 pb-3">
         {!compact && game.teaser && (
@@ -195,6 +178,15 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
 
         {/* Level 2 and 3. Nothing below this line exists until it is clicked. */}
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
+          <button
+            type="button"
+            onClick={() => setWhy((v) => !v)}
+            aria-expanded={why}
+            className="rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+          >
+            {why ? 'Verberg uitleg' : 'Waarom dit advies?'}
+          </button>
+
           {!hints && (
             <button
               type="button"
@@ -253,6 +245,19 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
             </span>
           )}
         </div>
+
+        {why && (
+          <div className="rounded border border-stone-200 bg-stone-50 p-2.5 dark:border-stone-800 dark:bg-stone-950/50">
+            <ul className="list-disc space-y-1 pl-4 text-xs text-stone-700 dark:text-stone-300">
+              {explanation.reasons.map((r) => (
+                <li key={r}>{r}</li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-stone-500 italic dark:text-stone-400">
+              {explanation.caveat}
+            </p>
+          </div>
+        )}
       </div>
     </li>
   );
