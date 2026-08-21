@@ -6,6 +6,7 @@
 // rather than preferences.
 
 const KEY = 'nfl-watchdog:teams:v1';
+const WATCHED_KEY = 'nfl-watchdog:watched:v1';
 
 export const TIERS = ['favorite', 'watchlist', 'neutral', 'avoid'];
 
@@ -113,4 +114,26 @@ export function moveFavorite(overrides, abbr, direction) {
     next[a] = { ...next[a], rank: idx + 1 };
   });
   return next;
+}
+
+
+// How far you have watched, per season. Kept in localStorage rather than in the
+// config: it changes every week, and re-running the ingest just to move a
+// pointer would be absurd. config/preferences.json still supplies the starting
+// value on a first visit.
+export function loadWatched() {
+  try {
+    const raw = localStorage.getItem(WATCHED_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function saveWatched(map) {
+  try {
+    localStorage.setItem(WATCHED_KEY, JSON.stringify(map));
+  } catch {
+    // ignore
+  }
 }

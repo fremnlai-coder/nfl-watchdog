@@ -25,7 +25,7 @@ function Stepper({ label, value, onChange, min = 0, max = 8 }) {
   );
 }
 
-export default function Controls({ seasons, season, onSeason, weeks, week, onWeek, quota, onQuota }) {
+export default function Controls({ seasons, season, onSeason, weeks, week, onWeek, quota, onQuota, maxOpen }) {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-stone-200 py-3 dark:border-stone-800">
       {seasons?.length > 1 && (
@@ -53,6 +53,7 @@ export default function Controls({ seasons, season, onSeason, weeks, week, onWee
           {weeks.map((w) => (
             <option key={w} value={w}>
               {w}
+              {maxOpen != null && w > maxOpen ? ' · nog niet gekeken' : ''}
             </option>
           ))}
         </select>

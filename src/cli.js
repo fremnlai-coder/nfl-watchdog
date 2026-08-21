@@ -8,6 +8,7 @@
 
 import { readFile } from 'node:fs/promises';
 import { planBoth } from './planner.js';
+import { isLocked, lockReason, maxOpenWeek } from './watched.js';
 
 const ROOT = new URL('../', import.meta.url);
 const args = process.argv.slice(2);
@@ -20,6 +21,22 @@ const hasFlag = (name) => args.includes(`--${name}`);
 const prefs = JSON.parse(await readFile(new URL('config/preferences.json', ROOT), 'utf8'));
 const week = Number(argValue('week', 1));
 const season = Number(argValue('season', prefs.season ?? 2025));
+
+// The between-weeks leak: records in week N are the standing after week N-1.
+// Reading the file at all is the leak, so this refuses before opening it.
+const watchedThrough = Number(argValue('watched', prefs.watched_through_week ?? 0));
+if (isLocked(week, watchedThrough) && !hasFlag('force')) {
+  console.error(`\n${lockReason(week, watchedThrough)}`);
+  console.error(
+    `\nZonder die weken te kijken open je hiermee de stand van alle 32 ploegen.` +
+    `\nJe kunt nu tot en met week ${maxOpenWeek(watchedThrough)}.` +
+    `\n\nWil je het toch: voeg --force toe.` +
+    `\nAl verder gekeken: zet watched_through_week in config/preferences.json,` +
+    `\nof geef --watched <week> mee.\n`,
+  );
+  process.exit(1);
+}
+
 const data = JSON.parse(
   await readFile(new URL(`data/public/${season}/week-${week}.json`, ROOT), 'utf8'),
 );

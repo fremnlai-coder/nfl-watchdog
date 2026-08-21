@@ -8,13 +8,16 @@ import { computeTags } from '../../src/tags.js';
 import { loadIndex, loadPrefs, loadWeek, loadHints, loadResults } from './lib/data.js';
 import {
   loadOverrides, saveOverrides, clearOverrides, overridesFromTeams, mergeTeams,
+  loadWatched, saveWatched,
 } from './lib/prefs.js';
+import { isLocked, maxOpenWeek } from '../../src/watched.js';
 import Controls from './components/Controls.jsx';
 import GameCard from './components/GameCard.jsx';
 import PackageSummary from './components/PackageSummary.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
 import Explainer from './components/Explainer.jsx';
 import Term from './components/Term.jsx';
+import WeekGate from './components/WeekGate.jsx';
 
 function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact }) {
   return (
@@ -45,6 +48,8 @@ export default function App() {
   const [data, setData] = useState(null);
   const [quota, setQuota] = useState({ full: 2, game_in_40: 3 });
   const [overrides, setOverrides] = useState(null);
+  const [watched, setWatched] = useState(null);
+  const [override, setOverride] = useState(null); // season:week you chose to unlock anyway
   const [error, setError] = useState(null);
 
   // Revealed level 2 / level 3 data, keyed by game id. Empty on load, and it
@@ -61,6 +66,10 @@ export default function App() {
         // A first visit starts from preferences.json; after that your own
         // choices win.
         setOverrides(loadOverrides() ?? overridesFromTeams(p.teams));
+        const stored = loadWatched();
+        setWatched(
+          Object.keys(stored).length ? stored : { [idx.current]: p.watched_through_week ?? 0 },
+        );
         const current = idx.current in idx.seasons ? idx.current : Object.keys(idx.seasons).sort().pop();
         setSeason(current);
         setWeek(idx.seasons[current][0]);
@@ -75,6 +84,10 @@ export default function App() {
     if (overrides) saveOverrides(overrides);
   }, [overrides]);
 
+  useEffect(() => {
+    if (watched) saveWatched(watched);
+  }, [watched]);
+
   function updateOverrides(fn) {
     setOverrides((prev) => fn(prev));
   }
@@ -84,14 +97,21 @@ export default function App() {
     setOverrides(overridesFromTeams(prefs.teams));
   }
 
+  const watchedThrough = watched?.[season] ?? 0;
+  const gated =
+    watched != null && isLocked(week, watchedThrough) && override !== `${season}:${week}`;
+
   useEffect(() => {
-    if (week == null || season == null) return;
+    if (week == null || season == null || watched == null) return;
     setData(null);
     // Revealing a game in one week must not carry over to the next.
     setHints({});
     setResults({});
+    // The gate blocks the fetch, not just the render: this file carries the
+    // standings going into the week, which is the leak it exists to stop.
+    if (gated) return;
     loadWeek(season, week).then(setData).catch((e) => setError(e.message));
-  }, [season, week]);
+  }, [season, week, watched, gated]);
 
   const teams = useMemo(
     () => (prefs ? mergeTeams(prefs.teams, overrides) : []),
@@ -148,7 +168,37 @@ export default function App() {
     );
   }
 
-  if (!planned || !prefs || !overrides || !index) {
+  if (gated && prefs && index) {
+    return (
+      <main className="mx-auto max-w-5xl p-6">
+        <header>
+          <h1 className="text-2xl font-bold">NFL Watchdog</h1>
+        </header>
+        <div className="mt-4">
+          <Controls
+            seasons={Object.keys(index.seasons).sort().reverse()}
+            season={season}
+            onSeason={(s) => { setSeason(s); setWeek(index.seasons[s][0]); }}
+            weeks={index.seasons[season]}
+            week={week}
+            onWeek={setWeek}
+            quota={quota}
+            onQuota={setQuota}
+            maxOpen={maxOpenWeek(watchedThrough)}
+          />
+        </div>
+        <WeekGate
+          season={season}
+          week={week}
+          watchedThrough={watchedThrough}
+          onAdvance={(w) => setWatched((prev) => ({ ...prev, [season]: w }))}
+          onOverride={() => setOverride(`${season}:${week}`)}
+        />
+      </main>
+    );
+  }
+
+  if (!planned || !prefs || !overrides || !index || !watched) {
     return (
       <main className="mx-auto max-w-5xl p-6">
         <p className="text-stone-500">Laden…</p>
@@ -207,6 +257,7 @@ export default function App() {
           onWeek={setWeek}
           quota={quota}
           onQuota={setQuota}
+          maxOpen={maxOpenWeek(watchedThrough)}
         />
         <TeamSettings
           teams={prefs.teams}
@@ -245,6 +296,21 @@ export default function App() {
       />
 
       <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
+
+      {watchedThrough < week && (
+        <p className="mt-6 text-sm">
+          <button
+            type="button"
+            onClick={() => setWatched((prev) => ({ ...prev, [season]: week }))}
+            className="rounded border border-stone-300 px-3 py-1.5 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+          >
+            Week {week} afgevinkt — deze heb ik gekeken
+          </button>
+          <span className="ml-2 text-xs text-stone-500 dark:text-stone-400">
+            Daarmee gaat week {week + 1} open.
+          </span>
+        </p>
+      )}
 
       <Explainer timezone={data.timezone} offsetHours={data.nl_et_offset_hours} />
 

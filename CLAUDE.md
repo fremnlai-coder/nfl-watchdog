@@ -11,12 +11,12 @@ NFL-uitleglaag met glossarium en playoff-bracket.
 npm run ingest -- --season 2026 --weeks 1-18   # actief seizoen
 npm run ingest -- --season 2025 --weeks 1-18   # testset met uitslagen
 node src/cli.js --week 1                         # weekoverzicht (actief seizoen)
-node src/cli.js --season 2025 --week 14          # ander seizoen
+node src/cli.js --season 2025 --week 14 --watched 13   # ander seizoen
 node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 82 tests
+npm test                                        # 89 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
@@ -34,6 +34,7 @@ src/planner.js   budgetverdeling, degradatieladder, pakket A/B
 src/schema.js    DE SPOILERGRENS — allowlist van publieke velden
 src/tags.js      level 0-tags; gedeeld met de browser omdat favorieten daar wijzigen
 src/explain.js   waarom-uitleg per wedstrijd; legt de kéuze uit, niet de wedstrijd
+src/watched.js   poort tussen weken; records in week N zijn de stand ná week N-1
 src/linter.js    deterministische spoiler-linter; geen model, geen randomness
 src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallback
 src/time.js      Intl met named zones, nooit een vaste offset
@@ -279,9 +280,35 @@ werkelijkheid — vóór week 1 onderscheidt niets de wedstrijden behalve divisi
 conference. Zodra de dinsdagcron gespeelde weken binnenhaalt, lopen de records
 uiteen en spreidt de inzet zich vanzelf.
 
+## De poort tussen weken
+
+Alle andere spoilerregels werken bínnen één week. Deze gaat over de relatie
+ertussen, en is de makkelijkste om over het hoofd te zien omdat er niets op de
+pagina staat dat op een spoiler lijkt.
+
+`records_before` in week N is de stand ná week N-1. Open je week 6 terwijl je tot
+week 2 hebt gekeken, dan vertelt een record van 3-1 in plaats van 2-1 je hoe de
+tussenliggende weken afliepen — voor alle 32 ploegen tegelijk. `stakes_pre` volgt
+uit diezelfde records en lekt dus mee.
+
+De regel: je mag altijd **één week vooruit**. Heb je tot en met week 3 gekeken, dan
+draagt week 4 de stand ná week 3 en die ken je al. Week 5 niet.
+
+Belangrijk: de poort blokkeert de **fetch**, niet alleen de weergave. Het bestand
+dat geladen zou worden bevat de stand; "wel opgehaald maar verborgen" is geen
+garantie. Geverifieerd in het netwerkpaneel: bij een geblokkeerde week wordt
+`week-N.json` nooit aangevraagd.
+
+De teller staat per seizoen in localStorage, niet in de config — hij verandert
+elke week, en de ingest opnieuw draaien om een teller te verzetten slaat nergens
+op. `watched_through_week` in de config levert alleen de startwaarde en dient de
+CLI, die `--watched <week>` en `--force` kent.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
+- Vercel-deploy: negen van de tien deployments blijven hangen, ook prebuilt zonder
+  buildstap. Project verwijderen en opnieuw importeren is de volgende stap.
 - F4: uitleglaag, glossarium, playoff-bracket
 - Remote: github.com/fremnlai-coder/nfl-watchdog (privé)
 - Let op bij F3: GitHub Pages op een privérepo vereist een betaald plan. Kies bij
