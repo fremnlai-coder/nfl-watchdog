@@ -48,7 +48,7 @@
       "name": "Buffalo Bills",
       "conference": "AFC",
       "division": "AFC East",
-      "tier": "neutral"
+      "tier": "watchlist"
     },
     {
       "abbr": "MIA",
@@ -69,14 +69,14 @@
       "name": "New York Jets",
       "conference": "AFC",
       "division": "AFC East",
-      "tier": "neutral"
+      "tier": "avoid"
     },
     {
       "abbr": "BAL",
       "name": "Baltimore Ravens",
       "conference": "AFC",
       "division": "AFC North",
-      "tier": "neutral"
+      "tier": "watchlist"
     },
     {
       "abbr": "CIN",
@@ -175,7 +175,7 @@
       "name": "Philadelphia Eagles",
       "conference": "NFC",
       "division": "NFC East",
-      "tier": "neutral"
+      "tier": "watchlist"
     },
     {
       "abbr": "WSH",
@@ -225,7 +225,7 @@
       "name": "Carolina Panthers",
       "conference": "NFC",
       "division": "NFC South",
-      "tier": "neutral"
+      "tier": "avoid"
     },
     {
       "abbr": "NO",
