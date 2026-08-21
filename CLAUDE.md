@@ -207,8 +207,9 @@ contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd
 
 ## Hosting
 
-**Live: https://nfl-watchdog.vercel.app** (Vercel Hobby, privérepo, deployt op elke
-push naar main — dus ook op die van de dinsdagochtend-cron).
+**Live: https://nfl-watchdog-test.vercel.app** (Vercel Hobby, privérepo). **Let op: er is
+geen Git-koppeling** — pushes en de dinsdagcron deployen niet automatisch. Zie
+hieronder.
 
 Geverifieerd op de live site, niet alleen lokaal:
 
@@ -303,6 +304,30 @@ De teller staat per seizoen in localStorage, niet in de config — hij verandert
 elke week, en de ingest opnieuw draaien om een teller te verzetten slaat nergens
 op. `watched_through_week` in de config levert alleen de startwaarde en dient de
 CLI, die `--watched <week>` en `--force` kent.
+
+## Vercel: openstaand probleem
+
+Het project heet in Vercel `nfl-watchdog-nl`; het domein `nfl-watchdog.vercel.app`
+is verdwenen bij het verwijderen van het oude project. De werkende URL is
+`nfl-watchdog-test.vercel.app` — een alias uit de periode dat het project zo heette.
+
+Het gemeten patroon over drie projecten: **de eerste deployment naar een nieuw
+project slaagt, elke volgende blijft hangen** op status UNKNOWN zonder duur.
+
+- Oud project: 1 van 10 geslaagd
+- Vers testproject: eerste deploy Ready in 3s, daarna hangt het
+- Na hernoemen naar een schone naam: hangt eveneens
+
+Uitgesloten: de code (verse clone bouwt in 438 ms), de buildconfiguratie
+(`vercel build` slaagt lokaal met de echte projectinstellingen), de outputmap, en
+SSO-protectie (uitgezet, hielp niet). Ook een `--prebuilt` deploy zonder enige
+buildstap hangt. Dit is dus accountniveau, niet projectniveau — verwijderen en
+opnieuw aanmaken heeft het niet opgelost.
+
+Volgende stap is Vercel support, of uitwijken. Overweeg **GitHub Pages**: dat
+vraagt een publieke repo (de inhoud is openbare NFL-data, dus dat kan) en dan kan
+de bestaande Actions-workflow direct naar Pages publiceren. Daarmee vervalt Vercel
+als afhankelijkheid en loopt de dinsdagcron in dezelfde pijplijn.
 
 ## Nog te doen
 
