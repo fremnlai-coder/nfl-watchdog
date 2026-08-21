@@ -48,7 +48,7 @@ src/time.js      Intl met named zones, nooit een vaste offset
 src/ingest.js    orchestratie, schrijft public/ en private/
 src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij ingest
 
-web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
+web/src/App.jsx        tijdlijn, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
 web/src/lib/prefs.js   favorieten in localStorage, over de config heen
 web/src/components/    GameCard (met de twee onthulstappen), Controls, TeamSettings,
@@ -507,11 +507,21 @@ Sorteren op de rating blijft uitgesloten: dat zou de wedstrijden die lang dicht
 bleven vooraan zetten, en de volgorde van een lijst is net zo goed
 uitkomstinformatie als een cijfer. Die regel staat in de voet van de pagina.
 
-Gevolg om te weten: de twee lijsten lopen nu in de tijd door elkaar heen. Een
-donderdagwedstrijd die je overslaat staat in "Rest van de week" boven een
-vrijdagwedstrijd uit "Kijken". Wie de week als één tijdlijn wil lezen, moet die
-twee samenvoegen — dan komen de overgeslagen wedstrijden als dunne regels tussen
-je eigen keuzes te staan.
+**En daarmee is het één tijdlijn geworden.** "Kijken" en "Rest van de week" zijn
+samen één sectie, `Week N`, met alle wedstrijden op aftraptijd. Wat eerst in twee
+koppen zat, zit nu in de vorm van de rij: een geplande wedstrijd is een kaart, een
+overgeslagen wedstrijd één regel van 42px. De noot eronder telt de verdeling
+("5 in je weekvorm, 11 overgeslagen").
+
+Twee dingen die daarbij horen:
+
+- **Eén kolom, ook op een breed scherm.** Twee kolommen breken een tijdlijn: dan
+  loopt de tijd van links naar rechts en pas daarna naar beneden. De lijst is wel
+  afgetopt op `max-w-3xl`, anders staat een kaart met drie regels tekst over de
+  volle 64rem half leeg. De instellingen eronder houden de volle breedte, want die
+  hebben hun twee kolommen nodig.
+- **Geen aantal achter de kop.** Naast "Week 1" leest een losse "16" als deel van
+  het weeknummer.
 
 ## Nog te doen
 

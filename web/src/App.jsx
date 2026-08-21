@@ -19,21 +19,32 @@ import Term from './components/Term.jsx';
 import WeekGate from './components/WeekGate.jsx';
 import Backup from './components/Backup.jsx';
 
-function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact, dense }) {
+// Eén kolom, ook op een breed scherm: twee kolommen breken een tijdlijn, want
+// dan loopt de tijd van links naar rechts en daarna pas naar beneden.
+function Timeline({ title, note, games, rowProps, empty = 'Geen wedstrijden deze week.' }) {
   return (
-    <section className="mt-8">
+    // max-w-3xl: één kolom over de volle 64rem laat een kaart met drie regels
+    // tekst half leeg staan. De instellingen eronder houden wel de volle breedte,
+    // want die hebben hun twee kolommen nodig.
+    <section className="mt-6 max-w-3xl">
+      {/* Geen aantal achter de kop: naast "Week 1" leest "16" als deel van het
+          weeknummer. De verdeling staat in de noot eronder. */}
       <h2 className="text-sm font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
         {title}
-        <span className="ml-2 font-normal normal-case">{games.length}</span>
       </h2>
       {note && <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">{note}</p>}
       {games.length === 0 ? (
         <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{empty}</p>
       ) : (
-        <ul className={`mt-3 grid items-stretch ${dense ? 'gap-1.5' : 'gap-3 sm:grid-cols-2'}`}>
-          {games.map((g) => (
-            <GameCard key={g.game_id} game={g} compact={compact} dense={dense} {...rowProps(g)} />
-          ))}
+        <ul className="mt-3 flex flex-col gap-2.5">
+          {games.map((g) => {
+            // Een overgeslagen wedstrijd is één regel, een geplande een kaart.
+            // Dat verschil draagt nu de betekenis die eerst in twee koppen zat.
+            const skip = g.format_advice === 'skip';
+            return (
+              <GameCard key={g.game_id} game={g} compact={skip} dense={skip} {...rowProps(g)} />
+            );
+          })}
         </ul>
       )}
     </section>
@@ -234,9 +245,8 @@ export default function App() {
   const byKickoff = (a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc);
 
   const own = planned.games.filter((g) => g.tags.includes('own_team'));
-  const others = planned.games.filter((g) => !g.tags.includes('own_team'));
-  const rest = others.filter((g) => g.format_advice === 'skip').sort(byKickoff);
-  const picked = [...own, ...others.filter((g) => g.format_advice !== 'skip')].sort(byKickoff);
+  const skipped = planned.games.filter((g) => g.format_advice === 'skip');
+  const timeline = [...planned.games].sort(byKickoff);
 
   const rowProps = (g) => ({
     rank: rankOf.get(g.home.abbr) ?? rankOf.get(g.away.abbr) ?? null,
@@ -280,25 +290,15 @@ export default function App() {
         />
       </div>
 
-      <Section
-        title="Kijken"
+      <Timeline
+        title={`Week ${data.week}`}
         note={
-          own.length === 0
-            ? 'Op aftraptijd. Geen van je teams speelt deze week.'
-            : 'Op aftraptijd.'
+          `Op aftraptijd. ${timeline.length - skipped.length} in je weekvorm, ` +
+          `${skipped.length} overgeslagen als één regel — tik voor de kaart.` +
+          (own.length === 0 ? ' Geen van je teams speelt deze week.' : '')
         }
-        games={picked}
+        games={timeline}
         rowProps={rowProps}
-        empty="Niets in je weekvorm deze week."
-      />
-
-      <Section
-        title="Rest van de week"
-        note="Buiten je weekvorm gevallen. Eén regel per wedstrijd; tik voor de kaart."
-        games={rest}
-        rowProps={rowProps}
-        compact
-        dense
       />
 
       {watchedThrough < week && (
