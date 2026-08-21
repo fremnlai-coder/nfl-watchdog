@@ -10,7 +10,7 @@ import { lintTeaser } from '../src/linter.js';
 
 const ROOT = new URL('../', import.meta.url);
 
-const weekNumbers = (await readdir(new URL('data/public/', ROOT)))
+const weekNumbers = (await readdir(new URL('data/public/2025/', ROOT)))
   .map((f) => /^week-(\d+)\.json$/.exec(f)?.[1])
   .filter(Boolean)
   .map(Number)
@@ -22,8 +22,8 @@ const weeks = [];
 for (const n of weekNumbers) {
   weeks.push({
     n,
-    pub: await readJson(`data/public/week-${n}.json`),
-    results: await readJson(`data/private/week-${n}.results.json`),
+    pub: await readJson(`data/public/2025/week-${n}.json`),
+    results: await readJson(`data/private/2025/week-${n}.results.json`),
   });
 }
 

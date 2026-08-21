@@ -22,10 +22,13 @@ export const loadIndex = () => getJson('data/index.json');
 export const loadPrefs = () => getJson('config/preferences.json');
 
 // Level 0 and 1 only.
-export const loadWeek = (week) => getJson(`data/public/week-${week}.json`);
+export const loadWeek = (season, week) =>
+  getJson(`data/public/${season}/week-${week}.json`);
 
 // Level 2. Vague qualifications, no direction.
-export const loadHints = (week) => getJson(`data/private/week-${week}.hints.json`);
+export const loadHints = (season, week) =>
+  getJson(`data/private/${season}/week-${week}.hints.json`);
 
 // Level 3. Scores and winners. Only ever called after an explicit confirmation.
-export const loadResults = (week) => getJson(`data/private/week-${week}.results.json`);
+export const loadResults = (season, week) =>
+  getJson(`data/private/${season}/week-${week}.results.json`);

@@ -48,14 +48,16 @@ test('de initiele payload bevat geen enkele eindstand', async (t) => {
   if (!built) return t.skip('geen dist/');
   const payload = await initialPayload();
 
-  const weekFiles = (await readdir(new URL('data/private/', ROOT)))
+  // Scanned against the finished 2025 season: it is the only one with results
+  // to leak. The live season has no scores yet by definition.
+  const weekFiles = (await readdir(new URL('data/private/2025/', ROOT)))
     .filter((f) => f.endsWith('.results.json'));
   assert.ok(weekFiles.length >= 18, `verwacht 18 weken, kreeg ${weekFiles.length}`);
 
   let checked = 0;
   for (const file of weekFiles) {
     const results = JSON.parse(
-      await readFile(new URL(`data/private/${file}`, ROOT), 'utf8'),
+      await readFile(new URL(`data/private/2025/${file}`, ROOT), 'utf8'),
     );
     for (const [id, r] of Object.entries(results)) {
       assert.ok(
@@ -75,12 +77,12 @@ test('de initiele payload bevat geen privé-data, alleen de verwijzing ernaar', 
   // The path template is expected — that is how the click-time fetch is built.
   // Actual hint or result content is not.
   assert.ok(
-    payload.includes('data/private/week-'),
+    payload.includes('data/private/'),
     'verwacht dat de bundel weet waar de privé-bestanden staan',
   );
 
   const hints = JSON.parse(
-    await readFile(new URL('data/private/week-14.hints.json', ROOT), 'utf8'),
+    await readFile(new URL('data/private/2025/week-14.hints.json', ROOT), 'utf8'),
   );
   const phrases = new Set(Object.values(hints).flat());
   for (const phrase of phrases) {
@@ -93,7 +95,7 @@ test('de initiele payload bevat geen privé-data, alleen de verwijzing ernaar', 
 
 test('de privé-bestanden staan wel in de build, want anders werkt level 3 niet', async (t) => {
   if (!built) return t.skip('geen dist/');
-  const privateDir = new URL('dist/data/private/', ROOT);
+  const privateDir = new URL('dist/data/private/2025/', ROOT);
   assert.ok(await exists(privateDir), 'dist/data/private/ ontbreekt');
   const files = await readdir(privateDir);
   assert.equal(files.filter((f) => f.endsWith('.results.json')).length, 18);
@@ -103,9 +105,9 @@ test('de privé-bestanden staan wel in de build, want anders werkt level 3 niet'
 test('het publieke weekbestand in de build is nog steeds schoon', async (t) => {
   if (!built) return t.skip('geen dist/');
   for (const week of [1, 9, 18]) {
-    const pub = await readFile(new URL(`dist/data/public/week-${week}.json`, ROOT), 'utf8');
+    const pub = await readFile(new URL(`dist/data/public/2025/week-${week}.json`, ROOT), 'utf8');
     const results = JSON.parse(
-      await readFile(new URL(`data/private/week-${week}.results.json`, ROOT), 'utf8'),
+      await readFile(new URL(`data/private/2025/week-${week}.results.json`, ROOT), 'utf8'),
     );
     for (const r of Object.values(results)) {
       assert.ok(!pub.includes(r.score_line), `week ${week}: "${r.score_line}" lekt in de build`);

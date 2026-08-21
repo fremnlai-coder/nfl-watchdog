@@ -38,7 +38,8 @@ function Section({ title, note, games, rowProps, empty = 'Niets deze week.', com
 }
 
 export default function App() {
-  const [weeks, setWeeks] = useState([]);
+  const [index, setIndex] = useState(null);
+  const [season, setSeason] = useState(null);
   const [week, setWeek] = useState(null);
   const [prefs, setPrefs] = useState(null);
   const [data, setData] = useState(null);
@@ -53,14 +54,16 @@ export default function App() {
 
   useEffect(() => {
     Promise.all([loadIndex(), loadPrefs()])
-      .then(([index, p]) => {
-        setWeeks(index.weeks);
+      .then(([idx, p]) => {
+        setIndex(idx);
         setPrefs(p);
         setQuota(p.weekly_quota ?? { full: 2, game_in_40: 3 });
         // A first visit starts from preferences.json; after that your own
         // choices win.
         setOverrides(loadOverrides() ?? overridesFromTeams(p.teams));
-        setWeek(index.weeks[index.weeks.length - 1]);
+        const current = idx.current in idx.seasons ? idx.current : Object.keys(idx.seasons).sort().pop();
+        setSeason(current);
+        setWeek(idx.seasons[current][0]);
       })
       .catch((e) => setError(e.message));
   }, []);
@@ -82,13 +85,13 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (week == null) return;
+    if (week == null || season == null) return;
     setData(null);
     // Revealing a game in one week must not carry over to the next.
     setHints({});
     setResults({});
-    loadWeek(week).then(setData).catch((e) => setError(e.message));
-  }, [week]);
+    loadWeek(season, week).then(setData).catch((e) => setError(e.message));
+  }, [season, week]);
 
   const teams = useMemo(
     () => (prefs ? mergeTeams(prefs.teams, overrides) : []),
@@ -117,7 +120,7 @@ export default function App() {
   }, [data, prefs, teams, quota]);
 
   async function revealHints(game) {
-    const doc = await loadHints(week);
+    const doc = await loadHints(season, week);
     // Only the game that was clicked is lifted out of the file.
     setHints((prev) => ({
       ...prev,
@@ -126,7 +129,7 @@ export default function App() {
   }
 
   async function revealResult(game) {
-    const doc = await loadResults(week);
+    const doc = await loadResults(season, week);
     const r = doc[game.game_id];
     if (!r) return;
     setResults((prev) => ({ ...prev, [game.game_id]: r }));
@@ -145,7 +148,7 @@ export default function App() {
     );
   }
 
-  if (!planned || !prefs || !overrides) {
+  if (!planned || !prefs || !overrides || !index) {
     return (
       <main className="mx-auto max-w-5xl p-6">
         <p className="text-stone-500">Laden…</p>
@@ -196,7 +199,10 @@ export default function App() {
 
       <div className="mt-4">
         <Controls
-          weeks={weeks}
+          seasons={Object.keys(index.seasons).sort().reverse()}
+          season={season}
+          onSeason={(s) => { setSeason(s); setWeek(index.seasons[s][0]); }}
+          weeks={index.seasons[season]}
           week={week}
           onWeek={setWeek}
           quota={quota}

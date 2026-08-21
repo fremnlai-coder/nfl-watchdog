@@ -25,9 +25,24 @@ function Stepper({ label, value, onChange, min = 0, max = 8 }) {
   );
 }
 
-export default function Controls({ weeks, week, onWeek, quota, onQuota }) {
+export default function Controls({ seasons, season, onSeason, weeks, week, onWeek, quota, onQuota }) {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-stone-200 py-3 dark:border-stone-800">
+      {seasons?.length > 1 && (
+        <label className="flex items-center gap-2 text-sm">
+          <span className="text-stone-600 dark:text-stone-400">Seizoen</span>
+          <select
+            value={season}
+            onChange={(e) => onSeason(e.target.value)}
+            className="rounded border border-stone-300 bg-transparent px-2 py-1 dark:border-stone-700"
+          >
+            {seasons.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+        </label>
+      )}
+
       <label className="flex items-center gap-2 text-sm">
         <span className="text-stone-600 dark:text-stone-400">Week</span>
         <select

@@ -8,7 +8,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { scoreboard, plays, probabilities, mapLimit } from './espn.js';
 import { joinSeries, rawMetrics, stakes, finalScore } from './metrics.js';
-import { scoreSeason } from './score.js';
+import { scoreSeason, bucketStakes } from './score.js';
 import { planBoth } from './planner.js';
 import { buildPublicGame, assertPublicShape } from './schema.js';
 import { playerNamesFromPlays, lintTeaser } from './linter.js';
@@ -17,8 +17,6 @@ import { computeTags } from './tags.js';
 import { formatNL, slotLabel, isSundaySlate, isLiveFriendly, offsetHours } from './time.js';
 
 const ROOT = new URL('../', import.meta.url);
-const PUBLIC_DIR = new URL('data/public/', ROOT);
-const PRIVATE_DIR = new URL('data/private/', ROOT);
 
 const args = process.argv.slice(2);
 const argValue = (name, fallback) => {
@@ -35,6 +33,12 @@ const weeks = Array.from({ length: weekTo - weekFrom + 1 }, (_, i) => weekFrom +
 // be tallied from earlier weeks, and watchability percentiles are relative to
 // the season so far. Responses are cached, so this is a one-time cost.
 const seasonWeeks = Array.from({ length: weekTo }, (_, i) => i + 1);
+
+// Data lives per season. Without this, ingesting 2026 would overwrite week-1 of
+// 2025 in place and leave a mix of two seasons in one folder — and the leak-scan
+// tests need a finished season to check against.
+const PUBLIC_DIR = new URL(`data/public/${season}/`, ROOT);
+const PRIVATE_DIR = new URL(`data/private/${season}/`, ROOT);
 
 const teamsByAbbr = new Map(prefs.teams.map((t) => [t.abbr, t]));
 const favorites = prefs.teams.filter((t) => t.tier === 'favorite');
@@ -139,23 +143,30 @@ function gameType(homeAbbr, awayAbbr) {
   return 'interconference';
 }
 
-// Attach the pre-game stakes metric, then score the whole season at once so the
-// percentiles are relative to the season rather than to a single week.
+// Stakes is computed for every game, played or not: it only reads the records
+// carried into the week, so an upcoming week can be ranked too. The other four
+// metrics need play-by-play and therefore only exist for finished games.
+const stakesAll = enriched.map((g) => ({
+  game_id: g.game_id,
+  stakes: stakes({
+    recordBefore: {
+      home: recordsBefore.get(`${g.week}:${g.home_abbr}`) ?? { w: 0, l: 0, t: 0 },
+      away: recordsBefore.get(`${g.week}:${g.away_abbr}`) ?? { w: 0, l: 0, t: 0 },
+    },
+    week: g.week,
+    gameType: gameType(g.home_abbr, g.away_abbr),
+  }),
+}));
+const stakesBucket = bucketStakes(stakesAll);
+const stakesById = new Map(stakesAll.map((s) => [s.game_id, s.stakes]));
+
+// Watchability is scored across finished games only, so the percentiles stay
+// relative to games that actually have a shape to measure.
 const scorable = enriched
   .filter((g) => g.metrics)
   .map((g) => ({
     game_id: g.game_id,
-    metrics: {
-      ...g.metrics,
-      stakes: stakes({
-        recordBefore: {
-          home: recordsBefore.get(`${g.week}:${g.home_abbr}`) ?? { w: 0, l: 0, t: 0 },
-          away: recordsBefore.get(`${g.week}:${g.away_abbr}`) ?? { w: 0, l: 0, t: 0 },
-        },
-        week: g.week,
-        gameType: gameType(g.home_abbr, g.away_abbr),
-      }),
-    },
+    metrics: { ...g.metrics, stakes: stakesById.get(g.game_id) },
   }));
 
 const scored = new Map(
@@ -236,7 +247,7 @@ for (const week of weeks) {
       all22_from_nl: formatNL(new Date(g.date.getTime() + all22Delay), prefs.timezone),
       // Pre-game importance. Level 0: derived purely from the records carried
       // into the week, so it is safe even before you have watched anything.
-      stakes_pre: scored.get(g.game_id)?.stakes_pre ?? null,
+      stakes_pre: stakesBucket.get(g.game_id) ?? null,
       // The rating is outcome-derived: it correlates -0.70 with the final margin,
       // so it says a game stayed close without saying who won. With
       // show_watchability off it is left out of the public payload entirely and

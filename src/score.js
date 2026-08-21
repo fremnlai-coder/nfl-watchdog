@@ -49,6 +49,17 @@ function bucket(p) {
   return 5;
 }
 
+// Pre-game stakes, bucketed 1-5 across every game in the season — including the
+// ones that have not been played yet. Stakes only needs the records both teams
+// carried in, the week number and the matchup type, so an upcoming week can be
+// ranked just as well as a finished one. Without this a future week had no
+// signal at all and the planner filled its slots in game-id order.
+// entries: [{ game_id, stakes }]
+export function bucketStakes(entries) {
+  const ranks = percentileRanks(entries.map((e) => e.stakes));
+  return new Map(entries.map((e, i) => [e.game_id, bucket(ranks[i])]));
+}
+
 // games: [{ game_id, metrics: {excitement, tension, volatility, pace, stakes} }]
 // Percentiles are computed across the whole season, so ratings are relative to
 // the season rather than to an absolute scale.

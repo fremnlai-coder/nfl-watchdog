@@ -9,8 +9,8 @@ import { explainPick } from '../src/explain.js';
 
 const ROOT = new URL('../', import.meta.url);
 const weeks = [];
-for (const f of (await readdir(new URL('data/public/', ROOT))).filter((x) => /^week-\d+\.json$/.test(x))) {
-  weeks.push(JSON.parse(await readFile(new URL(`data/public/${f}`, ROOT), 'utf8')));
+for (const f of (await readdir(new URL('data/public/2025/', ROOT))).filter((x) => /^week-\d+\.json$/.test(x))) {
+  weeks.push(JSON.parse(await readFile(new URL(`data/public/2025/${f}`, ROOT), 'utf8')));
 }
 
 const allGames = weeks.flatMap((w) => w.games);

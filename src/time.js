@@ -52,12 +52,17 @@ export function isLiveFriendly(date, { timeZone = 'Europe/Amsterdam', window = [
   return hour >= window[0] && hour <= window[1];
 }
 
+const WEEKDAY_NL = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
+
 export function slotLabel(date, { isInternational, timeZone = 'Europe/Amsterdam', window }) {
   const { weekdayIndex, hour } = easternContext(date);
   // Only call it an international slot when it actually plays out as one here.
   // Otherwise it falls through to the normal slot, which is what it really is.
   if (isInternational && isLiveFriendly(date, { timeZone, window })) return 'International';
   switch (weekdayIndex) {
+    // The season opener is a Wednesday night: the 2026 edition is NE at SEA on
+    // 9 September, 20:20 ET. Without this it fell through to a generic label.
+    case 3: return 'Kickoff Game';
     case 4: return 'Thursday Night';
     case 5: return 'Friday';
     case 6: return 'Saturday';
@@ -66,7 +71,10 @@ export function slotLabel(date, { isInternational, timeZone = 'Europe/Amsterdam'
       if (hour < 16) return 'Sunday early';
       if (hour < 19) return 'Sunday late afternoon';
       return 'Sunday Night';
-    default: return 'Overig';
+    // Anything the NFL invents next still gets a usable label instead of
+    // "Overig", which told you nothing about when to watch.
+    default:
+      return `${WEEKDAY_NL[weekdayIndex] ?? 'Overig'}${hour >= 18 ? 'avond' : ''}`;
   }
 }
 

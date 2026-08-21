@@ -8,8 +8,10 @@ NFL-uitleglaag met glossarium en playoff-bracket.
 ## Draaien
 
 ```bash
-npm run ingest -- --season 2025 --weeks 1-18   # backfill, ~14s met lege cache
-node src/cli.js --week 14                       # weekoverzicht
+npm run ingest -- --season 2026 --weeks 1-18   # actief seizoen
+npm run ingest -- --season 2025 --weeks 1-18   # testset met uitslagen
+node src/cli.js --week 1                         # weekoverzicht (actief seizoen)
+node src/cli.js --season 2025 --week 14          # ander seizoen
 node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
@@ -259,11 +261,28 @@ Toegankelijkheid, gemeten op de live site en daarna hersteld:
   door de teamrijen in het instellingenpaneel. Nu 375 = 375.
 - Raakvlakken onder de 24×24 in het teampaneel zijn opgehoogd.
 
+## Seizoenen
+
+Data staat per seizoen: `data/public/{jaar}/week-N.json` en idem privé. Zonder die
+scheiding overschrijft een 2026-ingest week 1 van 2025 in dezelfde map en houd je
+een mengsel over — en de leak-scan heeft een **afgelopen** seizoen nodig, want
+alleen daar zijn uitslagen om tegen te scannen.
+
+- **2026** is het actieve seizoen (`season` in de config, `current` in `data/index.json`).
+- **2025** blijft staan als testset. Alle spoilertests draaien daartegen.
+
+De web-UI heeft een seizoenskiezer zodra er meer dan één seizoen is.
+
+Let op bij een seizoen dat nog niet gespeeld is: elk team staat op 0-0, dus
+`stakes_pre` valt overal in de laagste twee buckets. Dat is geen fout maar de
+werkelijkheid — vóór week 1 onderscheidt niets de wedstrijden behalve divisie en
+conference. Zodra de dinsdagcron gespeelde weken binnenhaalt, lopen de records
+uiteen en spreidt de inzet zich vanzelf.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
 - F4: uitleglaag, glossarium, playoff-bracket
-- Seizoen 2026 opent 9 september 2026; zet `season` op 2026 in de config
 - Remote: github.com/fremnlai-coder/nfl-watchdog (privé)
 - Let op bij F3: GitHub Pages op een privérepo vereist een betaald plan. Kies bij
   het hosten tussen de repo publiek maken of Vercel free tier.

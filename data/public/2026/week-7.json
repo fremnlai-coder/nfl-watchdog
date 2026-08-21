@@ -1,0 +1,706 @@
+{
+  "season": 2026,
+  "week": 7,
+  "timezone": "Europe/Amsterdam",
+  "nl_et_offset_hours": 6,
+  "teams_on_bye": [
+    "BUF",
+    "LAC",
+    "WSH",
+    "JAX"
+  ],
+  "packages": {
+    "a": {
+      "package": "A",
+      "mode": "quota",
+      "quota": {
+        "full": 2,
+        "game_in_40": 3
+      },
+      "recap_included": false,
+      "recap_dropped": false,
+      "budget_minutes": 490,
+      "own_team_minutes": 410,
+      "own_team_skipped": 0,
+      "picked_minutes": 80,
+      "recap_minutes": 0,
+      "total_minutes": 490,
+      "overflow_minutes": 0,
+      "unused_slots": {
+        "full": 0,
+        "game_in_40": 0
+      },
+      "counts": {
+        "full": 2,
+        "game_in_40": 3,
+        "skip": 9
+      },
+      "recap_covers": 0,
+      "unseen": 9
+    },
+    "b": {
+      "package": "B",
+      "mode": "quota",
+      "quota": {
+        "full": 2,
+        "game_in_40": 3
+      },
+      "recap_included": true,
+      "recap_dropped": false,
+      "budget_minutes": 490,
+      "own_team_minutes": 410,
+      "own_team_skipped": 0,
+      "picked_minutes": 80,
+      "recap_minutes": 60,
+      "total_minutes": 550,
+      "overflow_minutes": 0,
+      "unused_slots": {
+        "full": 0,
+        "game_in_40": 0
+      },
+      "counts": {
+        "full": 2,
+        "game_in_40": 3,
+        "skip": 9
+      },
+      "recap_covers": 8,
+      "unseen": 1
+    }
+  },
+  "package_b_plan": [
+    {
+      "game_id": "401873010",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873011",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873017",
+      "format_advice": "game_in_40",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401873013",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873014",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873015",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873018",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873012",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401873016",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873019",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873020",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401873021",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873022",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401873009",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
+    }
+  ],
+  "games": [
+    {
+      "game_id": "401873010",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-23T00:15:00.000Z",
+      "kickoff_nl": "vr 23 okt, 02:15",
+      "slot": "Thursday Night",
+      "is_international": false,
+      "venue": "Chicago",
+      "home": {
+        "abbr": "CHI",
+        "name": "Chicago Bears",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "NE",
+        "name": "New England Patriots",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": true,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": false,
+      "live_friendly_nl": false,
+      "all22_from_nl": "za 24 okt, 17:45",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Thursday Night met New England Patriots als bezoeker.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873011",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T13:30:00.000Z",
+      "kickoff_nl": "zo 25 okt, 14:30",
+      "slot": "International",
+      "is_international": true,
+      "venue": "Saint-Denis",
+      "home": {
+        "abbr": "NO",
+        "name": "New Orleans Saints",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "away": {
+        "abbr": "PIT",
+        "name": "Pittsburgh Steelers",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [
+        "internationaal"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 06:00",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Saint-Denis als speelstad, en dus een aftrap die hier prima uitkomt.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873017",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Atlanta",
+      "home": {
+        "abbr": "ATL",
+        "name": "Atlanta Falcons",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "away": {
+        "abbr": "SF",
+        "name": "San Francisco 49ers",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
+      "format_advice": "game_in_40",
+      "format_reason": "own_team_degraded",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401873013",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Nashville",
+      "home": {
+        "abbr": "TEN",
+        "name": "Tennessee Titans",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "away": {
+        "abbr": "CLE",
+        "name": "Cleveland Browns",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "conference",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873014",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Minneapolis",
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Vikings",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "IND",
+        "name": "Indianapolis Colts",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873015",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "East Rutherford",
+      "home": {
+        "abbr": "NYJ",
+        "name": "New York Jets",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "away": {
+        "abbr": "MIA",
+        "name": "Miami Dolphins",
+        "conference": "AFC",
+        "division": "AFC East"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 3,
+      "watchability": null,
+      "teaser": "Bekende tegenstanders: AFC East, twee keer per jaar op het programma.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873018",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Charlotte",
+      "home": {
+        "abbr": "CAR",
+        "name": "Carolina Panthers",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "away": {
+        "abbr": "TB",
+        "name": "Tampa Bay Buccaneers",
+        "conference": "NFC",
+        "division": "NFC South"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 3,
+      "watchability": null,
+      "teaser": "Onderling duel binnen de NFC South.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873012",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Baltimore",
+      "home": {
+        "abbr": "BAL",
+        "name": "Baltimore Ravens",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "away": {
+        "abbr": "CIN",
+        "name": "Cincinnati Bengals",
+        "conference": "AFC",
+        "division": "AFC North"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 3,
+      "watchability": null,
+      "teaser": "Onderling duel binnen de AFC North.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
+    },
+    {
+      "game_id": "401873016",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T17:00:00.000Z",
+      "kickoff_nl": "zo 25 okt, 18:00",
+      "slot": "Sunday early",
+      "is_international": false,
+      "venue": "Houston",
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Texans",
+        "conference": "AFC",
+        "division": "AFC South"
+      },
+      "away": {
+        "abbr": "NYG",
+        "name": "New York Giants",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 09:30",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873019",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T20:05:00.000Z",
+      "kickoff_nl": "zo 25 okt, 21:05",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Glendale",
+      "home": {
+        "abbr": "ARI",
+        "name": "Arizona Cardinals",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "away": {
+        "abbr": "DEN",
+        "name": "Denver Broncos",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 12:35",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873020",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T20:25:00.000Z",
+      "kickoff_nl": "zo 25 okt, 21:25",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Detroit",
+      "home": {
+        "abbr": "DET",
+        "name": "Detroit Lions",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "GB",
+        "name": "Green Bay Packers",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 12:55",
+      "stakes_pre": 3,
+      "watchability": null,
+      "teaser": "Bekende tegenstanders: NFC North, twee keer per jaar op het programma.",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401873021",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-25T20:25:00.000Z",
+      "kickoff_nl": "zo 25 okt, 21:25",
+      "slot": "Sunday late afternoon",
+      "is_international": false,
+      "venue": "Las Vegas",
+      "home": {
+        "abbr": "LV",
+        "name": "Las Vegas Raiders",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "away": {
+        "abbr": "LAR",
+        "name": "Los Angeles Rams",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": false,
+      "tags": [
+        "jouw divisie"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 27 okt, 12:55",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
+    },
+    {
+      "game_id": "401873022",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-26T00:20:00.000Z",
+      "kickoff_nl": "ma 26 okt, 01:20",
+      "slot": "Sunday Night",
+      "is_international": false,
+      "venue": "Seattle",
+      "home": {
+        "abbr": "SEA",
+        "name": "Seattle Seahawks",
+        "conference": "NFC",
+        "division": "NFC West"
+      },
+      "away": {
+        "abbr": "KC",
+        "name": "Kansas City Chiefs",
+        "conference": "AFC",
+        "division": "AFC West"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "interconference",
+      "primetime": true,
+      "tags": [
+        "own_team"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": false,
+      "all22_from_nl": "di 27 okt, 16:50",
+      "stakes_pre": 2,
+      "watchability": null,
+      "teaser": "Sunday Night: Kansas City Chiefs op bezoek bij Seattle Seahawks.",
+      "format_advice": "full",
+      "format_reason": "own_team",
+      "runtime_minutes": 185
+    },
+    {
+      "game_id": "401873009",
+      "season": 2026,
+      "week": 7,
+      "kickoff_utc": "2026-10-27T00:15:00.000Z",
+      "kickoff_nl": "di 27 okt, 01:15",
+      "slot": "Monday Night",
+      "is_international": false,
+      "venue": "Philadelphia",
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia Eagles",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Cowboys",
+        "conference": "NFC",
+        "division": "NFC East"
+      },
+      "records_before": {
+        "home": "0-0",
+        "away": "0-0"
+      },
+      "game_type": "division",
+      "primetime": true,
+      "tags": [],
+      "in_sunday_slate": false,
+      "live_friendly_nl": false,
+      "all22_from_nl": "wo 28 okt, 16:45",
+      "stakes_pre": 3,
+      "watchability": null,
+      "teaser": "Onderling duel binnen de NFC East.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
+    }
+  ]
+}

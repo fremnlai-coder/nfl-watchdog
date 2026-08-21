@@ -19,8 +19,9 @@ const hasFlag = (name) => args.includes(`--${name}`);
 
 const prefs = JSON.parse(await readFile(new URL('config/preferences.json', ROOT), 'utf8'));
 const week = Number(argValue('week', 1));
+const season = Number(argValue('season', prefs.season ?? 2025));
 const data = JSON.parse(
-  await readFile(new URL(`data/public/week-${week}.json`, ROOT), 'utf8'),
+  await readFile(new URL(`data/public/${season}/week-${week}.json`, ROOT), 'utf8'),
 );
 
 // The watchability rating is outcome-derived: measured across the 2025 season it
@@ -98,7 +99,7 @@ const teaserLine = (g) => (g.teaser ? `${' '.repeat(19)}${g.teaser}` : null);
 if (hasFlag('result')) {
   const id = argValue('result');
   const results = JSON.parse(
-    await readFile(new URL(`data/private/week-${week}.results.json`, ROOT), 'utf8'),
+    await readFile(new URL(`data/private/${season}/week-${week}.results.json`, ROOT), 'utf8'),
   );
   const r = results[id];
   if (!r) {
@@ -111,10 +112,10 @@ if (hasFlag('result')) {
 
 if (hasFlag('hints')) {
   const hints = JSON.parse(
-    await readFile(new URL(`data/private/week-${week}.hints.json`, ROOT), 'utf8'),
+    await readFile(new URL(`data/private/${season}/week-${week}.hints.json`, ROOT), 'utf8'),
   );
   const results = JSON.parse(
-    await readFile(new URL(`data/private/week-${week}.results.json`, ROOT), 'utf8'),
+    await readFile(new URL(`data/private/${season}/week-${week}.results.json`, ROOT), 'utf8'),
   );
   console.log(`\nHINTS (level 2) — week ${week}\n`);
   for (const g of data.games) {
