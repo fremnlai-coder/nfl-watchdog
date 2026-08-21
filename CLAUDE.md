@@ -51,9 +51,8 @@ src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij inges
 web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
 web/src/lib/prefs.js   favorieten in localStorage, over de config heen
-web/src/components/    GameCard (met de twee onthulstappen), Controls, PackageSummary,
-                       TeamSettings, Explainer, PlayoffBracket, Term, TeamLogo,
-                       WeekGate, Backup
+web/src/components/    GameCard (met de twee onthulstappen), Controls, TeamSettings,
+                       Explainer, PlayoffBracket, Term, TeamLogo, WeekGate, Backup
 web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
 scripts/copy-data.js   stagen van data naar de build
 scripts/make-icons.js  genereert de home-screen-iconen; geen dependencies
@@ -453,11 +452,10 @@ je níét gaat kijken. `compact` haalde alleen de teaser weg en verkleinde het l
 27px per kaart. Nu 42px per rij (tijd, `NE @ SEA`, reden), met de volledige kaart
 één tik weg. Sectie 2769 → 588, pagina 5557 → 3414, van 6,8 naar 4,2 schermen.
 
-Daarbij verschoven: het Kijkpakket stond ná alle kaarten en staat nu boven de
-wedstrijden, en de panelen Teams en Back-up staan nu ónder de wedstrijden. Die
-ruil is er één om te onthouden — het pakket bovenaan duwde de eerste wedstrijd
-onder de vouw, en pas door de instellingen naar beneden te halen kwam die weer
-terug (eerste kaart op y=718 bij een venster van 812).
+Daarbij verschoven: de panelen Teams en Back-up staan nu ónder de wedstrijden in
+plaats van erboven. Het Kijkpakket verhuisde eerst van onderaan naar boven de
+wedstrijden, werd daarna van twee kaders naar twee regels teruggebracht, en is
+uiteindelijk helemaal weg — zie hieronder.
 
 ## Alles wat geen wedstrijd is, is ingeklapt
 
@@ -468,7 +466,7 @@ Wat er stond en wat het nu is, op een venster van 375×812:
 |---|---|---|
 | Kop | 112px (titel op 24px, twee alinea's) | 46px, één regel |
 | Weekkiezer + weekvorm | 200px | 90px |
-| Kijkpakket | 284px (twee kaders) | 105px (twee regels) |
+| Kijkpakket | 284px (twee kaders) | weg |
 | Eerste wedstrijd begint op | y=718 | y=391 |
 | Hele pagina | 5557px (6,8 schermen) | 3085px (3,8) |
 
@@ -483,9 +481,15 @@ Drie beslissingen daarachter:
 - **Het tijdverschil met New York staat nog voluit in de uitleglaag.** In de kop is
   het teruggebracht tot "(+6 u t.o.v. New York)".
 
-Wat bewust blijft staan: pakket A herhaalt de aantallen uit de weekvorm. Dat lijkt
-dubbelop maar is het niet — zodra de planner degradeert (budget op, quota vol) lopen
-ze uiteen, en juist dan wil je het zien.
+**De samenvatting van pakket A en B staat niet meer in de web-UI.** Hij herhaalde
+grotendeels de weekvorm-regel erboven, en de rest — hoeveel wedstrijden ongezien
+blijven, of de recap past — is context bij een beslissing die je één keer per week
+neemt, niet iets wat boven elke sessie hoort te staan. `planBoth()` draait
+ongewijzigd door: pakket A levert het formaatadvies dat op elke kaart staat, en de
+CLI (`node src/cli.js --week N`) toont de volledige A/B-vergelijking nog wel.
+
+Wil je hem terug in de browser, dan staat de component in de git-historie
+(`web/src/components/PackageSummary.jsx`, verwijderd na `ec4accd`).
 
 **"Jouw teams" en "Kijkwaardig" zijn één lijst geworden**, met de kop **Kijken**.
 Dat is puur een kop en een noot minder; de volgorde is exact dezelfde als toen het

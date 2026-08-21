@@ -13,7 +13,6 @@ import {
 import { isLocked, maxOpenWeek } from '../../src/watched.js';
 import Controls from './components/Controls.jsx';
 import GameCard from './components/GameCard.jsx';
-import PackageSummary from './components/PackageSummary.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
 import Explainer from './components/Explainer.jsx';
 import Term from './components/Term.jsx';
@@ -140,6 +139,9 @@ export default function App() {
         watchability: tags.includes('own_team') ? null : g.watchability,
       };
     });
+    // planBoth blijft nodig: pakket A levert het formaatadvies per wedstrijd,
+    // dat op elke kaart staat. Alleen de samenvatting van A en B stond in de
+    // weg boven de wedstrijden en is eruit; de CLI toont die nog wel.
     const packages = planBoth(retagged, { ...prefs, teams, weekly_quota: quota });
     const byId = new Map(packages.a.games.map((p) => [p.game_id, p]));
     return {
@@ -286,8 +288,6 @@ export default function App() {
           maxOpen={maxOpenWeek(watchedThrough)}
         />
       </div>
-
-      <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
 
       <Section
         title="Kijken"
