@@ -421,6 +421,44 @@ Command Line Tools), dus er is geen simulator. De insets, de statusbalk in
 standalone-modus en het toevoegen aan het beginscherm zijn dus beredeneerd, niet
 waargenomen — controleer die één keer op de telefoon zelf.
 
+## Ontwerpronde na de critique
+
+Drie dingen uit een critique op de mobiele weergave, alle drie gemeten voor en na.
+
+**De glossariumterm was onbereikbaar voor VoiceOver.** Hij was een `span` met
+`role="button"` die op `pointerdown` luisterde. Het activeergebaar van VoiceOver
+levert een `click` en geen pointer-event, dus daar gebeurde niets — geverifieerd
+met `term.click()`, dat de state onaangeroerd liet. Nu een echte `<button>`, die
+meteen ook Enter en spatie meebrengt.
+
+**Contrast staat op nul fouten in beide schema's.** Gemeten met een audit die elke
+zichtbare tekst tegen zijn werkelijke achtergrond legt (canvas-resolutie, want de
+computed styles komen er als `oklch` uit). Wat eruit kwam:
+
+| | licht | donker |
+|---|---|---|
+| `·` tussen twee regels in de kaart | 1,49 | 1,70 |
+| `Fav` / `Watch` in het teampaneel | 3,65 / 4,02 | 3,65 / 4,02 |
+| `Nooit` | 2,59 | — |
+| `#1`-rang | 3,50 | — |
+| "tegen" in de bracket | 2,48 | — |
+
+De -600→-700-correctie was in v1 wél op de format-badges toegepast en niet op de
+tier-knoppen; die hebben geen dark-variant, vandaar dat ze in beide schema's
+zakten. Laagste waarde nu 4,58.
+
+**"Rest van de week" is één regel per wedstrijd.** Die sectie was elf kaarten van
+rond de 250px — 2769 van de 5557 pixels, oftewel de halve pagina, voor precies wat
+je níét gaat kijken. `compact` haalde alleen de teaser weg en verkleinde het logo,
+27px per kaart. Nu 42px per rij (tijd, `NE @ SEA`, reden), met de volledige kaart
+één tik weg. Sectie 2769 → 588, pagina 5557 → 3414, van 6,8 naar 4,2 schermen.
+
+Daarbij verschoven: het Kijkpakket stond ná alle kaarten en staat nu boven de
+wedstrijden, en de panelen Teams en Back-up staan nu ónder de wedstrijden. Die
+ruil is er één om te onthouden — het pakket bovenaan duwde de eerste wedstrijd
+onder de vouw, en pas door de instellingen naar beneden te halen kwam die weer
+terug (eerste kaart op y=718 bij een venster van 812).
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg

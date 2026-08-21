@@ -1,11 +1,14 @@
 import TeamLogo from './TeamLogo.jsx';
 import { TIERS, TIER_LABEL, TIER_SHORT, setTier, moveFavorite } from '../lib/prefs.js';
 
+// Wit op -600 haalt 3,65 (emerald) en 4,02 (sky) tegen een eis van 4,5, en wit
+// op stone-400 blijft op 2,59 steken. Dezelfde correctie als eerder op de
+// format-badges in GameCard; die was hier nog niet doorgevoerd.
 const TIER_STYLE = {
-  favorite: 'bg-emerald-600 text-white',
-  watchlist: 'bg-sky-600 text-white',
+  favorite: 'bg-emerald-700 text-white',
+  watchlist: 'bg-sky-700 text-white',
   neutral: 'bg-stone-200 text-stone-700 dark:bg-stone-800 dark:text-stone-300',
-  avoid: 'bg-stone-400 text-white dark:bg-stone-600',
+  avoid: 'bg-stone-600 text-white',
 };
 
 function TeamRow({ team, override, favoriteCount, onChange }) {
@@ -21,7 +24,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
       <span className="min-w-0 flex-1 truncate text-sm">{team.name}</span>
 
       <span className={`flex w-14 shrink-0 items-center justify-end gap-0.5 ${tier === 'favorite' ? '' : 'invisible'}`}>
-          <span className="w-5 text-center font-mono text-xs text-emerald-600 dark:text-emerald-400">
+          <span className="w-5 text-center font-mono text-xs text-emerald-700 dark:text-emerald-400">
             #{rank}
           </span>
           <button

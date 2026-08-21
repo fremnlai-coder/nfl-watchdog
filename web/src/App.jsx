@@ -20,7 +20,7 @@ import Term from './components/Term.jsx';
 import WeekGate from './components/WeekGate.jsx';
 import Backup from './components/Backup.jsx';
 
-function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact }) {
+function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact, dense }) {
   return (
     <section className="mt-8">
       <h2 className="text-sm font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
@@ -31,9 +31,9 @@ function Section({ title, note, games, rowProps, empty = 'Niets deze week.', com
       {games.length === 0 ? (
         <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{empty}</p>
       ) : (
-        <ul className="mt-3 grid items-stretch gap-3 sm:grid-cols-2">
+        <ul className={`mt-3 grid items-stretch ${dense ? 'gap-1.5' : 'gap-3 sm:grid-cols-2'}`}>
           {games.map((g) => (
-            <GameCard key={g.game_id} game={g} compact={compact} {...rowProps(g)} />
+            <GameCard key={g.game_id} game={g} compact={compact} dense={dense} {...rowProps(g)} />
           ))}
         </ul>
       )}
@@ -272,14 +272,9 @@ export default function App() {
           onQuota={setQuota}
           maxOpen={maxOpenWeek(watchedThrough)}
         />
-        <TeamSettings
-          teams={prefs.teams}
-          overrides={overrides}
-          onChange={updateOverrides}
-          onReset={resetOverrides}
-        />
-        <Backup onRestore={restoreBackup} />
       </div>
+
+      <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
 
       <Section
         title="Jouw teams"
@@ -303,13 +298,12 @@ export default function App() {
 
       <Section
         title="Rest van de week"
-        note="Buiten je weekvorm gevallen. Compacter weergegeven, want je slaat ze over."
+        note="Buiten je weekvorm gevallen. Eén regel per wedstrijd; tik voor de kaart."
         games={rest}
         rowProps={rowProps}
         compact
+        dense
       />
-
-      <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
 
       {watchedThrough < week && (
         <p className="mt-6 text-sm">
@@ -320,11 +314,27 @@ export default function App() {
           >
             Week {week} afgevinkt — deze heb ik gekeken
           </button>
-          <span className="ml-2 text-xs text-stone-500 dark:text-stone-400">
+          {/* Op een eigen regel: naast de knop wikkelde deze zin op 375px om de
+              knop heen en brak hij midden in de zin af. */}
+          <span className="mt-1 block text-xs text-stone-500 dark:text-stone-400">
             Daarmee gaat week {week + 1} open.
           </span>
         </p>
       )}
+
+      {/* Instellingen staan onder de wedstrijden. Ze worden zelden aangeraakt en
+          namen bovenaan de ruimte in die de eerste wedstrijd nodig had om nog
+          boven de vouw uit te komen; de samenvatting van je week is wél elke keer
+          relevant en staat daarom wel bovenaan. */}
+      <div className="mt-10">
+        <TeamSettings
+          teams={prefs.teams}
+          overrides={overrides}
+          onChange={updateOverrides}
+          onReset={resetOverrides}
+        />
+        <Backup onRestore={restoreBackup} />
+      </div>
 
       <Explainer timezone={data.timezone} offsetHours={data.nl_et_offset_hours} />
 

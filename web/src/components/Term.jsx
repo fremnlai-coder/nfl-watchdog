@@ -38,22 +38,20 @@ export default function Term({ id, children, className = '' }) {
 
   return (
     <span ref={wrap} className={`group relative inline-block ${className}`}>
-      <span
-        tabIndex={0}
-        role="button"
+      {/* Een echte button, geen span met een role. Dat was het wel, en die
+          luisterde op pointerdown — waarmee VoiceOver hem niet kon openen: het
+          activeergebaar daar levert een click, geen pointer-event. Een button
+          krijgt bovendien Enter en spatie gratis. `inline` zodat een lange term
+          gewoon meebreekt in de zin. */}
+      <button
+        type="button"
         aria-describedby={`glossary-${id}`}
         aria-expanded={open}
-        onPointerDown={() => setOpen((v) => !v)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setOpen((v) => !v);
-          }
-        }}
-        className="cursor-help border-b border-dotted border-current/50 outline-none"
+        onClick={() => setOpen((v) => !v)}
+        className="inline cursor-help border-b border-dotted border-current/50 text-left outline-none"
       >
         {children ?? entry.term}
-      </span>
+      </button>
       <span
         id={`glossary-${id}`}
         role="tooltip"

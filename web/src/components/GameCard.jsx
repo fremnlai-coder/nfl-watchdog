@@ -68,9 +68,10 @@ function TeamLine({ team, record, size }) {
   );
 }
 
-export default function GameCard({ game, hints, result, onRevealHints, onRevealResult, compact, rank }) {
+export default function GameCard({ game, hints, result, onRevealHints, onRevealResult, compact, dense, rank }) {
   const [confirming, setConfirming] = useState(false);
   const [why, setWhy] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const explanation = explainPick(game, { rank });
 
   const badges = [];
@@ -81,12 +82,53 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
 
   const logoSize = compact ? 24 : 30;
 
+  // Eén regel per wedstrijd voor de wedstrijden die buiten je weekvorm vallen.
+  // Die sectie was elf kaarten van rond de 250px — de helft van de pagina, voor
+  // precies datgene wat je niet gaat kijken. De kaart zelf blijft één tik weg,
+  // want ook een overgeslagen wedstrijd wil je soms alsnog nakijken.
+  if (dense && !expanded) {
+    return (
+      <li className="rounded-lg border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          aria-expanded={false}
+          className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left"
+        >
+          <span className="shrink-0 font-mono text-xs text-stone-600 tabular-nums dark:text-stone-400">
+            {game.kickoff_nl}
+          </span>
+          <span className="shrink-0 text-sm font-semibold">
+            {game.away.abbr}
+            <span className="mx-1 font-normal text-stone-500 dark:text-stone-400">@</span>
+            {game.home.abbr}
+          </span>
+          <span className="ml-auto min-w-0 truncate text-xs text-stone-500 dark:text-stone-400">
+            {REASON_LABEL[game.format_reason] ?? game.format_reason}
+          </span>
+        </button>
+      </li>
+    );
+  }
+
   return (
     <li className="flex flex-col overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-900">
       <div className="flex items-center justify-between gap-2 border-b border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-800 dark:bg-stone-950/40">
-        <span className="min-w-0 truncate font-mono text-xs text-stone-600 dark:text-stone-400">
-          {game.kickoff_nl}
-        </span>
+        {dense ? (
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            aria-expanded={true}
+            className="min-w-0 truncate font-mono text-xs text-stone-600 dark:text-stone-400"
+          >
+            {game.kickoff_nl}
+            <span className="ml-1.5 font-sans">· minder</span>
+          </button>
+        ) : (
+          <span className="min-w-0 truncate font-mono text-xs text-stone-600 dark:text-stone-400">
+            {game.kickoff_nl}
+          </span>
+        )}
         <span
           className={`shrink-0 rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}
         >
@@ -147,7 +189,7 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
 
         <p className="text-xs text-stone-500 dark:text-stone-400">
           {REASON_LABEL[game.format_reason] ?? game.format_reason}
-          <span className="mx-1.5 text-stone-300 dark:text-stone-700">·</span>
+          <span className="mx-1.5 text-stone-500 dark:text-stone-400">·</span>
           <Term id="all22">All-22</Term> vanaf {game.all22_from_nl}
         </p>
 

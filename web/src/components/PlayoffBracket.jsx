@@ -58,7 +58,7 @@ function Conference({ name }) {
               {round.pairs.map((pair, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <Seed label={pair[0]} />
-                  <span className="text-xs text-stone-400">tegen</span>
+                  <span className="text-xs text-stone-500 dark:text-stone-400">tegen</span>
                   <Seed label={pair[1]} />
                 </li>
               ))}
@@ -81,7 +81,7 @@ export default function PlayoffBracket() {
 
       <div className="mt-3 rounded border border-stone-300 bg-stone-100 p-3 text-center dark:border-stone-700 dark:bg-stone-900">
         <p className="text-sm font-semibold">Super Bowl</p>
-        <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
+        <p className="mt-0.5 text-xs text-stone-600 dark:text-stone-400">
           De AFC-kampioen tegen de NFC-kampioen, op neutraal terrein.
         </p>
       </div>
