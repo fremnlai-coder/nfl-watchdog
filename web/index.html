@@ -13,12 +13,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Watchdog" />
-    <!-- Bewust niet black-translucent: die dwingt witte statusbalk-tekst af, en
-         in light mode staat die op een bijna witte achtergrond. -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <!-- `black`, niet `default`: default geeft een lichte balk met zwarte tekst
+         boven een donkere app. En niet `black-translucent`, want dan loopt de
+         pagina onder de statusbalk door en hangt het aan de safe-area-padding of
+         dat goed gaat — dat kan hier niet op een toestel getest worden. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c0a09" />
+    <!-- Eén waarde: de app is altijd donker, ongeacht de systeeminstelling. -->
+    <meta name="theme-color" content="#0c0a09" />
 
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />

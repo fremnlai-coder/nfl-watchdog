@@ -530,6 +530,36 @@ Twee dingen die daarbij horen:
 - **Geen aantal achter de kop.** Naast "Week 1" leest een losse "16" als deel van
   het weeknummer.
 
+## Altijd donker
+
+De app volgt de systeeminstelling niet meer; hij staat altijd in dark mode. Dat is
+één regel in `styles.css`:
+
+```css
+@custom-variant dark (&);
+```
+
+Daarmee gelden alle bestaande `dark:`-klassen onvoorwaardelijk in plaats van via
+`prefers-color-scheme`, en hoefde er in de componenten niets herschreven te worden.
+De basis in `body` staat op `bg-stone-950 text-stone-100`, en `color-scheme: dark`
+op `:root` regelt wat de browser zelf tekent: selects, scrollbalken, tekstcursor.
+
+Meegenomen omdat ze anders licht blijven:
+
+- `theme-color` in `index.html` is één waarde (`#0c0a09`) in plaats van twee
+  media-gescoopte varianten.
+- `background_color` en `theme_color` in de manifest staan op dezelfde kleur —
+  dat is het splashscherm bij het starten vanaf het beginscherm.
+- De statusbalk in standalone-modus staat op `black`. Niet `default`, want dat
+  geeft een lichte balk met zwarte tekst boven een donkere app; en niet
+  `black-translucent`, want dan loopt de pagina eronder door en hangt het aan de
+  safe-area-padding of dat goed valt — en dat kan hier niet op een toestel
+  getoetst worden.
+
+Geverifieerd met het systeem op licht: `body` blijft `stone-950`, er is geen enkel
+licht oppervlak meer in de DOM, en de contrastaudit blijft op nul fouten. In de
+gecompileerde CSS komt `prefers-color-scheme` niet meer voor.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
