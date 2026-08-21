@@ -18,3 +18,65 @@ body {
     @apply bg-stone-950 text-stone-100;
   }
 }
+
+/* De pagina loopt door tot achter de Dynamic Island en de homebar
+   (viewport-fit=cover), dus de inhoud moet zelf om die gebieden heen. max()
+   houdt de bestaande p-6 als bodem op een scherm zonder insets, en in landscape
+   telt de linker- of rechterinset mee. */
+.app-shell {
+  padding-top: max(1.5rem, env(safe-area-inset-top));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+}
+
+/* Het glossariumpaneel staat op een smal scherm onderaan het venster vast, dus
+   over de homebar heen. Boven sm is het weer een tooltip naast de term en is er
+   niets om vrij te houden. */
+.term-panel {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Toetsenbordfocus opent de term ook, maar dan uitdrukkelijk :focus-visible en
+   niet :focus-within. Een tap op iOS geeft de term namelijk óók focus, en met
+   focus-within bleef het paneel daarna openstaan: de tap die het moest sluiten
+   zette de state op dicht, waarna focus het meteen weer zichtbaar maakte. */
+.group:has(:focus-visible) > .term-panel {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (min-width: 40rem) {
+  .term-panel {
+    padding-bottom: 0.5rem;
+  }
+}
+
+@media (pointer: coarse) {
+  /* Safari zoomt bij focus in op een veld dat kleiner is dan 16px, en zoomt
+     daarna niet vanzelf terug. De weekkiezer stond op 14px, dus elke
+     weekwissel liet je op een uitvergrote pagina achter. */
+  select,
+  input,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Geen dubbeltik-zoom op knoppen, en geen grijze vlek over de hele kaart bij
+     het aanraken — die tekent ook de afgeronde hoeken verkeerd. */
+  button,
+  summary,
+  a {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Zonder de systeem-highlight moet de feedback ergens anders vandaan komen:
+   hover bestaat niet op een touchscreen, :active wel. */
+@media (hover: none) {
+  button:active,
+  summary:active {
+    opacity: 0.6;
+  }
+}

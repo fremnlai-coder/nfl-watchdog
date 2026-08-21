@@ -2,8 +2,28 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport-fit=cover laat de pagina onder de Dynamic Island en de homebar
+         door lopen; de safe-area-padding in styles.css houdt de inhoud vrij. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Toegevoegd aan het beginscherm draait dit als losse app. Dat is niet
+         cosmetisch: Safari wist localStorage van een gewone site na zeven dagen
+         zonder bezoek (ITP), een geïnstalleerde webapp valt daar niet onder. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Watchdog" />
+    <!-- Bewust niet black-translucent: die dwingt witte statusbalk-tekst af, en
+         in light mode staat die op een bijna witte achtergrond. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c0a09" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+
     <title>NFL Watchdog — spoilervrij weekoverzicht</title>
   </head>
   <body>

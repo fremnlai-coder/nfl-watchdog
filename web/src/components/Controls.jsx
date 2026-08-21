@@ -6,7 +6,7 @@ function Stepper({ label, value, onChange, min = 0, max = 8 }) {
         <button
           type="button"
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="px-2 py-0.5 hover:bg-stone-100 dark:hover:bg-stone-900"
+          className="px-3 py-1.5 hover:bg-stone-100 dark:hover:bg-stone-900"
           aria-label={`${label} minder`}
         >
           −
@@ -15,7 +15,7 @@ function Stepper({ label, value, onChange, min = 0, max = 8 }) {
         <button
           type="button"
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="px-2 py-0.5 hover:bg-stone-100 dark:hover:bg-stone-900"
+          className="px-3 py-1.5 hover:bg-stone-100 dark:hover:bg-stone-900"
           aria-label={`${label} meer`}
         >
           +
@@ -34,7 +34,7 @@ export default function Controls({ seasons, season, onSeason, weeks, week, onWee
           <select
             value={season}
             onChange={(e) => onSeason(e.target.value)}
-            className="rounded border border-stone-300 bg-transparent px-2 py-1 dark:border-stone-700"
+            className="rounded border border-stone-300 bg-transparent px-2 py-1.5 dark:border-stone-700"
           >
             {seasons.map((s) => (
               <option key={s} value={s}>{s}</option>
@@ -48,7 +48,7 @@ export default function Controls({ seasons, season, onSeason, weeks, week, onWee
         <select
           value={week}
           onChange={(e) => onWeek(Number(e.target.value))}
-          className="rounded border border-stone-300 bg-transparent px-2 py-1 dark:border-stone-700"
+          className="rounded border border-stone-300 bg-transparent px-2 py-1.5 dark:border-stone-700"
         >
           {weeks.map((w) => (
             <option key={w} value={w}>

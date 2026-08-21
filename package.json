@@ -11,6 +11,7 @@
     "ingest": "node src/ingest.js",
     "week": "node src/cli.js",
     "stage": "node scripts/copy-data.js",
+    "icons": "node scripts/make-icons.js",
     "dev": "npm run stage && vite",
     "build": "npm run stage && vite build",
     "preview": "vite preview",

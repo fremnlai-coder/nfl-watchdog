@@ -137,3 +137,62 @@ export function saveWatched(map) {
     // ignore
   }
 }
+
+
+// --- back-up ---------------------------------------------------------------
+//
+// Both keys above live in localStorage, which on iOS is a cache rather than a
+// store: Safari drops a site's storage after seven days without a visit. A
+// home-screen app is exempt, but it gets its own storage — so moving to it
+// starts you empty. This is the way back in both cases.
+
+const BACKUP_APP = 'nfl-watchdog';
+const BACKUP_VERSION = 1;
+
+export function exportState(now = new Date()) {
+  return {
+    app: BACKUP_APP,
+    version: BACKUP_VERSION,
+    exported_at: now.toISOString(),
+    teams: loadOverrides() ?? {},
+    watched: loadWatched(),
+  };
+}
+
+// Throws with a message that is meant to be shown as-is. A silently ignored bad
+// import would look identical to a successful one.
+export function parseBackup(text) {
+  let doc;
+  try {
+    doc = JSON.parse(text);
+  } catch {
+    throw new Error('Dat is geen leesbare JSON.');
+  }
+
+  if (!doc || doc.app !== BACKUP_APP) {
+    throw new Error('Dit bestand komt niet van NFL Watchdog.');
+  }
+  if (doc.version !== BACKUP_VERSION) {
+    throw new Error(`Onbekende versie ${doc.version}; deze app leest versie ${BACKUP_VERSION}.`);
+  }
+
+  const teams = {};
+  for (const [abbr, v] of Object.entries(doc.teams ?? {})) {
+    if (!v || !TIERS.includes(v.tier)) throw new Error(`Onbekende voorkeur bij ${abbr}.`);
+    const rank = v.rank ?? null;
+    if (rank != null && !Number.isInteger(rank)) throw new Error(`Rang van ${abbr} klopt niet.`);
+    teams[abbr] = { tier: v.tier, rank };
+  }
+
+  const watched = {};
+  for (const [season, week] of Object.entries(doc.watched ?? {})) {
+    // A counter that is too high opens weeks you have not watched yet, which is
+    // exactly the gate the rest of this project is built around.
+    if (!Number.isInteger(week) || week < 0 || week > 18) {
+      throw new Error(`Kijkstand voor ${season} klopt niet: ${week}.`);
+    }
+    watched[season] = week;
+  }
+
+  return { teams: renumber(teams), watched };
+}

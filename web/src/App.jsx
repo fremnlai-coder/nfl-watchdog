@@ -18,6 +18,7 @@ import TeamSettings from './components/TeamSettings.jsx';
 import Explainer from './components/Explainer.jsx';
 import Term from './components/Term.jsx';
 import WeekGate from './components/WeekGate.jsx';
+import Backup from './components/Backup.jsx';
 
 function Section({ title, note, games, rowProps, empty = 'Niets deze week.', compact }) {
   return (
@@ -97,6 +98,14 @@ export default function App() {
     setOverrides(overridesFromTeams(prefs.teams));
   }
 
+  // A restore replaces both halves at once. Anything half-applied would leave
+  // the watched counter and the favourites describing different moments.
+  function restoreBackup({ teams, watched: restored }) {
+    setOverrides(teams);
+    setWatched(restored);
+    setOverride(null);
+  }
+
   const watchedThrough = watched?.[season] ?? 0;
   const gated =
     watched != null && isLocked(week, watchedThrough) && override !== `${season}:${week}`;
@@ -162,7 +171,7 @@ export default function App() {
 
   if (error) {
     return (
-      <main className="mx-auto max-w-5xl p-6">
+      <main className="app-shell mx-auto max-w-5xl">
         <p className="text-red-700 dark:text-red-400">Laden mislukt: {error}</p>
       </main>
     );
@@ -170,7 +179,7 @@ export default function App() {
 
   if (gated && prefs && index) {
     return (
-      <main className="mx-auto max-w-5xl p-6">
+      <main className="app-shell mx-auto max-w-5xl">
         <header>
           <h1 className="text-2xl font-bold">NFL Watchdog</h1>
         </header>
@@ -194,13 +203,17 @@ export default function App() {
           onAdvance={(w) => setWatched((prev) => ({ ...prev, [season]: w }))}
           onOverride={() => setOverride(`${season}:${week}`)}
         />
+        {/* Here as well, because this is the screen you land on once iOS has
+            wiped the storage: the counter is back to zero and every week you had
+            already watched sits behind the gate. */}
+        <Backup onRestore={restoreBackup} />
       </main>
     );
   }
 
   if (!planned || !prefs || !overrides || !index || !watched) {
     return (
-      <main className="mx-auto max-w-5xl p-6">
+      <main className="app-shell mx-auto max-w-5xl">
         <p className="text-stone-500">Laden…</p>
       </main>
     );
@@ -233,7 +246,7 @@ export default function App() {
   });
 
   return (
-    <main className="mx-auto max-w-5xl p-6">
+    <main className="app-shell mx-auto max-w-5xl">
       <header>
         <h1 className="text-2xl font-bold">NFL Watchdog</h1>
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
@@ -265,6 +278,7 @@ export default function App() {
           onChange={updateOverrides}
           onReset={resetOverrides}
         />
+        <Backup onRestore={restoreBackup} />
       </div>
 
       <Section
@@ -302,7 +316,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => setWatched((prev) => ({ ...prev, [season]: week }))}
-            className="rounded border border-stone-300 px-3 py-1.5 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+            className="rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
           >
             Week {week} afgevinkt — deze heb ik gekeken
           </button>

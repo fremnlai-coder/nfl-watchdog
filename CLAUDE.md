@@ -1,4 +1,4 @@
-# NFL Watchdog — v1
+# NFL Watchdog — v2
 
 Stand: 21 augustus 2026.
 
@@ -6,6 +6,10 @@ Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
 Fase 1 t/m 4 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
 planner, CLI-weekoverzicht, teasers met spoiler-linter, de statische web-UI, en de
 NFL-uitleglaag met glossarium en playoff-bracket.
+
+v2 voegt daar de iOS-kant aan toe: installeerbaar als webapp op het beginscherm,
+safe-area-afhandeling, een back-up van de lokale stand, en de mobiele fixes uit de
+meting op 375px. Zie **iOS en het beginscherm**.
 
 ## Draaien
 
@@ -18,12 +22,13 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 89 tests
+npm test                                        # 99 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
 npm run verify                                  # build + alle tests, inclusief dist-scan
 node scripts/fetch-logos.js                     # eenmalig, logos staan in assets/logos/
+npm run icons                                   # iconen opnieuw genereren
 ```
 
 ## Architectuur
@@ -47,9 +52,11 @@ web/src/App.jsx        secties, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
 web/src/lib/prefs.js   favorieten in localStorage, over de config heen
 web/src/components/    GameCard (met de twee onthulstappen), Controls, PackageSummary,
-                       TeamSettings, Explainer, PlayoffBracket, Term, TeamLogo
+                       TeamSettings, Explainer, PlayoffBracket, Term, TeamLogo,
+                       WeekGate, Backup
 web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
 scripts/copy-data.js   stagen van data naar de build
+scripts/make-icons.js  genereert de home-screen-iconen; geen dependencies
 ```
 
 De planner uit `src/planner.js` draait ongewijzigd in de browser. Dat kan alleen
@@ -356,12 +363,67 @@ meta-tag in `index.html` gelden, maar voor de JSON onder `data/private/` is
 repo ook gewoon op github.com. Het gaat om openbare NFL-uitslagen, dus er lekt
 niets vertrouwelijks — maar het is een zwakkere afscherming dan op Vercel.
 
+## iOS en het beginscherm
+
+De site wordt vooral op een iPhone gebruikt. Dat verandert vier dingen.
+
+**Opslag is daar geen opslag.** Favorieten en de kijkstand staan in localStorage,
+en Safari wist die van een gewone site na zeven dagen waarin je hem niet opent.
+Een naar het beginscherm toegevoegde webapp valt buiten die regel — dat is de
+reden voor de manifest en de `apple-mobile-web-app-capable`, niet het uiterlijk.
+
+Wat er misgaat als de opslag tóch weg is, valt de goede kant op: `watched_through_week`
+in de config staat op 0, dus de teller valt terug naar nul en de poort doet dán
+juist te véél dicht. Vervelend, geen lek. Een import kan dat wel worden, en daarom
+weigert `parseBackup()` een kijkstand buiten 0–18 in plaats van 'm te knippen —
+`test/backup.test.js` bewaakt dat.
+
+**De back-up.** `Backup.jsx` schrijft favorieten plus kijkstand naar klembord of
+bestand, en leest ze terug uit een bestand of uit geplakte tekst. Het paneel staat
+ook in het scherm van de weekpoort: dat is precies waar je landt als de opslag weg
+is, en van daaruit kom je anders nergens meer. Let op: de webapp op je beginscherm
+heeft een eigen opslag, los van Safari. Wie overstapt begint leeg en moet één keer
+terugzetten.
+
+**De iconen.** `scripts/make-icons.js` tekent ze zelf — een PNG is zlib plus vier
+chunks, en zo blijft het project zonder image-dependency. De kleuren komen uit
+dezelfde oklch-waarden als `--color-field` en `--color-chalk` in de stylesheet, via
+een oklch→sRGB-conversie in het script. De bal is een lens (twee cirkelbogen), geen
+ellips: een ellips rondt precies de punten af waaraan je 'm op 60 pixels herkent.
+
+De manifest gebruikt **relatieve** paden (`start_url: "./"`, `icons/icon-192.png`).
+Die lossen op tegen de URL van de manifest zelf en werken daarmee zowel op
+localhost als onder `/nfl-watchdog/` op Pages. In `index.html` staan de verwijzingen
+juist absoluut, want Vite zet daar de base voor. `test/pwa.test.js` controleert dat
+allebei, tegen welke base er ook gebouwd is.
+
+**Gemeten op 375 px, en daarna hersteld:**
+
+- Glossariumtooltips waren op mobiel onbereikbaar én afgeknipt. Ze hingen op
+  `hover`, die op touch niet bestaat, waren 16 rem breed op een scherm van 375, en
+  `GameCard` knipt ze hoe dan ook af — de kaart heeft `overflow-hidden` voor zijn
+  ronde hoeken, en daar ontsnapt geen enkele positionering aan. Onder `sm` is het
+  nu een `fixed` paneel onderaan het venster, geopend met een tap.
+- Diezelfde tap gaf de term focus, waardoor `focus-within` het paneel meteen weer
+  opende: sluiten was onmogelijk. Nu `:has(:focus-visible)`, dat alleen op
+  toetsenbordfocus reageert.
+- De week- en seizoenkiezer stonden op 14 px. Safari zoomt bij focus in op elk
+  veld onder de 16 px en zoomt niet terug; elke weekwissel liet je dus op een
+  uitvergrote pagina achter. Nu 16 px onder `(pointer: coarse)`.
+- Raakvlakken lagen op 21×24 (de rangpijlen) tot 30 px. Nu minimaal 29×32, met de
+  tier-knoppen op 36 en de kaartknoppen op 34. Apple houdt 44 aan; dat is hier niet
+  gehaald, omdat 44 op de teamlijst van 32 rijen het paneel onwerkbaar lang maakt.
+- Horizontale overflow: 375 = 375, ook met het teampaneel open.
+
+Wat hier **niet** mee getest is: dit is gemeten in een Chromium op een viewport van
+375×812, niet in Safari op een echt toestel. Xcode staat niet op deze Mac (alleen
+Command Line Tools), dus er is geen simulator. De insets, de statusbalk in
+standalone-modus en het toevoegen aan het beginscherm zijn dus beredeneerd, niet
+waargenomen — controleer die één keer op de telefoon zelf.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg
-- Vercel-deploy: negen van de tien deployments blijven hangen, ook prebuilt zonder
-  buildstap. Project verwijderen en opnieuw importeren is de volgende stap.
-- F4: uitleglaag, glossarium, playoff-bracket
-- Remote: github.com/fremnlai-coder/nfl-watchdog (privé)
-- Let op bij F3: GitHub Pages op een privérepo vereist een betaald plan. Kies bij
-  het hosten tussen de repo publiek maken of Vercel free tier.
+- Eén ronde op een echte iPhone: icoon, splash, statusbalk, insets in landscape,
+  en of de download uit "Bewaar als bestand" netjes in Bestanden landt
+- Remote: github.com/fremnlai-coder/nfl-watchdog (publiek, Pages via Actions)

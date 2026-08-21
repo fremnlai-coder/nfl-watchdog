@@ -29,7 +29,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} hoger`}
             disabled={rank === 1}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, -1))}
-            className="rounded p-1.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="rounded p-2.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
           >
             ↑
           </button>
@@ -38,7 +38,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} lager`}
             disabled={rank === favoriteCount}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, 1))}
-            className="rounded p-1.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="rounded p-2.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
           >
             ↓
           </button>
@@ -52,7 +52,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             onClick={() => onChange((o) => setTier(o, team.abbr, t))}
             aria-pressed={tier === t}
             title={TIER_LABEL[t]}
-            className={`w-14 rounded px-1 py-1.5 text-center text-xs ${
+            className={`w-14 rounded px-1 py-2.5 text-center text-xs ${
               tier === t
                 ? TIER_STYLE[t]
                 : 'text-stone-500 hover:bg-stone-200 dark:text-stone-400 dark:hover:bg-stone-800'
@@ -122,7 +122,7 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
         <button
           type="button"
           onClick={onReset}
-          className="mt-4 rounded border border-stone-300 px-2 py-1 text-xs text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900"
+          className="mt-4 rounded border border-stone-300 px-3 py-2 text-xs text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900"
         >
           Terug naar de instellingen uit preferences.json
         </button>
