@@ -470,7 +470,7 @@ Wat er stond en wat het nu is, op een venster van 375×812:
 | Weekkiezer + weekvorm | 200px | 90px |
 | Kijkpakket | 284px (twee kaders) | 105px (twee regels) |
 | Eerste wedstrijd begint op | y=718 | y=391 |
-| Hele pagina | 5557px (6,8 schermen) | 3087px (3,8) |
+| Hele pagina | 5557px (6,8 schermen) | 3085px (3,8) |
 
 Drie beslissingen daarachter:
 
@@ -486,6 +486,19 @@ Drie beslissingen daarachter:
 Wat bewust blijft staan: pakket A herhaalt de aantallen uit de weekvorm. Dat lijkt
 dubbelop maar is het niet — zodra de planner degradeert (budget op, quota vol) lopen
 ze uiteen, en juist dan wil je het zien.
+
+**"Jouw teams" en "Kijkwaardig" zijn één lijst geworden**, met de kop **Kijken**.
+Dat is puur een kop en een noot minder; de volgorde is exact dezelfde als toen het
+twee secties waren: eigen teams eerst op voorkeursrang, daarna de rest op
+`stakes_pre`.
+
+Dat is geen cosmetische keuze maar de spoilergrens zelf. Sorteren op de rating zou
+de wedstrijden die lang dicht bleven vooraan zetten, en de volgorde van een lijst
+is net zo goed uitkomstinformatie als een cijfer. Het samenvoegen voegt daar niets
+aan toe: welke wedstrijden van jouw teams zijn weet je zelf, en `format_reason`
+staat op elke kaart ("eigen team", "op inzet vooraf"), dus de groepering blijft
+leesbaar zonder tussenkop. De uitleg waaróm de volgorde zo is staat nu in de voet,
+bij de andere spoilerregels.
 
 ## Nog te doen
 

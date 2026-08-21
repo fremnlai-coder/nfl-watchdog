@@ -237,6 +237,14 @@ export default function App() {
     .filter((g) => g.format_advice === 'skip')
     .sort((a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc));
 
+  // Eén lijst in plaats van twee secties. De volgorde is ongewijzigd — eigen
+  // teams eerst op voorkeursrang, daarna de rest op inzet vooraf — want juist
+  // die volgorde is de spoilergrens: sorteren op rating zou de wedstrijden die
+  // lang dicht bleven vooraan zetten, en dat is uitkomstinformatie. Samenvoegen
+  // voegt niets toe wat je niet al kon zien: welke wedstrijden van jou zijn,
+  // weet je zelf.
+  const picked = [...own, ...worth];
+
   const rowProps = (g) => ({
     rank: rankOf.get(g.home.abbr) ?? rankOf.get(g.away.abbr) ?? null,
     hints: hints[g.game_id],
@@ -282,23 +290,17 @@ export default function App() {
       <PackageSummary packages={planned.packages} recapName={prefs.slate_recap?.name} />
 
       <Section
-        title="Jouw teams"
-        note="Op voorkeursrang, nooit op rating — die volgorde zou de uitkomst verraden."
-        games={own}
-        rowProps={rowProps}
-        empty="Geen van je teams speelt deze week."
-      />
-
-      <Section
-        title="Kijkwaardig"
+        title="Kijken"
         note={
-          prefs.show_watchability === false
-            ? 'Op inzet vooraf: de records waarmee beide teams de week in gingen.'
-            : 'Op rating.'
+          own.length === 0
+            ? 'Geen van je teams speelt deze week.'
+            : `Eigen teams eerst op voorkeursrang, daarna op ${
+                prefs.show_watchability === false ? 'inzet vooraf' : 'rating'
+              }.`
         }
-        games={worth}
+        games={picked}
         rowProps={rowProps}
-        empty="De weekvorm is volledig opgegaan aan je eigen teams."
+        empty="Niets in je weekvorm deze week."
       />
 
       <Section
@@ -347,6 +349,12 @@ export default function App() {
         <p>
           Deze pagina bevat geen enkele eindstand. Hints en uitslagen worden pas
           opgehaald op het moment dat je erop klikt, niet bij het laden.
+        </p>
+        <p className="mt-1">
+          De volgorde van de lijst staat nooit op rating: dat zou de wedstrijden die
+          lang spannend bleven vooraan zetten, en dat is uitkomstinformatie. Eigen
+          teams staan op je eigen voorkeursrang, de rest op de records waarmee beide
+          ploegen de week in gingen.
         </p>
         <p className="mt-1">
           Bekijk je een afgelopen week, open dan geen latere week: de records daar zijn
