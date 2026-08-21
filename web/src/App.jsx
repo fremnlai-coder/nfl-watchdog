@@ -224,28 +224,19 @@ export default function App() {
   const rankOf = new Map(
     teams.filter((t) => t.tier === 'favorite').map((t) => [t.abbr, t.rank ?? 99]),
   );
-  const rankFor = (g) =>
-    Math.min(rankOf.get(g.home.abbr) ?? 99, rankOf.get(g.away.abbr) ?? 99);
 
-  const own = planned.games
-    .filter((g) => g.tags.includes('own_team'))
-    .sort((a, b) => rankFor(a) - rankFor(b));
+  // Beide lijsten staan op aftraptijd. Dat is de veiligste volgorde die er is:
+  // een aftraptijd staat vast voordat er gespeeld wordt, dus de positie in de
+  // lijst codeert niets over hoe het afliep. De vorige volgorde (eigen teams op
+  // rang, daarna op stakes_pre) was al spoilervrij, maar de plek in de lijst
+  // zei wel iets over de verwachte inzet; nu zegt hij alleen nog iets over de
+  // klok. Wat de planner ervan vindt staat op de kaart zelf, niet in de rangorde.
+  const byKickoff = (a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc);
+
+  const own = planned.games.filter((g) => g.tags.includes('own_team'));
   const others = planned.games.filter((g) => !g.tags.includes('own_team'));
-  const signal = (g) => (g.watchability ?? g.stakes_pre ?? 0);
-  const worth = others
-    .filter((g) => g.format_advice !== 'skip')
-    .sort((a, b) => signal(b) - signal(a));
-  const rest = others
-    .filter((g) => g.format_advice === 'skip')
-    .sort((a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc));
-
-  // Eén lijst in plaats van twee secties. De volgorde is ongewijzigd — eigen
-  // teams eerst op voorkeursrang, daarna de rest op inzet vooraf — want juist
-  // die volgorde is de spoilergrens: sorteren op rating zou de wedstrijden die
-  // lang dicht bleven vooraan zetten, en dat is uitkomstinformatie. Samenvoegen
-  // voegt niets toe wat je niet al kon zien: welke wedstrijden van jou zijn,
-  // weet je zelf.
-  const picked = [...own, ...worth];
+  const rest = others.filter((g) => g.format_advice === 'skip').sort(byKickoff);
+  const picked = [...own, ...others.filter((g) => g.format_advice !== 'skip')].sort(byKickoff);
 
   const rowProps = (g) => ({
     rank: rankOf.get(g.home.abbr) ?? rankOf.get(g.away.abbr) ?? null,
@@ -293,10 +284,8 @@ export default function App() {
         title="Kijken"
         note={
           own.length === 0
-            ? 'Geen van je teams speelt deze week.'
-            : `Eigen teams eerst op voorkeursrang, daarna op ${
-                prefs.show_watchability === false ? 'inzet vooraf' : 'rating'
-              }.`
+            ? 'Op aftraptijd. Geen van je teams speelt deze week.'
+            : 'Op aftraptijd.'
         }
         games={picked}
         rowProps={rowProps}
@@ -351,10 +340,9 @@ export default function App() {
           opgehaald op het moment dat je erop klikt, niet bij het laden.
         </p>
         <p className="mt-1">
-          De volgorde van de lijst staat nooit op rating: dat zou de wedstrijden die
-          lang spannend bleven vooraan zetten, en dat is uitkomstinformatie. Eigen
-          teams staan op je eigen voorkeursrang, de rest op de records waarmee beide
-          ploegen de week in gingen.
+          De lijst staat op aftraptijd en nergens anders op. Een volgorde op rating
+          zou de wedstrijden die lang spannend bleven vooraan zetten, en dat is
+          uitkomstinformatie; een aftraptijd staat vast voordat er gespeeld wordt.
         </p>
         <p className="mt-1">
           Bekijk je een afgelopen week, open dan geen latere week: de records daar zijn

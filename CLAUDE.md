@@ -492,17 +492,26 @@ Wil je hem terug in de browser, dan staat de component in de git-historie
 (`web/src/components/PackageSummary.jsx`, verwijderd na `ec4accd`).
 
 **"Jouw teams" en "Kijkwaardig" zijn één lijst geworden**, met de kop **Kijken**.
-Dat is puur een kop en een noot minder; de volgorde is exact dezelfde als toen het
-twee secties waren: eigen teams eerst op voorkeursrang, daarna de rest op
-`stakes_pre`.
+Een kop en een noot minder boven de wedstrijden; `format_reason` staat op elke
+kaart ("eigen team", "op inzet vooraf"), dus de groepering blijft leesbaar zonder
+tussenkop.
 
-Dat is geen cosmetische keuze maar de spoilergrens zelf. Sorteren op de rating zou
-de wedstrijden die lang dicht bleven vooraan zetten, en de volgorde van een lijst
-is net zo goed uitkomstinformatie als een cijfer. Het samenvoegen voegt daar niets
-aan toe: welke wedstrijden van jouw teams zijn weet je zelf, en `format_reason`
-staat op elke kaart ("eigen team", "op inzet vooraf"), dus de groepering blijft
-leesbaar zonder tussenkop. De uitleg waaróm de volgorde zo is staat nu in de voet,
-bij de andere spoilerregels.
+**Beide lijsten staan op aftraptijd** — Kijken en Rest van de week. Dat is de
+veiligste volgorde die er is: een aftraptijd ligt vast voordat er gespeeld wordt,
+dus de plek in de lijst codeert niets over hoe het afliep. De vorige volgorde
+(eigen teams op voorkeursrang, daarna op `stakes_pre`) was ook spoilervrij, maar
+zei wél iets over de verwachte inzet. Nu zegt hij alleen nog iets over de klok, en
+wat de planner ervan vindt staat op de kaart zelf.
+
+Sorteren op de rating blijft uitgesloten: dat zou de wedstrijden die lang dicht
+bleven vooraan zetten, en de volgorde van een lijst is net zo goed
+uitkomstinformatie als een cijfer. Die regel staat in de voet van de pagina.
+
+Gevolg om te weten: de twee lijsten lopen nu in de tijd door elkaar heen. Een
+donderdagwedstrijd die je overslaat staat in "Rest van de week" boven een
+vrijdagwedstrijd uit "Kijken". Wie de week als één tijdlijn wil lezen, moet die
+twee samenvoegen — dan komen de overgeslagen wedstrijden als dunne regels tussen
+je eigen keuzes te staan.
 
 ## Nog te doen
 
