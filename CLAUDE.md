@@ -22,13 +22,14 @@ node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 99 tests
+npm test                                        # 108 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
 npm run verify                                  # build + alle tests, inclusief dist-scan
 node scripts/fetch-logos.js                     # eenmalig, logos staan in assets/logos/
 npm run icons                                   # iconen opnieuw genereren
+npm run ingest:teams -- --refresh               # teamgids opnieuw ophalen
 ```
 
 ## Architectuur
@@ -45,6 +46,7 @@ src/watched.js   poort tussen weken; records in week N zijn de stand ná week N-
 src/linter.js    deterministische spoiler-linter; geen model, geen randomness
 src/teasers.js   templates uit level 0/1; gelint voor publicatie, anders fallback
 src/time.js      Intl met named zones, nooit een vaste offset
+src/teams.js     DE SPOILERGRENS VOOR TEAMDATA — allowlist voor de teamgids
 src/ingest.js    orchestratie, schrijft public/ en private/
 src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij ingest
 
@@ -56,6 +58,7 @@ web/src/components/    GameCard (met de twee onthulstappen), Controls, TeamSetti
 web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
 scripts/copy-data.js   stagen van data naar de build
 scripts/make-icons.js  genereert de home-screen-iconen; geen dependencies
+scripts/ingest-teams.js  bouwt de teamgids; draait los van de wekelijkse ingest
 ```
 
 De planner uit `src/planner.js` draait ongewijzigd in de browser. Dat kan alleen
@@ -176,23 +179,50 @@ terug naar 96px (45 kB → 7 kB per stuk) en zet ze in `assets/logos/`. Gecommit
 de pagina doet geen enkele request naar een derde partij. De dark-variant van ESPN
 is byte-identiek aan de lichte, dus één set volstaat.
 
-## Uitleglaag
+## Teamgids
 
-Uitklapbaar onderaan: competitiestructuur, wanneer het hier is, de playoff-bracket
-en een glossarium van zestien begrippen. Termen in de UI zelf — de badges, de
-formaatlabels, All-22, bye — hangen aan tooltips die ook op toetsenbordfocus
-openen, niet alleen op hover.
+Uitklapbaar onderaan: per team de coach, het stadion, de opstelling en een paar
+feiten over de selectie. Dit **verving de uitleglaag** over de competitie — die
+legde de spelregels uit, deze legt de deelnemers uit. Wat daarmee van de pagina
+verdween: het glossariumoverzicht, de playoff-bracket en de uitleg over de
+tijdzones. De tooltips op de termen in de UI zelf (badges, formaatlabels, All-22,
+bye) staan los van dat paneel en werken gewoon door; `glossary.js` en zijn test
+zijn ongewijzigd. Bracket en uitleglaag staan in de historie, vóór `37f9958`.
 
-De bracket staat bewust op **seednummers en niet op ploegen**. Een ingevulde bracket
-is de grootste spoiler die deze tool zou kunnen bevatten: die verraadt in één blik
-wie de divisies won, wie de wildcards pakte en wie er per ronde doorging. Als
-formaatdiagram is het level 0, want niets ervan hangt van een uitslag af.
+**Waar het vandaan komt.** Drie ESPN-endpoints per team: het teamprofiel, de
+roster en de depth chart. Alle drie dragen ze uitslagen, en `src/teams.js` is de
+enige plek waar er een veld doorheen komt — dezelfde rol als `schema.js` voor de
+wedstrijden, en om dezelfde reden geplukt in plaats van gespreid:
 
-Wil je hem ooit wél ingevuld: dat vraagt een aparte ingest van `seasontype=3` en
-hoort dan achter level 3 met bevestiging, net als een eindstand.
+- `team.record` draagt `summary: "0-1"` én `avgPointsFor` / `avgPointsAgainst`.
+- `roster.team.seasonSummary` is buiten het voorseizoen het W-L-record.
+- De roster kent de groep `injuredReserveOrOut`, en per speler `status` en
+  `injuries`.
 
-Glossariumteksten zijn spelregels, geen seizoensdata. Een test bewaakt dat er geen
-jaartallen, ploegnamen of uitslagwoorden in sluipen.
+Die laatste is de subtielste. Wie halverwege het seizoen op IR staat, raakte
+geblesseerd in een wedstrijd die jij misschien nog moet kijken. Alleen de groepen
+`offense`, `defense` en `specialTeam` doen mee; status en blessures worden nergens
+overgenomen. `test/teams.test.js` bewaakt dat met een fixture die precies die
+vuile velden draagt, plus een scan over het gepubliceerde bestand: geen verboden
+sleutel, geen waarde in de vorm `12-5`, en geen getal buiten een vaste witte lijst
+(rugnummer, leeftijd, dienstjaren, aantallen).
+
+**De selectie is elf namen, geen opstelling.** Uit de depth chart: QB, RB, drie
+WR's, TE, en per verdedigende linie één naam — edge, interior, linebacker,
+secondary — plus de kicker. Zonder die indeling per linie leverde een 4-3 vier
+keer de defensive line op en geen enkele linebacker. De positieafkorting komt uit
+de payload zelf, zodat er NT staat waar een team een nose tackle opstelt.
+
+**De gids wordt niet wekelijks ververst, en dat is de belangrijkste keuze hier.**
+Een depth chart halverwege het seizoen is geen neutraal gegeven: een quarterback
+die van plek 1 naar plek 2 zakt, zakte daar om een reden die in een wedstrijd
+gebeurde die jij nog moet kijken. `scripts/ingest-teams.js` overschrijft daarom
+niets tenzij je `--refresh` meegeeft, en de wekelijkse cron raakt hem niet aan.
+De gids is een momentopname van vóór het seizoen.
+
+Het bestand is 96 kB en wordt pas opgehaald als je het paneel opent — het hoort
+niet in de eerste payload van een pagina die je opent om te zien wat je gaat
+kijken.
 
 ## Wekelijkse ingest (GitHub Actions)
 

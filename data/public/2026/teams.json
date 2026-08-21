@@ -1,0 +1,4092 @@
+{
+  "season": 2026,
+  "teams": {
+    "BUF": {
+      "abbr": "BUF",
+      "name": "Buffalo Bills",
+      "location": "Buffalo",
+      "nickname": "Bills",
+      "conference": "AFC",
+      "division": "AFC East",
+      "colors": {
+        "primary": "#00338d",
+        "secondary": "#d50a0a"
+      },
+      "coach": {
+        "name": "Joe Brady",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "Highmark Stadium",
+        "city": "Orchard Park",
+        "state": "NY",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 18,
+        "average_age": 25.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Josh Allen",
+          "jersey": "17",
+          "college": "Wyoming",
+          "experience_years": 9,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "James Cook III",
+          "jersey": "4",
+          "college": "Georgia",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "DJ Moore",
+          "jersey": "2",
+          "college": "Maryland",
+          "experience_years": 9,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Khalil Shakir",
+          "jersey": "10",
+          "college": "Boise State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Keon Coleman",
+          "jersey": "0",
+          "college": "Florida State",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Dalton Kincaid",
+          "jersey": "86",
+          "college": "Utah",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "T.J. Sanders",
+          "jersey": "98",
+          "college": "South Carolina",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Deone Walker",
+          "jersey": "96",
+          "college": "Kentucky",
+          "experience_years": 2,
+          "age": 22,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Greg Rousseau",
+          "jersey": "15",
+          "college": "Miami",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Christian Benford",
+          "jersey": "47",
+          "college": "Villanova",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Tyler Bass",
+          "jersey": "16",
+          "college": "Georgia Southern",
+          "experience_years": 7,
+          "age": 29,
+          "side": "special"
+        }
+      ]
+    },
+    "MIA": {
+      "abbr": "MIA",
+      "name": "Miami Dolphins",
+      "location": "Miami",
+      "nickname": "Dolphins",
+      "conference": "AFC",
+      "division": "AFC East",
+      "colors": {
+        "primary": "#008e97",
+        "secondary": "#fc4c02"
+      },
+      "coach": {
+        "name": "Jeff Hafley",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "Hard Rock Stadium",
+        "city": "Miami Gardens",
+        "state": "FL",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 23,
+        "average_age": 25.1
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Malik Willis",
+          "jersey": "2",
+          "college": "Liberty",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "De'Von Achane",
+          "jersey": "28",
+          "college": "Texas A&M",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Malik Washington",
+          "jersey": "6",
+          "college": "Virginia",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jalen Tolbert",
+          "jersey": "1",
+          "college": "South Alabama",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Caleb Douglas",
+          "jersey": "7",
+          "college": "Texas Tech",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Greg Dulcich",
+          "jersey": "85",
+          "college": "UCLA",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Chop Robinson",
+          "jersey": "44",
+          "college": "Penn State",
+          "experience_years": 3,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Kenneth Grant",
+          "jersey": "78",
+          "college": "Michigan",
+          "experience_years": 2,
+          "age": 22,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Tyrel Dodson",
+          "jersey": "25",
+          "college": "Texas A&M",
+          "experience_years": 7,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Jason Marshall Jr.",
+          "jersey": "33",
+          "college": "Florida",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Riley Patterson",
+          "jersey": "47",
+          "college": "Memphis",
+          "experience_years": 6,
+          "age": 26,
+          "side": "special"
+        }
+      ]
+    },
+    "NE": {
+      "abbr": "NE",
+      "name": "New England Patriots",
+      "location": "New England",
+      "nickname": "Patriots",
+      "conference": "AFC",
+      "division": "AFC East",
+      "colors": {
+        "primary": "#002a5c",
+        "secondary": "#c60c30"
+      },
+      "coach": {
+        "name": "Mike Vrabel",
+        "experience_years": 7
+      },
+      "venue": {
+        "name": "Gillette Stadium",
+        "city": "Foxborough",
+        "state": "MA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 92,
+        "rookies": 23,
+        "average_age": 25.7
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Drake Maye",
+          "jersey": "10",
+          "college": "North Carolina",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Rhamondre Stevenson",
+          "jersey": "38",
+          "college": "Oklahoma",
+          "experience_years": 6,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "A.J. Brown",
+          "jersey": "1",
+          "college": "Ole Miss",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Romeo Doubs",
+          "jersey": "87",
+          "college": "Nevada",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "DeMario Douglas",
+          "jersey": "3",
+          "college": "Liberty",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Hunter Henry",
+          "jersey": "85",
+          "college": "Arkansas",
+          "experience_years": 11,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Christian Barmore",
+          "jersey": "90",
+          "college": "Alabama",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Cory Durden",
+          "jersey": "94",
+          "college": "NC State",
+          "experience_years": 2,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Harold Landry III",
+          "jersey": "2",
+          "college": "Boston College",
+          "experience_years": 9,
+          "age": 30,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Carlton Davis III",
+          "jersey": "7",
+          "college": "Auburn",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Andy Borregales",
+          "jersey": "36",
+          "college": "Miami",
+          "experience_years": 2,
+          "age": 23,
+          "side": "special"
+        }
+      ]
+    },
+    "NYJ": {
+      "abbr": "NYJ",
+      "name": "New York Jets",
+      "location": "New York",
+      "nickname": "Jets",
+      "conference": "AFC",
+      "division": "AFC East",
+      "colors": {
+        "primary": "#115740",
+        "secondary": "#ffffff"
+      },
+      "coach": {
+        "name": "Aaron Glenn",
+        "experience_years": 1
+      },
+      "venue": {
+        "name": "MetLife Stadium",
+        "city": "East Rutherford",
+        "state": "NJ",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 21,
+        "average_age": 25.5
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Geno Smith",
+          "jersey": "7",
+          "college": "West Virginia",
+          "experience_years": 14,
+          "age": 35,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Breece Hall",
+          "jersey": "20",
+          "college": "Iowa State",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Garrett Wilson",
+          "jersey": "5",
+          "college": "Ohio State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Adonai Mitchell",
+          "jersey": "15",
+          "college": "Texas",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Omar Cooper Jr.",
+          "jersey": "83",
+          "college": "Indiana",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Kenyon Sadiq",
+          "jersey": "16",
+          "college": "Oregon",
+          "experience_years": 0,
+          "age": 21,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Kingsley Enagbare",
+          "jersey": "52",
+          "college": "South Carolina",
+          "experience_years": 5,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "T'Vondre Sweat",
+          "jersey": "99",
+          "college": "Texas",
+          "experience_years": 3,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Jamien Sherwood",
+          "jersey": "44",
+          "college": "Auburn",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Nahshon Wright",
+          "jersey": "26",
+          "college": "Oregon State",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Jason Sanders",
+          "jersey": "19",
+          "college": "New Mexico",
+          "experience_years": 9,
+          "age": 30,
+          "side": "special"
+        }
+      ]
+    },
+    "BAL": {
+      "abbr": "BAL",
+      "name": "Baltimore Ravens",
+      "location": "Baltimore",
+      "nickname": "Ravens",
+      "conference": "AFC",
+      "division": "AFC North",
+      "colors": {
+        "primary": "#29126f",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Jesse Minter",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "M&T Bank Stadium",
+        "city": "Baltimore",
+        "state": "MD",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 26,
+        "average_age": 25.8
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Lamar Jackson",
+          "jersey": "8",
+          "college": "Louisville",
+          "experience_years": 9,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Derrick Henry",
+          "jersey": "22",
+          "college": "Alabama",
+          "experience_years": 11,
+          "age": 32,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Zay Flowers",
+          "jersey": "4",
+          "college": "Boston College",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Rashod Bateman",
+          "jersey": "7",
+          "college": "Minnesota",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Ja'Kobi Lane",
+          "jersey": "6",
+          "college": "USC",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Mark Andrews",
+          "jersey": "89",
+          "college": "Oklahoma",
+          "experience_years": 9,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Nnamdi Madubuike",
+          "jersey": "92",
+          "college": "Texas A&M",
+          "experience_years": 7,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Travis Jones",
+          "jersey": "98",
+          "college": "UConn",
+          "experience_years": 5,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Tavius Robinson",
+          "jersey": "95",
+          "college": "Ole Miss",
+          "experience_years": 4,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Nate Wiggins",
+          "jersey": "2",
+          "college": "Clemson",
+          "experience_years": 3,
+          "age": 22,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Tyler Loop",
+          "jersey": "33",
+          "college": "Arizona",
+          "experience_years": 2,
+          "age": 25,
+          "side": "special"
+        }
+      ]
+    },
+    "CIN": {
+      "abbr": "CIN",
+      "name": "Cincinnati Bengals",
+      "location": "Cincinnati",
+      "nickname": "Bengals",
+      "conference": "AFC",
+      "division": "AFC North",
+      "colors": {
+        "primary": "#fb4f14",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Zac Taylor",
+        "experience_years": 7
+      },
+      "venue": {
+        "name": "Paycor Stadium",
+        "city": "Cincinnati",
+        "state": "OH",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 89,
+        "rookies": 17,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Joe Burrow",
+          "jersey": "9",
+          "college": "LSU",
+          "experience_years": 7,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Chase Brown",
+          "jersey": "30",
+          "college": "Illinois",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Ja'Marr Chase",
+          "jersey": "1",
+          "college": "LSU",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Tee Higgins",
+          "jersey": "5",
+          "college": "Clemson",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Andrei Iosivas",
+          "jersey": "80",
+          "college": "Princeton",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Mike Gesicki",
+          "jersey": "88",
+          "college": "Penn State",
+          "experience_years": 9,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Boye Mafe",
+          "jersey": "53",
+          "college": "Minnesota",
+          "experience_years": 5,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Dexter Lawrence II",
+          "jersey": "97",
+          "college": "Clemson",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Barrett Carter",
+          "jersey": "49",
+          "college": "Clemson",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Dax Hill",
+          "jersey": "23",
+          "college": "Michigan",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Evan McPherson",
+          "jersey": "2",
+          "college": "Florida",
+          "experience_years": 6,
+          "age": 27,
+          "side": "special"
+        }
+      ]
+    },
+    "CLE": {
+      "abbr": "CLE",
+      "name": "Cleveland Browns",
+      "location": "Cleveland",
+      "nickname": "Browns",
+      "conference": "AFC",
+      "division": "AFC North",
+      "colors": {
+        "primary": "#472a08",
+        "secondary": "#ff3c00"
+      },
+      "coach": {
+        "name": "Todd Monken",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "Huntington Bank Field",
+        "city": "Cleveland",
+        "state": "OH",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 25,
+        "average_age": 25.2
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Deshaun Watson",
+          "jersey": "4",
+          "college": "Clemson",
+          "experience_years": 10,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Quinshon Judkins",
+          "jersey": "10",
+          "college": "Ohio State",
+          "experience_years": 2,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jerry Jeudy",
+          "jersey": "3",
+          "college": "Alabama",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "KC Concepcion",
+          "jersey": "1",
+          "college": "Texas A&M",
+          "experience_years": 0,
+          "age": 21,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Denzel Boston",
+          "jersey": "12",
+          "college": "Washington",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Harold Fannin Jr.",
+          "jersey": "44",
+          "college": "Bowling Green",
+          "experience_years": 2,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Alex Wright",
+          "jersey": "91",
+          "college": "UAB",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Mason Graham",
+          "jersey": "94",
+          "college": "Michigan",
+          "experience_years": 2,
+          "age": 22,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Carson Schwesinger",
+          "jersey": "49",
+          "college": "UCLA",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Denzel Ward",
+          "jersey": "21",
+          "college": "Ohio State",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Andre Szmyt",
+          "jersey": "25",
+          "college": "Syracuse",
+          "experience_years": 2,
+          "age": 27,
+          "side": "special"
+        }
+      ]
+    },
+    "PIT": {
+      "abbr": "PIT",
+      "name": "Pittsburgh Steelers",
+      "location": "Pittsburgh",
+      "nickname": "Steelers",
+      "conference": "AFC",
+      "division": "AFC North",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#ffb612"
+      },
+      "coach": {
+        "name": "Mike McCarthy",
+        "experience_years": 18
+      },
+      "venue": {
+        "name": "Acrisure Stadium",
+        "city": "Pittsburgh",
+        "state": "PA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 18,
+        "average_age": 26.5
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Aaron Rodgers",
+          "jersey": "8",
+          "college": "California",
+          "experience_years": 22,
+          "age": 42,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Jaylen Warren",
+          "jersey": "30",
+          "college": "Oklahoma State",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "DK Metcalf",
+          "jersey": "4",
+          "college": "Ole Miss",
+          "experience_years": 8,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Michael Pittman Jr.",
+          "jersey": "11",
+          "college": "USC",
+          "experience_years": 7,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Roman Wilson",
+          "jersey": "14",
+          "college": "Michigan",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Pat Freiermuth",
+          "jersey": "88",
+          "college": "Penn State",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Derrick Harmon",
+          "jersey": "99",
+          "college": "Oregon",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Yahya Black",
+          "jersey": "94",
+          "college": "Iowa",
+          "experience_years": 2,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "T.J. Watt",
+          "jersey": "90",
+          "college": "Wisconsin",
+          "experience_years": 10,
+          "age": 31,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Joey Porter Jr.",
+          "jersey": "24",
+          "college": "Penn State",
+          "experience_years": 4,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Chris Boswell",
+          "jersey": "9",
+          "college": "Rice",
+          "experience_years": 12,
+          "age": 35,
+          "side": "special"
+        }
+      ]
+    },
+    "HOU": {
+      "abbr": "HOU",
+      "name": "Houston Texans",
+      "location": "Houston",
+      "nickname": "Texans",
+      "conference": "AFC",
+      "division": "AFC South",
+      "colors": {
+        "primary": "#021018",
+        "secondary": "#eb0028"
+      },
+      "coach": {
+        "name": "DeMeco Ryans",
+        "experience_years": 3
+      },
+      "venue": {
+        "name": "Reliant Stadium",
+        "city": "Houston",
+        "state": "TX",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 90,
+        "rookies": 18,
+        "average_age": 25.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "C.J. Stroud",
+          "jersey": "7",
+          "college": "Ohio State",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "David Montgomery",
+          "jersey": "32",
+          "college": "Iowa State",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Nico Collins",
+          "jersey": "12",
+          "college": "Michigan",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jayden Higgins",
+          "jersey": "81",
+          "college": "Iowa State",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Xavier Hutchinson",
+          "jersey": "19",
+          "college": "Iowa State",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Dalton Schultz",
+          "jersey": "86",
+          "college": "Stanford",
+          "experience_years": 9,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Will Anderson Jr.",
+          "jersey": "51",
+          "college": "Alabama",
+          "experience_years": 4,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Tommy Togiai",
+          "jersey": "72",
+          "college": "Ohio State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Azeez Al-Shaair",
+          "jersey": "0",
+          "college": "Florida Atlantic",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Derek Stingley Jr.",
+          "jersey": "24",
+          "college": "LSU",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Ka'imi Fairbairn",
+          "jersey": "15",
+          "college": "UCLA",
+          "experience_years": 11,
+          "age": 32,
+          "side": "special"
+        }
+      ]
+    },
+    "IND": {
+      "abbr": "IND",
+      "name": "Indianapolis Colts",
+      "location": "Indianapolis",
+      "nickname": "Colts",
+      "conference": "AFC",
+      "division": "AFC South",
+      "colors": {
+        "primary": "#003b75",
+        "secondary": "#ffffff"
+      },
+      "coach": {
+        "name": "Shane Steichen",
+        "experience_years": 3
+      },
+      "venue": {
+        "name": "Lucas Oil Stadium",
+        "city": "Indianapolis",
+        "state": "IN",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 22,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Daniel Jones",
+          "jersey": "17",
+          "college": "Duke",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Jonathan Taylor",
+          "jersey": "28",
+          "college": "Wisconsin",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Alec Pierce",
+          "jersey": "14",
+          "college": "Cincinnati",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Josh Downs",
+          "jersey": "2",
+          "college": "North Carolina",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Keenan Allen",
+          "jersey": "10",
+          "college": "California",
+          "experience_years": 13,
+          "age": 34,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Tyler Warren",
+          "jersey": "84",
+          "college": "Penn State",
+          "experience_years": 2,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Arden Key",
+          "jersey": "98",
+          "college": "LSU",
+          "experience_years": 9,
+          "age": 30,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Grover Stewart",
+          "jersey": "90",
+          "college": "Albany State",
+          "experience_years": 10,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "CJ Allen",
+          "jersey": "53",
+          "college": "Georgia",
+          "experience_years": 0,
+          "age": 21,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Sauce Gardner",
+          "jersey": "1",
+          "college": "Cincinnati",
+          "experience_years": 5,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Blake Grupe",
+          "jersey": "10",
+          "college": "Notre Dame",
+          "experience_years": 4,
+          "age": 27,
+          "side": "special"
+        }
+      ]
+    },
+    "JAX": {
+      "abbr": "JAX",
+      "name": "Jacksonville Jaguars",
+      "location": "Jacksonville",
+      "nickname": "Jaguars",
+      "conference": "AFC",
+      "division": "AFC South",
+      "colors": {
+        "primary": "#007487",
+        "secondary": "#d7a22a"
+      },
+      "coach": {
+        "name": "Liam Coen",
+        "experience_years": 1
+      },
+      "venue": {
+        "name": "EverBank Stadium",
+        "city": "Jacksonville",
+        "state": "FL",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 90,
+        "rookies": 22,
+        "average_age": 25.8
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Trevor Lawrence",
+          "jersey": "16",
+          "college": "Clemson",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Bhayshul Tuten",
+          "jersey": "33",
+          "college": "Virginia Tech",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Brian Thomas Jr.",
+          "jersey": "7",
+          "college": "LSU",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Parker Washington",
+          "jersey": "11",
+          "college": "Penn State",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jakobi Meyers",
+          "jersey": "3",
+          "college": "NC State",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Brenton Strange",
+          "jersey": "85",
+          "college": "Penn State",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Travon Walker",
+          "jersey": "44",
+          "college": "Georgia",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Arik Armstead",
+          "jersey": "91",
+          "college": "Oregon",
+          "experience_years": 12,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Ventrell Miller",
+          "jersey": "51",
+          "college": "Florida",
+          "experience_years": 4,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Travis Hunter",
+          "jersey": "12",
+          "college": "Colorado",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Cam Little",
+          "jersey": "39",
+          "college": "Arkansas",
+          "experience_years": 3,
+          "age": 23,
+          "side": "special"
+        }
+      ]
+    },
+    "TEN": {
+      "abbr": "TEN",
+      "name": "Tennessee Titans",
+      "location": "Tennessee",
+      "nickname": "Titans",
+      "conference": "AFC",
+      "division": "AFC South",
+      "colors": {
+        "primary": "#4495d2",
+        "secondary": "#001532"
+      },
+      "coach": {
+        "name": "Robert Saleh",
+        "experience_years": 4
+      },
+      "venue": {
+        "name": "Nissan Stadium",
+        "city": "Nashville",
+        "state": "TN",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 15,
+        "average_age": 25.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Cam Ward",
+          "jersey": "1",
+          "college": "Miami",
+          "experience_years": 2,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Tony Pollard",
+          "jersey": "20",
+          "college": "Memphis",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Carnell Tate",
+          "jersey": "14",
+          "college": "Ohio State",
+          "experience_years": 0,
+          "age": 21,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Wan'Dale Robinson",
+          "jersey": "4",
+          "college": "Kentucky",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Calvin Ridley",
+          "jersey": "0",
+          "college": "Alabama",
+          "experience_years": 8,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Gunnar Helm",
+          "jersey": "84",
+          "college": "Texas",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "John Franklin-Myers",
+          "jersey": "91",
+          "college": "Stephen F. Austin",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Jeffery Simmons",
+          "jersey": "98",
+          "college": "Mississippi State",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Cody Barton",
+          "jersey": "50",
+          "college": "Utah",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Cor'Dale Flott",
+          "jersey": "18",
+          "college": "LSU",
+          "experience_years": 5,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Joey Slye",
+          "jersey": "6",
+          "college": "Virginia Tech",
+          "experience_years": 8,
+          "age": 30,
+          "side": "special"
+        }
+      ]
+    },
+    "DEN": {
+      "abbr": "DEN",
+      "name": "Denver Broncos",
+      "location": "Denver",
+      "nickname": "Broncos",
+      "conference": "AFC",
+      "division": "AFC West",
+      "colors": {
+        "primary": "#0a2343",
+        "secondary": "#fc4c02"
+      },
+      "coach": {
+        "name": "Sean Payton",
+        "experience_years": 18
+      },
+      "venue": {
+        "name": "Empower Field at Mile High",
+        "city": "Denver",
+        "state": "CO",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 21,
+        "average_age": 26.1
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Bo Nix",
+          "jersey": "10",
+          "college": "Oregon",
+          "experience_years": 3,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "J.K. Dobbins",
+          "jersey": "27",
+          "college": "Ohio State",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Courtland Sutton",
+          "jersey": "14",
+          "college": "SMU",
+          "experience_years": 9,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jaylen Waddle",
+          "jersey": "17",
+          "college": "Alabama",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Troy Franklin",
+          "jersey": "11",
+          "college": "Oregon",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Evan Engram",
+          "jersey": "1",
+          "college": "Ole Miss",
+          "experience_years": 10,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Malcolm Roach",
+          "jersey": "97",
+          "college": "Texas",
+          "experience_years": 7,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "D.J. Jones",
+          "jersey": "93",
+          "college": "Ole Miss",
+          "experience_years": 10,
+          "age": 31,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Jonathon Cooper",
+          "jersey": "0",
+          "college": "Ohio State",
+          "experience_years": 6,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Pat Surtain II",
+          "jersey": "2",
+          "college": "Alabama",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Wil Lutz",
+          "jersey": "3",
+          "college": "Georgia State",
+          "experience_years": 11,
+          "age": 32,
+          "side": "special"
+        }
+      ]
+    },
+    "KC": {
+      "abbr": "KC",
+      "name": "Kansas City Chiefs",
+      "location": "Kansas City",
+      "nickname": "Chiefs",
+      "conference": "AFC",
+      "division": "AFC West",
+      "colors": {
+        "primary": "#e31837",
+        "secondary": "#ffb612"
+      },
+      "coach": {
+        "name": "Andy Reid",
+        "experience_years": 27
+      },
+      "venue": {
+        "name": "Arrowhead Stadium",
+        "city": "Kansas City",
+        "state": "MO",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 27,
+        "average_age": 25.3
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Patrick Mahomes",
+          "jersey": "15",
+          "college": "Texas Tech",
+          "experience_years": 10,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Kenneth Walker III",
+          "jersey": "9",
+          "college": "Michigan State",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Rashee Rice",
+          "jersey": "4",
+          "college": "SMU",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Xavier Worthy",
+          "jersey": "1",
+          "college": "Texas",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Tyquan Thornton",
+          "jersey": "2",
+          "college": "Baylor",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Travis Kelce",
+          "jersey": "87",
+          "college": "Cincinnati",
+          "experience_years": 14,
+          "age": 36,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "George Karlaftis",
+          "jersey": "56",
+          "college": "Purdue",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Chris Jones",
+          "jersey": "95",
+          "college": "Mississippi State",
+          "experience_years": 11,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Nick Bolton",
+          "jersey": "32",
+          "college": "Missouri",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "L'Jarius Sneed",
+          "jersey": "38",
+          "college": "Louisiana Tech",
+          "experience_years": 7,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Harrison Butker",
+          "jersey": "7",
+          "college": "Georgia Tech",
+          "experience_years": 10,
+          "age": 31,
+          "side": "special"
+        }
+      ]
+    },
+    "LAC": {
+      "abbr": "LAC",
+      "name": "Los Angeles Chargers",
+      "location": "Los Angeles",
+      "nickname": "Chargers",
+      "conference": "AFC",
+      "division": "AFC West",
+      "colors": {
+        "primary": "#0080c6",
+        "secondary": "#ffc20e"
+      },
+      "coach": {
+        "name": "Jim Harbaugh",
+        "experience_years": 6
+      },
+      "venue": {
+        "name": "Dignity Health Sports Park",
+        "city": "Carson",
+        "state": "CA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 26,
+        "average_age": 25.6
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Justin Herbert",
+          "jersey": "10",
+          "college": "Oregon",
+          "experience_years": 7,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Omarion Hampton",
+          "jersey": "8",
+          "college": "North Carolina",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Ladd McConkey",
+          "jersey": "15",
+          "college": "Georgia",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Quentin Johnston",
+          "jersey": "1",
+          "college": "TCU",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Tre' Harris",
+          "jersey": "9",
+          "college": "Ole Miss",
+          "experience_years": 2,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Oronde Gadsden",
+          "jersey": "86",
+          "college": "Syracuse",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Teair Tart",
+          "jersey": "93",
+          "college": "Florida International",
+          "experience_years": 7,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Dalvin Tomlinson",
+          "jersey": "94",
+          "college": "Alabama",
+          "experience_years": 10,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Tuli Tuipulotu",
+          "jersey": "45",
+          "college": "USC",
+          "experience_years": 4,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Cam Hart",
+          "jersey": "20",
+          "college": "Notre Dame",
+          "experience_years": 3,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Cameron Dicker",
+          "jersey": "11",
+          "college": "Texas",
+          "experience_years": 5,
+          "age": 26,
+          "side": "special"
+        }
+      ]
+    },
+    "LV": {
+      "abbr": "LV",
+      "name": "Las Vegas Raiders",
+      "location": "Las Vegas",
+      "nickname": "Raiders",
+      "conference": "AFC",
+      "division": "AFC West",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#a5acaf"
+      },
+      "coach": {
+        "name": "Klint Kubiak",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "Allegiant Stadium",
+        "city": "Las Vegas",
+        "state": "NV",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 26,
+        "average_age": 25.8
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Kirk Cousins",
+          "jersey": "8",
+          "college": "Michigan State",
+          "experience_years": 15,
+          "age": 38,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Ashton Jeanty",
+          "jersey": "2",
+          "college": "Boise State",
+          "experience_years": 2,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Tre Tucker",
+          "jersey": "1",
+          "college": "Cincinnati",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jalen Nailor",
+          "jersey": "9",
+          "college": "Michigan State",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jack Bech",
+          "jersey": "18",
+          "college": "TCU",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Brock Bowers",
+          "jersey": "89",
+          "college": "Georgia",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Thomas Booker IV",
+          "jersey": "99",
+          "college": "Stanford",
+          "experience_years": 4,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Adam Butler",
+          "jersey": "69",
+          "college": "Vanderbilt",
+          "experience_years": 9,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Maxx Crosby",
+          "jersey": "98",
+          "college": "Eastern Michigan",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Eric Stokes",
+          "jersey": "5",
+          "college": "Georgia",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Matt Gay",
+          "jersey": "14",
+          "college": "Utah",
+          "experience_years": 7,
+          "age": 32,
+          "side": "special"
+        }
+      ]
+    },
+    "DAL": {
+      "abbr": "DAL",
+      "name": "Dallas Cowboys",
+      "location": "Dallas",
+      "nickname": "Cowboys",
+      "conference": "NFC",
+      "division": "NFC East",
+      "colors": {
+        "primary": "#002a5c",
+        "secondary": "#b0b7bc"
+      },
+      "coach": {
+        "name": "Brian Schottenheimer",
+        "experience_years": 1
+      },
+      "venue": {
+        "name": "AT&T Stadium",
+        "city": "Arlington",
+        "state": "TX",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 18,
+        "average_age": 25.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Dak Prescott",
+          "jersey": "4",
+          "college": "Mississippi State",
+          "experience_years": 11,
+          "age": 33,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Javonte Williams",
+          "jersey": "33",
+          "college": "North Carolina",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "CeeDee Lamb",
+          "jersey": "88",
+          "college": "Oklahoma",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "George Pickens",
+          "jersey": "3",
+          "college": "Georgia",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Ryan Flournoy",
+          "jersey": "19",
+          "college": "Southeast Missouri State",
+          "experience_years": 3,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Jake Ferguson",
+          "jersey": "87",
+          "college": "Wisconsin",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Quinnen Williams",
+          "jersey": "92",
+          "college": "Alabama",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Otito Ogbonnia",
+          "jersey": "91",
+          "college": "UCLA",
+          "experience_years": 5,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Rashan Gary",
+          "jersey": "7",
+          "college": "Michigan",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Cobie Durant",
+          "jersey": "2",
+          "college": "South Carolina State",
+          "experience_years": 5,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Brandon Aubrey",
+          "jersey": "17",
+          "college": "Notre Dame",
+          "experience_years": 4,
+          "age": 31,
+          "side": "special"
+        }
+      ]
+    },
+    "NYG": {
+      "abbr": "NYG",
+      "name": "New York Giants",
+      "location": "New York",
+      "nickname": "Giants",
+      "conference": "NFC",
+      "division": "NFC East",
+      "colors": {
+        "primary": "#003c7f",
+        "secondary": "#c9243f"
+      },
+      "coach": {
+        "name": "John Harbaugh",
+        "experience_years": 18
+      },
+      "venue": {
+        "name": "MetLife Stadium",
+        "city": "East Rutherford",
+        "state": "NJ",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 15,
+        "average_age": 26.3
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jaxson Dart",
+          "jersey": "6",
+          "college": "Ole Miss",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Cam Skattebo",
+          "jersey": "44",
+          "college": "Arizona State",
+          "experience_years": 2,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Malik Nabers",
+          "jersey": "1",
+          "college": "LSU",
+          "experience_years": 3,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Darius Slayton",
+          "jersey": "18",
+          "college": "Auburn",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Calvin Austin III",
+          "jersey": "82",
+          "college": "Memphis",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Isaiah Likely",
+          "jersey": "9",
+          "college": "Coastal Carolina",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Shelby Harris",
+          "jersey": "93",
+          "college": "Illinois State",
+          "experience_years": 12,
+          "age": 35,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "DJ Reader",
+          "jersey": "98",
+          "college": "Clemson",
+          "experience_years": 11,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Brian Burns",
+          "jersey": "0",
+          "college": "Florida State",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Paulson Adebo",
+          "jersey": "21",
+          "college": "Stanford",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Ben Sauls",
+          "jersey": "30",
+          "college": "Pittsburgh",
+          "experience_years": 1,
+          "age": 25,
+          "side": "special"
+        }
+      ]
+    },
+    "PHI": {
+      "abbr": "PHI",
+      "name": "Philadelphia Eagles",
+      "location": "Philadelphia",
+      "nickname": "Eagles",
+      "conference": "NFC",
+      "division": "NFC East",
+      "colors": {
+        "primary": "#06424d",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Nick Sirianni",
+        "experience_years": 5
+      },
+      "venue": {
+        "name": "Lincoln Financial Field",
+        "city": "Philadelphia",
+        "state": "PA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 15,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jalen Hurts",
+          "jersey": "1",
+          "college": "Oklahoma",
+          "experience_years": 7,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Saquon Barkley",
+          "jersey": "26",
+          "college": "Penn State",
+          "experience_years": 9,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "DeVonta Smith",
+          "jersey": "6",
+          "college": "Alabama",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Dontayvion Wicks",
+          "jersey": "13",
+          "college": "Virginia",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Makai Lemon",
+          "jersey": "9",
+          "college": "USC",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Dallas Goedert",
+          "jersey": "88",
+          "college": "South Dakota State",
+          "experience_years": 9,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Jalen Carter",
+          "jersey": "98",
+          "college": "Georgia",
+          "experience_years": 4,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Nolan Smith Jr.",
+          "jersey": "3",
+          "college": "Georgia",
+          "experience_years": 4,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Riq Woolen",
+          "jersey": "2",
+          "college": "UTSA",
+          "experience_years": 5,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Jake Elliott",
+          "jersey": "4",
+          "college": "Memphis",
+          "experience_years": 10,
+          "age": 31,
+          "side": "special"
+        }
+      ]
+    },
+    "WSH": {
+      "abbr": "WSH",
+      "name": "Washington Commanders",
+      "location": "Washington",
+      "nickname": "Commanders",
+      "conference": "NFC",
+      "division": "NFC East",
+      "colors": {
+        "primary": "#5a1414",
+        "secondary": "#ffb612"
+      },
+      "coach": {
+        "name": "Dan Quinn",
+        "experience_years": 8
+      },
+      "venue": {
+        "name": "Northwest Stadium",
+        "city": "Landover",
+        "state": "MD",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 14,
+        "average_age": 27
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jayden Daniels",
+          "jersey": "5",
+          "college": "LSU",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Jacory Croskey-Merritt",
+          "jersey": "22",
+          "college": "Arizona",
+          "experience_years": 2,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Terry McLaurin",
+          "jersey": "17",
+          "college": "Ohio State",
+          "experience_years": 8,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Stefon Diggs",
+          "jersey": "18",
+          "college": "Maryland",
+          "experience_years": 12,
+          "age": 32,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Luke McCaffrey",
+          "jersey": "11",
+          "college": "Rice",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Chig Okonkwo",
+          "jersey": "85",
+          "college": "Maryland",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Tim Settle",
+          "jersey": "97",
+          "college": "Virginia Tech",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Daron Payne",
+          "jersey": "94",
+          "college": "Alabama",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Odafe Oweh",
+          "jersey": "98",
+          "college": "Penn State",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Trey Amos",
+          "jersey": "23",
+          "college": "Ole Miss",
+          "experience_years": 2,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Drew Stevens",
+          "jersey": "19",
+          "college": "Iowa",
+          "experience_years": 0,
+          "age": 22,
+          "side": "special"
+        }
+      ]
+    },
+    "CHI": {
+      "abbr": "CHI",
+      "name": "Chicago Bears",
+      "location": "Chicago",
+      "nickname": "Bears",
+      "conference": "NFC",
+      "division": "NFC North",
+      "colors": {
+        "primary": "#0b1c3a",
+        "secondary": "#e64100"
+      },
+      "coach": {
+        "name": "Ben Johnson",
+        "experience_years": 1
+      },
+      "venue": {
+        "name": "Soldier Field",
+        "city": "Chicago",
+        "state": "IL",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 20,
+        "average_age": 26.2
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Caleb Williams",
+          "jersey": "18",
+          "college": "USC",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "D'Andre Swift",
+          "jersey": "4",
+          "college": "Georgia",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Rome Odunze",
+          "jersey": "15",
+          "college": "Washington",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Luther Burden III",
+          "jersey": "10",
+          "college": "Missouri",
+          "experience_years": 2,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Kalif Raymond",
+          "jersey": "14",
+          "college": "Holy Cross",
+          "experience_years": 10,
+          "age": 32,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Colston Loveland",
+          "jersey": "84",
+          "college": "Michigan",
+          "experience_years": 2,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Montez Sweat",
+          "jersey": "98",
+          "college": "Mississippi State",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Grady Jarrett",
+          "jersey": "50",
+          "college": "Clemson",
+          "experience_years": 12,
+          "age": 33,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "T.J. Edwards",
+          "jersey": "53",
+          "college": "Wisconsin",
+          "experience_years": 8,
+          "age": 30,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Jaylon Johnson",
+          "jersey": "1",
+          "college": "Utah",
+          "experience_years": 7,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Cairo Santos",
+          "jersey": "8",
+          "college": "Tulane",
+          "experience_years": 13,
+          "age": 34,
+          "side": "special"
+        }
+      ]
+    },
+    "DET": {
+      "abbr": "DET",
+      "name": "Detroit Lions",
+      "location": "Detroit",
+      "nickname": "Lions",
+      "conference": "NFC",
+      "division": "NFC North",
+      "colors": {
+        "primary": "#0076b6",
+        "secondary": "#bbbbbb"
+      },
+      "coach": {
+        "name": "Dan Campbell",
+        "experience_years": 6
+      },
+      "venue": {
+        "name": "Ford Field",
+        "city": "Detroit",
+        "state": "MI",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 92,
+        "rookies": 12,
+        "average_age": 26.1
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jared Goff",
+          "jersey": "16",
+          "college": "California",
+          "experience_years": 11,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Jahmyr Gibbs",
+          "jersey": "0",
+          "college": "Alabama",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Amon-Ra St. Brown",
+          "jersey": "14",
+          "college": "USC",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jameson Williams",
+          "jersey": "1",
+          "college": "Alabama",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Isaac TeSlaa",
+          "jersey": "18",
+          "college": "Arkansas",
+          "experience_years": 2,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Sam LaPorta",
+          "jersey": "87",
+          "college": "Iowa",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Aidan Hutchinson",
+          "jersey": "97",
+          "college": "Michigan",
+          "experience_years": 5,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Alim McNeill",
+          "jersey": "54",
+          "college": "NC State",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Jack Campbell",
+          "jersey": "46",
+          "college": "Iowa",
+          "experience_years": 4,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "D.J. Reed",
+          "jersey": "4",
+          "college": "Kansas State",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Jake Bates",
+          "jersey": "39",
+          "college": "Arkansas",
+          "experience_years": 3,
+          "age": 27,
+          "side": "special"
+        }
+      ]
+    },
+    "GB": {
+      "abbr": "GB",
+      "name": "Green Bay Packers",
+      "location": "Green Bay",
+      "nickname": "Packers",
+      "conference": "NFC",
+      "division": "NFC North",
+      "colors": {
+        "primary": "#204e32",
+        "secondary": "#ffb612"
+      },
+      "coach": {
+        "name": "Matt LaFleur",
+        "experience_years": 7
+      },
+      "venue": {
+        "name": "Lambeau Field",
+        "city": "Green Bay",
+        "state": "WI",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 17,
+        "average_age": 25.4
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jordan Love",
+          "jersey": "10",
+          "college": "Utah State",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Josh Jacobs",
+          "jersey": "8",
+          "college": "Alabama",
+          "experience_years": 8,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Christian Watson",
+          "jersey": "9",
+          "college": "North Dakota State",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jayden Reed",
+          "jersey": "11",
+          "college": "Michigan State",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Matthew Golden",
+          "jersey": "0",
+          "college": "Texas",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Tucker Kraft",
+          "jersey": "85",
+          "college": "South Dakota State",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Karl Brooks",
+          "jersey": "94",
+          "college": "Bowling Green",
+          "experience_years": 4,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Javon Hargrave",
+          "jersey": "98",
+          "college": "South Carolina State",
+          "experience_years": 11,
+          "age": 33,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Lukas Van Ness",
+          "jersey": "90",
+          "college": "Iowa",
+          "experience_years": 4,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Keisean Nixon",
+          "jersey": "25",
+          "college": "South Carolina",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Trey Smack",
+          "jersey": "28",
+          "college": "Florida",
+          "experience_years": 0,
+          "age": 23,
+          "side": "special"
+        }
+      ]
+    },
+    "MIN": {
+      "abbr": "MIN",
+      "name": "Minnesota Vikings",
+      "location": "Minnesota",
+      "nickname": "Vikings",
+      "conference": "NFC",
+      "division": "NFC North",
+      "colors": {
+        "primary": "#4f2683",
+        "secondary": "#ffc62f"
+      },
+      "coach": {
+        "name": "Kevin O'Connell",
+        "experience_years": 4
+      },
+      "venue": {
+        "name": "U.S. Bank Stadium",
+        "city": "Minneapolis",
+        "state": "MN",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 27,
+        "average_age": 25.6
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Kyler Murray",
+          "jersey": "1",
+          "college": "Oklahoma",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Aaron Jones Sr.",
+          "jersey": "33",
+          "college": "UTEP",
+          "experience_years": 10,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Justin Jefferson",
+          "jersey": "18",
+          "college": "LSU",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jordan Addison",
+          "jersey": "3",
+          "college": "USC",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jauan Jennings",
+          "jersey": "14",
+          "college": "Tennessee",
+          "experience_years": 6,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "T.J. Hockenson",
+          "jersey": "87",
+          "college": "Iowa",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Levi Drake Rodriguez",
+          "jersey": "50",
+          "college": "East Texas A&M",
+          "experience_years": 3,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Caleb Banks",
+          "jersey": "95",
+          "college": "Florida",
+          "experience_years": 0,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Andrew Van Ginkel",
+          "jersey": "43",
+          "college": "Wisconsin",
+          "experience_years": 8,
+          "age": 31,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Charles Demmings",
+          "jersey": "20",
+          "college": "Stephen F. Austin",
+          "experience_years": 0,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Will Reichard",
+          "jersey": "16",
+          "college": "Alabama",
+          "experience_years": 3,
+          "age": 25,
+          "side": "special"
+        }
+      ]
+    },
+    "ATL": {
+      "abbr": "ATL",
+      "name": "Atlanta Falcons",
+      "location": "Atlanta",
+      "nickname": "Falcons",
+      "conference": "NFC",
+      "division": "NFC South",
+      "colors": {
+        "primary": "#a71930",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Kevin Stefanski",
+        "experience_years": 6
+      },
+      "venue": {
+        "name": "Mercedes-Benz Stadium",
+        "city": "Atlanta",
+        "state": "GA",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 90,
+        "rookies": 18,
+        "average_age": 26.3
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Tua Tagovailoa",
+          "jersey": "1",
+          "college": "Alabama",
+          "experience_years": 7,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Bijan Robinson",
+          "jersey": "7",
+          "college": "Texas",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Drake London",
+          "jersey": "5",
+          "college": "USC",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jahan Dotson",
+          "jersey": "4",
+          "college": "Penn State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Olamide Zaccheaus",
+          "jersey": "14",
+          "college": "Virginia",
+          "experience_years": 8,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Kyle Pitts Sr.",
+          "jersey": "8",
+          "college": "Florida",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Brandon Dorlus",
+          "jersey": "54",
+          "college": "Oregon",
+          "experience_years": 3,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Da'Shawn Hand",
+          "jersey": "90",
+          "college": "Alabama",
+          "experience_years": 9,
+          "age": 30,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Za'Darius Smith",
+          "jersey": "91",
+          "college": "Kentucky",
+          "experience_years": 11,
+          "age": 33,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "A.J. Terrell Jr.",
+          "jersey": "24",
+          "college": "Clemson",
+          "experience_years": 7,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Nick Folk",
+          "jersey": "6",
+          "college": "Arizona",
+          "experience_years": 19,
+          "age": 41,
+          "side": "special"
+        }
+      ]
+    },
+    "CAR": {
+      "abbr": "CAR",
+      "name": "Carolina Panthers",
+      "location": "Carolina",
+      "nickname": "Panthers",
+      "conference": "NFC",
+      "division": "NFC South",
+      "colors": {
+        "primary": "#0085ca",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Dave Canales",
+        "experience_years": 2
+      },
+      "venue": {
+        "name": "Bank of America Stadium",
+        "city": "Charlotte",
+        "state": "NC",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 17,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Bryce Young",
+          "jersey": "9",
+          "college": "Alabama",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Chuba Hubbard",
+          "jersey": "30",
+          "college": "Oklahoma State",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Tetairoa McMillan",
+          "jersey": "4",
+          "college": "Arizona",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jalen Coker",
+          "jersey": "18",
+          "college": "Holy Cross",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Xavier Legette",
+          "jersey": "17",
+          "college": "South Carolina",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Tommy Tremble",
+          "jersey": "82",
+          "college": "Notre Dame",
+          "experience_years": 6,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Derrick Brown",
+          "jersey": "95",
+          "college": "Auburn",
+          "experience_years": 7,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Bobby Brown III",
+          "jersey": "97",
+          "college": "Texas A&M",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Patrick Jones II",
+          "jersey": "91",
+          "college": "Pittsburgh",
+          "experience_years": 6,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Mike Jackson",
+          "jersey": "2",
+          "college": "Miami",
+          "experience_years": 6,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Ryan Fitzgerald",
+          "jersey": "10",
+          "college": "Florida State",
+          "experience_years": 2,
+          "age": 26,
+          "side": "special"
+        }
+      ]
+    },
+    "NO": {
+      "abbr": "NO",
+      "name": "New Orleans Saints",
+      "location": "New Orleans",
+      "nickname": "Saints",
+      "conference": "NFC",
+      "division": "NFC South",
+      "colors": {
+        "primary": "#d3bc8d",
+        "secondary": "#000000"
+      },
+      "coach": {
+        "name": "Kellen Moore",
+        "experience_years": 1
+      },
+      "venue": {
+        "name": "Caesars Superdome",
+        "city": "New Orleans",
+        "state": "LA",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 18,
+        "average_age": 25.7
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Tyler Shough",
+          "jersey": "6",
+          "college": "Louisville",
+          "experience_years": 2,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Travis Etienne Jr.",
+          "jersey": "3",
+          "college": "Clemson",
+          "experience_years": 6,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Chris Olave",
+          "jersey": "12",
+          "college": "Ohio State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jordyn Tyson",
+          "jersey": "0",
+          "college": "Arizona State",
+          "experience_years": 0,
+          "age": 22,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Devaughn Vele",
+          "jersey": "14",
+          "college": "Utah",
+          "experience_years": 3,
+          "age": 28,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Juwan Johnson",
+          "jersey": "83",
+          "college": "Oregon",
+          "experience_years": 7,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Cameron Jordan",
+          "jersey": "94",
+          "college": "California",
+          "experience_years": 16,
+          "age": 37,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Davon Godchaux",
+          "jersey": "92",
+          "college": "LSU",
+          "experience_years": 10,
+          "age": 31,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Carl Granderson",
+          "jersey": "96",
+          "college": "Wyoming",
+          "experience_years": 8,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Kool-Aid McKinstry",
+          "jersey": "1",
+          "college": "Alabama",
+          "experience_years": 3,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Charlie Smyth",
+          "jersey": "39",
+          "college": null,
+          "experience_years": 2,
+          "age": 25,
+          "side": "special"
+        }
+      ]
+    },
+    "TB": {
+      "abbr": "TB",
+      "name": "Tampa Bay Buccaneers",
+      "location": "Tampa Bay",
+      "nickname": "Buccaneers",
+      "conference": "NFC",
+      "division": "NFC South",
+      "colors": {
+        "primary": "#bd1c36",
+        "secondary": "#3e3a35"
+      },
+      "coach": {
+        "name": "Todd Bowles",
+        "experience_years": 9
+      },
+      "venue": {
+        "name": "Raymond James Stadium",
+        "city": "Tampa",
+        "state": "FL",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 24,
+        "average_age": 25.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Baker Mayfield",
+          "jersey": "6",
+          "college": "Oklahoma",
+          "experience_years": 9,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Bucky Irving",
+          "jersey": "7",
+          "college": "Oregon",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Emeka Egbuka",
+          "jersey": "2",
+          "college": "Ohio State",
+          "experience_years": 2,
+          "age": 23,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Chris Godwin Jr.",
+          "jersey": "14",
+          "college": "Penn State",
+          "experience_years": 10,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jalen McMillan",
+          "jersey": "11",
+          "college": "Washington",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Cade Otton",
+          "jersey": "88",
+          "college": "Washington",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Elijah Roberts",
+          "jersey": "95",
+          "college": "SMU",
+          "experience_years": 2,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Vita Vea",
+          "jersey": "50",
+          "college": "Washington",
+          "experience_years": 9,
+          "age": 31,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Rueben Bain Jr.",
+          "jersey": "3",
+          "college": "Miami",
+          "experience_years": 0,
+          "age": 21,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Zyon McCollum",
+          "jersey": "27",
+          "college": "Sam Houston",
+          "experience_years": 5,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Chase McLaughlin",
+          "jersey": "4",
+          "college": "Illinois",
+          "experience_years": 8,
+          "age": 30,
+          "side": "special"
+        }
+      ]
+    },
+    "ARI": {
+      "abbr": "ARI",
+      "name": "Arizona Cardinals",
+      "location": "Arizona",
+      "nickname": "Cardinals",
+      "conference": "NFC",
+      "division": "NFC West",
+      "colors": {
+        "primary": "#a40227",
+        "secondary": "#ffffff"
+      },
+      "coach": {
+        "name": "Mike LaFleur",
+        "experience_years": 0
+      },
+      "venue": {
+        "name": "State Farm Stadium",
+        "city": "Glendale",
+        "state": "AZ",
+        "indoor": true
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 12,
+        "average_age": 26.1
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Jacoby Brissett",
+          "jersey": "7",
+          "college": "NC State",
+          "experience_years": 11,
+          "age": 33,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Jeremiyah Love",
+          "jersey": "4",
+          "college": "Notre Dame",
+          "experience_years": 0,
+          "age": 21,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Marvin Harrison Jr.",
+          "jersey": "18",
+          "college": "Ohio State",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Michael Wilson",
+          "jersey": "14",
+          "college": "Stanford",
+          "experience_years": 4,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Kendrick Bourne",
+          "jersey": "17",
+          "college": "Eastern Washington",
+          "experience_years": 10,
+          "age": 31,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Trey McBride",
+          "jersey": "85",
+          "college": "Colorado State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Josh Sweat",
+          "jersey": "10",
+          "college": "Florida State",
+          "experience_years": 9,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "LDT",
+          "name": "Roy Lopez",
+          "jersey": "51",
+          "college": "Arizona",
+          "experience_years": 6,
+          "age": 29,
+          "side": "defense"
+        },
+        {
+          "slot": "MLB",
+          "name": "Mack Wilson Sr.",
+          "jersey": "1",
+          "college": "Alabama",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Will Johnson",
+          "jersey": "2",
+          "college": "Michigan",
+          "experience_years": 2,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Chad Ryland",
+          "jersey": "38",
+          "college": "Maryland",
+          "experience_years": 4,
+          "age": 26,
+          "side": "special"
+        }
+      ]
+    },
+    "LAR": {
+      "abbr": "LAR",
+      "name": "Los Angeles Rams",
+      "location": "Los Angeles",
+      "nickname": "Rams",
+      "conference": "NFC",
+      "division": "NFC West",
+      "colors": {
+        "primary": "#003594",
+        "secondary": "#ffd100"
+      },
+      "coach": {
+        "name": "Sean McVay",
+        "experience_years": 9
+      },
+      "venue": {
+        "name": "Los Angeles Memorial Coliseum",
+        "city": "Los Angeles",
+        "state": "CA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 21,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Matthew Stafford",
+          "jersey": "9",
+          "college": "Georgia",
+          "experience_years": 18,
+          "age": 38,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Kyren Williams",
+          "jersey": "23",
+          "college": "Notre Dame",
+          "experience_years": 5,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Puka Nacua",
+          "jersey": "12",
+          "college": "BYU",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Davante Adams",
+          "jersey": "17",
+          "college": "Fresno State",
+          "experience_years": 13,
+          "age": 33,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jordan Whittington",
+          "jersey": "88",
+          "college": "Texas",
+          "experience_years": 3,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "Colby Parkinson",
+          "jersey": "84",
+          "college": "Stanford",
+          "experience_years": 7,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Kobie Turner",
+          "jersey": "91",
+          "college": "Wake Forest",
+          "experience_years": 4,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Poona Ford",
+          "jersey": "97",
+          "college": "Texas",
+          "experience_years": 9,
+          "age": 30,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Byron Young",
+          "jersey": "0",
+          "college": "Tennessee",
+          "experience_years": 4,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Jaylen Watson",
+          "jersey": "35",
+          "college": "Washington State",
+          "experience_years": 5,
+          "age": 27,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Harrison Mevis",
+          "jersey": "92",
+          "college": "Missouri",
+          "experience_years": 2,
+          "age": 24,
+          "side": "special"
+        }
+      ]
+    },
+    "SEA": {
+      "abbr": "SEA",
+      "name": "Seattle Seahawks",
+      "location": "Seattle",
+      "nickname": "Seahawks",
+      "conference": "NFC",
+      "division": "NFC West",
+      "colors": {
+        "primary": "#002a5c",
+        "secondary": "#69be28"
+      },
+      "coach": {
+        "name": "Mike Macdonald",
+        "experience_years": 2
+      },
+      "venue": {
+        "name": "Lumen Field",
+        "city": "Seattle",
+        "state": "WA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 91,
+        "rookies": 14,
+        "average_age": 26
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Sam Darnold",
+          "jersey": "14",
+          "college": "USC",
+          "experience_years": 9,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Zach Charbonnet",
+          "jersey": "26",
+          "college": "UCLA",
+          "experience_years": 4,
+          "age": 25,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jaxon Smith-Njigba",
+          "jersey": "11",
+          "college": "Ohio State",
+          "experience_years": 4,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Rashid Shaheed",
+          "jersey": "22",
+          "college": "Weber State",
+          "experience_years": 5,
+          "age": 27,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Cooper Kupp",
+          "jersey": "10",
+          "college": "Eastern Washington",
+          "experience_years": 10,
+          "age": 33,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "AJ Barner",
+          "jersey": "88",
+          "college": "Michigan",
+          "experience_years": 3,
+          "age": 24,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "Leonard Williams",
+          "jersey": "99",
+          "college": "USC",
+          "experience_years": 12,
+          "age": 32,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Byron Murphy II",
+          "jersey": "91",
+          "college": "Texas",
+          "experience_years": 3,
+          "age": 23,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "DeMarcus Lawrence",
+          "jersey": "0",
+          "college": "Boise State",
+          "experience_years": 13,
+          "age": 34,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Devon Witherspoon",
+          "jersey": "21",
+          "college": "Illinois",
+          "experience_years": 4,
+          "age": 25,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Jason Myers",
+          "jersey": "5",
+          "college": "Marist",
+          "experience_years": 12,
+          "age": 35,
+          "side": "special"
+        }
+      ]
+    },
+    "SF": {
+      "abbr": "SF",
+      "name": "San Francisco 49ers",
+      "location": "San Francisco",
+      "nickname": "49ers",
+      "conference": "NFC",
+      "division": "NFC West",
+      "colors": {
+        "primary": "#aa0000",
+        "secondary": "#b3995d"
+      },
+      "coach": {
+        "name": "Kyle Shanahan",
+        "experience_years": 9
+      },
+      "venue": {
+        "name": "Levi's Stadium",
+        "city": "Santa Clara",
+        "state": "CA",
+        "indoor": false
+      },
+      "roster_facts": {
+        "players": 92,
+        "rookies": 14,
+        "average_age": 26.9
+      },
+      "key_players": [
+        {
+          "slot": "QB",
+          "name": "Brock Purdy",
+          "jersey": "13",
+          "college": "Iowa State",
+          "experience_years": 5,
+          "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "RB",
+          "name": "Christian McCaffrey",
+          "jersey": "23",
+          "college": "Stanford",
+          "experience_years": 10,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Mike Evans",
+          "jersey": "5",
+          "college": "Texas A&M",
+          "experience_years": 13,
+          "age": 32,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Deebo Samuel Sr.",
+          "jersey": "19",
+          "college": "South Carolina",
+          "experience_years": 8,
+          "age": 30,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Christian Kirk",
+          "jersey": "3",
+          "college": "Texas A&M",
+          "experience_years": 9,
+          "age": 29,
+          "side": "offense"
+        },
+        {
+          "slot": "TE",
+          "name": "George Kittle",
+          "jersey": "85",
+          "college": "Iowa",
+          "experience_years": 10,
+          "age": 32,
+          "side": "offense"
+        },
+        {
+          "slot": "LDE",
+          "name": "C.J. West",
+          "jersey": "99",
+          "college": "Indiana",
+          "experience_years": 2,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "NT",
+          "name": "Alfred Collins",
+          "jersey": "95",
+          "college": "Texas",
+          "experience_years": 2,
+          "age": 24,
+          "side": "defense"
+        },
+        {
+          "slot": "WLB",
+          "name": "Nick Bosa",
+          "jersey": "97",
+          "college": "Ohio State",
+          "experience_years": 8,
+          "age": 28,
+          "side": "defense"
+        },
+        {
+          "slot": "LCB",
+          "name": "Deommodore Lenoir",
+          "jersey": "2",
+          "college": "Oregon",
+          "experience_years": 6,
+          "age": 26,
+          "side": "defense"
+        },
+        {
+          "slot": "K",
+          "name": "Eddy Pineiro",
+          "jersey": "18",
+          "college": "Florida",
+          "experience_years": 9,
+          "age": 30,
+          "side": "special"
+        }
+      ]
+    }
+  }
+}

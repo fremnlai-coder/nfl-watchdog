@@ -14,7 +14,7 @@ import { isLocked, maxOpenWeek } from '../../src/watched.js';
 import Controls from './components/Controls.jsx';
 import GameCard from './components/GameCard.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
-import Explainer from './components/Explainer.jsx';
+import TeamGuide from './components/TeamGuide.jsx';
 import Term from './components/Term.jsx';
 import WeekGate from './components/WeekGate.jsx';
 import Backup from './components/Backup.jsx';
@@ -260,8 +260,8 @@ export default function App() {
     <main className="app-shell mx-auto max-w-5xl">
       {/* Eén regel. De kop stond op drie regels van 24px plus twee alinea's van
           14px; dat is een kwart scherm voordat er ook maar één wedstrijd in
-          beeld komt. De volledige uitleg over het tijdverschil staat in de
-          uitleglaag onderaan. */}
+          beeld komt. Het tijdverschil staat er verkort in: "+6 u t.o.v. New
+          York" in plaats van een hele zin. */}
       <header className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
         <h1 className="text-xl font-bold">NFL Watchdog</h1>
         <p className="text-xs text-stone-600 dark:text-stone-400">
@@ -332,7 +332,7 @@ export default function App() {
         <Backup onRestore={restoreBackup} />
       </div>
 
-      <Explainer timezone={data.timezone} offsetHours={data.nl_et_offset_hours} />
+      <TeamGuide season={season} />
 
       <footer className="mt-10 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-stone-800 dark:text-stone-400">
         <p>

@@ -12,6 +12,7 @@
     "week": "node src/cli.js",
     "stage": "node scripts/copy-data.js",
     "icons": "node scripts/make-icons.js",
+    "ingest:teams": "node scripts/ingest-teams.js",
     "dev": "npm run stage && vite",
     "build": "npm run stage && vite build",
     "preview": "vite preview",

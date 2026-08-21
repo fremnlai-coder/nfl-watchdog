@@ -25,6 +25,10 @@ export const loadPrefs = () => getJson('config/preferences.json');
 export const loadWeek = (season, week) =>
   getJson(`data/public/${season}/week-${week}.json`);
 
+// De teamgids. Level 0 en niet weekgebonden: namen, coaches, stadions. Wordt
+// pas opgehaald als het paneel opengaat, want het is bijna 100 kB.
+export const loadTeams = (season) => getJson(`data/public/${season}/teams.json`);
+
 // Level 2. Vague qualifications, no direction.
 export const loadHints = (season, week) =>
   getJson(`data/private/${season}/week-${week}.hints.json`);

@@ -47,6 +47,33 @@ export function probabilities(eventId, competitionId) {
   );
 }
 
+const SITE = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl';
+
+// De teamgids. Alle drie de endpoints dragen velden die hier nooit publiek
+// mogen worden — team.record staat er met W-L én gemiddelde punten in, en de
+// roster kent een groep injuredReserveOrOut. Wat er wél doorheen komt bepaalt
+// src/teams.js, net zoals schema.js dat voor de wedstrijden doet.
+export function teamList() {
+  return cachedJson('teams-list', `${SITE}/teams?limit=32`);
+}
+
+export function teamProfile(teamId) {
+  return cachedJson(`team-${teamId}`, `${SITE}/teams/${teamId}`);
+}
+
+// Draagt de namen; de depth chart hieronder draagt alleen athlete-ids.
+export function teamRoster(teamId) {
+  return cachedJson(`roster-${teamId}`, `${SITE}/teams/${teamId}/roster`);
+}
+
+// Wie waar staat, zonder één statistiek. rank 1 is de starter.
+export function depthCharts(season, teamId) {
+  return cachedJson(
+    `depth-${season}-${teamId}`,
+    `${CORE}/seasons/${season}/teams/${teamId}/depthcharts`,
+  );
+}
+
 // Runs tasks with bounded concurrency so a full-season backfill stays polite.
 export async function mapLimit(items, limit, fn) {
   const out = new Array(items.length);
