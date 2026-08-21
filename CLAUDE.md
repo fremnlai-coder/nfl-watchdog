@@ -1,5 +1,7 @@
 # NFL Watchdog — v1
 
+Stand: 21 augustus 2026.
+
 Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
 Fase 1 t/m 4 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
 planner, CLI-weekoverzicht, teasers met spoiler-linter, de statische web-UI, en de
@@ -344,7 +346,7 @@ zitten:
 Pages serveert vanaf `/<repo>/`, dus de build krijgt `VITE_BASE=/nfl-watchdog/`
 mee. Een relatieve base breekt daar zodra een URL zijn afsluitende slash mist.
 
-**Wat je zelf moet doen, eenmalig:**
+**Wat je zelf moet doen, eenmalig** (per 21 augustus 2026 nog open):
 
 1. Repo op **publiek** zetten. Pages op een privérepo vereist een betaald plan.
 2. Settings → Pages → Source op **GitHub Actions**.
