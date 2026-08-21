@@ -1,5 +1,10 @@
 # Deze site hoort niet in een zoekmachine.
 #
+# Op GitHub Pages is dit bestand de ENIGE bescherming voor de JSON onder
+# data/private/. Pages kan geen response-headers zetten, dus de X-Robots-Tag
+# uit vercel.json vervalt daar, en de meta-tag in index.html geldt alleen voor
+# HTML — niet voor losse JSON-bestanden.
+#
 # Niet uit preutsheid: data/private/ bevat eindstanden. Zou Google die indexeren,
 # dan verschijnen ze in zoekresultaten en autocomplete — precies het lek waar de
 # rest van dit project omheen gebouwd is. De X-Robots-Tag in vercel.json dekt

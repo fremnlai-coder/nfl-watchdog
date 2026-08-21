@@ -329,6 +329,33 @@ vraagt een publieke repo (de inhoud is openbare NFL-data, dus dat kan) en dan ka
 de bestaande Actions-workflow direct naar Pages publiceren. Daarmee vervalt Vercel
 als afhankelijkheid en loopt de dinsdagcron in dezelfde pijplijn.
 
+## Publiceren via GitHub Pages
+
+`.github/workflows/pages.yml` bouwt en publiceert. Twee dingen die er bewust in
+zitten:
+
+- **`npm test` draait vóór het uploaden.** Zelfde regel als bij de ingest: faalt
+  de leak-scan, dan gaat er niets live.
+- **De ingest roept deze workflow aan** in plaats van erop te vertrouwen dat de
+  push hem triggert. Een push vanuit een workflow met `GITHUB_TOKEN` start met
+  opzet géén andere workflows; zonder die aanroep zou de dinsdagcron wel data
+  committen maar nooit publiceren.
+
+Pages serveert vanaf `/<repo>/`, dus de build krijgt `VITE_BASE=/nfl-watchdog/`
+mee. Een relatieve base breekt daar zodra een URL zijn afsluitende slash mist.
+
+**Wat je zelf moet doen, eenmalig:**
+
+1. Repo op **publiek** zetten. Pages op een privérepo vereist een betaald plan.
+2. Settings → Pages → Source op **GitHub Actions**.
+
+**Wat je daarmee inlevert:** Pages kan geen response-headers zetten, dus de
+`X-Robots-Tag: noindex` uit `vercel.json` vervalt. Voor de HTML blijft de
+meta-tag in `index.html` gelden, maar voor de JSON onder `data/private/` is
+`robots.txt` dan de enige bescherming. Bovendien staat die JSON in een publieke
+repo ook gewoon op github.com. Het gaat om openbare NFL-uitslagen, dus er lekt
+niets vertrouwelijks — maar het is een zwakkere afscherming dan op Vercel.
+
 ## Nog te doen
 
 - Tiers: alles staat op `neutral` behalve KC/DET/SF; watchlist en avoid nog leeg

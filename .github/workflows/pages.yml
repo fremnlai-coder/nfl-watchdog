@@ -1,0 +1,65 @@
+name: Publiceren naar GitHub Pages
+
+# Draait op elke push naar main, en wordt daarnaast aangeroepen door de
+# wekelijkse ingest. Dat laatste is nodig: een push vanuit een workflow met
+# GITHUB_TOKEN triggert géén andere workflows, dus zonder die aanroep zou de
+# dinsdagcron wel data committen maar nooit publiceren.
+on:
+  push:
+    branches: [main]
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Nooit twee publicaties tegelijk, en een lopende niet afbreken: dan zou je
+# halverwege een gedeeltelijk geüploade site live kunnen hebben staan.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+
+      - uses: actions/configure-pages@v6
+
+      - run: npm ci
+
+      - name: Bouwen
+        # Pages serveert vanaf /<repo>/, dus een absolute base. Zonder dit
+        # zoekt de pagina zijn data in de domeinroot zodra de URL geen
+        # afsluitende slash heeft.
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Controleren vóór publicatie
+        # Dezelfde regel als bij de ingest: faalt de leak-scan, dan gaat er
+        # niets live. De site kan geen eindstand publiceren zonder dat een test
+        # daarover struikelt.
+        run: npm test
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

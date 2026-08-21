@@ -4,8 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   root: 'web',
-  // Relative base so the build works on GitHub Pages, Vercel or a file:// open.
-  base: './',
+  // Relative by default, which works on a domain root and on file://. GitHub
+  // Pages serves from /<repo>/, and a relative base breaks there the moment a
+  // URL lacks its trailing slash — so the Pages workflow passes an absolute one.
+  base: process.env.VITE_BASE ?? './',
   plugins: [react(), tailwindcss()],
   build: { outDir: '../dist', emptyOutDir: true },
   // src/planner.js is shared with the CLI and lives outside the Vite root.
