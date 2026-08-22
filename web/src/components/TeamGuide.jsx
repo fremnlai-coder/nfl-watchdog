@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TeamLogo from './TeamLogo.jsx';
 import { loadTeams } from '../lib/data.js';
 
@@ -98,15 +98,39 @@ function Team({ team }) {
 }
 
 export default function TeamGuide({ season }) {
-  const [guide, setGuide] = useState(null);
-  const [error, setError] = useState(null);
+  const [opened, setOpened] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  const [state, setState] = useState({ status: 'idle' });
 
   // Bijna 100 kB aan namen. Die hoort niet in de eerste payload van een pagina
   // die je opent om te zien wat je gaat kijken, dus hij komt pas bij het openen.
-  function open(e) {
-    if (!e.currentTarget.open || guide || error) return;
-    loadTeams(season).then(setGuide).catch((err) => setError(err.message));
-  }
+  //
+  // In een effect en niet in de toggle-handler, om twee redenen die allebei
+  // gemeten zijn: de handler probeerde het na een mislukte poging nooit meer
+  // (`if (guide || error) return`), zodat één storing het paneel voor de rest
+  // van de sessie op "Laden mislukt" liet staan, en hij haalde niets opnieuw op
+  // als het seizoen wisselde. Nu hangt het laden aan season en attempt.
+  useEffect(() => {
+    if (!opened) return undefined;
+
+    let cancelled = false;
+    setState({ status: 'loading' });
+    loadTeams(season)
+      .then((guide) => {
+        if (!cancelled) setState({ status: 'ready', guide });
+      })
+      .catch((err) => {
+        if (!cancelled) setState({ status: 'error', message: err.message });
+      });
+
+    // Een antwoord dat binnenkomt nadat het seizoen alweer gewisseld is, hoort
+    // niet meer in beeld te komen.
+    return () => {
+      cancelled = true;
+    };
+  }, [opened, season, attempt]);
+
+  const guide = state.status === 'ready' ? state.guide : null;
 
   const divisions = new Map();
   for (const team of Object.values(guide?.teams ?? {})) {
@@ -115,7 +139,10 @@ export default function TeamGuide({ season }) {
   }
 
   return (
-    <details onToggle={open} className="mt-8 rounded border border-stone-200 dark:border-stone-800">
+    <details
+      onToggle={(e) => setOpened(e.currentTarget.open)}
+      className="mt-8 rounded border border-stone-200 dark:border-stone-800"
+    >
       {/* "Teamgids" en niet "Teams": het paneel met je favorieten heet al Teams,
           en twee panelen met dezelfde naam op één pagina is geen keuze maar een
           vergissing. */}
@@ -127,15 +154,31 @@ export default function TeamGuide({ season }) {
       </summary>
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
-        {error && <p className="text-sm text-red-700 dark:text-red-400">Laden mislukt: {error}</p>}
-        {!guide && !error && <p className="text-sm text-stone-500 dark:text-stone-400">Laden…</p>}
+        {state.status === 'error' && (
+          <div>
+            <p className="text-sm text-red-700 dark:text-red-400">
+              Laden mislukt: {state.message}
+            </p>
+            <button
+              type="button"
+              onClick={() => setAttempt((n) => n + 1)}
+              className="mt-2 rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+            >
+              Opnieuw proberen
+            </button>
+          </div>
+        )}
+
+        {state.status === 'loading' && (
+          <p className="text-sm text-stone-500 dark:text-stone-400">Laden…</p>
+        )}
 
         {guide && (
           <>
             <p className="text-xs text-stone-500 dark:text-stone-400">
-              Namen, nummers en feiten die vaststaan vóór er gespeeld wordt. Geen
-              standen en geen statistieken — die zouden vertellen hoe het tot nu
-              toe ging.
+              Stand van seizoen {guide.season}. Namen, nummers en feiten die vaststaan
+              vóór er gespeeld wordt. Geen standen en geen statistieken — die zouden
+              vertellen hoe het tot nu toe ging.
             </p>
 
             <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">

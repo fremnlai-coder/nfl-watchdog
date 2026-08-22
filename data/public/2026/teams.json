@@ -152,7 +152,7 @@
       },
       "roster_facts": {
         "players": 91,
-        "rookies": 23,
+        "rookies": 24,
         "average_age": 25.1
       },
       "key_players": [
@@ -1047,9 +1047,9 @@
         "indoor": true
       },
       "roster_facts": {
-        "players": 90,
+        "players": 89,
         "rookies": 18,
-        "average_age": 25.9
+        "average_age": 26
       },
       "key_players": [
         {
@@ -1081,20 +1081,20 @@
         },
         {
           "slot": "WR",
-          "name": "Jayden Higgins",
-          "jersey": "81",
-          "college": "Iowa State",
-          "experience_years": 2,
-          "age": 23,
-          "side": "offense"
-        },
-        {
-          "slot": "WR",
           "name": "Xavier Hutchinson",
           "jersey": "19",
           "college": "Iowa State",
           "experience_years": 4,
           "age": 26,
+          "side": "offense"
+        },
+        {
+          "slot": "WR",
+          "name": "Jaylin Noel",
+          "jersey": "13",
+          "college": "Iowa State",
+          "experience_years": 2,
+          "age": 23,
           "side": "offense"
         },
         {
@@ -1176,7 +1176,7 @@
       },
       "roster_facts": {
         "players": 91,
-        "rookies": 22,
+        "rookies": 21,
         "average_age": 26
       },
       "key_players": [
@@ -1303,7 +1303,7 @@
         "indoor": false
       },
       "roster_facts": {
-        "players": 90,
+        "players": 91,
         "rookies": 22,
         "average_age": 25.8
       },
@@ -1432,8 +1432,8 @@
       },
       "roster_facts": {
         "players": 91,
-        "rookies": 15,
-        "average_age": 25.9
+        "rookies": 14,
+        "average_age": 26
       },
       "key_players": [
         {
@@ -2328,8 +2328,8 @@
       },
       "roster_facts": {
         "players": 91,
-        "rookies": 15,
-        "average_age": 26
+        "rookies": 17,
+        "average_age": 25.9
       },
       "key_players": [
         {
@@ -4011,7 +4011,7 @@
           "jersey": "5",
           "college": "Texas A&M",
           "experience_years": 13,
-          "age": 32,
+          "age": 33,
           "side": "offense"
         },
         {

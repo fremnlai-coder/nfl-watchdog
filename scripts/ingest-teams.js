@@ -1,7 +1,11 @@
 // Bouwt de teamgids: data/public/{season}/teams.json.
 //
 //   node scripts/ingest-teams.js                 # laat een bestaand bestand staan
-//   node scripts/ingest-teams.js --refresh       # opnieuw ophalen en overschrijven
+//   node scripts/ingest-teams.js --refresh       # bij ESPN ophalen en overschrijven
+//
+// --refresh slaat ook de HTTP-cache over. Deed hij dat niet, dan bouwde hij het
+// bestand opnieuw uit dezelfde payloads in data/cache/ en zag je een verse
+// bestandsdatum boven weken oude namen.
 //
 // Bewust géén onderdeel van de wekelijkse cron, en bewust niet overschrijvend.
 // Een depth chart halverwege het seizoen is niet neutraal: een quarterback die
@@ -36,7 +40,9 @@ if (!refresh && (await exists(out))) {
 
 // De koppeling loopt over de afkorting. Wijkt ESPN daarin af, dan moet dat
 // opvallen en niet stilletjes een team overslaan.
-const list = await teamList();
+const opts = { refresh };
+
+const list = await teamList(opts);
 const byAbbr = new Map(
   (list.sports?.[0]?.leagues?.[0]?.teams ?? []).map((t) => [t.team.abbreviation, t.team.id]),
 );
@@ -49,9 +55,9 @@ if (missing.length) {
 const built = await mapLimit(config.teams, 4, async (team) => {
   const id = byAbbr.get(team.abbr);
   const [profile, roster, depth] = await Promise.all([
-    teamProfile(id),
-    teamRoster(id),
-    depthCharts(season, id),
+    teamProfile(id, opts),
+    teamRoster(id, opts),
+    depthCharts(season, id, opts),
   ]);
   const doc = buildPublicTeam({ profile, roster, depth, config: team });
   console.log(

@@ -213,12 +213,25 @@ secondary — plus de kicker. Zonder die indeling per linie leverde een 4-3 vier
 keer de defensive line op en geen enkele linebacker. De positieafkorting komt uit
 de payload zelf, zodat er NT staat waar een team een nose tackle opstelt.
 
+**Eén gids, van het actieve seizoen.** De rosterdata van ESPN is de stand van nu
+en bestaat niet met terugwerkende kracht, dus er is geen `teams.json` voor 2025.
+Het paneel hangt daarom aan `index.current` en niet aan de seizoenkiezer — daaraan
+gehangen gaf 2025 een 404, en die fout bleef daarna staan omdat de laadpoging na
+een mislukking niet meer werd herhaald. Het laden zit nu in een effect op
+`season` plus een pogingenteller, met een knop "Opnieuw proberen"; de regel boven
+de lijst noemt het seizoen waar de gids over gaat.
+
 **De gids wordt niet wekelijks ververst, en dat is de belangrijkste keuze hier.**
 Een depth chart halverwege het seizoen is geen neutraal gegeven: een quarterback
 die van plek 1 naar plek 2 zakt, zakte daar om een reden die in een wedstrijd
 gebeurde die jij nog moet kijken. `scripts/ingest-teams.js` overschrijft daarom
 niets tenzij je `--refresh` meegeeft, en de wekelijkse cron raakt hem niet aan.
 De gids is een momentopname van vóór het seizoen.
+
+`--refresh` slaat ook de HTTP-cache over (`cachedJson(key, url, { refresh })`).
+Zonder dat deed de vlag alleen het uitvoerbestand overschrijven en werd de gids
+opnieuw uit dezelfde payloads in `data/cache/` gebouwd: een verse bestandsdatum
+boven weken oude namen, zonder enig teken dat er niets was opgehaald.
 
 Het bestand is 96 kB en wordt pas opgehaald als je het paneel opent — het hoort
 niet in de eerste payload van een pagina die je opent om te zien wat je gaat

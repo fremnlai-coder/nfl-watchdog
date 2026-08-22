@@ -9,12 +9,18 @@ const CORE = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl';
 
 await mkdir(CACHE_DIR, { recursive: true });
 
-async function cachedJson(key, url) {
+// `refresh` slaat de cache over en schrijft hem daarna opnieuw. Zonder die
+// uitweg is er geen manier om een gecacht antwoord te vernieuwen behalve
+// data/cache/ met de hand leegmaken — en dan lijkt een ververs-commando te
+// werken terwijl het de oude payload teruggeeft.
+async function cachedJson(key, url, { refresh = false } = {}) {
   const file = new URL(`${key}.json`, CACHE_DIR);
-  try {
-    return JSON.parse(await readFile(file, 'utf8'));
-  } catch {
-    // not cached yet
+  if (!refresh) {
+    try {
+      return JSON.parse(await readFile(file, 'utf8'));
+    } catch {
+      // not cached yet
+    }
   }
   const res = await fetch(url);
   if (!res.ok) throw new Error(`ESPN ${res.status} for ${url}`);
@@ -53,24 +59,25 @@ const SITE = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl';
 // mogen worden — team.record staat er met W-L én gemiddelde punten in, en de
 // roster kent een groep injuredReserveOrOut. Wat er wél doorheen komt bepaalt
 // src/teams.js, net zoals schema.js dat voor de wedstrijden doet.
-export function teamList() {
-  return cachedJson('teams-list', `${SITE}/teams?limit=32`);
+export function teamList(opts) {
+  return cachedJson('teams-list', `${SITE}/teams?limit=32`, opts);
 }
 
-export function teamProfile(teamId) {
-  return cachedJson(`team-${teamId}`, `${SITE}/teams/${teamId}`);
+export function teamProfile(teamId, opts) {
+  return cachedJson(`team-${teamId}`, `${SITE}/teams/${teamId}`, opts);
 }
 
 // Draagt de namen; de depth chart hieronder draagt alleen athlete-ids.
-export function teamRoster(teamId) {
-  return cachedJson(`roster-${teamId}`, `${SITE}/teams/${teamId}/roster`);
+export function teamRoster(teamId, opts) {
+  return cachedJson(`roster-${teamId}`, `${SITE}/teams/${teamId}/roster`, opts);
 }
 
 // Wie waar staat, zonder één statistiek. rank 1 is de starter.
-export function depthCharts(season, teamId) {
+export function depthCharts(season, teamId, opts) {
   return cachedJson(
     `depth-${season}-${teamId}`,
     `${CORE}/seasons/${season}/teams/${teamId}/depthcharts`,
+    opts,
   );
 }
 

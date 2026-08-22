@@ -10,11 +10,23 @@ const cache = new Map();
 
 async function getJson(path) {
   if (cache.has(path)) return cache.get(path);
+
   const promise = fetch(`${base}${path}`).then((res) => {
     if (!res.ok) throw new Error(`${res.status} bij ${path}`);
     return res.json();
   });
   cache.set(path, promise);
+
+  // Alleen geslaagde antwoorden blijven staan. De cache werd gevuld vóórdat
+  // bekend was of de fetch lukte, dus één seconde zonder bereik — op een
+  // telefoon geen uitzondering — maakte dat pad kapot voor de rest van de
+  // sessie: elke volgende poging kreeg dezelfde afwijzing terug, ook nadat de
+  // verbinding er weer was. De promise zelf gaat ongewijzigd naar de aanroeper;
+  // die handelt de fout af.
+  promise.catch(() => {
+    if (cache.get(path) === promise) cache.delete(path);
+  });
+
   return promise;
 }
 
@@ -26,7 +38,9 @@ export const loadWeek = (season, week) =>
   getJson(`data/public/${season}/week-${week}.json`);
 
 // De teamgids. Level 0 en niet weekgebonden: namen, coaches, stadions. Wordt
-// pas opgehaald als het paneel opengaat, want het is bijna 100 kB.
+// pas opgehaald als het paneel opengaat, want het is bijna 100 kB. Er is er
+// maar één, van het actieve seizoen — de rosterdata van ESPN is de stand van nu
+// en bestaat niet met terugwerkende kracht.
 export const loadTeams = (season) => getJson(`data/public/${season}/teams.json`);
 
 // Level 2. Vague qualifications, no direction.

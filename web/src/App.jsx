@@ -332,7 +332,11 @@ export default function App() {
         <Backup onRestore={restoreBackup} />
       </div>
 
-      <TeamGuide season={season} />
+      {/* Bewust index.current en niet het gekozen seizoen: er is maar één gids,
+          want de rosterdata van ESPN is de stand van nu en bestaat niet met
+          terugwerkende kracht. Aan de seizoenkiezer gehangen leverde 2025 een
+          404 op, en die fout bleef daarna staan. */}
+      <TeamGuide season={index.current} />
 
       <footer className="mt-10 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-stone-800 dark:text-stone-400">
         <p>
