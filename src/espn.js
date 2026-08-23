@@ -29,10 +29,15 @@ async function cachedJson(key, url, { refresh = false } = {}) {
   return data;
 }
 
-export function scoreboard(season, week) {
+// Scoreboards are mutable until every game in the week is final. Ingest requests
+// them fresh by default; otherwise a schedule cached before kickoff would keep
+// reporting `completed: false` for the entire season. `refresh: false` is kept as
+// an explicit offline/reproducible mode for local work.
+export function scoreboard(season, week, opts = { refresh: true }) {
   return cachedJson(
     `scoreboard-${season}-w${week}`,
     `${SCOREBOARD}?dates=${season}&seasontype=2&week=${week}`,
+    opts,
   );
 }
 

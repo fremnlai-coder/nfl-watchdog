@@ -1,6 +1,6 @@
 // Fetches a season, computes metrics, and writes the public/private split.
 //
-// Usage: node src/ingest.js [--season 2025] [--weeks 1-18]
+// Usage: node src/ingest.js [--season 2025] [--weeks 1-18] [--offline]
 //
 // The public file is built exclusively through buildPublicGame(), which picks
 // from the allowlist in schema.js. No ESPN object is ever spread into it.
@@ -23,10 +23,12 @@ const argValue = (name, fallback) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : fallback;
 };
+const hasFlag = (name) => args.includes(`--${name}`);
 
 const prefs = JSON.parse(await readFile(new URL('config/preferences.json', ROOT), 'utf8'));
 const season = Number(argValue('season', prefs.season ?? 2025));
 const [weekFrom, weekTo] = String(argValue('weeks', '1-18')).split('-').map(Number);
+const offline = hasFlag('offline');
 // Weeks that get written out.
 const weeks = Array.from({ length: weekTo - weekFrom + 1 }, (_, i) => weekFrom + i);
 // Everything from week 1 is still ingested: records carried into a week can only
@@ -53,7 +55,7 @@ await mkdir(PRIVATE_DIR, { recursive: true });
 console.log(`Scoreboards ophalen voor seizoen ${season}, weken 1-${weekTo}...`);
 const boards = new Map();
 await mapLimit(seasonWeeks, 4, async (w) => {
-  boards.set(w, await scoreboard(season, w));
+  boards.set(w, await scoreboard(season, w, { refresh: !offline }));
 });
 
 // Flatten to a raw list, keeping ESPN data strictly on the private side.
