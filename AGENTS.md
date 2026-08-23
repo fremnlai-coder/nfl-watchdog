@@ -27,6 +27,7 @@ runs the same planner as the CLI.
 
 ## Current state
 
-v3 was created from clean commit `990dad0` in v2 for a feature, UX, and technical
-review. No product implementation changes have been made yet. Run `npm run verify`
-for the build plus the complete test suite.
+v3 fixes scoreboard freshness, persists the complete local state, splits reveal
+artifacts per game, exposes Sunday in 60, and tracks watched games. The mobile UI
+uses a compact default card; All-22 timing and decision details sit behind
+`Waarom?`. Run `npm run verify` for the build plus the complete test suite.

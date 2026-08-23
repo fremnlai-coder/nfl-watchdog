@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { explainPick } from '../../../src/explain.js';
 import TeamLogo from './TeamLogo.jsx';
 import Term from './Term.jsx';
-import { explainPick } from '../../../src/explain.js';
 
 const FORMAT_LABEL = {
   full: 'Full replay',
@@ -11,11 +11,11 @@ const FORMAT_LABEL = {
 
 const REASON_LABEL = {
   own_team: 'eigen team',
-  own_team_degraded: 'eigen team, geen full-plek meer over',
-  quality: 'op inzet vooraf',
+  own_team_degraded: 'eigen team · full bezet',
+  quality: 'inzet vooraf',
   budget: 'budget op',
   quota_full: 'weekvorm vol',
-  avoid: 'op je avoid-lijst',
+  avoid: 'nooit-lijst',
 };
 
 const BADGE_TERM = {
@@ -30,81 +30,78 @@ const FORMAT_TERM = {
   game_in_40: 'game_in_40',
 };
 
-// emerald-700 and sky-700 rather than -600: white on -600 measures 3.65 and 4.02
-// against a 4.5 requirement for 12px semibold.
 const FORMAT_STYLE = {
   full: 'bg-emerald-700 text-white',
   game_in_40: 'bg-sky-700 text-white',
-  skip: 'bg-stone-200 text-stone-700 dark:bg-stone-800 dark:text-stone-300',
+  skip: 'bg-stone-800 text-stone-300',
+  recap: 'bg-amber-800 text-amber-50',
 };
 
 function Badge({ children, tone = 'neutral' }) {
-  const tones = {
-    neutral: 'bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300',
-    accent: 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100',
-  };
-  return (
-    <span className={`rounded px-1.5 py-0.5 text-xs font-medium ${tones[tone]}`}>
-      {children}
-    </span>
-  );
+  const style = tone === 'accent'
+    ? 'bg-amber-900/60 text-amber-100'
+    : 'bg-stone-800 text-stone-300';
+  return <span className={`rounded px-1.5 py-0.5 text-xs font-medium ${style}`}>{children}</span>;
 }
 
-// Away on top, home below, with the @ in the gutter. Stacking them is what keeps
-// the block from breaking apart at 375px, where a single line wrapped into three
-// and left the @ stranded on its own.
 function TeamLine({ team, record, size }) {
   return (
     <div className="flex items-center gap-2.5">
       <TeamLogo abbr={team.abbr} size={size} />
       <span className="text-lg leading-tight font-semibold">{team.abbr}</span>
-      <span className="min-w-0 flex-1 truncate text-sm text-stone-500 dark:text-stone-400">
-        {team.name}
-      </span>
-      <span className="shrink-0 font-mono text-sm text-stone-500 tabular-nums dark:text-stone-400">
-        {record}
-      </span>
+      <span className="min-w-0 flex-1 truncate text-sm text-stone-400">{team.name}</span>
+      <span className="shrink-0 font-mono text-sm text-stone-400 tabular-nums">{record}</span>
     </div>
   );
 }
 
-export default function GameCard({ game, hints, result, onRevealHints, onRevealResult, compact, dense, rank }) {
+export default function GameCard({
+  game,
+  hints,
+  result,
+  onRevealHints,
+  onRevealResult,
+  compact,
+  dense,
+  rank,
+  viewed,
+  next,
+  recapped,
+  onToggleViewed,
+  revealError,
+  busy,
+}) {
   const [confirming, setConfirming] = useState(false);
   const [why, setWhy] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const explanation = explainPick(game, { rank });
-
   const badges = [];
   if (game.game_type === 'division') badges.push('divisie');
   if (game.primetime) badges.push('primetime');
   if (game.live_friendly_nl && game.is_international) badges.push('live te doen');
-  for (const t of game.tags) if (t !== 'own_team') badges.push(t);
+  for (const tag of game.tags) if (tag !== 'own_team') badges.push(tag);
 
+  const formatLabel = recapped ? 'Sunday in 60' : FORMAT_LABEL[game.format_advice];
+  const formatTerm = recapped ? 'sunday_in_60' : FORMAT_TERM[game.format_advice];
+  const formatStyle = recapped ? FORMAT_STYLE.recap : FORMAT_STYLE[game.format_advice];
+  const shortReason = recapped ? 'Sunday in 60' : (REASON_LABEL[game.format_reason] ?? game.format_reason);
   const logoSize = compact ? 24 : 30;
 
-  // Eén regel per wedstrijd voor de wedstrijden die buiten je weekvorm vallen.
-  // Die sectie was elf kaarten van rond de 250px — de helft van de pagina, voor
-  // precies datgene wat je niet gaat kijken. De kaart zelf blijft één tik weg,
-  // want ook een overgeslagen wedstrijd wil je soms alsnog nakijken.
   if (dense && !expanded) {
     return (
-      <li className="rounded-lg border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+      <li className="rounded-lg border border-stone-800 bg-stone-900">
         <button
           type="button"
           onClick={() => setExpanded(true)}
           aria-expanded={false}
-          className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left"
+          className="flex min-h-11 w-full items-center gap-2.5 px-3 text-left"
         >
-          <span className="shrink-0 font-mono text-xs text-stone-600 tabular-nums dark:text-stone-400">
-            {game.kickoff_nl}
-          </span>
+          <span className="shrink-0 font-mono text-xs text-stone-400">{game.kickoff_nl}</span>
           <span className="shrink-0 text-sm font-semibold">
-            {game.away.abbr}
-            <span className="mx-1 font-normal text-stone-500 dark:text-stone-400">@</span>
-            {game.home.abbr}
+            {game.away.abbr}<span className="mx-1 font-normal text-stone-500">@</span>{game.home.abbr}
           </span>
-          <span className="ml-auto min-w-0 truncate text-xs text-stone-500 dark:text-stone-400">
-            {REASON_LABEL[game.format_reason] ?? game.format_reason}
+          <span className={`ml-auto min-w-0 truncate text-xs ${recapped ? 'text-amber-300' : 'text-stone-500'}`}>
+            {shortReason}
           </span>
         </button>
       </li>
@@ -112,150 +109,142 @@ export default function GameCard({ game, hints, result, onRevealHints, onRevealR
   }
 
   return (
-    <li className="flex flex-col overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-900">
-      <div className="flex items-center justify-between gap-2 border-b border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-800 dark:bg-stone-950/40">
+    <li className={`flex flex-col overflow-hidden rounded-lg border bg-stone-900 shadow-sm ${
+      next ? 'border-emerald-700 ring-1 ring-emerald-900' : 'border-stone-800'
+    }`}>
+      <div className="flex min-h-11 items-center justify-between gap-2 border-b border-stone-800 bg-stone-950/40 px-3">
         {dense ? (
           <button
             type="button"
             onClick={() => setExpanded(false)}
             aria-expanded={true}
-            className="min-w-0 truncate font-mono text-xs text-stone-600 dark:text-stone-400"
+            className="min-h-11 min-w-0 truncate font-mono text-xs text-stone-400"
           >
-            {game.kickoff_nl}
-            <span className="ml-1.5 font-sans">· minder</span>
+            {game.kickoff_nl}<span className="ml-1.5 font-sans">· minder</span>
           </button>
         ) : (
-          <span className="min-w-0 truncate font-mono text-xs text-stone-600 dark:text-stone-400">
-            {game.kickoff_nl}
-          </span>
+          <span className="min-w-0 truncate font-mono text-xs text-stone-400">{game.kickoff_nl}</span>
         )}
-        <span
-          className={`shrink-0 rounded px-2 py-0.5 text-xs font-semibold ${FORMAT_STYLE[game.format_advice]}`}
-        >
-          {FORMAT_TERM[game.format_advice] ? (
-            <Term id={FORMAT_TERM[game.format_advice]}>{FORMAT_LABEL[game.format_advice]}</Term>
-          ) : (
-            FORMAT_LABEL[game.format_advice]
-          )}
-          {game.runtime_minutes ? ` · ${game.runtime_minutes}m` : ''}
-        </span>
+        <div className="flex shrink-0 items-center gap-1.5">
+          {next && <span className="sr-only">Volgende</span>}
+          <span className={`rounded px-2 py-0.5 text-xs font-semibold ${formatStyle}`}>
+            {formatTerm ? <Term id={formatTerm}>{formatLabel}</Term> : formatLabel}
+            {!recapped && game.runtime_minutes ? ` · ${game.runtime_minutes}m` : ''}
+          </span>
+        </div>
       </div>
 
-      {/* Het teamblok is geen knop meer. "waarom?" stond rechts op de streep
-          tussen de twee ploegen, precies in de kolom van de records — daar las
-          het als een derde waarde onder 0-0 in plaats van als bediening. De
-          knop staat nu onderaan bij "Toon hints", waar de andere acties zitten. */}
       <div className="px-3 py-3">
         <TeamLine team={game.away} record={game.records_before.away} size={logoSize} />
         <div className="my-1 flex items-center gap-2">
-          <span className="w-[30px] text-center text-xs text-stone-500 dark:text-stone-400" aria-hidden="true">
-            @
-          </span>
-          <span className="h-px flex-1 bg-stone-100 dark:bg-stone-800" />
+          <span className="w-[30px] text-center text-xs text-stone-500" aria-hidden="true">@</span>
+          <span className="h-px flex-1 bg-stone-800" />
         </div>
         <TeamLine team={game.home} record={game.records_before.home} size={logoSize} />
       </div>
 
       <div className="flex flex-1 flex-col gap-2 px-3 pb-3">
-        {!compact && game.teaser && (
-          <p className="text-sm text-stone-600 dark:text-stone-300">{game.teaser}</p>
-        )}
+        {!compact && game.teaser && <p className="text-sm text-stone-300">{game.teaser}</p>}
 
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-stone-500 dark:text-stone-400">{game.slot}</span>
-          {badges.map((b) => (
-            <Badge key={b} tone={b === 'indirect belangrijk' ? 'accent' : 'neutral'}>
-              {BADGE_TERM[b] ? <Term id={BADGE_TERM[b]}>{b}</Term> : b}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
+          <span>{game.slot}</span>
+          {badges.map((badge) => (
+            <Badge key={badge} tone={badge === 'indirect belangrijk' ? 'accent' : 'neutral'}>
+              {BADGE_TERM[badge] ? <Term id={BADGE_TERM[badge]}>{badge}</Term> : badge}
             </Badge>
           ))}
+          <span>· {shortReason}</span>
         </div>
 
-        <p className="text-xs text-stone-500 dark:text-stone-400">
-          {REASON_LABEL[game.format_reason] ?? game.format_reason}
-          <span className="mx-1.5 text-stone-500 dark:text-stone-400">·</span>
-          <Term id="all22">All-22</Term> vanaf {game.all22_from_nl}
-        </p>
-
-        {/* Level 2 and 3. Nothing below this line exists until it is clicked. */}
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
           <button
             type="button"
-            onClick={() => setWhy((v) => !v)}
+            onClick={() => setWhy((value) => !value)}
             aria-expanded={why}
-            className="rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+            className="min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-300 hover:bg-stone-800"
           >
-            {why ? 'Verberg uitleg' : 'Waarom dit advies?'}
+            {why ? 'Minder' : 'Waarom?'}
           </button>
 
-          {!hints && (
+          {game.format_advice !== 'skip' && (
             <button
               type="button"
-              onClick={onRevealHints}
-              className="rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+              aria-pressed={viewed}
+              onClick={onToggleViewed}
+              className={`min-h-11 rounded border px-3 text-xs ${
+                viewed
+                  ? 'border-emerald-700 bg-emerald-950 text-emerald-200'
+                  : 'border-stone-700 text-stone-300 hover:bg-stone-800'
+              }`}
             >
-              Toon hints
+              {viewed ? '✓ Gezien' : 'Gezien'}
+            </button>
+          )}
+
+          {game.hints_ready && !hints && (
+            <button
+              type="button"
+              disabled={busy === 'hints'}
+              onClick={onRevealHints}
+              className="min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-300 disabled:opacity-50 hover:bg-stone-800"
+            >
+              {busy === 'hints' ? 'Laden…' : 'Hints'}
             </button>
           )}
 
           {hints && (
-            <span className="text-sm text-stone-700 dark:text-stone-300">
-              {hints.rating ? '★'.repeat(hints.rating) + ' · ' : ''}
-              {hints.hints.join(' · ')}
+            <span className="text-sm text-stone-300">
+              {hints.rating ? `${'★'.repeat(hints.rating)} · ` : ''}{hints.hints.join(' · ')}
             </span>
           )}
 
-          {hints && !result && !confirming && (
+          {hints && game.outcome_ready && !result && !confirming && (
             <button
               type="button"
+              disabled={busy === 'result'}
               onClick={() => setConfirming(true)}
-              className="rounded border border-red-400 px-3 py-2 text-xs text-red-700 hover:bg-red-50 dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950"
+              className="min-h-11 rounded border border-red-800 px-3 text-xs text-red-300 disabled:opacity-50 hover:bg-red-950"
             >
-              Toon uitslag
+              {busy === 'result' ? 'Laden…' : 'Uitslag'}
             </button>
           )}
 
           {confirming && !result && (
             <span className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="text-red-700 dark:text-red-300">
-                Dit toont de eindstand. Zeker weten?
-              </span>
+              <span className="text-red-300">Eindstand tonen?</span>
               <button
                 type="button"
-                onClick={() => {
-                  setConfirming(false);
-                  onRevealResult();
-                }}
-                className="rounded bg-red-700 px-3 py-2 font-semibold text-white hover:bg-red-800"
+                onClick={() => { setConfirming(false); onRevealResult(); }}
+                className="min-h-11 rounded bg-red-700 px-3 font-semibold text-white hover:bg-red-800"
               >
-                Ja, toon
+                Toon
               </button>
               <button
                 type="button"
                 onClick={() => setConfirming(false)}
-                className="rounded border border-stone-300 px-3 py-2 dark:border-stone-700"
+                className="min-h-11 rounded border border-stone-700 px-3"
               >
-                Nee
+                Annuleer
               </button>
             </span>
           )}
 
           {result && (
-            <span className="rounded bg-red-50 px-2 py-1 font-mono text-sm text-red-900 dark:bg-red-950 dark:text-red-200">
-              {result.score_line} — winnaar {result.winner}
+            <span className="rounded bg-red-950 px-2 py-1 font-mono text-sm text-red-200">
+              {result.score_line} · {result.winner}
             </span>
           )}
+
+          {revealError && <span className="text-xs text-red-300" title={revealError}>Niet geladen · probeer opnieuw</span>}
         </div>
 
         {why && (
-          <div className="rounded border border-stone-200 bg-stone-50 p-2.5 dark:border-stone-800 dark:bg-stone-950/50">
-            <ul className="list-disc space-y-1 pl-4 text-xs text-stone-700 dark:text-stone-300">
-              {explanation.reasons.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
+          <div className="rounded border border-stone-800 bg-stone-950/50 p-2.5">
+            <ul className="list-disc space-y-1 pl-4 text-xs text-stone-300">
+              {explanation.reasons.map((reason) => <li key={reason}>{reason}</li>)}
             </ul>
-            <p className="mt-2 text-xs text-stone-500 italic dark:text-stone-400">
-              {explanation.caveat}
-            </p>
+            <p className="mt-2 text-xs text-stone-500">All-22: {game.all22_from_nl}</p>
+            <p className="mt-1 text-xs text-stone-500 italic">{explanation.caveat}</p>
           </div>
         )}
       </div>

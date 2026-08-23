@@ -1,48 +1,57 @@
 import { useEffect, useMemo, useState } from 'react';
-// The same planner the CLI uses. It only ever reads public fields, which is why
-// it can run in the browser at all.
 import { planBoth } from '../../src/planner.js';
-// Tags are recomputed here rather than read from the payload: favourites can be
-// changed in the UI, and tags baked at ingest time would describe the old ones.
 import { computeTags } from '../../src/tags.js';
-import { loadIndex, loadPrefs, loadWeek, loadHints, loadResults } from './lib/data.js';
-import {
-  loadOverrides, saveOverrides, clearOverrides, overridesFromTeams, mergeTeams,
-  loadWatched, saveWatched,
-} from './lib/prefs.js';
 import { isLocked, maxOpenWeek } from '../../src/watched.js';
+import { loadHints, loadIndex, loadPrefs, loadResults, loadWeek } from './lib/data.js';
+import {
+  clearOverrides,
+  loadOverrides,
+  loadSettings,
+  loadViewed,
+  loadWatched,
+  mergeTeams,
+  overridesFromTeams,
+  saveOverrides,
+  saveSettings,
+  saveViewed,
+  saveWatched,
+} from './lib/prefs.js';
+import Backup from './components/Backup.jsx';
 import Controls from './components/Controls.jsx';
 import GameCard from './components/GameCard.jsx';
-import TeamSettings from './components/TeamSettings.jsx';
 import TeamGuide from './components/TeamGuide.jsx';
+import TeamSettings from './components/TeamSettings.jsx';
 import Term from './components/Term.jsx';
 import WeekGate from './components/WeekGate.jsx';
-import Backup from './components/Backup.jsx';
 
-// Eén kolom, ook op een breed scherm: twee kolommen breken een tijdlijn, want
-// dan loopt de tijd van links naar rechts en daarna pas naar beneden.
-function Timeline({ title, note, games, rowProps, empty = 'Geen wedstrijden deze week.' }) {
+const DEFAULT_QUOTA = { full: 2, game_in_40: 3 };
+
+function preferredWeek(weeks, watchedThrough, savedWeek) {
+  if (weeks.includes(savedWeek) && !isLocked(savedWeek, watchedThrough)) return savedWeek;
+  return weeks.find((candidate) => candidate > watchedThrough) ?? weeks.at(-1);
+}
+
+function Timeline({ title, note, games, rowProps, empty = 'Geen wedstrijden.' }) {
   return (
-    // max-w-3xl: één kolom over de volle 64rem laat een kaart met drie regels
-    // tekst half leeg staan. De instellingen eronder houden wel de volle breedte,
-    // want die hebben hun twee kolommen nodig.
-    <section className="mt-6 max-w-3xl">
-      {/* Geen aantal achter de kop: naast "Week 1" leest "16" als deel van het
-          weeknummer. De verdeling staat in de noot eronder. */}
-      <h2 className="text-sm font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
-        {title}
-      </h2>
-      {note && <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">{note}</p>}
+    <section className="mt-5 max-w-3xl">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+        <h2 className="text-sm font-semibold tracking-wide text-stone-400 uppercase">{title}</h2>
+        {note && <p className="text-xs text-stone-500">{note}</p>}
+      </div>
       {games.length === 0 ? (
-        <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{empty}</p>
+        <p className="mt-2 text-sm text-stone-500">{empty}</p>
       ) : (
         <ul className="mt-3 flex flex-col gap-2.5">
-          {games.map((g) => {
-            // Een overgeslagen wedstrijd is één regel, een geplande een kaart.
-            // Dat verschil draagt nu de betekenis die eerst in twee koppen zat.
-            const skip = g.format_advice === 'skip';
+          {games.map((game) => {
+            const skip = game.format_advice === 'skip';
             return (
-              <GameCard key={g.game_id} game={g} compact={skip} dense={skip} {...rowProps(g)} />
+              <GameCard
+                key={game.game_id}
+                game={game}
+                compact={skip}
+                dense={skip}
+                {...rowProps(game)}
+              />
             );
           })}
         </ul>
@@ -57,40 +66,67 @@ export default function App() {
   const [week, setWeek] = useState(null);
   const [prefs, setPrefs] = useState(null);
   const [data, setData] = useState(null);
-  const [quota, setQuota] = useState({ full: 2, game_in_40: 3 });
+  const [quota, setQuota] = useState(DEFAULT_QUOTA);
+  const [withRecap, setWithRecap] = useState(false);
+  const [lastWeeks, setLastWeeks] = useState({});
+  const [settingsReady, setSettingsReady] = useState(false);
   const [overrides, setOverrides] = useState(null);
   const [watched, setWatched] = useState(null);
-  const [override, setOverride] = useState(null); // season:week you chose to unlock anyway
+  const [viewed, setViewed] = useState(null);
+  const [override, setOverride] = useState(null);
   const [error, setError] = useState(null);
+  const [attempt, setAttempt] = useState(0);
 
-  // Revealed level 2 / level 3 data, keyed by game id. Empty on load, and it
-  // stays empty until a button is pressed.
   const [hints, setHints] = useState({});
   const [results, setResults] = useState({});
+  const [revealErrors, setRevealErrors] = useState({});
+  const [revealBusy, setRevealBusy] = useState({});
 
   useEffect(() => {
-    Promise.all([loadIndex(), loadPrefs()])
-      .then(([idx, p]) => {
-        setIndex(idx);
-        setPrefs(p);
-        setQuota(p.weekly_quota ?? { full: 2, game_in_40: 3 });
-        // A first visit starts from preferences.json; after that your own
-        // choices win.
-        setOverrides(loadOverrides() ?? overridesFromTeams(p.teams));
-        const stored = loadWatched();
-        setWatched(
-          Object.keys(stored).length ? stored : { [idx.current]: p.watched_through_week ?? 0 },
-        );
-        const current = idx.current in idx.seasons ? idx.current : Object.keys(idx.seasons).sort().pop();
-        setSeason(current);
-        setWeek(idx.seasons[current][0]);
-      })
-      .catch((e) => setError(e.message));
-  }, []);
+    let cancelled = false;
+    setError(null);
+    setSettingsReady(false);
 
-  // Persisting belongs in an effect, not in the state updater: StrictMode calls
-  // updaters twice on purpose to surface impure ones, and a write to storage
-  // from inside one is exactly that.
+    Promise.all([loadIndex(), loadPrefs()])
+      .then(([idx, basePrefs]) => {
+        if (cancelled) return;
+        const storedWatched = loadWatched();
+        const initialWatched = Object.keys(storedWatched).length
+          ? storedWatched
+          : { [idx.current]: basePrefs.watched_through_week ?? 0 };
+        const storedSettings = loadSettings();
+        const seasons = Object.keys(idx.seasons);
+        const current = seasons.includes(storedSettings.last_season)
+          ? storedSettings.last_season
+          : (seasons.includes(idx.current) ? idx.current : seasons.sort().at(-1));
+        const startWeek = preferredWeek(
+          idx.seasons[current],
+          initialWatched[current] ?? 0,
+          storedSettings.last_week_by_season?.[current],
+        );
+
+        setIndex(idx);
+        setPrefs(basePrefs);
+        setOverrides(loadOverrides() ?? overridesFromTeams(basePrefs.teams));
+        setWatched(initialWatched);
+        setViewed(loadViewed());
+        setQuota({
+          ...(basePrefs.weekly_quota ?? DEFAULT_QUOTA),
+          ...(storedSettings.weekly_quota ?? {}),
+        });
+        setWithRecap(storedSettings.with_recap ?? false);
+        setLastWeeks({ ...(storedSettings.last_week_by_season ?? {}), [current]: startWeek });
+        setSeason(current);
+        setWeek(startWeek);
+        setSettingsReady(true);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      });
+
+    return () => { cancelled = true; };
+  }, [attempt]);
+
   useEffect(() => {
     if (overrides) saveOverrides(overrides);
   }, [overrides]);
@@ -99,38 +135,46 @@ export default function App() {
     if (watched) saveWatched(watched);
   }, [watched]);
 
-  function updateOverrides(fn) {
-    setOverrides((prev) => fn(prev));
-  }
-
-  function resetOverrides() {
-    clearOverrides();
-    setOverrides(overridesFromTeams(prefs.teams));
-  }
-
-  // A restore replaces both halves at once. Anything half-applied would leave
-  // the watched counter and the favourites describing different moments.
-  function restoreBackup({ teams, watched: restored }) {
-    setOverrides(teams);
-    setWatched(restored);
-    setOverride(null);
-  }
-
-  const watchedThrough = watched?.[season] ?? 0;
-  const gated =
-    watched != null && isLocked(week, watchedThrough) && override !== `${season}:${week}`;
+  useEffect(() => {
+    if (viewed) saveViewed(viewed);
+  }, [viewed]);
 
   useEffect(() => {
-    if (week == null || season == null || watched == null) return;
+    if (!settingsReady || !season || !week) return;
+    saveSettings({
+      weekly_quota: quota,
+      with_recap: withRecap,
+      last_season: season,
+      last_week_by_season: { ...lastWeeks, [season]: week },
+    });
+  }, [settingsReady, quota, withRecap, season, week, lastWeeks]);
+
+  const watchedThrough = watched?.[season] ?? 0;
+  const gated = week != null
+    && watched != null
+    && isLocked(week, watchedThrough)
+    && override !== `${season}:${week}`;
+
+  useEffect(() => {
+    if (!settingsReady || week == null || season == null || watched == null) return undefined;
+    let cancelled = false;
     setData(null);
-    // Revealing a game in one week must not carry over to the next.
     setHints({});
     setResults({});
-    // The gate blocks the fetch, not just the render: this file carries the
-    // standings going into the week, which is the leak it exists to stop.
-    if (gated) return;
-    loadWeek(season, week).then(setData).catch((e) => setError(e.message));
-  }, [season, week, watched, gated]);
+    setRevealErrors({});
+    setRevealBusy({});
+    setError(null);
+    if (gated) return () => { cancelled = true; };
+
+    loadWeek(season, week)
+      .then((doc) => {
+        if (!cancelled) setData(doc);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      });
+    return () => { cancelled = true; };
+  }, [settingsReady, season, week, gated, attempt]);
 
   const teams = useMemo(
     () => (prefs ? mergeTeams(prefs.teams, overrides) : []),
@@ -139,189 +183,241 @@ export default function App() {
 
   const planned = useMemo(() => {
     if (!data || !prefs) return null;
-    // Retag first, then plan: everything downstream depends on who counts as
-    // your team right now, not on who did at ingest time.
-    const retagged = data.games.map((g) => {
-      const tags = computeTags(g, teams);
+    const retagged = data.games.map((game) => {
+      const tags = computeTags(game, teams);
       return {
-        ...g,
+        ...game,
         tags,
-        // Your own teams never show a rating, whichever teams those are today.
-        watchability: tags.includes('own_team') ? null : g.watchability,
+        watchability: tags.includes('own_team') ? null : game.watchability,
       };
     });
-    // planBoth blijft nodig: pakket A levert het formaatadvies per wedstrijd,
-    // dat op elke kaart staat. Alleen de samenvatting van A en B stond in de
-    // weg boven de wedstrijden en is eruit; de CLI toont die nog wel.
     const packages = planBoth(retagged, { ...prefs, teams, weekly_quota: quota });
-    const byId = new Map(packages.a.games.map((p) => [p.game_id, p]));
+    const byId = new Map(packages.a.games.map((pick) => [pick.game_id, pick]));
     return {
       packages,
-      games: retagged.map((g) => ({ ...g, ...byId.get(g.game_id) })),
+      games: retagged.map((game) => ({ ...game, ...byId.get(game.game_id) })),
     };
   }, [data, prefs, teams, quota]);
 
+  const viewedIds = useMemo(
+    () => new Set(viewed?.[season] ?? []),
+    [viewed, season],
+  );
+
+  function chooseWeek(nextWeek) {
+    setWeek(nextWeek);
+    setOverride(null);
+    setLastWeeks((previous) => ({ ...previous, [season]: nextWeek }));
+  }
+
+  function chooseSeason(nextSeason) {
+    const nextWeek = preferredWeek(
+      index.seasons[nextSeason],
+      watched?.[nextSeason] ?? 0,
+      lastWeeks[nextSeason],
+    );
+    setSeason(nextSeason);
+    setWeek(nextWeek);
+    setOverride(null);
+    setLastWeeks((previous) => ({ ...previous, [nextSeason]: nextWeek }));
+  }
+
+  function updateOverrides(fn) {
+    setOverrides((previous) => fn(previous));
+  }
+
+  function resetOverrides() {
+    clearOverrides();
+    setOverrides(overridesFromTeams(prefs.teams));
+  }
+
+  function toggleViewed(gameId) {
+    setViewed((previous) => {
+      const ids = new Set(previous?.[season] ?? []);
+      if (ids.has(gameId)) ids.delete(gameId);
+      else ids.add(gameId);
+      return { ...(previous ?? {}), [season]: [...ids].sort() };
+    });
+  }
+
+  function restoreBackup({ teams: restoredTeams, watched: restoredWatched, settings, viewed: restoredViewed }) {
+    const restoredSeason = index.seasons[settings.last_season] ? settings.last_season : season;
+    const restoredWeek = preferredWeek(
+      index.seasons[restoredSeason],
+      restoredWatched[restoredSeason] ?? 0,
+      settings.last_week_by_season?.[restoredSeason],
+    );
+    setOverrides(restoredTeams);
+    setWatched(restoredWatched);
+    setViewed(restoredViewed);
+    setQuota({ ...(prefs.weekly_quota ?? DEFAULT_QUOTA), ...(settings.weekly_quota ?? {}) });
+    setWithRecap(settings.with_recap ?? false);
+    setLastWeeks({ ...(settings.last_week_by_season ?? {}), [restoredSeason]: restoredWeek });
+    setSeason(restoredSeason);
+    setWeek(restoredWeek);
+    setOverride(null);
+  }
+
   async function revealHints(game) {
-    const doc = await loadHints(season, week);
-    // Only the game that was clicked is lifted out of the file.
-    setHints((prev) => ({
-      ...prev,
-      [game.game_id]: { hints: doc[game.game_id] ?? [], rating: null },
-    }));
+    const id = game.game_id;
+    setRevealBusy((previous) => ({ ...previous, [id]: 'hints' }));
+    setRevealErrors((previous) => ({ ...previous, [id]: null }));
+    try {
+      const gameHints = await loadHints(season, week, id);
+      setHints((previous) => ({ ...previous, [id]: { hints: gameHints, rating: null } }));
+    } catch (err) {
+      setRevealErrors((previous) => ({ ...previous, [id]: err.message }));
+    } finally {
+      setRevealBusy((previous) => ({ ...previous, [id]: null }));
+    }
   }
 
   async function revealResult(game) {
-    const doc = await loadResults(season, week);
-    const r = doc[game.game_id];
-    if (!r) return;
-    setResults((prev) => ({ ...prev, [game.game_id]: r }));
-    // The rating is level 2 material; once the score is out it can come along.
-    setHints((prev) => ({
-      ...prev,
-      [game.game_id]: { ...prev[game.game_id], rating: r.watchability },
-    }));
+    const id = game.game_id;
+    setRevealBusy((previous) => ({ ...previous, [id]: 'result' }));
+    setRevealErrors((previous) => ({ ...previous, [id]: null }));
+    try {
+      const result = await loadResults(season, week, id);
+      setResults((previous) => ({ ...previous, [id]: result }));
+      setHints((previous) => ({
+        ...previous,
+        [id]: { ...previous[id], rating: result.watchability },
+      }));
+    } catch (err) {
+      setRevealErrors((previous) => ({ ...previous, [id]: err.message }));
+    } finally {
+      setRevealBusy((previous) => ({ ...previous, [id]: null }));
+    }
   }
 
   if (error) {
     return (
       <main className="app-shell mx-auto max-w-5xl">
-        <p className="text-red-700 dark:text-red-400">Laden mislukt: {error}</p>
+        <h1 className="text-xl font-bold">NFL Watchdog</h1>
+        <p className="mt-4 text-sm text-red-400">Laden mislukt.</p>
+        <button
+          type="button"
+          onClick={() => setAttempt((value) => value + 1)}
+          className="mt-3 min-h-11 rounded border border-stone-700 px-4 text-sm"
+        >
+          Opnieuw
+        </button>
       </main>
     );
   }
 
+  const controls = index && season && week ? (
+    <Controls
+      seasons={Object.keys(index.seasons).sort().reverse()}
+      season={season}
+      onSeason={chooseSeason}
+      weeks={index.seasons[season]}
+      week={week}
+      onWeek={chooseWeek}
+      quota={quota}
+      onQuota={setQuota}
+      durations={prefs?.format_durations_minutes}
+      withRecap={withRecap}
+      onRecap={setWithRecap}
+      recapMinutes={prefs?.slate_recap?.minutes ?? 60}
+      maxOpen={maxOpenWeek(watchedThrough)}
+    />
+  ) : null;
+
   if (gated && prefs && index) {
     return (
       <main className="app-shell mx-auto max-w-5xl">
-        <header>
-          <h1 className="text-2xl font-bold">NFL Watchdog</h1>
-        </header>
-        <div className="mt-4">
-          <Controls
-            seasons={Object.keys(index.seasons).sort().reverse()}
-            season={season}
-            onSeason={(s) => { setSeason(s); setWeek(index.seasons[s][0]); }}
-            weeks={index.seasons[season]}
-            week={week}
-            onWeek={setWeek}
-            quota={quota}
-            onQuota={setQuota}
-            maxOpen={maxOpenWeek(watchedThrough)}
-          />
-        </div>
+        <h1 className="text-xl font-bold">NFL Watchdog</h1>
+        <div className="mt-3">{controls}</div>
         <WeekGate
-          season={season}
           week={week}
           watchedThrough={watchedThrough}
-          onAdvance={(w) => setWatched((prev) => ({ ...prev, [season]: w }))}
+          onAdvance={(value) => setWatched((previous) => ({
+            ...previous,
+            [season]: Math.max(previous[season] ?? 0, value),
+          }))}
           onOverride={() => setOverride(`${season}:${week}`)}
         />
-        {/* Here as well, because this is the screen you land on once iOS has
-            wiped the storage: the counter is back to zero and every week you had
-            already watched sits behind the gate. */}
         <Backup onRestore={restoreBackup} />
       </main>
     );
   }
 
-  if (!planned || !prefs || !overrides || !index || !watched) {
-    return (
-      <main className="app-shell mx-auto max-w-5xl">
-        <p className="text-stone-500">Laden…</p>
-      </main>
-    );
+  if (!planned || !prefs || !overrides || !index || !watched || !viewed) {
+    return <main className="app-shell mx-auto max-w-5xl text-stone-500">Laden…</main>;
   }
 
   const rankOf = new Map(
-    teams.filter((t) => t.tier === 'favorite').map((t) => [t.abbr, t.rank ?? 99]),
+    teams.filter((team) => team.tier === 'favorite').map((team) => [team.abbr, team.rank ?? 99]),
   );
+  const timeline = [...planned.games].sort((a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc));
+  const picks = timeline.filter((game) => game.format_advice !== 'skip');
+  const skipped = timeline.filter((game) => game.format_advice === 'skip');
+  const seenCount = picks.filter((game) => viewedIds.has(game.game_id)).length;
+  const nextGame = picks.find((game) => !viewedIds.has(game.game_id));
+  const recap = planned.packages.b.summary;
+  const recapActive = withRecap && recap.recap_included;
+  const allSeen = picks.length > 0 && seenCount === picks.length;
 
-  // Beide lijsten staan op aftraptijd. Dat is de veiligste volgorde die er is:
-  // een aftraptijd staat vast voordat er gespeeld wordt, dus de positie in de
-  // lijst codeert niets over hoe het afliep. De vorige volgorde (eigen teams op
-  // rang, daarna op stakes_pre) was al spoilervrij, maar de plek in de lijst
-  // zei wel iets over de verwachte inzet; nu zegt hij alleen nog iets over de
-  // klok. Wat de planner ervan vindt staat op de kaart zelf, niet in de rangorde.
-  const byKickoff = (a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc);
-
-  const own = planned.games.filter((g) => g.tags.includes('own_team'));
-  const skipped = planned.games.filter((g) => g.format_advice === 'skip');
-  const timeline = [...planned.games].sort(byKickoff);
-
-  const rowProps = (g) => ({
-    rank: rankOf.get(g.home.abbr) ?? rankOf.get(g.away.abbr) ?? null,
-    hints: hints[g.game_id],
-    result: results[g.game_id],
-    onRevealHints: () => revealHints(g),
-    onRevealResult: () => revealResult(g),
+  const rowProps = (game) => ({
+    rank: rankOf.get(game.home.abbr) ?? rankOf.get(game.away.abbr) ?? null,
+    hints: hints[game.game_id],
+    result: results[game.game_id],
+    revealError: revealErrors[game.game_id],
+    busy: revealBusy[game.game_id],
+    viewed: viewedIds.has(game.game_id),
+    next: nextGame?.game_id === game.game_id,
+    recapped: recapActive && game.format_advice === 'skip' && game.in_sunday_slate,
+    onToggleViewed: () => toggleViewed(game.game_id),
+    onRevealHints: () => revealHints(game),
+    onRevealResult: () => revealResult(game),
   });
+
+  const progress = [
+    `${picks.length} kijken`,
+    `${seenCount}/${picks.length} klaar`,
+    `${skipped.length} over`,
+    recapActive && `${recap.recap_covers} in S60`,
+  ].filter(Boolean).join(' · ');
 
   return (
     <main className="app-shell mx-auto max-w-5xl">
-      {/* Eén regel. De kop stond op drie regels van 24px plus twee alinea's van
-          14px; dat is een kwart scherm voordat er ook maar één wedstrijd in
-          beeld komt. Het tijdverschil staat er verkort in: "+6 u t.o.v. New
-          York" in plaats van een hele zin. */}
       <header className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
         <h1 className="text-xl font-bold">NFL Watchdog</h1>
-        <p className="text-xs text-stone-600 dark:text-stone-400">
-          week {data.week} · {data.season} · {data.timezone} (+{data.nl_et_offset_hours} u
-          t.o.v. New York)
+        <p className="text-xs text-stone-500">
+          {data.season} · NL +{data.nl_et_offset_hours}u ET
           {data.teams_on_bye.length > 0 && (
-            <>
-              {' · '}
-              <Term id="bye">bye</Term>: {data.teams_on_bye.join(', ')}
-            </>
+            <> · <Term id="bye">bye</Term> {data.teams_on_bye.join(', ')}</>
           )}
         </p>
       </header>
 
-      <div className="mt-3">
-        <Controls
-          seasons={Object.keys(index.seasons).sort().reverse()}
-          season={season}
-          onSeason={(s) => { setSeason(s); setWeek(index.seasons[s][0]); }}
-          weeks={index.seasons[season]}
-          week={week}
-          onWeek={setWeek}
-          quota={quota}
-          onQuota={setQuota}
-          maxOpen={maxOpenWeek(watchedThrough)}
-        />
-      </div>
+      <div className="mt-3">{controls}</div>
 
       <Timeline
         title={`Week ${data.week}`}
-        note={
-          `Op aftraptijd. ${timeline.length - skipped.length} in je weekvorm, ` +
-          `${skipped.length} overgeslagen als één regel — tik voor de kaart.` +
-          (own.length === 0 ? ' Geen van je teams speelt deze week.' : '')
-        }
+        note={progress}
         games={timeline}
         rowProps={rowProps}
       />
 
       {watchedThrough < week && (
-        <p className="mt-6 text-sm">
-          <button
-            type="button"
-            onClick={() => setWatched((prev) => ({ ...prev, [season]: week }))}
-            className="rounded border border-stone-300 px-3 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
-          >
-            Week {week} afgevinkt — deze heb ik gekeken
-          </button>
-          {/* Op een eigen regel: naast de knop wikkelde deze zin op 375px om de
-              knop heen en brak hij midden in de zin af. */}
-          <span className="mt-1 block text-xs text-stone-500 dark:text-stone-400">
-            Daarmee gaat week {week + 1} open.
-          </span>
-        </p>
+        <button
+          type="button"
+          onClick={() => setWatched((previous) => ({
+            ...previous,
+            [season]: Math.max(previous[season] ?? 0, week),
+          }))}
+          className={`mt-5 min-h-11 rounded border px-4 text-sm ${
+            allSeen
+              ? 'border-emerald-700 bg-emerald-950/50 text-emerald-200'
+              : 'border-stone-700 text-stone-400'
+          }`}
+        >
+          Week afronden →
+        </button>
       )}
 
-      {/* Instellingen staan onder de wedstrijden. Ze worden zelden aangeraakt en
-          namen bovenaan de ruimte in die de eerste wedstrijd nodig had om nog
-          boven de vouw uit te komen; de samenvatting van je week is wél elke keer
-          relevant en staat daarom wel bovenaan. */}
       <div className="mt-10">
         <TeamSettings
           teams={prefs.teams}
@@ -332,26 +428,10 @@ export default function App() {
         <Backup onRestore={restoreBackup} />
       </div>
 
-      {/* Bewust index.current en niet het gekozen seizoen: er is maar één gids,
-          want de rosterdata van ESPN is de stand van nu en bestaat niet met
-          terugwerkende kracht. Aan de seizoenkiezer gehangen leverde 2025 een
-          404 op, en die fout bleef daarna staan. */}
       <TeamGuide season={index.current} />
 
-      <footer className="mt-10 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-stone-800 dark:text-stone-400">
-        <p>
-          Deze pagina bevat geen enkele eindstand. Hints en uitslagen worden pas
-          opgehaald op het moment dat je erop klikt, niet bij het laden.
-        </p>
-        <p className="mt-1">
-          De lijst staat op aftraptijd en nergens anders op. Een volgorde op rating
-          zou de wedstrijden die lang spannend bleven vooraan zetten, en dat is
-          uitkomstinformatie; een aftraptijd staat vast voordat er gespeeld wordt.
-        </p>
-        <p className="mt-1">
-          Bekijk je een afgelopen week, open dan geen latere week: de records daar zijn
-          de stand ná deze speelronde.
-        </p>
+      <footer className="mt-10 border-t border-stone-800 pt-4 text-xs text-stone-500">
+        Spoilervrij · hints en uitslagen laden alleen na jouw keuze.
       </footer>
     </main>
   );

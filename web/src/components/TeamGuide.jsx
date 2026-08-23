@@ -42,7 +42,7 @@ function Team({ team }) {
 
   return (
     <details className="border-t border-stone-200 first:border-t-0 dark:border-stone-800">
-      <summary className="flex cursor-pointer items-center gap-2 py-2">
+      <summary className="flex min-h-11 cursor-pointer items-center gap-2 py-2">
         <TeamLogo abbr={team.abbr} size={22} />
         <span className="w-10 shrink-0 font-mono text-xs text-stone-500 dark:text-stone-400">
           {team.abbr}
@@ -146,10 +146,10 @@ export default function TeamGuide({ season }) {
       {/* "Teamgids" en niet "Teams": het paneel met je favorieten heet al Teams,
           en twee panelen met dezelfde naam op één pagina is geen keuze maar een
           vergissing. */}
-      <summary className="cursor-pointer px-3 py-2 text-sm font-medium">
+      <summary className="min-h-11 cursor-pointer px-3 py-3 text-sm font-medium">
         Teamgids
         <span className="ml-2 font-normal text-stone-500 dark:text-stone-400">
-          spelers, coaches en feiten
+          spelers & stadions
         </span>
       </summary>
 
@@ -175,10 +175,8 @@ export default function TeamGuide({ season }) {
 
         {guide && (
           <>
-            <p className="text-xs text-stone-500 dark:text-stone-400">
-              Stand van seizoen {guide.season}. Namen, nummers en feiten die vaststaan
-              vóór er gespeeld wordt. Geen standen en geen statistieken — die zouden
-              vertellen hoe het tot nu toe ging.
+            <p className="text-xs text-stone-500">
+              Seizoen {guide.season} · zonder standen of statistieken.
             </p>
 
             <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">

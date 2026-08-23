@@ -25,13 +25,11 @@ export function isLocked(week, watchedThrough) {
  */
 export function lockReason(week, watchedThrough) {
   const w = Number(watchedThrough) || 0;
-  const leaked = w === 0
-    ? `week 1 tot en met ${Number(week) - 1}`
-    : `week ${w + 1} tot en met ${Number(week) - 1}`;
-  return (
-    `De records in week ${week} zijn de stand ná ${leaked}. ` +
-    `Je hebt gekeken tot en met week ${w}.`
-  );
+  const first = w + 1;
+  const last = Number(week) - 1;
+  const leaked = first === last ? `week ${first}` : `week ${first} tot en met ${last}`;
+  const progress = w > 0 ? `Je bent bij week ${w}.` : 'Je bent nog niet begonnen.';
+  return `Week ${week} bevat de stand na ${leaked}. ${progress}`;
 }
 
 // Weeks split into what you can open freely and what is gated.

@@ -23,7 +23,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
       </span>
       <span className="min-w-0 flex-1 truncate text-sm">{team.name}</span>
 
-      <span className={`flex w-14 shrink-0 items-center justify-end gap-0.5 ${tier === 'favorite' ? '' : 'invisible'}`}>
+      <span className={`flex w-24 shrink-0 items-center justify-end gap-0.5 ${tier === 'favorite' ? '' : 'invisible'}`}>
           <span className="w-5 text-center font-mono text-xs text-emerald-700 dark:text-emerald-400">
             #{rank}
           </span>
@@ -32,7 +32,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} hoger`}
             disabled={rank === 1}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, -1))}
-            className="rounded p-2.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="min-h-11 min-w-11 rounded text-xs leading-none disabled:opacity-25 hover:bg-stone-800"
           >
             ↑
           </button>
@@ -41,7 +41,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             aria-label={`${team.name} lager`}
             disabled={rank === favoriteCount}
             onClick={() => onChange((o) => moveFavorite(o, team.abbr, 1))}
-            className="rounded p-2.5 text-xs leading-none disabled:opacity-25 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="min-h-11 min-w-11 rounded text-xs leading-none disabled:opacity-25 hover:bg-stone-800"
           >
             ↓
           </button>
@@ -55,7 +55,7 @@ function TeamRow({ team, override, favoriteCount, onChange }) {
             onClick={() => onChange((o) => setTier(o, team.abbr, t))}
             aria-pressed={tier === t}
             title={TIER_LABEL[t]}
-            className={`w-14 rounded px-1 py-2.5 text-center text-xs ${
+            className={`min-h-11 w-14 rounded px-1 text-center text-xs ${
               tier === t
                 ? TIER_STYLE[t]
                 : 'text-stone-500 hover:bg-stone-200 dark:text-stone-400 dark:hover:bg-stone-800'
@@ -85,7 +85,7 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
 
   return (
     <details className="mt-4 rounded border border-stone-200 dark:border-stone-800">
-      <summary className="cursor-pointer px-3 py-2 text-sm font-medium">
+      <summary className="min-h-11 cursor-pointer px-3 py-3 text-sm font-medium">
         Teams
         <span className="ml-2 font-normal text-stone-500 dark:text-stone-400">
           {favorites.length
@@ -95,10 +95,8 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
       </summary>
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
-        <p className="text-xs text-stone-500 dark:text-stone-400">
-          Favorieten krijgen als eerste een plek in de weekvorm, op de volgorde die je
-          hier zet. Watchlist telt mee bij gelijke inzet, Nooit krijgt nooit een plek.
-          Je keuze blijft in deze browser bewaard.
+        <p className="text-xs text-stone-500">
+          Favoriet krijgt voorrang · Watch helpt bij gelijke inzet · Nooit slaat over.
         </p>
 
         <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">
@@ -125,9 +123,9 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
         <button
           type="button"
           onClick={onReset}
-          className="mt-4 rounded border border-stone-300 px-3 py-2 text-xs text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900"
+          className="mt-4 min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-400 hover:bg-stone-900"
         >
-          Terug naar de instellingen uit preferences.json
+          Standaard herstellen
         </button>
       </div>
     </details>

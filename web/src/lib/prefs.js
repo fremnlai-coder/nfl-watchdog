@@ -7,6 +7,8 @@
 
 const KEY = 'nfl-watchdog:teams:v1';
 const WATCHED_KEY = 'nfl-watchdog:watched:v1';
+const SETTINGS_KEY = 'nfl-watchdog:settings:v1';
+const VIEWED_KEY = 'nfl-watchdog:viewed:v1';
 
 export const TIERS = ['favorite', 'watchlist', 'neutral', 'avoid'];
 
@@ -138,6 +140,118 @@ export function saveWatched(map) {
   }
 }
 
+function normalizeQuota(value, strict = false) {
+  const fallback = {};
+  if (value == null) return fallback;
+  if (!value || typeof value !== 'object') {
+    if (strict) throw new Error('De weekvorm klopt niet.');
+    return fallback;
+  }
+  const quota = {};
+  for (const key of ['full', 'game_in_40']) {
+    const n = value[key];
+    if (!Number.isInteger(n) || n < 0 || n > 8) {
+      if (strict) throw new Error(`Aantal ${key} klopt niet.`);
+      continue;
+    }
+    quota[key] = n;
+  }
+  return quota;
+}
+
+function normalizeSettings(value, strict = false) {
+  if (value == null) return {};
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    if (strict) throw new Error('De app-instellingen kloppen niet.');
+    return {};
+  }
+
+  const out = {};
+  const quota = normalizeQuota(value.weekly_quota, strict);
+  if (Object.keys(quota).length) out.weekly_quota = quota;
+
+  if (value.with_recap != null) {
+    if (typeof value.with_recap !== 'boolean') {
+      if (strict) throw new Error('De Sunday in 60-instelling klopt niet.');
+    } else {
+      out.with_recap = value.with_recap;
+    }
+  }
+
+  if (value.last_season != null) {
+    const season = String(value.last_season);
+    if (!/^\d{4}$/.test(season)) {
+      if (strict) throw new Error('Het laatst gekozen seizoen klopt niet.');
+    } else {
+      out.last_season = season;
+    }
+  }
+
+  const weeks = {};
+  for (const [season, week] of Object.entries(value.last_week_by_season ?? {})) {
+    if (!/^\d{4}$/.test(season) || !Number.isInteger(week) || week < 1 || week > 18) {
+      if (strict) throw new Error(`De laatst gekozen week voor ${season} klopt niet.`);
+      continue;
+    }
+    weeks[season] = week;
+  }
+  if (Object.keys(weeks).length) out.last_week_by_season = weeks;
+  return out;
+}
+
+export function loadSettings() {
+  try {
+    return normalizeSettings(JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}'));
+  } catch {
+    return {};
+  }
+}
+
+export function saveSettings(settings) {
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(normalizeSettings(settings)));
+  } catch {
+    // ignore
+  }
+}
+
+function normalizeViewed(value, strict = false) {
+  if (value == null) return {};
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    if (strict) throw new Error('De kijkvoortgang klopt niet.');
+    return {};
+  }
+  const out = {};
+  for (const [season, ids] of Object.entries(value)) {
+    if (!/^\d{4}$/.test(season) || !Array.isArray(ids)) {
+      if (strict) throw new Error(`De kijkvoortgang voor ${season} klopt niet.`);
+      continue;
+    }
+    if (ids.some((id) => typeof id !== 'string' || !/^\d+$/.test(id))) {
+      if (strict) throw new Error(`Een wedstrijd-id voor ${season} klopt niet.`);
+      continue;
+    }
+    out[season] = [...new Set(ids)];
+  }
+  return out;
+}
+
+export function loadViewed() {
+  try {
+    return normalizeViewed(JSON.parse(localStorage.getItem(VIEWED_KEY) ?? '{}'));
+  } catch {
+    return {};
+  }
+}
+
+export function saveViewed(viewed) {
+  try {
+    localStorage.setItem(VIEWED_KEY, JSON.stringify(normalizeViewed(viewed)));
+  } catch {
+    // ignore
+  }
+}
+
 
 // --- back-up ---------------------------------------------------------------
 //
@@ -147,7 +261,7 @@ export function saveWatched(map) {
 // starts you empty. This is the way back in both cases.
 
 const BACKUP_APP = 'nfl-watchdog';
-const BACKUP_VERSION = 1;
+const BACKUP_VERSION = 2;
 
 export function exportState(now = new Date()) {
   return {
@@ -156,6 +270,8 @@ export function exportState(now = new Date()) {
     exported_at: now.toISOString(),
     teams: loadOverrides() ?? {},
     watched: loadWatched(),
+    settings: loadSettings(),
+    viewed: loadViewed(),
   };
 }
 
@@ -172,8 +288,8 @@ export function parseBackup(text) {
   if (!doc || doc.app !== BACKUP_APP) {
     throw new Error('Dit bestand komt niet van NFL Watchdog.');
   }
-  if (doc.version !== BACKUP_VERSION) {
-    throw new Error(`Onbekende versie ${doc.version}; deze app leest versie ${BACKUP_VERSION}.`);
+  if (![1, BACKUP_VERSION].includes(doc.version)) {
+    throw new Error(`Onbekende versie ${doc.version}; deze app leest versie 1 en ${BACKUP_VERSION}.`);
   }
 
   const teams = {};
@@ -194,5 +310,8 @@ export function parseBackup(text) {
     watched[season] = week;
   }
 
-  return { teams: renumber(teams), watched };
+  const settings = doc.version >= 2 ? normalizeSettings(doc.settings, true) : {};
+  const viewed = doc.version >= 2 ? normalizeViewed(doc.viewed, true) : {};
+
+  return { teams: renumber(teams), watched, settings, viewed };
 }

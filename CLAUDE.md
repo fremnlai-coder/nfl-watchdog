@@ -1,28 +1,30 @@
-# NFL Watchdog — v2
+# NFL Watchdog — v3
 
-Stand: 21 augustus 2026.
+Stand: 23 augustus 2026.
 
 Spoilervrije NFL-kijkgids. Eén gebruiker, geen server, geen database.
 Fase 1 t/m 4 opgeleverd: ingest, datamodel, publiek/privé-scheiding, watchability-score,
 planner, CLI-weekoverzicht, teasers met spoiler-linter, de statische web-UI, en de
 NFL-uitleglaag met glossarium en playoff-bracket.
 
-v2 voegt daar de iOS-kant aan toe: installeerbaar als webapp op het beginscherm,
-safe-area-afhandeling, een back-up van de lokale stand, en de mobiele fixes uit de
-meting op 375px. Zie **iOS en het beginscherm**.
+v3 herstelt de wekelijkse cacheverversing en maakt de hoofdflow compacter. De app
+onthoudt weekvorm, seizoen, week, Sunday in 60 en kijkvoortgang. Hints en uitslagen
+worden per wedstrijd gestaged en opgehaald; één bevestiging downloadt dus niet
+langer de rest van de speelronde.
 
 ## Draaien
 
 ```bash
 npm run ingest -- --season 2026 --weeks 1-18   # actief seizoen
 npm run ingest -- --season 2025 --weeks 1-18   # testset met uitslagen
+npm run ingest -- --season 2026 --weeks 1-18 --offline  # expliciet uit cache
 node src/cli.js --week 1                         # weekoverzicht (actief seizoen)
 node src/cli.js --season 2025 --week 14 --watched 13   # ander seizoen
 node src/cli.js --week 14 --full 2 --in40 3      # weekvorm overschrijven
 node src/cli.js --week 14 --no-rating           # plan op inzet vooraf i.p.v. verloop
 node src/cli.js --week 14 --hints               # level 2
 node src/cli.js --week 14 --result <game_id>    # level 3
-npm test                                        # 108 tests
+npm test                                        # 115 tests
 
 npm run dev                                     # web-UI op localhost:5173
 npm run build                                   # statische build naar dist/
@@ -52,7 +54,7 @@ src/cli.js       weekoverzicht; planner draait op weergavemoment, niet bij inges
 
 web/src/App.jsx        tijdlijn, weekkiezer, weekvorm-stepper
 web/src/lib/data.js    ALLE netwerkcalls; de spoilergrens in één bestand
-web/src/lib/prefs.js   favorieten in localStorage, over de config heen
+web/src/lib/prefs.js   teams, weekvorm, laatste week en kijkvoortgang in localStorage
 web/src/components/    GameCard (met de twee onthulstappen), Controls, TeamSettings,
                        Explainer, PlayoffBracket, Term, TeamLogo, WeekGate, Backup
 web/src/lib/glossary.js  begrippen; puur spelregels, niets seizoensgebonden
@@ -151,14 +153,14 @@ gepubliceerde teasers lint tegen de echte spelerslijst van die wedstrijd.
 ## Web-UI en de spoilergrens
 
 De initiële pagina haalt alleen `data/index.json` en `data/public/week-N.json` op.
-`hints.json` komt pas bij de eerste klik, `results.json` pas na de tweede plus een
-expliciete bevestiging. Empirisch geverifieerd in de browser via het netwerkpaneel,
-niet alleen beredeneerd.
+Een per-game hintbestand komt pas bij de eerste klik, het uitslagbestand pas na de
+tweede plus een expliciete bevestiging. Toekomstige wedstrijden dragen twee veilige
+beschikbaarheidsvlaggen en tonen deze acties nog niet.
 
 `dist/data/private/` staat wél in de build — anders werkt level 3 niet. "Privé"
-betekent hier "niet in de initiële payload", niet "afgeschermd". `test/build-leak.test.js`
-toetst daarom de juiste dingen: alle 272 scoreregels tegen `index.html` plus de JS- en
-CSS-bundel, en het bestaan van de privé-bestanden in dist.
+betekent hier "niet in de initiële payload", niet "afgeschermd". De build splitst de
+bronbestanden naar één JSON per wedstrijd. `test/build-leak.test.js` toetst alle 272
+scoreregels tegen de initiële bundel en controleert de 544 losse revealbestanden.
 
 ## Favorieten wijzigen in de browser
 
@@ -252,7 +254,9 @@ Twee dingen die er bewust in zitten:
   Afgelopen wedstrijden veranderen niet meer, dus na de eerste run hoeft alleen de
   nieuwe week opgehaald te worden in plaats van alle 272.
 
-Geverifieerd met twee handmatige runs: 272 wedstrijden, build, 75 tests, ~20 seconden.
+De scoreboards worden bij iedere ingest opnieuw opgehaald. Alleen met `--offline`
+wordt de cache gebruikt; play-by-play en probabilities van afgeronde wedstrijden
+blijven wel permanent gecachet.
 De repo-default voor `GITHUB_TOKEN` staat op read; de expliciete `permissions:
 contents: write` in de workflow overschrijft dat en is in de job-setup bevestigd.
 
@@ -269,8 +273,8 @@ Geverifieerd op de live site, niet alleen lokaal:
 - 0 van de 272 scoreregels in de initiële payload (index.html plus de JS- en
   CSS-bundel, samen 236 kB). Ook geen hint-teksten.
 - Requestvolgorde in de browser: bij laden alleen `index.json` en het publieke
-  weekbestand; `hints.json` pas na de eerste klik; `results.json` pas na de
-  bevestiging. De bevestigingsvraag zelf doet geen prefetch.
+  weekbestand; daarna uitsluitend het hint- of uitslagbestand van de aangeklikte
+  wedstrijd. De bevestigingsvraag zelf doet geen prefetch.
 
 
 `vercel.json` legt de buildinstellingen vast, zodat er in de Vercel-UI niets
@@ -427,8 +431,8 @@ juist te véél dicht. Vervelend, geen lek. Een import kan dat wel worden, en da
 weigert `parseBackup()` een kijkstand buiten 0–18 in plaats van 'm te knippen —
 `test/backup.test.js` bewaakt dat.
 
-**De back-up.** `Backup.jsx` schrijft favorieten plus kijkstand naar klembord of
-bestand, en leest ze terug uit een bestand of uit geplakte tekst. Het paneel staat
+**De back-up.** `Backup.jsx` schrijft teams, weekvorm, laatste week, Sunday in 60 en
+kijkvoortgang naar klembord of bestand. Versie 1-back-ups blijven leesbaar. Het paneel staat
 ook in het scherm van de weekpoort: dat is precies waar je landt als de opslag weg
 is, en van daaruit kom je anders nergens meer. Let op: de webapp op je beginscherm
 heeft een eigen opslag, los van Safari. Wie overstapt begint leeg en moet één keer
@@ -522,9 +526,8 @@ Wat er stond en wat het nu is, op een venster van 375×812:
 
 Drie beslissingen daarachter:
 
-- **De weekvorm zit achter een `details`.** Die twee stappers zet je één keer per
-  seizoen. De summary toont de stand ("Weekvorm 2× full · 3× Game in 40 · 490 min"),
-  dus inklappen kost je geen informatie.
+- **De weekvorm zit achter een `details`.** De summary toont de stand compact. De
+  keuze blijft na herladen staan en kan Sunday in 60 als extra weekonderdeel tonen.
 - **De weekkiezer heeft een vaste breedte (`w-20`).** De optie "· nog niet gekeken"
   bepaalde anders de breedte van het hele veld, waardoor Seizoen naar een tweede
   regel viel. De lijst zelf toont de volledige tekst nog gewoon.

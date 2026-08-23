@@ -1,9 +1,7 @@
 import { useRef, useState } from 'react';
 import { exportState, parseBackup } from '../lib/prefs.js';
 
-// Copy and file download both exist on purpose. On iOS the download lands in
-// Files, which survives a storage wipe but takes taps to retrieve; the clipboard
-// is one tap and enough to paste into a note. Neither is reliable enough alone.
+// Clipboard and file export both exist because iOS storage can be cleared.
 export default function Backup({ onRestore }) {
   const [status, setStatus] = useState(null); // { tone: 'ok' | 'error', text }
   const [pasting, setPasting] = useState(false);
@@ -14,9 +12,9 @@ export default function Backup({ onRestore }) {
   async function copy() {
     try {
       await navigator.clipboard.writeText(doc());
-      setStatus({ tone: 'ok', text: 'Back-up staat op het klembord.' });
+      setStatus({ tone: 'ok', text: 'Gekopieerd.' });
     } catch {
-      setStatus({ tone: 'error', text: 'Kopiëren mag niet in deze browser; gebruik het bestand.' });
+      setStatus({ tone: 'error', text: 'Kopiëren lukt niet. Gebruik download.' });
     }
   }
 
@@ -28,7 +26,7 @@ export default function Backup({ onRestore }) {
     a.download = `nfl-watchdog-backup-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
-    setStatus({ tone: 'ok', text: 'Bestand opgeslagen.' });
+    setStatus({ tone: 'ok', text: 'Gedownload.' });
   }
 
   function restore(text) {
@@ -40,7 +38,7 @@ export default function Backup({ onRestore }) {
         .join(', ');
       setStatus({
         tone: 'ok',
-        text: `Teruggezet: ${Object.keys(state.teams).length} teams${seasons ? `, ${seasons}` : ''}.`,
+        text: `Hersteld: ${Object.keys(state.teams).length} teams${seasons ? ` · ${seasons}` : ''}.`,
       });
       setPasting(false);
     } catch (e) {
@@ -49,37 +47,34 @@ export default function Backup({ onRestore }) {
   }
 
   const button =
-    'rounded border border-stone-300 px-2.5 py-2 text-xs text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800';
+    'min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-300 hover:bg-stone-800';
 
   return (
     <details className="mt-4 rounded border border-stone-200 dark:border-stone-800">
-      <summary className="cursor-pointer px-3 py-2 text-sm font-medium">
+      <summary className="min-h-11 cursor-pointer px-3 py-3 text-sm font-medium">
         Back-up
         <span className="ml-2 font-normal text-stone-500 dark:text-stone-400">
-          favorieten en kijkstand
+          lokale stand
         </span>
       </summary>
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
-        <p className="text-xs text-stone-500 dark:text-stone-400">
-          Je voorkeuren en je kijkstand staan in deze browser, niet op een server.
-          Safari op iPhone wist die opslag na zeven dagen waarin je de site niet
-          opent; als webapp op je beginscherm gebeurt dat niet, maar dan begin je
-          daar wel met een lege stand. Zet 'm dan hiermee terug.
+        <p className="text-xs text-stone-500">
+          Teams, weekvorm en kijkstand. Handig bij wisselen naar de beginschermapp.
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">
           <button type="button" onClick={copy} className={button}>
-            Kopieer back-up
+            Kopiëren
           </button>
           <button type="button" onClick={download} className={button}>
-            Bewaar als bestand
+            Download
           </button>
           {/* Forces the wrap between making a back-up and putting one back,
               instead of leaving a stray divider at the end of a wrapped row. */}
           <span className="basis-full" aria-hidden="true" />
           <button type="button" onClick={() => fileInput.current?.click()} className={button}>
-            Uit bestand terugzetten
+            Bestand kiezen
           </button>
           <button type="button" onClick={() => setPasting((v) => !v)} className={button}>
             Plakken
@@ -115,7 +110,7 @@ export default function Backup({ onRestore }) {
               className="w-full rounded border border-stone-300 bg-transparent p-2 font-mono text-xs dark:border-stone-700"
             />
             <button type="submit" className={`mt-2 ${button}`}>
-              Terugzetten
+              Herstellen
             </button>
           </form>
         )}

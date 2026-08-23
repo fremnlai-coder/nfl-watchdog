@@ -1,94 +1,113 @@
 function Stepper({ label, value, onChange, min = 0, max = 8 }) {
   return (
-    <label className="flex items-center gap-2 text-sm">
-      <span className="text-stone-600 dark:text-stone-400">{label}</span>
-      <span className="inline-flex items-center rounded border border-stone-300 dark:border-stone-700">
+    <div className="flex items-center gap-2 text-sm">
+      <span className="min-w-20 text-stone-400">{label}</span>
+      <span className="inline-flex items-center rounded border border-stone-700">
         <button
           type="button"
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="px-3 py-1.5 hover:bg-stone-100 dark:hover:bg-stone-900"
+          className="min-h-11 min-w-11 hover:bg-stone-900"
           aria-label={`${label} minder`}
         >
           −
         </button>
-        <span className="w-6 text-center font-mono">{value}</span>
+        <span className="w-7 text-center font-mono">{value}</span>
         <button
           type="button"
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="px-3 py-1.5 hover:bg-stone-100 dark:hover:bg-stone-900"
+          className="min-h-11 min-w-11 hover:bg-stone-900"
           aria-label={`${label} meer`}
         >
           +
         </button>
       </span>
-    </label>
+    </div>
   );
 }
 
-// De weekkiezer staat altijd open; de weekvorm zit erachter. Die twee stappers
-// zet je één keer per seizoen, en ze kostten bovenaan de ruimte die de eerste
-// wedstrijd nodig had. De samenvatting op de summary houdt de stand zichtbaar
-// zonder dat je hem hoeft open te klappen.
-export default function Controls({ seasons, season, onSeason, weeks, week, onWeek, quota, onQuota, maxOpen }) {
-  const minutes = quota.full * 185 + quota.game_in_40 * 40;
+export default function Controls({
+  seasons,
+  season,
+  onSeason,
+  weeks,
+  week,
+  onWeek,
+  quota,
+  onQuota,
+  durations = { full: 185, game_in_40: 40 },
+  withRecap,
+  onRecap,
+  recapMinutes = 60,
+  maxOpen,
+}) {
+  const minutes = quota.full * durations.full
+    + quota.game_in_40 * durations.game_in_40
+    + (withRecap ? recapMinutes : 0);
 
   return (
-    <div className="border-y border-stone-200 dark:border-stone-800">
+    <div className="border-y border-stone-800">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-2">
-        <label className="flex items-center gap-2 text-sm">
-          <span className="text-stone-600 dark:text-stone-400">Week</span>
+        <label className="flex items-center gap-2 text-sm text-stone-400">
+          Week
           <select
             value={week}
-            onChange={(e) => onWeek(Number(e.target.value))}
-            // Vaste breedte: de optie "nog niet gekeken" bepaalde anders de
-            // breedte van het hele veld, en dan past Seizoen er niet meer naast.
-            // De lijst zelf toont de volledige tekst gewoon.
-            className="w-20 rounded border border-stone-300 bg-transparent px-2 py-1.5 dark:border-stone-700"
+            onChange={(event) => onWeek(Number(event.target.value))}
+            className="min-h-11 w-20 rounded border border-stone-700 bg-transparent px-2 text-stone-100"
           >
-            {weeks.map((w) => (
-              <option key={w} value={w}>
-                {w}
-                {maxOpen != null && w > maxOpen ? ' · nog niet gekeken' : ''}
+            {weeks.map((candidate) => (
+              <option key={candidate} value={candidate}>
+                {candidate}{maxOpen != null && candidate > maxOpen ? ' · op slot' : ''}
               </option>
             ))}
           </select>
         </label>
 
         {seasons?.length > 1 && (
-          <label className="flex items-center gap-2 text-sm">
-            <span className="text-stone-600 dark:text-stone-400">Seizoen</span>
+          <label className="flex items-center gap-2 text-sm text-stone-400">
+            Seizoen
             <select
               value={season}
-              onChange={(e) => onSeason(e.target.value)}
-              className="rounded border border-stone-300 bg-transparent px-2 py-1.5 dark:border-stone-700"
+              onChange={(event) => onSeason(event.target.value)}
+              className="min-h-11 rounded border border-stone-700 bg-transparent px-2 text-stone-100"
             >
-              {seasons.map((s) => (
-                <option key={s} value={s}>{s}</option>
+              {seasons.map((candidate) => (
+                <option key={candidate} value={candidate}>{candidate}</option>
               ))}
             </select>
           </label>
         )}
       </div>
 
-      <details className="border-t border-stone-200 dark:border-stone-800">
-        <summary className="cursor-pointer py-2 text-sm">
-          <span className="text-stone-600 dark:text-stone-400">Weekvorm</span>
-          <span className="ml-2">
-            {quota.full}× full · {quota.game_in_40}× Game in 40
-          </span>
-          <span className="ml-2 text-stone-500 dark:text-stone-400">{minutes} min</span>
+      <details className="border-t border-stone-800">
+        <summary className="flex min-h-11 cursor-pointer items-center text-sm">
+          <span className="text-stone-400">Weekvorm</span>
+          <span className="ml-2">{quota.full} Full · {quota.game_in_40}×40</span>
+          {withRecap && <span className="ml-1 text-amber-300">· S60</span>}
+          <span className="ml-2 text-stone-500">{minutes}m</span>
         </summary>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pb-3">
+        <div className="flex flex-wrap items-center gap-3 pb-3">
           <Stepper
-            label="Full replays"
+            label="Full"
             value={quota.full}
-            onChange={(v) => onQuota({ ...quota, full: v })}
+            onChange={(value) => onQuota({ ...quota, full: value })}
           />
           <Stepper
             label="Game in 40"
             value={quota.game_in_40}
-            onChange={(v) => onQuota({ ...quota, game_in_40: v })}
+            onChange={(value) => onQuota({ ...quota, game_in_40: value })}
           />
+          <button
+            type="button"
+            aria-pressed={withRecap}
+            onClick={() => onRecap(!withRecap)}
+            className={`min-h-11 rounded border px-3 text-sm ${
+              withRecap
+                ? 'border-amber-700 bg-amber-950/50 text-amber-200'
+                : 'border-stone-700 text-stone-400'
+            }`}
+          >
+            Sunday in 60 · +{recapMinutes}m
+          </button>
         </div>
       </details>
     </div>

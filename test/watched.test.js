@@ -36,9 +36,11 @@ test('ontbrekende of rommelige waarden vallen terug op nul', () => {
 
 test('de uitleg benoemt welke weken zouden lekken', () => {
   assert.match(lockReason(5, 2), /week 3 tot en met 4/);
-  assert.match(lockReason(5, 2), /tot en met week 2/);
+  assert.match(lockReason(5, 2), /bij week 2/);
   // Vanaf nul is er geen ondergrens om vanaf te tellen.
   assert.match(lockReason(4, 0), /week 1 tot en met 3/);
+  assert.match(lockReason(2, 0), /na week 1\./);
+  assert.doesNotMatch(lockReason(2, 0), /week 1 tot en met 1/);
 });
 
 test('weken splitsen in open en op slot', () => {
