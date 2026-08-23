@@ -38,7 +38,9 @@ export default function Backup({ onRestore }) {
         .join(', ');
       setStatus({
         tone: 'ok',
-        text: `Hersteld: ${Object.keys(state.teams).length} teams${seasons ? ` · ${seasons}` : ''}.`,
+        text: `Hersteld: ${Object.keys(state.teams).length} teams${
+          seasons ? ` · ${seasons}` : ''
+        }${state.viewing_log.length ? ` · ${state.viewing_log.length} kijkmomenten` : ''}.`,
       });
       setPasting(false);
     } catch (e) {
@@ -60,7 +62,7 @@ export default function Backup({ onRestore }) {
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
         <p className="text-xs text-stone-500">
-          Teams, kijkplan en voortgang. Voor als je overstapt naar de beginschermapp.
+          Teams, kijkplan, voortgang en kijkprofiel. Voor als je overstapt naar de beginschermapp.
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">

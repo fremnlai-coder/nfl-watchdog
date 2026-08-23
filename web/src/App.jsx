@@ -8,20 +8,24 @@ import {
   loadOverrides,
   loadSettings,
   loadViewed,
+  loadViewingLog,
   loadWatched,
   mergeTeams,
   overridesFromTeams,
   saveOverrides,
   saveSettings,
   saveViewed,
+  saveViewingLog,
   saveWatched,
 } from './lib/prefs.js';
+import { createViewingEvent, removeViewingEvent, upsertViewingEvent } from './lib/viewing.js';
 import Backup from './components/Backup.jsx';
 import Controls from './components/Controls.jsx';
 import GameCard from './components/GameCard.jsx';
 import TeamGuide from './components/TeamGuide.jsx';
 import TeamSettings from './components/TeamSettings.jsx';
 import Term from './components/Term.jsx';
+import ViewingProfile from './components/ViewingProfile.jsx';
 import WeekGate from './components/WeekGate.jsx';
 
 const DEFAULT_QUOTA = { full: 2, game_in_40: 3 };
@@ -73,6 +77,7 @@ export default function App() {
   const [overrides, setOverrides] = useState(null);
   const [watched, setWatched] = useState(null);
   const [viewed, setViewed] = useState(null);
+  const [viewingLog, setViewingLog] = useState(null);
   const [override, setOverride] = useState(null);
   const [error, setError] = useState(null);
   const [attempt, setAttempt] = useState(0);
@@ -110,6 +115,7 @@ export default function App() {
         setOverrides(loadOverrides() ?? overridesFromTeams(basePrefs.teams));
         setWatched(initialWatched);
         setViewed(loadViewed());
+        setViewingLog(loadViewingLog());
         setQuota({
           ...(basePrefs.weekly_quota ?? DEFAULT_QUOTA),
           ...(storedSettings.weekly_quota ?? {}),
@@ -138,6 +144,10 @@ export default function App() {
   useEffect(() => {
     if (viewed) saveViewed(viewed);
   }, [viewed]);
+
+  useEffect(() => {
+    if (viewingLog) saveViewingLog(viewingLog);
+  }, [viewingLog]);
 
   useEffect(() => {
     if (!settingsReady || !season || !week) return;
@@ -231,16 +241,37 @@ export default function App() {
     setOverrides(overridesFromTeams(prefs.teams));
   }
 
-  function toggleViewed(gameId) {
+  function markViewed(game, viewFormat, { recapped = false } = {}) {
     setViewed((previous) => {
       const ids = new Set(previous?.[season] ?? []);
-      if (ids.has(gameId)) ids.delete(gameId);
-      else ids.add(gameId);
+      ids.add(game.game_id);
       return { ...(previous ?? {}), [season]: [...ids].sort() };
     });
+    setViewingLog((previous) => upsertViewingEvent(previous, createViewingEvent(game, {
+      season,
+      week,
+      viewFormat,
+      suggested: game.format_advice !== 'skip' || recapped,
+      plannedFormat: recapped ? 'sunday_in_60' : game.format_advice,
+    })));
   }
 
-  function restoreBackup({ teams: restoredTeams, watched: restoredWatched, settings, viewed: restoredViewed }) {
+  function unmarkViewed(gameId) {
+    setViewed((previous) => {
+      const ids = new Set(previous?.[season] ?? []);
+      ids.delete(gameId);
+      return { ...(previous ?? {}), [season]: [...ids].sort() };
+    });
+    setViewingLog((previous) => removeViewingEvent(previous, season, gameId));
+  }
+
+  function restoreBackup({
+    teams: restoredTeams,
+    watched: restoredWatched,
+    settings,
+    viewed: restoredViewed,
+    viewing_log: restoredViewingLog,
+  }) {
     const restoredSeason = index.seasons[settings.last_season] ? settings.last_season : season;
     const restoredWeek = preferredWeek(
       index.seasons[restoredSeason],
@@ -250,6 +281,7 @@ export default function App() {
     setOverrides(restoredTeams);
     setWatched(restoredWatched);
     setViewed(restoredViewed);
+    setViewingLog(restoredViewingLog);
     setQuota({ ...(prefs.weekly_quota ?? DEFAULT_QUOTA), ...(settings.weekly_quota ?? {}) });
     setWithRecap(settings.with_recap ?? false);
     setLastWeeks({ ...(settings.last_week_by_season ?? {}), [restoredSeason]: restoredWeek });
@@ -343,7 +375,7 @@ export default function App() {
     );
   }
 
-  if (!planned || !prefs || !overrides || !index || !watched || !viewed) {
+  if (!planned || !prefs || !overrides || !index || !watched || !viewed || !viewingLog) {
     return <main className="app-shell mx-auto max-w-5xl text-stone-500">Laden…</main>;
   }
 
@@ -354,28 +386,42 @@ export default function App() {
   const picks = timeline.filter((game) => game.format_advice !== 'skip');
   const skipped = timeline.filter((game) => game.format_advice === 'skip');
   const seenCount = picks.filter((game) => viewedIds.has(game.game_id)).length;
+  const extraSeenCount = skipped.filter((game) => viewedIds.has(game.game_id)).length;
   const nextGame = picks.find((game) => !viewedIds.has(game.game_id));
   const recap = planned.packages.b.summary;
   const recapActive = withRecap && recap.recap_included;
   const allSeen = picks.length > 0 && seenCount === picks.length;
+  const viewingEvents = new Map(
+    viewingLog
+      .filter((event) => event.season === String(season))
+      .map((event) => [event.game_id, event]),
+  );
+  const legacyViewedCount = [...viewedIds]
+    .filter((gameId) => !viewingEvents.has(gameId)).length;
 
-  const rowProps = (game) => ({
-    rank: rankOf.get(game.home.abbr) ?? rankOf.get(game.away.abbr) ?? null,
-    hints: hints[game.game_id],
-    result: results[game.game_id],
-    revealError: revealErrors[game.game_id],
-    busy: revealBusy[game.game_id],
-    viewed: viewedIds.has(game.game_id),
-    next: nextGame?.game_id === game.game_id,
-    recapped: recapActive && game.format_advice === 'skip' && game.in_sunday_slate,
-    onToggleViewed: () => toggleViewed(game.game_id),
-    onRevealHints: () => revealHints(game),
-    onRevealResult: () => revealResult(game),
-  });
+  const rowProps = (game) => {
+    const recapped = recapActive && game.format_advice === 'skip' && game.in_sunday_slate;
+    return {
+      rank: rankOf.get(game.home.abbr) ?? rankOf.get(game.away.abbr) ?? null,
+      hints: hints[game.game_id],
+      result: results[game.game_id],
+      revealError: revealErrors[game.game_id],
+      busy: revealBusy[game.game_id],
+      viewed: viewedIds.has(game.game_id),
+      viewedFormat: viewingEvents.get(game.game_id)?.view_format ?? null,
+      next: nextGame?.game_id === game.game_id,
+      recapped,
+      onMarkViewed: (format) => markViewed(game, format, { recapped }),
+      onUnmarkViewed: () => unmarkViewed(game.game_id),
+      onRevealHints: () => revealHints(game),
+      onRevealResult: () => revealResult(game),
+    };
+  };
 
   const progress = [
     `${picks.length} gepland`,
     `${seenCount}/${picks.length} gezien`,
+    extraSeenCount > 0 && `${extraSeenCount} extra gezien`,
     `${skipped.length} overslaan`,
     recapActive && `${recap.recap_covers} via S60`,
   ].filter(Boolean).join(' · ');
@@ -419,6 +465,13 @@ export default function App() {
       )}
 
       <div className="mt-10">
+        <ViewingProfile
+          log={viewingLog}
+          season={season}
+          teams={prefs.teams}
+          legacyCount={legacyViewedCount}
+          onClear={() => setViewingLog([])}
+        />
         <TeamSettings
           teams={prefs.teams}
           overrides={overrides}

@@ -5,10 +5,13 @@
 // conference, division and names come from the config, because they are facts
 // rather than preferences.
 
+import { normalizeViewingLog } from './viewing.js';
+
 const KEY = 'nfl-watchdog:teams:v1';
 const WATCHED_KEY = 'nfl-watchdog:watched:v1';
 const SETTINGS_KEY = 'nfl-watchdog:settings:v1';
 const VIEWED_KEY = 'nfl-watchdog:viewed:v1';
+const VIEWING_LOG_KEY = 'nfl-watchdog:viewing-log:v1';
 
 export const TIERS = ['favorite', 'watchlist', 'neutral', 'avoid'];
 
@@ -252,16 +255,33 @@ export function saveViewed(viewed) {
   }
 }
 
+export function loadViewingLog() {
+  try {
+    return normalizeViewingLog(JSON.parse(localStorage.getItem(VIEWING_LOG_KEY) ?? '[]'));
+  } catch {
+    return [];
+  }
+}
+
+export function saveViewingLog(log) {
+  try {
+    localStorage.setItem(VIEWING_LOG_KEY, JSON.stringify(normalizeViewingLog(log)));
+  } catch {
+    // ignore
+  }
+}
+
 
 // --- back-up ---------------------------------------------------------------
 //
-// Both keys above live in localStorage, which on iOS is a cache rather than a
-// store: Safari drops a site's storage after seven days without a visit. A
+// The changing state above lives in localStorage, which on iOS is a cache
+// rather than a store: Safari drops a site's storage after seven days without
+// a visit. A
 // home-screen app is exempt, but it gets its own storage — so moving to it
 // starts you empty. This is the way back in both cases.
 
 const BACKUP_APP = 'nfl-watchdog';
-const BACKUP_VERSION = 2;
+const BACKUP_VERSION = 3;
 
 export function exportState(now = new Date()) {
   return {
@@ -272,6 +292,7 @@ export function exportState(now = new Date()) {
     watched: loadWatched(),
     settings: loadSettings(),
     viewed: loadViewed(),
+    viewing_log: loadViewingLog(),
   };
 }
 
@@ -288,8 +309,8 @@ export function parseBackup(text) {
   if (!doc || doc.app !== BACKUP_APP) {
     throw new Error('Dit bestand komt niet van NFL Watchdog.');
   }
-  if (![1, BACKUP_VERSION].includes(doc.version)) {
-    throw new Error(`Onbekende versie ${doc.version}; deze app leest versie 1 en ${BACKUP_VERSION}.`);
+  if (![1, 2, BACKUP_VERSION].includes(doc.version)) {
+    throw new Error(`Onbekende versie ${doc.version}; deze app leest versies 1 t/m ${BACKUP_VERSION}.`);
   }
 
   const teams = {};
@@ -312,6 +333,7 @@ export function parseBackup(text) {
 
   const settings = doc.version >= 2 ? normalizeSettings(doc.settings, true) : {};
   const viewed = doc.version >= 2 ? normalizeViewed(doc.viewed, true) : {};
+  const viewingLog = doc.version >= 3 ? normalizeViewingLog(doc.viewing_log, true) : [];
 
-  return { teams: renumber(teams), watched, settings, viewed };
+  return { teams: renumber(teams), watched, settings, viewed, viewing_log: viewingLog };
 }

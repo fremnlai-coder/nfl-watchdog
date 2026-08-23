@@ -10,6 +10,12 @@ const FORMAT_LABEL = {
   skip: 'Overslaan',
 };
 
+const VIEW_FORMAT_LABEL = {
+  full: 'Volledig',
+  game_in_40: '40 min',
+  sunday_in_60: 'S60',
+};
+
 const REASON_LABEL = {
   own_team: 'favoriet',
   own_team_degraded: 'favoriet · ingekort',
@@ -64,15 +70,18 @@ export default function GameCard({
   dense,
   rank,
   viewed,
+  viewedFormat,
   next,
   recapped,
-  onToggleViewed,
+  onMarkViewed,
+  onUnmarkViewed,
   revealError,
   busy,
 }) {
   const [confirming, setConfirming] = useState(false);
   const [why, setWhy] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [choosingFormat, setChoosingFormat] = useState(false);
   const explanation = explainPick(game, { rank });
   const chips = contextChips(game, { rank, next });
 
@@ -82,7 +91,9 @@ export default function GameCard({
   const runtime = game.runtime_minutes
     ? `${game.format_advice === 'full' ? '±' : ''}${game.runtime_minutes} min`
     : null;
-  const shortReason = recapped ? 'Sunday in 60' : (REASON_LABEL[game.format_reason] ?? game.format_reason);
+  const shortReason = viewed
+    ? `✓ ${VIEW_FORMAT_LABEL[viewedFormat] ?? 'gezien'}`
+    : (recapped ? 'Sunday in 60' : (REASON_LABEL[game.format_reason] ?? game.format_reason));
   const logoSize = compact ? 24 : 30;
 
   if (dense && !expanded) {
@@ -98,7 +109,9 @@ export default function GameCard({
           <span className="shrink-0 text-sm font-semibold">
             {game.away.abbr}<span className="mx-1 font-normal text-stone-500">@</span>{game.home.abbr}
           </span>
-          <span className={`ml-auto min-w-0 truncate text-xs ${recapped ? 'text-amber-300' : 'text-stone-500'}`}>
+          <span className={`ml-auto min-w-0 truncate text-xs ${
+            viewed ? 'text-emerald-300' : (recapped ? 'text-amber-300' : 'text-stone-500')
+          }`}>
             {shortReason}
           </span>
         </button>
@@ -163,19 +176,53 @@ export default function GameCard({
             {why ? 'Sluiten' : 'Waarom?'}
           </button>
 
-          {game.format_advice !== 'skip' && (
+          {viewed && (
             <button
               type="button"
-              aria-pressed={viewed}
-              onClick={onToggleViewed}
-              className={`min-h-11 rounded border px-3 text-xs ${
-                viewed
-                  ? 'border-emerald-700 bg-emerald-950 text-emerald-200'
-                  : 'border-stone-700 text-stone-300 hover:bg-stone-800'
-              }`}
+              aria-pressed={true}
+              onClick={onUnmarkViewed}
+              className="min-h-11 rounded border border-emerald-700 bg-emerald-950 px-3 text-xs text-emerald-200"
             >
-              {viewed ? '✓ Gezien' : 'Gezien'}
+              ✓ {VIEW_FORMAT_LABEL[viewedFormat] ?? 'Gezien'}
             </button>
+          )}
+
+          {!viewed && !choosingFormat && (
+            <button
+              type="button"
+              aria-pressed={false}
+              onClick={() => setChoosingFormat(true)}
+              className="min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-300 hover:bg-stone-800"
+            >
+              Gezien
+            </button>
+          )}
+
+          {!viewed && choosingFormat && (
+            <div className="flex basis-full flex-wrap items-center gap-2 rounded bg-stone-950/60 p-2 text-xs">
+              <span className="basis-full text-stone-400">Hoe gekeken?</span>
+              {[
+                ['full', 'Volledig'],
+                ['game_in_40', '40 min'],
+                ...(game.in_sunday_slate ? [['sunday_in_60', 'S60']] : []),
+              ].map(([format, label]) => (
+                <button
+                  key={format}
+                  type="button"
+                  onClick={() => { onMarkViewed(format); setChoosingFormat(false); }}
+                  className="min-h-11 rounded border border-stone-700 px-3 text-stone-200 hover:bg-stone-800"
+                >
+                  {label}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => setChoosingFormat(false)}
+                className="min-h-11 rounded px-2 text-stone-500"
+              >
+                Annuleer
+              </button>
+            </div>
           )}
 
           {game.hints_ready && !hints && (

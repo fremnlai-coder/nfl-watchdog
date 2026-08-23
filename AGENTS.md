@@ -34,5 +34,7 @@ uses a compact default card; All-22 timing and decision details sit behind
 priority, international games, prime-time broadcasts, and holiday fixtures.
 The planner treats `full` as DAZN's ad-free full-length replay and budgets 125
 minutes; kickoff time is context, not a reason to recommend live viewing. All-22
-availability uses a conservative 48-hour delay. Run `npm run verify` for the
-build plus the complete test suite.
+availability uses a conservative 48-hour delay. A local, versioned viewing log
+records the chosen format and mark time for every game; the collapsed viewing
+profile reports patterns after three observations but does not affect planning.
+Run `npm run verify` for the build plus the complete test suite.
