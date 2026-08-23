@@ -149,7 +149,7 @@ export default function TeamGuide({ season }) {
       <summary className="min-h-11 cursor-pointer px-3 py-3 text-sm font-medium">
         Teamgids
         <span className="ml-2 font-normal text-stone-500 dark:text-stone-400">
-          spelers & stadions
+          spelers en stadions
         </span>
       </summary>
 
@@ -176,7 +176,7 @@ export default function TeamGuide({ season }) {
         {guide && (
           <>
             <p className="text-xs text-stone-500">
-              Seizoen {guide.season} · zonder standen of statistieken.
+              Seizoen {guide.season} · zonder standen of prestatiestatistieken.
             </p>
 
             <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">

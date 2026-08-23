@@ -30,4 +30,7 @@ runs the same planner as the CLI.
 v3 fixes scoreboard freshness, persists the complete local state, splits reveal
 artifacts per game, exposes Sunday in 60, and tracks watched games. The mobile UI
 uses a compact default card; All-22 timing and decision details sit behind
-`Waarom?`. Run `npm run verify` for the build plus the complete test suite.
+`Waarom?`. Context chips are limited to three and identify favourites, viewing
+priority, international games, prime-time broadcasts, and holiday fixtures.
+All-22 availability uses a conservative 48-hour delay. Run `npm run verify` for
+the build plus the complete test suite.

@@ -14,7 +14,7 @@ export default function Backup({ onRestore }) {
       await navigator.clipboard.writeText(doc());
       setStatus({ tone: 'ok', text: 'Gekopieerd.' });
     } catch {
-      setStatus({ tone: 'error', text: 'Kopiëren lukt niet. Gebruik download.' });
+      setStatus({ tone: 'error', text: 'Kopiëren lukt niet. Download de back-up.' });
     }
   }
 
@@ -54,13 +54,13 @@ export default function Backup({ onRestore }) {
       <summary className="min-h-11 cursor-pointer px-3 py-3 text-sm font-medium">
         Back-up
         <span className="ml-2 font-normal text-stone-500 dark:text-stone-400">
-          lokale stand
+          lokale gegevens
         </span>
       </summary>
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
         <p className="text-xs text-stone-500">
-          Teams, weekvorm en kijkstand. Handig bij wisselen naar de beginschermapp.
+          Teams, kijkplan en voortgang. Voor als je overstapt naar de beginschermapp.
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">
@@ -68,7 +68,7 @@ export default function Backup({ onRestore }) {
             Kopiëren
           </button>
           <button type="button" onClick={download} className={button}>
-            Download
+            Downloaden
           </button>
           {/* Forces the wrap between making a back-up and putting one back,
               instead of leaving a stray divider at the end of a wrapped row. */}

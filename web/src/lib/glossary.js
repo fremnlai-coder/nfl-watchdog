@@ -23,7 +23,7 @@ export const GLOSSARY = {
   },
   two_minute_warning: {
     term: 'two-minute warning',
-    text: 'Verplichte klokstop twee minuten voor het einde van de tweede en de vierde periode. Vanaf dat moment gaat het spel merkbaar sneller.',
+    text: 'Automatische klokstop aan het einde van de laatste actie die vóór de twee minuten begint, in het tweede en vierde kwart.',
   },
   bye: {
     term: 'bye',
@@ -31,7 +31,7 @@ export const GLOSSARY = {
   },
   seed: {
     term: 'seed',
-    text: 'De plaats waarop een ploeg de play-offs in gaat, één tot en met zeven per conference. Hoe hoger, hoe vaker je thuis speelt.',
+    text: 'De plaatsing voor de play-offs, één tot en met zeven per conference. Seed één krijgt een vrije eerste ronde; een beter geplaatste ploeg speelt thuis tegen een lager geplaatste.',
   },
   wildcard: {
     term: 'wildcard',
@@ -47,7 +47,7 @@ export const GLOSSARY = {
   },
   conference: {
     term: 'conference',
-    text: 'De AFC en de NFC, elk zestien ploegen in vier divisies. Ze treffen elkaar zelden, en pas in de Super Bowl weer.',
+    text: 'De AFC en de NFC, elk met zestien ploegen in vier divisies. De winnaars van beide conferences spelen tegen elkaar in de Super Bowl.',
   },
   interconference: {
     term: 'interconference',
@@ -55,7 +55,7 @@ export const GLOSSARY = {
   },
   all22: {
     term: 'All-22',
-    text: 'De tactische camera waarop alle tweeëntwintig spelers tegelijk in beeld staan. Verschijnt pas een dag tot anderhalve dag na afloop.',
+    text: 'De tactische camera waarop alle tweeëntwintig spelers tegelijk in beeld staan. Verschijnt doorgaans 36 tot 48 uur na afloop.',
   },
   game_in_40: {
     term: 'Game in 40',
@@ -63,29 +63,41 @@ export const GLOSSARY = {
   },
   sunday_in_60: {
     term: 'Sunday in 60',
-    text: 'Samenvatting van de hele zondag in ongeveer een uur. Let op: die dekt elke zondagwedstrijd, dus kijk hem als laatste.',
+    text: 'Een overzicht van de belangrijkste momenten uit de zondagwedstrijden in ongeveer een uur. Kijk hem als laatste: hij bevat uitslagen.',
   },
   seeding_impact: {
-    term: 'indirect belangrijk',
-    text: 'Twee ploegen uit een conference waarin een van jouw teams meedoet, allebei met een winnend record. Wat hier gebeurt schuift de play-offplaatsen rond jouw team. Wát er gebeurde staat er niet bij.',
+    term: 'Play-offrace',
+    text: 'Twee ploegen met een winnend record uit de conference van een van je favorieten. Deze wedstrijd kan invloed hebben op de plaatsing voor de play-offs.',
   },
   own_division: {
     term: 'jouw divisie',
     text: 'Een wedstrijd tussen ploegen uit de divisie van een van jouw teams. Direct van invloed op wie die divisie wint.',
   },
   full_replay: {
-    term: 'Full replay',
-    text: 'De volledige wedstrijd op DAZN, ongeveer drie uur. DAZN heeft daarbij een eigen spoilerbescherming die de stand verbergt.',
+    term: 'Volledige replay',
+    text: 'De volledige, reclamevrije replay op DAZN. Reken op ongeveer drie uur kijktijd.',
   },
   primetime: {
     term: 'primetime',
     text: 'De losstaande avondwedstrijden: Thursday Night, Sunday Night en Monday Night. Hier beginnen ze midden in de nacht.',
+  },
+  mnf: {
+    term: 'Monday Night Football',
+    text: 'De losstaande maandagavondwedstrijd in de Verenigde Staten. In Nederland begint die in de nacht naar dinsdag.',
+  },
+  snf: {
+    term: 'Sunday Night Football',
+    text: 'De centrale zondagavondwedstrijd in de Verenigde Staten. In Nederland begint die in de nacht naar maandag.',
+  },
+  tnf: {
+    term: 'Thursday Night Football',
+    text: 'De centrale donderdagavondwedstrijd in de Verenigde Staten. In Nederland begint die in de nacht naar vrijdag.',
   },
 };
 
 export const GLOSSARY_ORDER = [
   'down', 'drive', 'red_zone', 'turnover', 'two_minute_warning',
   'division', 'conference', 'interconference', 'bye', 'seed', 'wildcard', 'spread',
-  'full_replay', 'game_in_40', 'sunday_in_60', 'all22', 'primetime',
+  'full_replay', 'game_in_40', 'sunday_in_60', 'all22', 'primetime', 'mnf', 'snf', 'tnf',
   'own_division', 'seeding_impact',
 ];

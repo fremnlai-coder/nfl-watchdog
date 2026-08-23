@@ -14,7 +14,14 @@ import { buildPublicGame, assertPublicShape } from './schema.js';
 import { playerNamesFromPlays, lintTeaser } from './linter.js';
 import { teaserFor } from './teasers.js';
 import { computeTags } from './tags.js';
-import { formatNL, slotLabel, isSundaySlate, isLiveFriendly, offsetHours } from './time.js';
+import {
+  formatNL,
+  slotLabel,
+  isSundaySlate,
+  isLiveFriendly,
+  isPrimeTime,
+  offsetHours,
+} from './time.js';
 
 const ROOT = new URL('../', import.meta.url);
 
@@ -192,9 +199,9 @@ function hintsFor(m) {
 
 // ---------------------------------------------------------------------- write
 
-// The NFL help desk puts All-22 at 24 to 36 hours after a game *ends*, so the
-// clock starts roughly three and a half hours after kickoff, not at kickoff.
-const all22Delay = ((prefs.all22_delay_hours ?? 36) + 3.5) * 3600000;
+// NFL Game Pass puts Coaches Film at 36 to 48 hours after a game ends. Use the
+// conservative end of that window and start the clock after a typical game.
+const all22Delay = ((prefs.all22_delay_hours ?? 48) + 3.5) * 3600000;
 
 for (const week of weeks) {
   const weekGames = enriched.filter((g) => g.week === week);
@@ -222,7 +229,12 @@ for (const week of weeks) {
     const isOwn = tags.includes('own_team');
 
     const liveWindow = prefs.live_friendly_hours ?? [11, 21];
-    const slot = slotLabel(g.date, { isInternational, timeZone: prefs.timezone, window: liveWindow });
+    const slot = slotLabel(g.date, {
+      isInternational,
+      timeZone: prefs.timezone,
+      window: liveWindow,
+      week,
+    });
     const liveFriendly = isLiveFriendly(g.date, { timeZone: prefs.timezone, window: liveWindow });
 
     return buildPublicGame({
@@ -241,7 +253,7 @@ for (const week of weeks) {
         away: fmtRecord(recordsBefore.get(`${week}:${g.away_abbr}`) ?? { w: 0, l: 0, t: 0 }),
       },
       game_type: type,
-      primetime: ['Thursday Night', 'Sunday Night', 'Monday Night'].includes(slot),
+      primetime: isPrimeTime(g.date),
       tags,
       in_sunday_slate: isSundaySlate(g.date, prefs.slate_recap?.covers_weekdays ?? [0]),
       // Kickoff falls at an hour you could actually watch live from here.

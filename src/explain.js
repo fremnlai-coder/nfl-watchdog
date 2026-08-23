@@ -14,7 +14,7 @@ const STAKES_WORD = {
   4: 'hoog',
   3: 'gemiddeld',
   2: 'laag',
-  1: 'nauwelijks iets',
+  1: 'zeer laag',
 };
 
 function recordShape(record) {
@@ -37,7 +37,7 @@ export function explainPick(game, ctx = {}) {
 
   // --- Why it is in this section at all ---
   if (own && ctx.rank) {
-    reasons.push(`Dit is je nummer ${ctx.rank}. Eigen teams krijgen als eerste een plek in de weekvorm.`);
+    reasons.push(`Hier speelt favoriet nummer ${ctx.rank}. Favorieten krijgen als eerste een plek in het kijkplan.`);
   }
 
   // --- Why this format ---
@@ -45,25 +45,25 @@ export function explainPick(game, ctx = {}) {
     case 'own_team':
       reasons.push(
         game.format_advice === 'full'
-          ? 'Er was nog een full-plek vrij, dus deze kun je volledig terugkijken.'
-          : 'Hij past in de ingekorte plekken van je weekvorm.',
+          ? 'Er was nog een plek voor een volledige replay.'
+          : 'Deze wedstrijd past in een Game in 40-plek.',
       );
       break;
     case 'own_team_degraded':
       reasons.push(
-        'De full-plekken waren al vergeven aan een hogere voorkeursrang, dus dit wordt de ingekorte versie.',
+        'De volledige plekken waren al toegewezen aan hogere favorieten, dus dit wordt Game in 40.',
       );
       break;
     case 'quality':
       reasons.push(
-        `Van de wedstrijden buiten je eigen teams stond hier vooraf het meeste op het spel (${game.stakes_pre ?? '?'} van 5).`,
+        `Deze wedstrijd stond hoog op basis van het belang vooraf (${game.stakes_pre ?? '?'} van 5).`,
       );
       break;
     case 'quota_full':
-      reasons.push('Je weekvorm zat vol toen deze aan de beurt was.');
+      reasons.push('Je kijkplan zat vol toen deze aan de beurt was.');
       break;
     case 'avoid':
-      reasons.push('Een van beide ploegen staat op je nooit-lijst.');
+      reasons.push('Een van beide ploegen staat op Nooit.');
       break;
     case 'budget':
       reasons.push('Het minutenbudget was op toen deze aan de beurt was.');
@@ -74,7 +74,7 @@ export function explainPick(game, ctx = {}) {
 
   // --- What was riding on it, going in ---
   if (game.stakes_pre && !own) {
-    reasons.push(`Inzet vooraf: ${STAKES_WORD[game.stakes_pre] ?? 'onbekend'}.`);
+    reasons.push(`Belang vooraf: ${STAKES_WORD[game.stakes_pre] ?? 'onbekend'}.`);
   }
   if (both.every((s) => s === 'winning')) {
     reasons.push('Beide ploegen gingen de week in met een winnend record.');
@@ -87,22 +87,22 @@ export function explainPick(game, ctx = {}) {
     reasons.push('AFC tegen NFC — deze ploegen treffen elkaar zelden.');
   }
   if (game.tags?.includes('indirect belangrijk')) {
-    reasons.push('Dit schuift aan de play-offplaatsen rond een van je eigen teams.');
+    reasons.push('Deze wedstrijd kan invloed hebben op de play-offrace in de conference van een favoriet.');
   }
   if (game.tags?.includes('jouw divisie')) {
-    reasons.push('Speelt zich af in de divisie van een van je teams.');
+    reasons.push('Een van de ploegen speelt in dezelfde divisie als een van je favorieten.');
   }
 
   // --- When you can watch it ---
   if (game.live_friendly_nl) {
-    reasons.push('Aftrap op een tijdstip dat je hier gewoon live kunt kijken.');
+    reasons.push('De aftrap valt binnen je livevenster.');
   } else if (game.primetime) {
-    reasons.push('Primetime in de Verenigde Staten, dus hier midden in de nacht.');
+    reasons.push('Amerikaanse primetimewedstrijd; de aftrap is hier midden in de nacht.');
   }
 
   return {
     reasons,
     caveat:
-      'Dit gaat over wat er vooraf op het spel stond en hoe je weekvorm is verdeeld — niet over hoe de wedstrijd verliep.',
+      'Dit gaat over het belang vooraf en je kijkplan, niet over hoe de wedstrijd verliep.',
   };
 }

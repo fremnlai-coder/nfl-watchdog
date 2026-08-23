@@ -1,28 +1,22 @@
 import { useState } from 'react';
 import { explainPick } from '../../../src/explain.js';
+import { contextChips } from '../lib/chips.js';
 import TeamLogo from './TeamLogo.jsx';
 import Term from './Term.jsx';
 
 const FORMAT_LABEL = {
-  full: 'Full replay',
+  full: 'Volledig',
   game_in_40: 'Game in 40',
   skip: 'Overslaan',
 };
 
 const REASON_LABEL = {
-  own_team: 'eigen team',
-  own_team_degraded: 'eigen team · full bezet',
-  quality: 'inzet vooraf',
-  budget: 'budget op',
-  quota_full: 'weekvorm vol',
-  avoid: 'nooit-lijst',
-};
-
-const BADGE_TERM = {
-  divisie: 'division',
-  primetime: 'primetime',
-  'jouw divisie': 'own_division',
-  'indirect belangrijk': 'seeding_impact',
+  own_team: 'favoriet',
+  own_team_degraded: 'favoriet · ingekort',
+  quality: 'belang vooraf',
+  budget: 'geen plek',
+  quota_full: 'geen plek',
+  avoid: 'op Nooit',
 };
 
 const FORMAT_TERM = {
@@ -37,10 +31,15 @@ const FORMAT_STYLE = {
   recap: 'bg-amber-800 text-amber-50',
 };
 
+const BADGE_STYLE = {
+  neutral: 'bg-stone-800 text-stone-300',
+  emerald: 'bg-emerald-950 text-emerald-200 ring-1 ring-inset ring-emerald-800',
+  sky: 'bg-sky-950 text-sky-200 ring-1 ring-inset ring-sky-800',
+  amber: 'bg-amber-950 text-amber-100 ring-1 ring-inset ring-amber-800',
+};
+
 function Badge({ children, tone = 'neutral' }) {
-  const style = tone === 'accent'
-    ? 'bg-amber-900/60 text-amber-100'
-    : 'bg-stone-800 text-stone-300';
+  const style = BADGE_STYLE[tone] ?? BADGE_STYLE.neutral;
   return <span className={`rounded px-1.5 py-0.5 text-xs font-medium ${style}`}>{children}</span>;
 }
 
@@ -75,11 +74,7 @@ export default function GameCard({
   const [why, setWhy] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const explanation = explainPick(game, { rank });
-  const badges = [];
-  if (game.game_type === 'division') badges.push('divisie');
-  if (game.primetime) badges.push('primetime');
-  if (game.live_friendly_nl && game.is_international) badges.push('live te doen');
-  for (const tag of game.tags) if (tag !== 'own_team') badges.push(tag);
+  const chips = contextChips(game, { rank, next });
 
   const formatLabel = recapped ? 'Sunday in 60' : FORMAT_LABEL[game.format_advice];
   const formatTerm = recapped ? 'sunday_in_60' : FORMAT_TERM[game.format_advice];
@@ -126,10 +121,9 @@ export default function GameCard({
           <span className="min-w-0 truncate font-mono text-xs text-stone-400">{game.kickoff_nl}</span>
         )}
         <div className="flex shrink-0 items-center gap-1.5">
-          {next && <span className="sr-only">Volgende</span>}
           <span className={`rounded px-2 py-0.5 text-xs font-semibold ${formatStyle}`}>
             {formatTerm ? <Term id={formatTerm}>{formatLabel}</Term> : formatLabel}
-            {!recapped && game.runtime_minutes ? ` · ${game.runtime_minutes}m` : ''}
+            {!recapped && game.runtime_minutes ? ` · ${game.runtime_minutes} min` : ''}
           </span>
         </div>
       </div>
@@ -146,15 +140,15 @@ export default function GameCard({
       <div className="flex flex-1 flex-col gap-2 px-3 pb-3">
         {!compact && game.teaser && <p className="text-sm text-stone-300">{game.teaser}</p>}
 
-        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
-          <span>{game.slot}</span>
-          {badges.map((badge) => (
-            <Badge key={badge} tone={badge === 'indirect belangrijk' ? 'accent' : 'neutral'}>
-              {BADGE_TERM[badge] ? <Term id={BADGE_TERM[badge]}>{badge}</Term> : badge}
-            </Badge>
-          ))}
-          <span>· {shortReason}</span>
-        </div>
+        {chips.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
+            {chips.map((chip) => (
+              <Badge key={chip.key} tone={chip.tone}>
+                {chip.term ? <Term id={chip.term}>{chip.label}</Term> : chip.label}
+              </Badge>
+            ))}
+          </div>
+        )}
 
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
           <button
@@ -163,7 +157,7 @@ export default function GameCard({
             aria-expanded={why}
             className="min-h-11 rounded border border-stone-700 px-3 text-xs text-stone-300 hover:bg-stone-800"
           >
-            {why ? 'Minder' : 'Waarom?'}
+            {why ? 'Sluiten' : 'Waarom?'}
           </button>
 
           {game.format_advice !== 'skip' && (
@@ -217,7 +211,7 @@ export default function GameCard({
                 onClick={() => { setConfirming(false); onRevealResult(); }}
                 className="min-h-11 rounded bg-red-700 px-3 font-semibold text-white hover:bg-red-800"
               >
-                Toon
+                Eindstand tonen
               </button>
               <button
                 type="button"
@@ -243,7 +237,7 @@ export default function GameCard({
             <ul className="list-disc space-y-1 pl-4 text-xs text-stone-300">
               {explanation.reasons.map((reason) => <li key={reason}>{reason}</li>)}
             </ul>
-            <p className="mt-2 text-xs text-stone-500">All-22: {game.all22_from_nl}</p>
+            <p className="mt-2 text-xs text-stone-500">All-22 vanaf {game.all22_from_nl}</p>
             <p className="mt-1 text-xs text-stone-500 italic">{explanation.caveat}</p>
           </div>
         )}

@@ -14,7 +14,7 @@ export const TIERS = ['favorite', 'watchlist', 'neutral', 'avoid'];
 
 export const TIER_LABEL = {
   favorite: 'Favoriet',
-  watchlist: 'Watchlist',
+  watchlist: 'Volgen',
   neutral: 'Neutraal',
   avoid: 'Nooit',
 };
@@ -22,7 +22,7 @@ export const TIER_LABEL = {
 // Short forms for the per-team buttons, which sit four abreast in a narrow row.
 export const TIER_SHORT = {
   favorite: 'Fav',
-  watchlist: 'Watch',
+  watchlist: 'Volg',
   neutral: '—',
   avoid: 'Nooit',
 };
@@ -144,7 +144,7 @@ function normalizeQuota(value, strict = false) {
   const fallback = {};
   if (value == null) return fallback;
   if (!value || typeof value !== 'object') {
-    if (strict) throw new Error('De weekvorm klopt niet.');
+    if (strict) throw new Error('Het kijkplan klopt niet.');
     return fallback;
   }
   const quota = {};

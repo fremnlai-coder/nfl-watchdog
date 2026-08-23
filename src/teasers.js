@@ -11,6 +11,16 @@
 // hard fallback is used: it names the two teams and nothing else.
 
 import { lintTeaser } from './linter.js';
+import { localHour } from './time.js';
+
+const DUTCH_CITY = {
+  Berlin: 'Berlijn',
+  London: 'Londen',
+  'Mexico City': 'Mexico-Stad',
+  Munich: 'München',
+  'Rio De Janeiro': 'Rio de Janeiro',
+  'Sao Paulo': 'São Paulo',
+};
 
 // Records are level 0, but their digits are not allowed in a teaser, so they are
 // reduced to a direction first.
@@ -38,8 +48,9 @@ function conditions(game) {
   const away = game.away?.name ?? game.away?.abbr ?? 'de bezoekers';
   const division = game.home?.division ?? '';
   const conference = game.home?.conference ?? '';
-  const venue = game.venue ?? 'het buitenland';
+  const venue = DUTCH_CITY[game.venue] ?? game.venue ?? 'het buitenland';
   const slot = game.slot ?? '';
+  const hourNL = game.kickoff_utc ? localHour(new Date(game.kickoff_utc)) : null;
   const both = [recordShape(game.records_before?.home), recordShape(game.records_before?.away)];
   const bothWinning = both.every((s) => s === 'winning');
   const bothLosing = both.every((s) => s === 'losing');
@@ -51,30 +62,35 @@ function conditions(game) {
 
   if (game.is_international && game.live_friendly_nl) {
     out.push([
-      `Overzees duel in ${venue}, hier gewoon op een normaal tijdstip te kijken.`,
-      `Een van de weinige wedstrijden die je hier bij daglicht kunt volgen: ${venue}.`,
-      `${venue} als speelstad, en dus een aftrap die hier prima uitkomt.`,
+      `Internationale wedstrijd in ${venue}, hier op een normaal tijdstip te kijken.`,
+      `${venue} als speelstad; de wedstrijd begint hier overdag.`,
+      `Aftrap in ${venue}, op een prettig tijdstip in Nederland.`,
     ]);
   }
   if (game.is_international && !game.live_friendly_nl) {
-    out.push([
-      `Overzees duel in ${venue}, maar midden in de nacht Nederlandse tijd.`,
-      `Gespeeld in ${venue}, op een tijdstip dat hier niemand wakker houdt.`,
-    ]);
+    out.push(hourNL != null && hourNL >= 22
+      ? [
+        `Internationale wedstrijd in ${venue}, hier laat op de avond.`,
+        `Aftrap in ${venue}, hier pas laat op de avond.`,
+      ]
+      : [
+        `Internationale wedstrijd in ${venue}, hier midden in de nacht.`,
+        `Aftrap in ${venue}, waarvoor je hier 's nachts moet opstaan.`,
+      ]);
   }
   if (highStakes && game.game_type === 'division') {
     out.push([
-      `Divisieduel in de ${division} met veel op het spel voor beide ploegen.`,
-      `Onderlinge strijd in de ${division}, en allebei hebben ze het nodig.`,
-      `${division}-duel waar beide ploegen niet omheen kunnen.`,
-      `Twee ploegen uit de ${division} die elkaar dit jaar niets gunnen.`,
+      `Divisieduel in de ${division} dat vooraf hoog scoort op belang.`,
+      `Onderlinge wedstrijd in de ${division}, hoog ingeschaald op belang vooraf.`,
+      `${division}-duel met een hoge waardering voor belang vooraf.`,
+      `Twee ploegen uit de ${division} in een vooraf hoog ingeschat duel.`,
     ]);
   }
   if (highStakes) {
     out.push([
-      'Beide ploegen jagen nog volop op een plek in de play-offs.',
-      'Voor allebei telt deze wedstrijd zwaar mee in het eindklassement.',
-      'Twee ploegen die zich in deze fase geen misstap kunnen permitteren.',
+      'Deze ontmoeting scoort vooraf hoog op belang.',
+      'Hoog ingeschaald op basis van de situatie vóór deze week.',
+      'Een wedstrijd met een hoge waardering voor belang vooraf.',
     ]);
   }
   if (game.game_type === 'division' && bothWinning) {
@@ -87,7 +103,7 @@ function conditions(game) {
     out.push([
       `Divisieduel in de ${division}, deze twee treffen elkaar elk seizoen tweemaal.`,
       `Bekende tegenstanders: ${division}, twee keer per jaar op het programma.`,
-      `Onderling duel binnen de ${division}.`,
+      `Onderlinge wedstrijd tussen twee ploegen uit de ${division}.`,
     ]);
   }
   if (game.primetime && bothWinning) {
@@ -110,14 +126,14 @@ function conditions(game) {
   }
   if (bothLosing && lowStakes) {
     out.push([
-      'Twee ploegen die de aansluiting naar boven kwijt zijn.',
-      'Voor geen van beide ploegen valt er nog veel te halen.',
+      'Twee ploegen met een verliezend record treffen elkaar.',
+      'Beide ploegen begonnen de week met een verliezend record.',
     ]);
   }
   if (game.game_type === 'interconference') {
     out.push([
       'AFC tegen NFC, deze twee ploegen treffen elkaar zelden.',
-      'Een ontmoeting tussen de conferences, en dus een zeldzame.',
+      'Een zeldzame ontmoeting tussen ploegen uit verschillende conferences.',
     ]);
   }
   if (game.game_type === 'conference' && conference) {

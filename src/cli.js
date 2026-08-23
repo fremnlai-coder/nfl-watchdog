@@ -71,7 +71,7 @@ const rankOf = new Map(
 );
 
 const FORMAT_LABEL = {
-  full: 'Full replay',
+  full: 'Volledig',
   game_in_40: 'Game in 40',
   skip: 'Overslaan',
 };
@@ -79,17 +79,17 @@ const quotaMode = (prefs.planning_mode ?? 'budget') === 'quota';
 const REASON_LABEL = {
   own_team: 'eigen team',
   own_team_degraded: quotaMode
-    ? 'eigen team, geen full-plek meer over'
+    ? 'eigen team, geen volledige plek meer over'
     : 'eigen team, ingekort voor budget',
-  quality: 'rating',
+  quality: 'belang vooraf',
   budget: 'budget op',
-  quota_full: 'weekvorm vol',
-  avoid: 'op je avoid-lijst',
+  quota_full: 'kijkplan vol',
+  avoid: 'op Nooit',
 };
 
 const pad = (s, n) => String(s).padEnd(n);
 const stars = (n) => (n == null ? '     ' : '*'.repeat(n).padEnd(5));
-const signalOf = (g) => (showWatchability ? stars(g.watchability) : `inzet ${g.stakes_pre ?? '-'}`);
+const signalOf = (g) => (showWatchability ? stars(g.watchability) : `belang ${g.stakes_pre ?? '-'}`);
 
 function line(g, { showRating }) {
   const matchup = `${g.away.abbr} (${g.records_before.away}) @ ${g.home.abbr} (${g.records_before.home})`;
@@ -97,7 +97,7 @@ function line(g, { showRating }) {
   if (g.game_type === 'division') badges.push('divisie');
   if (g.primetime) badges.push('primetime');
   for (const t of g.tags) if (t !== 'own_team') badges.push(t);
-  const advice = `${FORMAT_LABEL[g.format_advice]}${g.runtime_minutes ? ` ${g.runtime_minutes}m` : ''}`;
+  const advice = `${FORMAT_LABEL[g.format_advice]}${g.runtime_minutes ? ` ${g.runtime_minutes} min` : ''}`;
   return [
     '  ',
     pad(g.kickoff_nl, 17),
@@ -180,7 +180,7 @@ for (const g of own) {
   if (t) console.log(t);
 }
 
-console.log(`\nKIJKWAARDIG  (op ${showWatchability ? 'rating' : 'inzet vooraf'})`);
+console.log(`\nKIJKWAARDIG  (op ${showWatchability ? 'rating' : 'belang vooraf'})`);
 if (!worth.length) console.log('  budget volledig opgegaan aan je eigen teams');
 for (const g of worth) {
   console.log(line(g, { showRating: true }));
@@ -200,10 +200,10 @@ const describe = (p) => {
     ? Object.entries(p.unused_slots).filter(([, n]) => n > 0).map(([k, n]) => `${n} ${k}-plek over`)
     : [];
   const bits = [
-    `${p.counts.full}x full`,
+    `${p.counts.full}x volledig`,
     `${p.counts.game_in_40}x Game in 40`,
     ...unused,
-    p.recap_included ? `${p.recap_minutes}m ${prefs.slate_recap.name}` : null,
+    p.recap_included ? `${p.recap_minutes} min ${prefs.slate_recap.name}` : null,
     `${p.total_minutes} min`,
   ].filter(Boolean);
   const tail = p.recap_included
@@ -235,7 +235,7 @@ console.log(showWatchability
     '  wie er won. Een hoge rating betekent dus dat het verschil klein bleef, een\n' +
     '  lage dat het uit elkaar liep. Wie er won staat er nooit bij. Wil je ook die\n' +
     '  vormindicatie niet zien, draai dan met --no-rating.\n'
-  : '\n  Rating verborgen. Er wordt gepland op inzet vooraf: de records waarmee beide\n' +
+  : '\n  Rating verborgen. Er wordt gepland op belang vooraf: de records waarmee beide\n' +
     '  teams de week in gingen. Dat is level 0 en zegt niets over het verloop.\n');
 console.log(`  Hints (level 2):     node src/cli.js --week ${week} --hints`);
 console.log(`  Uitslag (level 3):   node src/cli.js --week ${week} --result <game_id>\n`);

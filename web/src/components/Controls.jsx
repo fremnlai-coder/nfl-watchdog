@@ -80,14 +80,14 @@ export default function Controls({
 
       <details className="border-t border-stone-800">
         <summary className="flex min-h-11 cursor-pointer items-center text-sm">
-          <span className="text-stone-400">Weekvorm</span>
-          <span className="ml-2">{quota.full} Full · {quota.game_in_40}×40</span>
+          <span className="text-stone-400">Kijkplan</span>
+          <span className="ml-2">{quota.full} volledig · {quota.game_in_40}×40</span>
           {withRecap && <span className="ml-1 text-amber-300">· S60</span>}
-          <span className="ml-2 text-stone-500">{minutes}m</span>
+          <span className="ml-2 text-stone-500">{minutes} min</span>
         </summary>
         <div className="flex flex-wrap items-center gap-3 pb-3">
           <Stepper
-            label="Full"
+            label="Volledig"
             value={quota.full}
             onChange={(value) => onQuota({ ...quota, full: value })}
           />
@@ -106,7 +106,7 @@ export default function Controls({
                 : 'border-stone-700 text-stone-400'
             }`}
           >
-            Sunday in 60 · +{recapMinutes}m
+            Sunday in 60 · +{recapMinutes} min
           </button>
         </div>
       </details>

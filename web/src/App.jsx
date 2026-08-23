@@ -374,10 +374,10 @@ export default function App() {
   });
 
   const progress = [
-    `${picks.length} kijken`,
-    `${seenCount}/${picks.length} klaar`,
-    `${skipped.length} over`,
-    recapActive && `${recap.recap_covers} in S60`,
+    `${picks.length} gepland`,
+    `${seenCount}/${picks.length} gezien`,
+    `${skipped.length} overslaan`,
+    recapActive && `${recap.recap_covers} via S60`,
   ].filter(Boolean).join(' · ');
 
   return (
@@ -385,9 +385,9 @@ export default function App() {
       <header className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
         <h1 className="text-xl font-bold">NFL Watchdog</h1>
         <p className="text-xs text-stone-500">
-          {data.season} · NL +{data.nl_et_offset_hours}u ET
+          {data.season}
           {data.teams_on_bye.length > 0 && (
-            <> · <Term id="bye">bye</Term> {data.teams_on_bye.join(', ')}</>
+            <> · <Term id="bye">bye</Term>: {data.teams_on_bye.join(', ')}</>
           )}
         </p>
       </header>

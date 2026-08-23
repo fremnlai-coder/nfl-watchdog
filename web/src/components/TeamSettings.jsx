@@ -96,7 +96,7 @@ export default function TeamSettings({ teams, overrides, onChange, onReset }) {
 
       <div className="border-t border-stone-200 px-3 py-3 dark:border-stone-800">
         <p className="text-xs text-stone-500">
-          Favoriet krijgt voorrang · Watch helpt bij gelijke inzet · Nooit slaat over.
+          Favoriet: voorrang · Volgen: extra prioriteit · Nooit: overslaan.
         </p>
 
         <div className="mt-3 grid gap-x-8 gap-y-4 lg:grid-cols-2">

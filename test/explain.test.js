@@ -64,7 +64,7 @@ test('de rang wordt alleen genoemd bij een eigen team', () => {
     if (g.tags.includes('own_team')) continue;
     const { reasons } = explainPick(g, { rank: 3 });
     assert.ok(
-      !reasons.some((r) => r.includes('je nummer')),
+      !reasons.some((r) => r.includes('favoriet nummer')),
       `${g.game_id} is geen eigen team maar noemt wel een voorkeursrang`,
     );
   }
@@ -76,7 +76,7 @@ test('overgeslagen wedstrijden leggen uit waaróm ze afvielen', () => {
   for (const g of skipped.slice(0, 50)) {
     const { reasons } = explainPick(g, {});
     assert.ok(
-      reasons.some((r) => /weekvorm|budget|nooit-lijst/.test(r)),
+      reasons.some((r) => /kijkplan|minutenbudget|op Nooit/.test(r)),
       `${g.game_id} legt niet uit waarom hij afviel`,
     );
   }
