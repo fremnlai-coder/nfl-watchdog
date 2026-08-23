@@ -13,7 +13,8 @@ const TARGET = new URL('web/public/data/', ROOT);
 
 await rm(TARGET, { recursive: true, force: true });
 
-// Walks the per-season folders and stages them verbatim.
+// Walks the per-season folders. Public files are copied; private week documents
+// are split into per-game reveal files.
 async function stage(kind) {
   const from = new URL(`data/${kind}/`, ROOT);
   const to = new URL(`${kind}/`, TARGET);
@@ -24,10 +25,30 @@ async function stage(kind) {
     const seasonTo = new URL(`${season}/`, to);
     await mkdir(seasonTo, { recursive: true });
     const files = (await readdir(seasonFrom)).filter((f) => f.endsWith('.json'));
+    const staged = [];
     for (const file of files) {
-      await copyFile(new URL(file, seasonFrom), new URL(file, seasonTo));
+      const reveal = kind === 'private' && /^week-(\d+)\.(hints|results)\.json$/.exec(file);
+      if (!reveal) {
+        await copyFile(new URL(file, seasonFrom), new URL(file, seasonTo));
+        staged.push(file);
+        continue;
+      }
+
+      // Source files stay aggregated because they are convenient for ingest and
+      // season-wide tests. The browser build is split per game, so revealing one
+      // result never downloads the other scores from that week.
+      const [, week, kindName] = reveal;
+      const doc = JSON.parse(await readFile(new URL(file, seasonFrom), 'utf8'));
+      const weekTo = new URL(`week-${week}/`, seasonTo);
+      await mkdir(weekTo, { recursive: true });
+      for (const [gameId, value] of Object.entries(doc)) {
+        if (!/^\d+$/.test(gameId)) throw new Error(`Ongeldig wedstrijd-id in ${file}: ${gameId}`);
+        const name = `${gameId}.${kindName}.json`;
+        await writeFile(new URL(name, weekTo), JSON.stringify(value));
+        staged.push(`week-${week}/${name}`);
+      }
     }
-    seasons[season] = files;
+    seasons[season] = staged;
   }
   return seasons;
 }

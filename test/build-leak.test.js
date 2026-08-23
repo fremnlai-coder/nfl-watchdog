@@ -93,13 +93,23 @@ test('de initiele payload bevat geen privé-data, alleen de verwijzing ernaar', 
   }
 });
 
-test('de privé-bestanden staan wel in de build, want anders werkt level 3 niet', async (t) => {
+test('de privé-data staat per wedstrijd in de build', async (t) => {
   if (!built) return t.skip('geen dist/');
   const privateDir = new URL('dist/data/private/2025/', ROOT);
   assert.ok(await exists(privateDir), 'dist/data/private/ ontbreekt');
-  const files = await readdir(privateDir);
-  assert.equal(files.filter((f) => f.endsWith('.results.json')).length, 18);
-  assert.equal(files.filter((f) => f.endsWith('.hints.json')).length, 18);
+  const weeks = (await readdir(privateDir, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory() && /^week-\d+$/.test(entry.name));
+  assert.equal(weeks.length, 18);
+
+  let hints = 0;
+  let results = 0;
+  for (const week of weeks) {
+    const files = await readdir(new URL(`${week.name}/`, privateDir));
+    hints += files.filter((f) => f.endsWith('.hints.json')).length;
+    results += files.filter((f) => f.endsWith('.results.json')).length;
+  }
+  assert.equal(hints, 272);
+  assert.equal(results, 272);
 });
 
 test('het publieke weekbestand in de build is nog steeds schoon', async (t) => {

@@ -259,6 +259,8 @@ for (const week of weeks) {
       watchability: (prefs.show_watchability === false || isOwn)
         ? null
         : (scored.get(g.game_id)?.watchability ?? null),
+      hints_ready: metricsById.has(g.game_id),
+      outcome_ready: g.final,
     });
   });
 

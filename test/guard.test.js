@@ -62,6 +62,21 @@ test('buildPublicGame laat velden buiten de allowlist vallen', () => {
   assertPublicShape(built);
 });
 
+test('reveal-beschikbaarheid mag alleen een boolean zijn', () => {
+  assertPublicShape({ ...clean, hints_ready: true, outcome_ready: false });
+  assert.throws(
+    () => assertPublicShape({ ...clean, outcome_ready: 'KC won' }),
+    /invalid outcome_ready/,
+  );
+});
+
+test('een wedstrijd-id kan niet uit zijn datapad breken', () => {
+  assert.throws(
+    () => assertPublicShape({ ...clean, game_id: '../../week-2' }),
+    /invalid game_id/,
+  );
+});
+
 test('de scoreregel-scan betrapt een geïnjecteerde uitslag', () => {
   const poisoned = { ...clean, venue: 'HOU 9 - 37 KC' };
   const scoreLine = 'HOU 9 - 37 KC';

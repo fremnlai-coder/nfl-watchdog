@@ -23,6 +23,7 @@ for (const n of weekNumbers) {
   weeks.push({
     n,
     pub: await readJson(`data/public/2025/week-${n}.json`),
+    hints: await readJson(`data/private/2025/week-${n}.hints.json`),
     results: await readJson(`data/private/2025/week-${n}.results.json`),
   });
 }
@@ -64,6 +65,23 @@ test('geen eindstand in de publieke payload', () => {
           `week ${n} game ${id}: uitslagpatroon "${p}" lekt`,
         );
       }
+    }
+  }
+});
+
+test('reveal-knoppen volgen de werkelijk beschikbare bestanden', () => {
+  for (const { n, pub, hints, results } of weeks) {
+    for (const game of pub.games) {
+      assert.equal(
+        game.hints_ready,
+        Object.hasOwn(hints, game.game_id),
+        `week ${n} game ${game.game_id}: hints_ready wijkt af`,
+      );
+      assert.equal(
+        game.outcome_ready,
+        Object.hasOwn(results, game.game_id),
+        `week ${n} game ${game.game_id}: outcome_ready wijkt af`,
+      );
     }
   }
 });

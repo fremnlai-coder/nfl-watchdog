@@ -113,9 +113,9 @@
     },
     {
       "game_id": "401873089",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "avoid",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873084",
@@ -131,9 +131,9 @@
     },
     {
       "game_id": "401873090",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401873092",
@@ -156,7 +156,7 @@
     {
       "game_id": "401873094",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     }
   ],
@@ -196,6 +196,8 @@
       "all22_from_nl": "vr 27 nov, 17:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -236,6 +238,8 @@
       "all22_from_nl": "za 28 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Twee ploegen uit de NFC North die elkaar dit jaar niets gunnen.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -274,6 +278,8 @@
       "all22_from_nl": "za 28 nov, 14:00",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "NFC East-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
@@ -314,6 +320,8 @@
       "all22_from_nl": "za 28 nov, 17:50",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Thursday Night: Kansas City Chiefs op bezoek bij Buffalo Bills.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -354,6 +362,8 @@
       "all22_from_nl": "zo 29 nov, 12:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -392,6 +402,8 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -432,6 +444,8 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -470,6 +484,8 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -508,10 +524,12 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Twee ploegen uit de AFC East die elkaar dit jaar niets gunnen.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "avoid",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873084",
@@ -548,6 +566,8 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -586,6 +606,8 @@
       "all22_from_nl": "di 1 dec, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -624,10 +646,12 @@
       "all22_from_nl": "di 1 dec, 13:35",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Onderlinge strijd in de AFC South, en allebei hebben ze het nodig.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401873092",
@@ -664,6 +688,8 @@
       "all22_from_nl": "di 1 dec, 13:55",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "NFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -704,6 +730,8 @@
       "all22_from_nl": "di 1 dec, 13:55",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Divisieduel in de NFC West met veel op het spel voor beide ploegen.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
@@ -744,6 +772,8 @@
       "all22_from_nl": "di 1 dec, 17:50",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Sunday Night: New England Patriots op bezoek bij Los Angeles Chargers.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -782,9 +812,11 @@
       "all22_from_nl": "wo 2 dec, 17:45",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
       "teaser": "Onderlinge strijd in de NFC South, en allebei hebben ze het nodig.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     }
   ]

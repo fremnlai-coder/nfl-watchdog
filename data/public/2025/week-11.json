@@ -69,7 +69,7 @@
     {
       "game_id": "401772945",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -81,14 +81,14 @@
     {
       "game_id": "401772882",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
       "game_id": "401772776",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772881",
@@ -110,9 +110,9 @@
     },
     {
       "game_id": "401772774",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772775",
@@ -191,9 +191,11 @@
       "all22_from_nl": "za 15 nov, 17:45",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderling duel binnen de AFC East.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -231,6 +233,8 @@
       "all22_from_nl": "di 18 nov, 07:00",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Een van de weinige wedstrijden die je hier bij daglicht kunt volgen: Madrid.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -269,9 +273,11 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC South-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -309,10 +315,12 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772881",
@@ -347,6 +355,8 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderling duel binnen de AFC South.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -387,6 +397,8 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de NFC North met veel op het spel voor beide ploegen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -427,6 +439,8 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC-onderonsje tussen twee ploegen uit andere divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -465,10 +479,12 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "AFC North-duel waar beide ploegen niet omheen kunnen.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772775",
@@ -506,6 +522,8 @@
       "all22_from_nl": "di 18 nov, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Beide ploegen jagen nog volop op een plek in de play-offs.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -547,6 +565,8 @@
       "all22_from_nl": "di 18 nov, 13:35",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de NFC West met veel op het spel voor beide ploegen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
@@ -587,6 +607,8 @@
       "all22_from_nl": "di 18 nov, 13:35",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC West-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
@@ -625,6 +647,8 @@
       "all22_from_nl": "di 18 nov, 13:55",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderling duel binnen de AFC North.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -665,6 +689,8 @@
       "all22_from_nl": "di 18 nov, 13:55",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "AFC West-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -705,6 +731,8 @@
       "all22_from_nl": "di 18 nov, 17:50",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -745,6 +773,8 @@
       "all22_from_nl": "wo 19 nov, 17:45",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Monday Night: Dallas Cowboys op bezoek bij Las Vegas Raiders.",
       "format_advice": "skip",
       "format_reason": "quota_full",

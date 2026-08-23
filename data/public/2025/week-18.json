@@ -66,7 +66,7 @@
     {
       "game_id": "401772969",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -114,7 +114,7 @@
     {
       "game_id": "401772967",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -143,9 +143,9 @@
     },
     {
       "game_id": "401772958",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772959",
@@ -155,9 +155,9 @@
     },
     {
       "game_id": "401772960",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     }
   ],
   "games": [
@@ -194,9 +194,11 @@
       "all22_from_nl": "ma 5 jan, 14:00",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC South-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -234,6 +236,8 @@
       "all22_from_nl": "ma 5 jan, 17:30",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC West-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
@@ -272,6 +276,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderlinge strijd in de NFC South, en allebei hebben ze het nodig.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -310,6 +316,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen uit de AFC North die elkaar dit jaar niets gunnen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -351,6 +359,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen uit de NFC North die elkaar dit jaar niets gunnen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -389,6 +399,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de NFC East met veel op het spel voor beide ploegen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -427,6 +439,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de AFC South met veel op het spel voor beide ploegen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -467,6 +481,8 @@
       "all22_from_nl": "di 6 jan, 10:30",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderlinge strijd in de AFC South, en allebei hebben ze het nodig.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -505,9 +521,11 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de AFC East met veel op het spel voor beide ploegen.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -545,6 +563,8 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "NFC North-duel waar beide ploegen niet omheen kunnen.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -586,6 +606,8 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de AFC West met veel op het spel voor beide ploegen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
@@ -626,6 +648,8 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderling duel binnen de AFC West.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -666,6 +690,8 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderlinge strijd in de NFC West, en allebei hebben ze het nodig.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -704,10 +730,12 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "AFC East-duel waar beide ploegen niet omheen kunnen.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772959",
@@ -742,6 +770,8 @@
       "all22_from_nl": "di 6 jan, 13:55",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen uit de NFC East die elkaar dit jaar niets gunnen.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -782,10 +812,12 @@
       "all22_from_nl": "di 6 jan, 17:50",
       "stakes_pre": 5,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen uit de AFC North die elkaar dit jaar niets gunnen.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     }
   ]
 }

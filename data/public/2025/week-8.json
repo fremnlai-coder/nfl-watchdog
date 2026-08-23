@@ -85,7 +85,7 @@
     {
       "game_id": "401772758",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -96,15 +96,15 @@
     },
     {
       "game_id": "401772867",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
-    },
-    {
-      "game_id": "401772865",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
+    },
+    {
+      "game_id": "401772865",
+      "format_advice": "skip",
+      "format_reason": "avoid",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772759",
@@ -186,6 +186,8 @@
       "all22_from_nl": "za 25 okt, 17:45",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Thursday Night met Minnesota Vikings als bezoeker.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -224,6 +226,8 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 1,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -262,9 +266,11 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 1,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen die de aansluiting naar boven kwijt zijn.",
       "format_advice": "skip",
-      "format_reason": "quota_full",
+      "format_reason": "avoid",
       "runtime_minutes": 0
     },
     {
@@ -300,6 +306,8 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -338,10 +346,12 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Divisieduel in de NFC East, deze twee treffen elkaar elk seizoen tweemaal.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401772865",
@@ -378,10 +388,12 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Allebei staan ze aan de goede kant van de streep.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "avoid",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401772759",
@@ -418,6 +430,8 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 1,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -458,6 +472,8 @@
       "all22_from_nl": "di 28 okt, 09:30",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "full",
       "format_reason": "own_team",
@@ -496,6 +512,8 @@
       "all22_from_nl": "di 28 okt, 12:35",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Bekende tegenstanders: NFC South, twee keer per jaar op het programma.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -537,6 +555,8 @@
       "all22_from_nl": "di 28 okt, 12:55",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Een ontmoeting tussen de conferences, en dus een zeldzame.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
@@ -575,6 +595,8 @@
       "all22_from_nl": "di 28 okt, 12:55",
       "stakes_pre": 2,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Onderling duel binnen de AFC South.",
       "format_advice": "skip",
       "format_reason": "quota_full",
@@ -616,6 +638,8 @@
       "all22_from_nl": "di 28 okt, 16:50",
       "stakes_pre": 4,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Twee ploegen die zich in deze fase geen misstap kunnen permitteren.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
@@ -656,6 +680,8 @@
       "all22_from_nl": "wo 29 okt, 16:45",
       "stakes_pre": 3,
       "watchability": null,
+      "hints_ready": true,
+      "outcome_ready": true,
       "teaser": "Monday Night: Washington Commanders op bezoek bij Kansas City Chiefs.",
       "format_advice": "full",
       "format_reason": "own_team",

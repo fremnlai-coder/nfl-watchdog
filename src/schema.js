@@ -24,6 +24,10 @@ export const PUBLIC_KEYS = [
   'all22_from_nl',
   'stakes_pre',
   'watchability',
+  // Availability only. These booleans reveal no score, winner, direction or
+  // quality; they stop the UI offering dead reveal actions before a game exists.
+  'hints_ready',
+  'outcome_ready',
   'teaser',
   'format_advice',
   'format_reason',
@@ -75,6 +79,14 @@ export function assertPublicShape(game, where = 'public game') {
   }
   if (game.format_advice !== undefined && !FORMATS.includes(game.format_advice)) {
     throw new Error(`${where}: invalid format_advice "${game.format_advice}"`);
+  }
+  for (const key of ['hints_ready', 'outcome_ready']) {
+    if (game[key] !== undefined && typeof game[key] !== 'boolean') {
+      throw new Error(`${where}: invalid ${key}`);
+    }
+  }
+  if (game.game_id !== undefined && !/^\d+$/.test(String(game.game_id))) {
+    throw new Error(`${where}: invalid game_id`);
   }
   return true;
 }
