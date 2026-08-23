@@ -52,10 +52,9 @@ export function localHour(date, timeZone = 'Europe/Amsterdam') {
   return Number(partsIn(date, timeZone, { hour: 'numeric' }).hour) % 24;
 }
 
-// Whether the kickoff is at an hour you could realistically watch live here.
-// Being played abroad is not the same thing: the 2025 Sao Paulo game kicked off
-// at 02:00 Dutch time, and 2026 adds Melbourne, Rio and Mexico City. Only the
-// European host cities land in the afternoon.
+// Neutral time-of-day classification for international-game copy. Being played
+// abroad is not the same as a daytime kickoff: the 2025 Sao Paulo game started
+// at 02:00 Dutch time. This flag must not become a live-viewing recommendation.
 export function isLiveFriendly(date, { timeZone = 'Europe/Amsterdam', window = [11, 21] } = {}) {
   const hour = localHour(date, timeZone);
   return hour >= window[0] && hour <= window[1];

@@ -75,7 +75,7 @@ export const GLOSSARY = {
   },
   full_replay: {
     term: 'Volledige replay',
-    text: 'De volledige, reclamevrije replay op DAZN. Reken op ongeveer drie uur kijktijd.',
+    text: 'De hele wedstrijd zonder reclameblokken, doorgaans binnen 24 uur beschikbaar. Reken op ongeveer twee uur kijktijd.',
   },
   primetime: {
     term: 'primetime',

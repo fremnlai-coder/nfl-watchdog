@@ -6,9 +6,9 @@ import assert from 'node:assert/strict';
 import { planWeek, planBoth } from '../src/planner.js';
 
 const prefs = {
-  weekly_budget_minutes: 240,
+  weekly_budget_minutes: 180,
   own_team_default_format: 'full',
-  format_durations_minutes: { full: 185, game_in_40: 40 },
+  format_durations_minutes: { full: 125, game_in_40: 40 },
   slate_recap: { enabled: true, name: 'Sunday in 60', minutes: 60, covers_weekdays: [0] },
   teams: [
     { abbr: 'KC', tier: 'favorite', rank: 1 },
@@ -97,7 +97,7 @@ test('watchlist gaat voor bij gelijke rating', () => {
 
 test('de recap krijgt alleen minuten die na je eigen teams overblijven', () => {
   const plan = planWeek(week, prefs, { withRecap: true });
-  // KC full (185) leaves 55 of 240, which is under the 60 the recap needs.
+  // KC's ad-free full replay (125) leaves 55 of 180, below the recap's 60.
   assert.equal(plan.summary.recap_included, false);
   assert.equal(plan.summary.recap_dropped, true);
 });
@@ -137,7 +137,7 @@ test('quota levert precies de gevraagde weekvorm', () => {
   const plan = planWeek(week, quotaPrefs, { withRecap: false });
   assert.equal(plan.summary.counts.full, 2);
   assert.equal(plan.summary.counts.game_in_40, 3);
-  assert.equal(plan.summary.total_minutes, 2 * 185 + 3 * 40);
+  assert.equal(plan.summary.total_minutes, 2 * 125 + 3 * 40);
 });
 
 test('de full-plekken gaan naar je hoogste rangen', () => {
@@ -187,7 +187,7 @@ test('de recap komt bovenop de weekvorm, niet ervanaf', () => {
   const plan = planWeek(week, quotaPrefs, { withRecap: true });
   assert.equal(plan.summary.counts.full, 2);
   assert.equal(plan.summary.counts.game_in_40, 3);
-  assert.equal(plan.summary.total_minutes, 2 * 185 + 3 * 40 + 60);
+  assert.equal(plan.summary.total_minutes, 2 * 125 + 3 * 40 + 60);
 });
 
 test('beide pakketten worden altijd berekend', () => {

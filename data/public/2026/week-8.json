@@ -19,12 +19,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 370,
+      "budget_minutes": 370,
+      "own_team_minutes": 250,
       "own_team_skipped": 0,
       "picked_minutes": 120,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -47,12 +47,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 370,
+      "budget_minutes": 370,
+      "own_team_minutes": 250,
       "own_team_skipped": 0,
       "picked_minutes": 120,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -96,7 +96,7 @@
       "game_id": "401873030",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873029",
@@ -132,7 +132,7 @@
       "game_id": "401873033",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873034",
@@ -358,7 +358,7 @@
       "teaser": "Divisieduel in de NFC North, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873029",
@@ -604,7 +604,7 @@
       "teaser": "Divisieduel in de AFC West, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873034",

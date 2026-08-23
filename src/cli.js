@@ -97,7 +97,10 @@ function line(g, { showRating }) {
   if (g.game_type === 'division') badges.push('divisie');
   if (g.primetime) badges.push('primetime');
   for (const t of g.tags) if (t !== 'own_team') badges.push(t);
-  const advice = `${FORMAT_LABEL[g.format_advice]}${g.runtime_minutes ? ` ${g.runtime_minutes} min` : ''}`;
+  const runtime = g.runtime_minutes
+    ? ` ${g.format_advice === 'full' ? '±' : ''}${g.runtime_minutes} min`
+    : '';
+  const advice = `${FORMAT_LABEL[g.format_advice]}${runtime}`;
   return [
     '  ',
     pad(g.kickoff_nl, 17),
@@ -204,7 +207,7 @@ const describe = (p) => {
     `${p.counts.game_in_40}x Game in 40`,
     ...unused,
     p.recap_included ? `${p.recap_minutes} min ${prefs.slate_recap.name}` : null,
-    `${p.total_minutes} min`,
+    `${p.counts.full > 0 ? '±' : ''}${p.total_minutes} min`,
   ].filter(Boolean);
   const tail = p.recap_included
     ? `${p.recap_covers} wedstrijden alleen als ~5 min samenvatting, ${p.unseen} helemaal ongezien`

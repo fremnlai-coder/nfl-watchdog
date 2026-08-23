@@ -80,7 +80,7 @@ const SAFE = [
   'Divisieduel in de NFC North, deze twee treffen elkaar elk seizoen tweemaal.',
   'Beide ploegen jagen nog volop op een plek in de play-offs.',
   'AFC tegen NFC, deze twee ploegen treffen elkaar zelden.',
-  'Overzees duel in Londen, hier gewoon op een normaal tijdstip te kijken.',
+  'Internationale wedstrijd in Londen, met een middagaftrap in Nederland.',
   'Twee ploegen met een winnend record komen elkaar tegen.',
   'Sunday Night: KC op bezoek bij NYG.',
   'SF op bezoek bij ARI.',

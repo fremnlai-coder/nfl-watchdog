@@ -14,12 +14,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -42,12 +42,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -73,7 +73,7 @@
       "game_id": "401873081",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873080",
@@ -85,7 +85,7 @@
       "game_id": "401873082",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873083",
@@ -243,7 +243,7 @@
       "teaser": "Twee ploegen uit de NFC North in een vooraf hoog ingeschat duel.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873080",
@@ -325,7 +325,7 @@
       "teaser": "Thanksgiving: Kansas City Chiefs op bezoek bij Buffalo Bills.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873083",

@@ -14,12 +14,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -42,12 +42,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -121,7 +121,7 @@
       "game_id": "401772965",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772956",
@@ -133,7 +133,7 @@
       "game_id": "401772957",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772955",
@@ -568,7 +568,7 @@
       "teaser": "NFC North-duel met een hoge waardering voor belang vooraf.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772956",
@@ -653,7 +653,7 @@
       "teaser": "Onderlinge wedstrijd tussen twee ploegen uit de AFC West.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772955",

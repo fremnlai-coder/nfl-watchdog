@@ -5,26 +5,26 @@
     11,
     21
   ],
-  "_live_friendly_note": "Aftrapvenster in NL-tijd waarbinnen je een wedstrijd realistisch live kunt kijken.",
+  "_live_friendly_note": "Aftrapvenster in NL-tijd waarmee internationale wedstrijden neutraal als overdag, laat of 's nachts worden beschreven; dit is geen kijkadvies.",
   "season": 2026,
   "planning_mode": "quota",
   "weekly_quota": {
     "full": 2,
     "game_in_40": 3
   },
-  "_weekly_quota_note": "Vast kijkplan: 2 volledige replays + 3x Game in 40 = 490 min. Volledige plekken gaan alleen naar je favorieten; ongebruikte plekken worden 40-plekken.",
+  "_weekly_quota_note": "Vast kijkplan: 2 reclamevrije volledige replays + 3x Game in 40 = circa 370 min. Volledige plekken gaan alleen naar je favorieten; ongebruikte plekken worden 40-plekken.",
   "weekly_budget_minutes": 240,
   "own_team_policy": "degrade_by_rank",
   "show_watchability": false,
   "planning_basis": "pre_game_only",
   "_planning_basis_note": "watchability = op basis van het verloop (correleert -0.70 met de eindmarge, verraadt nooit de winnaar). pre_game_only = alleen op inzet vooraf, lekt niets.",
   "own_team_default_format": "full",
-  "_own_team_default_format_note": "full | game_in_40. Volledig kosten drie favorieten 555 min per week; dan komt de rest nauwelijks aan bod.",
+  "_own_team_default_format_note": "full | game_in_40. Drie reclamevrije volledige replays kosten naar schatting 375 min per week.",
   "all22_delay_hours": 48,
   "_all22_delay_note": "Conservatieve bovengrens na afloop; NFL Game Pass noemt doorgaans 36-48 uur.",
   "watched_through_week": 0,
   "format_durations_minutes": {
-    "full": 185,
+    "full": 125,
     "game_in_40": 40,
     "all22": 75
   },

@@ -45,13 +45,13 @@ export function explainPick(game, ctx = {}) {
     case 'own_team':
       reasons.push(
         game.format_advice === 'full'
-          ? 'Er was nog een plek voor een volledige replay.'
+          ? 'Er was nog een plek voor een reclamevrije volledige replay.'
           : 'Deze wedstrijd past in een Game in 40-plek.',
       );
       break;
     case 'own_team_degraded':
       reasons.push(
-        'De volledige plekken waren al toegewezen aan hogere favorieten, dus dit wordt Game in 40.',
+        'De reclamevrije volledige plekken waren al toegewezen aan hogere favorieten, dus dit wordt Game in 40.',
       );
       break;
     case 'quality':
@@ -93,10 +93,9 @@ export function explainPick(game, ctx = {}) {
     reasons.push('Een van de ploegen speelt in dezelfde divisie als een van je favorieten.');
   }
 
-  // --- When you can watch it ---
-  if (game.live_friendly_nl) {
-    reasons.push('De aftrap valt binnen je livevenster.');
-  } else if (game.primetime) {
+  // Kickoff time is context, never a recommendation to watch live. The planner
+  // assumes on-demand viewing because the full replay is the ad-free format.
+  if (game.primetime) {
     reasons.push('Amerikaanse primetimewedstrijd; de aftrap is hier midden in de nacht.');
   }
 

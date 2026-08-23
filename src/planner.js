@@ -4,7 +4,7 @@
 // game_in_40 or skip. Letting the optimiser hand out a full replay would make
 // "full" a reliable marker for "high rating", which is exactly the level-1 leak
 // the spoiler rules are trying to avoid. It is also simply the better advice —
-// at 40 versus 185 minutes a condensed game is ~4.6x more game per minute, so a
+// at 40 versus 125 minutes a condensed game is ~3.1x more game per minute, so a
 // budget optimiser picks it every time anyway. Full replays are reserved for
 // your own teams, where the choice is loyalty rather than quality.
 // Set allow_full_for_non_favorites to override, accepting that leak.
@@ -172,9 +172,10 @@ export function planWeek(games, prefs, { withRecap }) {
     .map((g) => ({ game: g, rank: favoriteRank(g, teamsByAbbr) }))
     .sort((a, b) => a.rank - b.rank);
 
-  // Three favourites at a full replay each is 555 minutes, and in this schedule
-  // all three play in 14 of 18 weeks. Left at "full" the own-team block eats any
-  // realistic budget whole and nothing else is ever planned, so the default
+  // Three favourites at an ad-free full replay each is about 375 minutes. In
+  // this schedule all three play in 14 of 18 weeks. Left at "full", the
+  // own-team block consumes the whole realistic budget and nothing else is
+  // ever planned, so the default
   // format is a lever rather than a constant.
   const ownDefault = prefs.own_team_default_format ?? 'full';
   for (const { game } of own) {

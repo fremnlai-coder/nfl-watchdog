@@ -62,9 +62,9 @@ function conditions(game) {
 
   if (game.is_international && game.live_friendly_nl) {
     out.push([
-      `Internationale wedstrijd in ${venue}, hier op een normaal tijdstip te kijken.`,
-      `${venue} als speelstad; de wedstrijd begint hier overdag.`,
-      `Aftrap in ${venue}, op een prettig tijdstip in Nederland.`,
+      `Internationale wedstrijd in ${venue}, met een middagaftrap in Nederland.`,
+      `${venue} als speelstad; de aftrap is hier overdag.`,
+      `Aftrap in ${venue}, hier midden op de dag.`,
     ]);
   }
   if (game.is_international && !game.live_friendly_nl) {
@@ -75,7 +75,7 @@ function conditions(game) {
       ]
       : [
         `Internationale wedstrijd in ${venue}, hier midden in de nacht.`,
-        `Aftrap in ${venue}, waarvoor je hier 's nachts moet opstaan.`,
+        `De wedstrijd in ${venue} begint hier midden in de nacht.`,
       ]);
   }
   if (highStakes && game.game_type === 'division') {

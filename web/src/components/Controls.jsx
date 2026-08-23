@@ -34,7 +34,7 @@ export default function Controls({
   onWeek,
   quota,
   onQuota,
-  durations = { full: 185, game_in_40: 40 },
+  durations = { full: 125, game_in_40: 40 },
   withRecap,
   onRecap,
   recapMinutes = 60,
@@ -83,9 +83,10 @@ export default function Controls({
           <span className="text-stone-400">Kijkplan</span>
           <span className="ml-2">{quota.full} volledig · {quota.game_in_40}×40</span>
           {withRecap && <span className="ml-1 text-amber-300">· S60</span>}
-          <span className="ml-2 text-stone-500">{minutes} min</span>
+          <span className="ml-2 text-stone-500">{quota.full > 0 ? '±' : ''}{minutes} min</span>
         </summary>
         <div className="flex flex-wrap items-center gap-3 pb-3">
+          <p className="basis-full text-xs text-stone-500">Volledig is reclamevrij.</p>
           <Stepper
             label="Volledig"
             value={quota.full}

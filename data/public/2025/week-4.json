@@ -14,12 +14,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -42,12 +42,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -91,7 +91,7 @@
       "game_id": "401772846",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772847",
@@ -133,7 +133,7 @@
       "game_id": "401772741",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772742",
@@ -243,7 +243,7 @@
       "watchability": null,
       "hints_ready": true,
       "outcome_ready": true,
-      "teaser": "Internationale wedstrijd in Dublin, hier op een normaal tijdstip te kijken.",
+      "teaser": "Internationale wedstrijd in Dublin, met een middagaftrap in Nederland.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -368,7 +368,7 @@
       "teaser": "AFC tegen NFC, deze twee ploegen treffen elkaar zelden.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772847",
@@ -659,7 +659,7 @@
       "teaser": "Twee ploegen met een verliezend record treffen elkaar.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401772742",

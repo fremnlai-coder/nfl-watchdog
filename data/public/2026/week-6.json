@@ -19,12 +19,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 370,
+      "budget_minutes": 370,
+      "own_team_minutes": 250,
       "own_team_skipped": 0,
       "picked_minutes": 120,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -47,12 +47,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 370,
+      "budget_minutes": 370,
+      "own_team_minutes": 250,
       "own_team_skipped": 0,
       "picked_minutes": 120,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -132,7 +132,7 @@
       "game_id": "401873006",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873005",
@@ -150,7 +150,7 @@
       "game_id": "401873008",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     }
   ],
   "games": [
@@ -233,7 +233,7 @@
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Londen als speelstad; de wedstrijd begint hier overdag.",
+      "teaser": "Londen als speelstad; de aftrap is hier overdag.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -602,7 +602,7 @@
       "teaser": "Bekende tegenstanders: AFC West, twee keer per jaar op het programma.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873005",
@@ -728,7 +728,7 @@
       "teaser": "Monday Night: Washington Commanders op bezoek bij San Francisco 49ers.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     }
   ]
 }

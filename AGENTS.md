@@ -32,5 +32,7 @@ artifacts per game, exposes Sunday in 60, and tracks watched games. The mobile U
 uses a compact default card; All-22 timing and decision details sit behind
 `Waarom?`. Context chips are limited to three and identify favourites, viewing
 priority, international games, prime-time broadcasts, and holiday fixtures.
-All-22 availability uses a conservative 48-hour delay. Run `npm run verify` for
-the build plus the complete test suite.
+The planner treats `full` as DAZN's ad-free full-length replay and budgets 125
+minutes; kickoff time is context, not a reason to recommend live viewing. All-22
+availability uses a conservative 48-hour delay. Run `npm run verify` for the
+build plus the complete test suite.

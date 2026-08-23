@@ -35,6 +35,11 @@ test('de begrippen uit de opdracht staan er allemaal in', () => {
   }
 });
 
+test('de volledige replay is expliciet reclamevrij', () => {
+  assert.match(GLOSSARY.full_replay.text, /zonder reclame/i);
+  assert.match(GLOSSARY.full_replay.text, /twee uur/i);
+});
+
 test('geen enkele uitleg verwijst naar een seizoen, ploeg of uitslag', () => {
   // Definitions are rules of the game. Anything season-specific in here would
   // put standings into the initial payload through the back door.

@@ -256,7 +256,7 @@ for (const week of weeks) {
       primetime: isPrimeTime(g.date),
       tags,
       in_sunday_slate: isSundaySlate(g.date, prefs.slate_recap?.covers_weekdays ?? [0]),
-      // Kickoff falls at an hour you could actually watch live from here.
+      // Neutral time-of-day flag for international-game copy, not a live preference.
       live_friendly_nl: liveFriendly,
       all22_from_nl: formatNL(new Date(g.date.getTime() + all22Delay), prefs.timezone),
       // Pre-game importance. Level 0: derived purely from the records carried

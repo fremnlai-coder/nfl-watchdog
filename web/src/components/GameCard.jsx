@@ -79,6 +79,9 @@ export default function GameCard({
   const formatLabel = recapped ? 'Sunday in 60' : FORMAT_LABEL[game.format_advice];
   const formatTerm = recapped ? 'sunday_in_60' : FORMAT_TERM[game.format_advice];
   const formatStyle = recapped ? FORMAT_STYLE.recap : FORMAT_STYLE[game.format_advice];
+  const runtime = game.runtime_minutes
+    ? `${game.format_advice === 'full' ? '±' : ''}${game.runtime_minutes} min`
+    : null;
   const shortReason = recapped ? 'Sunday in 60' : (REASON_LABEL[game.format_reason] ?? game.format_reason);
   const logoSize = compact ? 24 : 30;
 
@@ -123,7 +126,7 @@ export default function GameCard({
         <div className="flex shrink-0 items-center gap-1.5">
           <span className={`rounded px-2 py-0.5 text-xs font-semibold ${formatStyle}`}>
             {formatTerm ? <Term id={formatTerm}>{formatLabel}</Term> : formatLabel}
-            {!recapped && game.runtime_minutes ? ` · ${game.runtime_minutes} min` : ''}
+            {!recapped && runtime ? ` · ${runtime}` : ''}
           </span>
         </div>
       </div>

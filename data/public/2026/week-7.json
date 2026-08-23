@@ -19,12 +19,12 @@
       },
       "recap_included": false,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 0,
-      "total_minutes": 490,
+      "total_minutes": 370,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -47,12 +47,12 @@
       },
       "recap_included": true,
       "recap_dropped": false,
-      "budget_minutes": 490,
-      "own_team_minutes": 410,
+      "budget_minutes": 370,
+      "own_team_minutes": 290,
       "own_team_skipped": 0,
       "picked_minutes": 80,
       "recap_minutes": 60,
-      "total_minutes": 550,
+      "total_minutes": 430,
       "overflow_minutes": 0,
       "unused_slots": {
         "full": 0,
@@ -132,7 +132,7 @@
       "game_id": "401873020",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873021",
@@ -144,7 +144,7 @@
       "game_id": "401873022",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873009",
@@ -233,7 +233,7 @@
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Aftrap in Saint-Denis, op een prettig tijdstip in Nederland.",
+      "teaser": "Aftrap in Saint-Denis, hier midden op de dag.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -604,7 +604,7 @@
       "teaser": "Bekende tegenstanders: NFC North, twee keer per jaar op het programma.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873021",
@@ -688,7 +688,7 @@
       "teaser": "Sunday Night: Kansas City Chiefs op bezoek bij Seattle Seahawks.",
       "format_advice": "full",
       "format_reason": "own_team",
-      "runtime_minutes": 185
+      "runtime_minutes": 125
     },
     {
       "game_id": "401873009",
