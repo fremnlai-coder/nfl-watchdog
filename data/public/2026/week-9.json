@@ -61,16 +61,16 @@
         "game_in_40": 3,
         "skip": 10
       },
-      "recap_covers": 8,
-      "unseen": 2
+      "recap_covers": 9,
+      "unseen": 1
     }
   },
   "package_b_plan": [
     {
       "game_id": "401873037",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401873038",
@@ -140,9 +140,9 @@
     },
     {
       "game_id": "401873048",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873050",
@@ -180,23 +180,25 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "conference",
       "primetime": true,
-      "tags": [],
+      "tags": [
+        "indirect belangrijk"
+      ],
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "zo 8 nov, 05:45",
-      "stakes_pre": 2,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Thursday Night: Jacksonville Jaguars op bezoek bij Baltimore Ravens.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "teaser": "Hoog ingeschaald op basis van de situatie vóór deze week.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401873038",
@@ -220,8 +222,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "1-0"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -262,8 +264,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -271,7 +273,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -302,8 +304,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "conference",
       "primetime": false,
@@ -313,11 +315,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
+      "teaser": "Deze ontmoeting scoort vooraf hoog op belang.",
       "format_advice": "full",
       "format_reason": "own_team",
       "runtime_minutes": 125
@@ -344,8 +346,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "1-0"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -386,8 +388,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -395,7 +397,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -426,16 +428,18 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "division",
       "primetime": false,
-      "tags": [],
+      "tags": [
+        "indirect belangrijk"
+      ],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 4,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -466,8 +470,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -477,7 +481,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -508,8 +512,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -519,7 +523,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 10 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -550,8 +554,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -561,7 +565,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 11 nov, 01:35",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -592,8 +596,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -603,11 +607,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 11 nov, 01:35",
-      "stakes_pre": 2,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Een zeldzame ontmoeting tussen ploegen uit verschillende conferences.",
+      "teaser": "Een wedstrijd met een hoge waardering voor belang vooraf.",
       "format_advice": "game_in_40",
       "format_reason": "own_team_degraded",
       "runtime_minutes": 40
@@ -634,8 +638,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "0-1",
+        "away": "0-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -645,7 +649,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 11 nov, 01:55",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -676,25 +680,26 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "division",
       "primetime": false,
       "tags": [
-        "jouw divisie"
+        "jouw divisie",
+        "indirect belangrijk"
       ],
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 11 nov, 01:55",
-      "stakes_pre": 4,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
       "teaser": "NFC West-duel met een hoge waardering voor belang vooraf.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873050",
@@ -718,8 +723,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "0-1"
       },
       "game_type": "conference",
       "primetime": true,
@@ -760,22 +765,23 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "0-0",
-        "away": "0-0"
+        "home": "1-0",
+        "away": "1-0"
       },
       "game_type": "interconference",
       "primetime": true,
       "tags": [
-        "jouw divisie"
+        "jouw divisie",
+        "indirect belangrijk"
       ],
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "do 12 nov, 05:45",
-      "stakes_pre": 2,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Monday Night: Buffalo Bills op bezoek bij Minnesota Vikings.",
+      "teaser": "Deze ontmoeting scoort vooraf hoog op belang.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
