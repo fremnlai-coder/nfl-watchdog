@@ -63,16 +63,16 @@
         "game_in_40": 3,
         "skip": 9
       },
-      "recap_covers": 8,
-      "unseen": 1
+      "recap_covers": 9,
+      "unseen": 0
     }
   },
   "package_b_plan": [
     {
       "game_id": "401872995",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872996",
@@ -124,9 +124,9 @@
     },
     {
       "game_id": "401873004",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873006",
@@ -176,8 +176,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "2-0"
+        "home": "2-1",
+        "away": "2-1"
       },
       "game_type": "interconference",
       "primetime": true,
@@ -188,14 +188,14 @@
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "zo 18 okt, 05:45",
-      "stakes_pre": 3,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Thursday Night: Seattle Seahawks op bezoek bij Denver Broncos.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "teaser": "Deze ontmoeting scoort vooraf hoog op belang.",
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872996",
@@ -219,8 +219,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "0-2"
+        "home": "2-1",
+        "away": "0-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -261,8 +261,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "0-2",
-        "away": "1-1"
+        "home": "1-2",
+        "away": "2-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -272,7 +272,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 20 okt, 22:30",
-      "stakes_pre": 1,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -303,8 +303,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "1-1"
+        "home": "2-1",
+        "away": "2-1"
       },
       "game_type": "division",
       "primetime": false,
@@ -345,8 +345,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "0-2",
-        "away": "0-2"
+        "home": "1-2",
+        "away": "0-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -385,22 +385,20 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "1-1"
+        "home": "1-2",
+        "away": "1-2"
       },
       "game_type": "division",
       "primetime": false,
-      "tags": [
-        "indirect belangrijk"
-      ],
+      "tags": [],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 20 okt, 22:30",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Twee ploegen uit de AFC East in een vooraf hoog ingeschat duel.",
+      "teaser": "Divisieduel in de AFC East, deze twee treffen elkaar elk seizoen tweemaal.",
       "format_advice": "skip",
       "format_reason": "avoid",
       "runtime_minutes": 0
@@ -427,18 +425,16 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "1-1"
+        "home": "2-1",
+        "away": "1-2"
       },
       "game_type": "conference",
       "primetime": false,
-      "tags": [
-        "indirect belangrijk"
-      ],
+      "tags": [],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 20 okt, 22:30",
-      "stakes_pre": 3,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -469,18 +465,16 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "2-0",
-        "away": "1-1"
+        "home": "2-1",
+        "away": "1-2"
       },
       "game_type": "conference",
       "primetime": false,
-      "tags": [
-        "indirect belangrijk"
-      ],
+      "tags": [],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 20 okt, 22:30",
-      "stakes_pre": 3,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -511,8 +505,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "0-2",
-        "away": "1-1"
+        "home": "0-3",
+        "away": "2-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -551,26 +545,25 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "1-1"
+        "home": "1-2",
+        "away": "1-2"
       },
       "game_type": "division",
       "primetime": false,
       "tags": [
-        "jouw divisie",
-        "indirect belangrijk"
+        "jouw divisie"
       ],
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 21 okt, 01:35",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "NFC West-duel met een hoge waardering voor belang vooraf.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "teaser": "Divisieduel in de NFC West, deze twee treffen elkaar elk seizoen tweemaal.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401873006",
@@ -594,8 +587,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "2-0",
-        "away": "0-2"
+        "home": "3-0",
+        "away": "0-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -636,8 +629,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "2-0",
-        "away": "2-0"
+        "home": "3-0",
+        "away": "3-0"
       },
       "game_type": "conference",
       "primetime": false,
@@ -679,14 +672,13 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "1-1",
-        "away": "1-1"
+        "home": "1-2",
+        "away": "1-2"
       },
       "game_type": "conference",
       "primetime": true,
       "tags": [
-        "jouw divisie",
-        "indirect belangrijk"
+        "jouw divisie"
       ],
       "in_sunday_slate": true,
       "live_friendly_nl": false,
@@ -722,8 +714,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "2-0",
-        "away": "0-2"
+        "home": "3-0",
+        "away": "1-2"
       },
       "game_type": "conference",
       "primetime": true,
@@ -733,7 +725,7 @@
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "do 22 okt, 05:45",
-      "stakes_pre": 1,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
