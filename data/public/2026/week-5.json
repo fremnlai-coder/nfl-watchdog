@@ -61,8 +61,8 @@
         "game_in_40": 3,
         "skip": 10
       },
-      "recap_covers": 8,
-      "unseen": 2
+      "recap_covers": 9,
+      "unseen": 1
     }
   },
   "package_b_plan": [
@@ -77,6 +77,12 @@
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
+    },
+    {
+      "game_id": "401872990",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872984",
@@ -116,21 +122,15 @@
     },
     {
       "game_id": "401872988",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872989",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
-    },
-    {
-      "game_id": "401872990",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
     },
     {
       "game_id": "401872991",
@@ -146,15 +146,15 @@
     },
     {
       "game_id": "401872993",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872994",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     }
   ],
   "games": [
@@ -180,8 +180,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "0-3"
+        "home": "2-2",
+        "away": "0-4"
       },
       "game_type": "conference",
       "primetime": true,
@@ -220,8 +220,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "2-1",
-        "away": "2-1"
+        "home": "3-1",
+        "away": "2-2"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -232,7 +232,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 13 okt, 19:00",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -240,6 +240,49 @@
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
+    },
+    {
+      "game_id": "401872990",
+      "season": 2026,
+      "week": 5,
+      "kickoff_utc": "2026-10-11T17:00:00.000Z",
+      "kickoff_nl": "zo 11 okt, 19:00",
+      "slot": "Zondag vroeg",
+      "is_international": false,
+      "venue": "Green Bay",
+      "home": {
+        "abbr": "GB",
+        "name": "Green Bay Packers",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bears",
+        "conference": "NFC",
+        "division": "NFC North"
+      },
+      "records_before": {
+        "home": "2-2",
+        "away": "3-1"
+      },
+      "game_type": "division",
+      "primetime": false,
+      "tags": [
+        "jouw divisie",
+        "indirect belangrijk"
+      ],
+      "in_sunday_slate": true,
+      "live_friendly_nl": true,
+      "all22_from_nl": "di 13 okt, 22:30",
+      "stakes_pre": 3,
+      "watchability": null,
+      "hints_ready": false,
+      "outcome_ready": false,
+      "teaser": "Bekende tegenstanders: NFC North, twee keer per jaar op het programma.",
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872984",
@@ -263,8 +306,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "0-3",
-        "away": "0-3"
+        "home": "0-4",
+        "away": "0-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -303,8 +346,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "0-3",
-        "away": "2-1"
+        "home": "0-4",
+        "away": "2-2"
       },
       "game_type": "conference",
       "primetime": false,
@@ -343,18 +386,19 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "3-0"
+        "home": "2-2",
+        "away": "3-1"
       },
       "game_type": "conference",
       "primetime": false,
       "tags": [
-        "jouw divisie"
+        "jouw divisie",
+        "indirect belangrijk"
       ],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 13 okt, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -385,8 +429,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "3-0"
+        "home": "1-3",
+        "away": "4-0"
       },
       "game_type": "conference",
       "primetime": false,
@@ -427,8 +471,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "2-1"
+        "home": "1-3",
+        "away": "3-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -467,16 +511,18 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "2-1",
-        "away": "1-2"
+        "home": "2-2",
+        "away": "2-2"
       },
       "game_type": "conference",
       "primetime": false,
-      "tags": [],
+      "tags": [
+        "indirect belangrijk"
+      ],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 13 okt, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -507,8 +553,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "2-1"
+        "home": "1-3",
+        "away": "3-1"
       },
       "game_type": "division",
       "primetime": false,
@@ -521,9 +567,9 @@
       "hints_ready": false,
       "outcome_ready": false,
       "teaser": "Divisieduel in de NFC East, deze twee treffen elkaar elk seizoen tweemaal.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872989",
@@ -547,8 +593,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "0-3",
-        "away": "2-1"
+        "home": "0-4",
+        "away": "2-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -566,48 +612,6 @@
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
-    },
-    {
-      "game_id": "401872990",
-      "season": 2026,
-      "week": 5,
-      "kickoff_utc": "2026-10-11T20:25:00.000Z",
-      "kickoff_nl": "zo 11 okt, 22:25",
-      "slot": "Zondag laat",
-      "is_international": false,
-      "venue": "Green Bay",
-      "home": {
-        "abbr": "GB",
-        "name": "Green Bay Packers",
-        "conference": "NFC",
-        "division": "NFC North"
-      },
-      "away": {
-        "abbr": "CHI",
-        "name": "Chicago Bears",
-        "conference": "NFC",
-        "division": "NFC North"
-      },
-      "records_before": {
-        "home": "1-2",
-        "away": "2-1"
-      },
-      "game_type": "division",
-      "primetime": false,
-      "tags": [
-        "jouw divisie"
-      ],
-      "in_sunday_slate": true,
-      "live_friendly_nl": false,
-      "all22_from_nl": "wo 14 okt, 01:55",
-      "stakes_pre": 3,
-      "watchability": null,
-      "hints_ready": false,
-      "outcome_ready": false,
-      "teaser": "Bekende tegenstanders: NFC North, twee keer per jaar op het programma.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
     },
     {
       "game_id": "401872991",
@@ -631,8 +635,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "2-1"
+        "home": "1-3",
+        "away": "2-2"
       },
       "game_type": "conference",
       "primetime": false,
@@ -673,8 +677,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "2-1",
-        "away": "3-0"
+        "home": "3-1",
+        "away": "4-0"
       },
       "game_type": "division",
       "primetime": false,
@@ -715,23 +719,25 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "2-1"
+        "home": "2-2",
+        "away": "3-1"
       },
       "game_type": "interconference",
       "primetime": true,
-      "tags": [],
+      "tags": [
+        "indirect belangrijk"
+      ],
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 14 okt, 05:50",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
       "teaser": "Sunday Night: Baltimore Ravens op bezoek bij Atlanta Falcons.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872994",
@@ -755,25 +761,26 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "1-2",
-        "away": "3-0"
+        "home": "2-2",
+        "away": "3-1"
       },
       "game_type": "interconference",
       "primetime": true,
       "tags": [
-        "jouw divisie"
+        "jouw divisie",
+        "indirect belangrijk"
       ],
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "do 15 okt, 05:45",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
       "teaser": "Monday Night met Buffalo Bills als bezoeker.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     }
   ]
 }
