@@ -77,9 +77,9 @@
     },
     {
       "game_id": "401872971",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872972",
@@ -89,9 +89,9 @@
     },
     {
       "game_id": "401872969",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872966",
@@ -276,14 +276,14 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 6 okt, 22:30",
-      "stakes_pre": 3,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": true,
       "outcome_ready": true,
       "teaser": "Divisieduel in de AFC East, deze twee treffen elkaar elk seizoen tweemaal.",
-      "format_advice": "game_in_40",
-      "format_reason": "quality",
-      "runtime_minutes": 40
+      "format_advice": "skip",
+      "format_reason": "quota_full",
+      "runtime_minutes": 0
     },
     {
       "game_id": "401872972",
@@ -365,9 +365,9 @@
       "hints_ready": true,
       "outcome_ready": true,
       "teaser": "Allebei staan ze aan de goede kant van de streep.",
-      "format_advice": "skip",
-      "format_reason": "quota_full",
-      "runtime_minutes": 0
+      "format_advice": "game_in_40",
+      "format_reason": "quality",
+      "runtime_minutes": 40
     },
     {
       "game_id": "401872966",

@@ -91,11 +91,11 @@
       "stakes": 0.5888888888888889
     },
     "percentiles": {
-      "excitement": 0.8165,
-      "tension": 0.5506,
-      "volatility": 0.3544,
-      "pace": 0.5886,
-      "stakes": 0.943
+      "excitement": 0.8118,
+      "tension": 0.5538,
+      "volatility": 0.3656,
+      "pace": 0.5806,
+      "stakes": 0.9409
     }
   },
   "401872965": {
@@ -189,11 +189,11 @@
       "stakes": 0.3666666666666667
     },
     "percentiles": {
-      "excitement": 0.3608,
-      "tension": 0.3101,
-      "volatility": 0.5253,
-      "pace": 0.5886,
-      "stakes": 0.462
+      "excitement": 0.3495,
+      "tension": 0.2957,
+      "volatility": 0.543,
+      "pace": 0.5806,
+      "stakes": 0.4462
     }
   },
   "401872966": {
@@ -289,11 +289,11 @@
       "stakes": 0.3462962962962963
     },
     "percentiles": {
-      "excitement": 0.8038,
-      "tension": 0.7911,
-      "volatility": 0.5823,
-      "pace": 0.7911,
-      "stakes": 0.4177
+      "excitement": 0.8011,
+      "tension": 0.7903,
+      "volatility": 0.5968,
+      "pace": 0.7957,
+      "stakes": 0.4086
     }
   },
   "401872967": {
@@ -391,11 +391,11 @@
       "stakes": 0.22407407407407412
     },
     "percentiles": {
-      "excitement": 0.8544,
-      "tension": 0.8038,
-      "volatility": 0.6329,
-      "pace": 0.9241,
-      "stakes": 0.2785
+      "excitement": 0.8441,
+      "tension": 0.8118,
+      "volatility": 0.6505,
+      "pace": 0.9247,
+      "stakes": 0.2366
     }
   },
   "401872968": {
@@ -485,11 +485,11 @@
       "stakes": 0.22407407407407412
     },
     "percentiles": {
-      "excitement": 0.4241,
-      "tension": 0.6139,
-      "volatility": 0.1519,
-      "pace": 0.038,
-      "stakes": 0.2785
+      "excitement": 0.4355,
+      "tension": 0.6075,
+      "volatility": 0.1613,
+      "pace": 0.043,
+      "stakes": 0.2366
     }
   },
   "401872969": {
@@ -577,11 +577,11 @@
       "stakes": 0.48888888888888893
     },
     "percentiles": {
-      "excitement": 0.5759,
-      "tension": 0.538,
-      "volatility": 0.5253,
-      "pace": 0.4557,
-      "stakes": 0.9051
+      "excitement": 0.5645,
+      "tension": 0.543,
+      "volatility": 0.543,
+      "pace": 0.457,
+      "stakes": 0.8763
     }
   },
   "401872970": {
@@ -676,11 +676,11 @@
       "stakes": 0.3462962962962963
     },
     "percentiles": {
-      "excitement": 0.6139,
-      "tension": 0.5886,
-      "volatility": 0.7658,
-      "pace": 0.4557,
-      "stakes": 0.4177
+      "excitement": 0.6183,
+      "tension": 0.586,
+      "volatility": 0.8011,
+      "pace": 0.457,
+      "stakes": 0.4086
     }
   },
   "401872971": {
@@ -777,11 +777,11 @@
       "stakes": 0.42592592592592593
     },
     "percentiles": {
-      "excitement": 0.7405,
-      "tension": 0.9177,
-      "volatility": 0.8608,
-      "pace": 0.5886,
-      "stakes": 0.7152
+      "excitement": 0.7366,
+      "tension": 0.9194,
+      "volatility": 0.8817,
+      "pace": 0.5806,
+      "stakes": 0.7043
     }
   },
   "401872972": {
@@ -868,11 +868,11 @@
       "stakes": 0.3462962962962963
     },
     "percentiles": {
-      "excitement": 0.1456,
-      "tension": 0.2722,
-      "volatility": 0.1519,
-      "pace": 0.4557,
-      "stakes": 0.4177
+      "excitement": 0.1559,
+      "tension": 0.2527,
+      "volatility": 0.1613,
+      "pace": 0.457,
+      "stakes": 0.4086
     }
   },
   "401872973": {
@@ -968,11 +968,11 @@
       "stakes": 0.20370370370370375
     },
     "percentiles": {
-      "excitement": 0.0443,
-      "tension": 0.1709,
-      "volatility": 0.1519,
-      "pace": 0.2722,
-      "stakes": 0.1899
+      "excitement": 0.0376,
+      "tension": 0.1452,
+      "volatility": 0.1613,
+      "pace": 0.2742,
+      "stakes": 0.1613
     }
   },
   "401872974": {
@@ -1066,11 +1066,11 @@
       "stakes": 0.18333333333333335
     },
     "percentiles": {
-      "excitement": 0.057,
-      "tension": 0.4747,
-      "volatility": 0.1519,
-      "pace": 0.2722,
-      "stakes": 0.1709
+      "excitement": 0.0591,
+      "tension": 0.4677,
+      "volatility": 0.1613,
+      "pace": 0.2742,
+      "stakes": 0.1452
     }
   },
   "401872975": {
@@ -1165,11 +1165,11 @@
       "stakes": 0.4685185185185185
     },
     "percentiles": {
-      "excitement": 0.2215,
-      "tension": 0.4114,
-      "volatility": 0.1519,
-      "pace": 0.2722,
-      "stakes": 0.8038
+      "excitement": 0.2204,
+      "tension": 0.4032,
+      "volatility": 0.1613,
+      "pace": 0.2742,
+      "stakes": 0.7903
     }
   },
   "401872976": {
@@ -1265,11 +1265,11 @@
       "stakes": 0.7111111111111111
     },
     "percentiles": {
-      "excitement": 0.6519,
-      "tension": 0.6392,
-      "volatility": 0.9494,
-      "pace": 0.7911,
-      "stakes": 0.9937
+      "excitement": 0.6505,
+      "tension": 0.629,
+      "volatility": 0.957,
+      "pace": 0.7957,
+      "stakes": 0.9946
     }
   },
   "401872977": {
@@ -1364,11 +1364,11 @@
       "stakes": 0.20370370370370375
     },
     "percentiles": {
-      "excitement": 0.1076,
-      "tension": 0.3354,
-      "volatility": 0.1519,
-      "pace": 0.6772,
-      "stakes": 0.1899
+      "excitement": 0.1237,
+      "tension": 0.3172,
+      "volatility": 0.1613,
+      "pace": 0.672,
+      "stakes": 0.1613
     }
   },
   "401872978": {
@@ -1468,11 +1468,11 @@
       "stakes": 0.3462962962962963
     },
     "percentiles": {
-      "excitement": 0.4494,
-      "tension": 0.4494,
-      "volatility": 0.8608,
-      "pace": 0.9241,
-      "stakes": 0.4177
+      "excitement": 0.457,
+      "tension": 0.4355,
+      "volatility": 0.8817,
+      "pace": 0.9247,
+      "stakes": 0.4086
     }
   },
   "401872979": {
@@ -1564,11 +1564,11 @@
       "stakes": 0.4666666666666667
     },
     "percentiles": {
-      "excitement": 0.2975,
-      "tension": 0.1582,
-      "volatility": 0.4747,
-      "pace": 0.7911,
-      "stakes": 0.7911
+      "excitement": 0.2957,
+      "tension": 0.1344,
+      "volatility": 0.4892,
+      "pace": 0.7957,
+      "stakes": 0.7796
     }
   }
 }

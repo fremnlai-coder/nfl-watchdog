@@ -183,8 +183,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "4-1",
-        "away": "2-3"
+        "home": "5-1",
+        "away": "2-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -192,7 +192,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 12 jan, 09:30",
-      "stakes_pre": 5,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -224,7 +224,7 @@
       },
       "records_before": {
         "home": "3-2",
-        "away": "3-2"
+        "away": "4-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -265,8 +265,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "3-2",
-        "away": "0-5"
+        "home": "4-2",
+        "away": "0-6"
       },
       "game_type": "division",
       "primetime": false,
@@ -307,7 +307,7 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "3-2",
+        "home": "4-2",
         "away": "3-2"
       },
       "game_type": "division",
@@ -349,8 +349,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "2-3",
-        "away": "4-1"
+        "home": "2-4",
+        "away": "4-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -389,8 +389,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "4-0",
-        "away": "3-2"
+        "home": "5-0",
+        "away": "3-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -431,8 +431,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "2-3",
-        "away": "3-2"
+        "home": "2-4",
+        "away": "3-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -474,7 +474,7 @@
       },
       "records_before": {
         "home": "5-0",
-        "away": "3-2"
+        "away": "4-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -516,7 +516,7 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "3-2",
+        "home": "4-2",
         "away": "0-5"
       },
       "game_type": "division",
@@ -556,8 +556,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "1-4",
-        "away": "1-4"
+        "home": "2-4",
+        "away": "1-5"
       },
       "game_type": "division",
       "primetime": false,
@@ -596,8 +596,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "3-1-1",
-        "away": "2-3"
+        "home": "3-2-1",
+        "away": "2-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -636,8 +636,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "1-4",
-        "away": "5-0"
+        "home": "2-4",
+        "away": "6-0"
       },
       "game_type": "division",
       "primetime": false,
@@ -678,8 +678,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "1-3-1",
-        "away": "2-3"
+        "home": "1-4-1",
+        "away": "2-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -687,7 +687,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 12 jan, 09:30",
-      "stakes_pre": 5,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -718,8 +718,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "2-2",
-        "away": "2-3"
+        "home": "3-2",
+        "away": "2-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -758,8 +758,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "4-1",
-        "away": "3-2"
+        "home": "4-2",
+        "away": "4-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -800,8 +800,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "1-4",
-        "away": "0-5"
+        "home": "2-4",
+        "away": "1-5"
       },
       "game_type": "division",
       "primetime": false,
@@ -809,11 +809,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 12 jan, 09:30",
-      "stakes_pre": 3,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Bekende tegenstanders: AFC South, twee keer per jaar op het programma.",
+      "teaser": "Divisieduel in de AFC South dat vooraf hoog scoort op belang.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
