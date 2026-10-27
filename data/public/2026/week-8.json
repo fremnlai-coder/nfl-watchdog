@@ -176,8 +176,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "4-2",
-        "away": "3-2"
+        "home": "4-3",
+        "away": "3-3"
       },
       "game_type": "conference",
       "primetime": true,
@@ -188,11 +188,11 @@
       "in_sunday_slate": false,
       "live_friendly_nl": false,
       "all22_from_nl": "zo 1 nov, 04:45",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Hoog ingeschaald op basis van de situatie vóór deze week.",
+      "teaser": "Thursday Night met Carolina Panthers als bezoeker.",
       "format_advice": "skip",
       "format_reason": "avoid",
       "runtime_minutes": 0
@@ -220,7 +220,7 @@
       },
       "records_before": {
         "home": "5-1",
-        "away": "4-2"
+        "away": "4-3"
       },
       "game_type": "conference",
       "primetime": false,
@@ -230,11 +230,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 3 nov, 22:30",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Deze ontmoeting scoort vooraf hoog op belang.",
+      "teaser": "Twee ploegen met een winnend record komen elkaar tegen.",
       "format_advice": "game_in_40",
       "format_reason": "quality",
       "runtime_minutes": 40
@@ -261,8 +261,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "3-2",
-        "away": "1-5"
+        "home": "4-2",
+        "away": "1-6"
       },
       "game_type": "conference",
       "primetime": false,
@@ -270,7 +270,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 3 nov, 22:30",
-      "stakes_pre": 2,
+      "stakes_pre": 1,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -301,8 +301,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "2-4",
-        "away": "2-4"
+        "home": "3-4",
+        "away": "2-5"
       },
       "game_type": "conference",
       "primetime": false,
@@ -312,11 +312,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 3 nov, 22:30",
-      "stakes_pre": 3,
+      "stakes_pre": 2,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
+      "teaser": "Twee ploegen met een verliezend record treffen elkaar.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -343,8 +343,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "3-2",
-        "away": "5-0"
+        "home": "4-2",
+        "away": "6-0"
       },
       "game_type": "division",
       "primetime": false,
@@ -385,8 +385,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "2-4",
-        "away": "3-3"
+        "home": "2-5",
+        "away": "3-4"
       },
       "game_type": "conference",
       "primetime": false,
@@ -400,7 +400,7 @@
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "AFC-onderonsje tussen twee ploegen uit andere divisies.",
+      "teaser": "Beide ploegen begonnen de week met een verliezend record.",
       "format_advice": "skip",
       "format_reason": "avoid",
       "runtime_minutes": 0
@@ -427,8 +427,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "4-2",
-        "away": "4-2"
+        "home": "5-2",
+        "away": "5-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -469,8 +469,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "1-5",
-        "away": "2-4"
+        "home": "2-5",
+        "away": "3-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -510,7 +510,7 @@
       },
       "records_before": {
         "home": "4-2",
-        "away": "2-4"
+        "away": "2-5"
       },
       "game_type": "division",
       "primetime": false,
@@ -549,7 +549,7 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "2-4",
+        "home": "3-4",
         "away": "0-6"
       },
       "game_type": "interconference",
@@ -591,8 +591,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "4-2",
-        "away": "5-0"
+        "home": "5-2",
+        "away": "5-1"
       },
       "game_type": "division",
       "primetime": false,
@@ -602,7 +602,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 4 nov, 01:55",
-      "stakes_pre": 4,
+      "stakes_pre": 5,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -633,8 +633,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "0-5",
-        "away": "4-2"
+        "home": "1-5",
+        "away": "4-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -642,7 +642,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "wo 4 nov, 01:55",
-      "stakes_pre": 2,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -674,7 +674,7 @@
       },
       "records_before": {
         "home": "1-4-1",
-        "away": "2-4"
+        "away": "2-5"
       },
       "game_type": "division",
       "primetime": true,
@@ -713,8 +713,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "3-3",
-        "away": "4-2"
+        "home": "4-3",
+        "away": "5-2"
       },
       "game_type": "conference",
       "primetime": true,
@@ -729,7 +729,7 @@
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Monday Night met Chicago Bears als bezoeker.",
+      "teaser": "Monday Night, en allebei komen ze met een winnend record aan de aftrap.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
