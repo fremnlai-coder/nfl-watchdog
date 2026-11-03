@@ -183,8 +183,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "4-2",
-        "away": "4-3"
+        "home": "5-2",
+        "away": "4-4"
       },
       "game_type": "division",
       "primetime": true,
@@ -225,8 +225,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "4-3",
-        "away": "5-2"
+        "home": "5-3",
+        "away": "6-2"
       },
       "game_type": "conference",
       "primetime": false,
@@ -268,8 +268,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "0-6",
-        "away": "5-1"
+        "home": "0-7",
+        "away": "5-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -310,8 +310,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "2-5",
-        "away": "3-4"
+        "home": "3-5",
+        "away": "4-4"
       },
       "game_type": "conference",
       "primetime": false,
@@ -352,8 +352,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "4-2",
-        "away": "1-4-1"
+        "home": "5-2",
+        "away": "2-4-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -361,11 +361,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 5 jan, 09:30",
-      "stakes_pre": 3,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Een zeldzame ontmoeting tussen ploegen uit verschillende conferences.",
+      "teaser": "Deze ontmoeting scoort vooraf hoog op belang.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -392,7 +392,7 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "3-4",
+        "home": "3-5",
         "away": "2-5"
       },
       "game_type": "division",
@@ -432,8 +432,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "5-2",
-        "away": "2-5"
+        "home": "5-3",
+        "away": "2-6"
       },
       "game_type": "conference",
       "primetime": false,
@@ -472,7 +472,7 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "3-4",
+        "home": "3-5",
         "away": "4-2-1"
       },
       "game_type": "division",
@@ -512,8 +512,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "1-6",
-        "away": "5-2"
+        "home": "1-7",
+        "away": "6-2"
       },
       "game_type": "conference",
       "primetime": false,
@@ -552,8 +552,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "1-5",
-        "away": "5-1"
+        "home": "1-6",
+        "away": "6-1"
       },
       "game_type": "division",
       "primetime": false,
@@ -592,8 +592,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "2-5",
-        "away": "6-0"
+        "home": "2-6",
+        "away": "6-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -634,19 +634,18 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "3-3",
-        "away": "4-3"
+        "home": "3-4",
+        "away": "4-4"
       },
       "game_type": "conference",
       "primetime": false,
       "tags": [
-        "jouw divisie",
-        "indirect belangrijk"
+        "jouw divisie"
       ],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 5 jan, 22:30",
-      "stakes_pre": 5,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -677,8 +676,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "2-5",
-        "away": "3-4"
+        "home": "3-5",
+        "away": "4-4"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -719,8 +718,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "5-2",
-        "away": "4-2"
+        "home": "6-2",
+        "away": "5-2"
       },
       "game_type": "division",
       "primetime": false,
@@ -762,7 +761,7 @@
       },
       "records_before": {
         "home": "6-1",
-        "away": "2-5"
+        "away": "2-6"
       },
       "game_type": "conference",
       "primetime": true,
@@ -803,7 +802,7 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "4-3",
+        "home": "5-3",
         "away": "2-5"
       },
       "game_type": "interconference",
