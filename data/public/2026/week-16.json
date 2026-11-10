@@ -183,8 +183,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "2-6",
-        "away": "2-5"
+        "home": "2-7",
+        "away": "3-5"
       },
       "game_type": "interconference",
       "primetime": true,
@@ -223,8 +223,8 @@
         "division": "NFC North"
       },
       "records_before": {
-        "home": "6-2",
-        "away": "5-3"
+        "home": "7-2",
+        "away": "6-3"
       },
       "game_type": "division",
       "primetime": false,
@@ -266,8 +266,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "6-2",
-        "away": "6-1"
+        "home": "7-2",
+        "away": "7-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -309,8 +309,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "4-4",
-        "away": "4-4"
+        "home": "5-4",
+        "away": "5-4"
       },
       "game_type": "division",
       "primetime": true,
@@ -352,8 +352,8 @@
         "division": "NFC South"
       },
       "records_before": {
-        "home": "3-5",
-        "away": "3-5"
+        "home": "3-6",
+        "away": "3-6"
       },
       "game_type": "division",
       "primetime": false,
@@ -361,7 +361,7 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 29 dec, 09:30",
-      "stakes_pre": 5,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
@@ -392,8 +392,8 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "2-6",
-        "away": "5-2"
+        "home": "2-7",
+        "away": "6-2"
       },
       "game_type": "conference",
       "primetime": false,
@@ -432,8 +432,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "6-1",
-        "away": "2-4-1"
+        "home": "6-2",
+        "away": "2-5-1"
       },
       "game_type": "conference",
       "primetime": false,
@@ -443,11 +443,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": false,
       "all22_from_nl": "di 29 dec, 09:30",
-      "stakes_pre": 4,
+      "stakes_pre": 3,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Hoog ingeschaald op basis van de situatie vóór deze week.",
+      "teaser": "Duel binnen de NFC, twee ploegen uit verschillende divisies.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -475,7 +475,7 @@
       },
       "records_before": {
         "home": "6-2",
-        "away": "3-4"
+        "away": "3-5"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -514,8 +514,8 @@
         "division": "AFC West"
       },
       "records_before": {
-        "home": "1-6",
-        "away": "0-7"
+        "home": "1-7",
+        "away": "0-8"
       },
       "game_type": "conference",
       "primetime": false,
@@ -556,8 +556,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "2-5",
-        "away": "3-5"
+        "home": "3-5",
+        "away": "3-6"
       },
       "game_type": "conference",
       "primetime": false,
@@ -567,11 +567,11 @@
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 29 dec, 22:30",
-      "stakes_pre": 3,
+      "stakes_pre": 4,
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "NFC-onderonsje tussen twee ploegen uit andere divisies.",
+      "teaser": "Hoog ingeschaald op basis van de situatie vóór deze week.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -598,8 +598,8 @@
         "division": "AFC East"
       },
       "records_before": {
-        "home": "2-6",
-        "away": "5-3"
+        "home": "2-7",
+        "away": "5-4"
       },
       "game_type": "division",
       "primetime": false,
@@ -638,14 +638,12 @@
         "division": "AFC North"
       },
       "records_before": {
-        "home": "4-4",
-        "away": "5-3"
+        "home": "4-5",
+        "away": "5-4"
       },
       "game_type": "division",
       "primetime": false,
-      "tags": [
-        "indirect belangrijk"
-      ],
+      "tags": [],
       "in_sunday_slate": true,
       "live_friendly_nl": true,
       "all22_from_nl": "di 29 dec, 22:30",
@@ -680,7 +678,7 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "4-4",
+        "home": "4-5",
         "away": "1-7"
       },
       "game_type": "conference",
@@ -695,7 +693,7 @@
       "watchability": null,
       "hints_ready": false,
       "outcome_ready": false,
-      "teaser": "Duel binnen de AFC, twee ploegen uit verschillende divisies.",
+      "teaser": "Twee ploegen met een verliezend record treffen elkaar.",
       "format_advice": "skip",
       "format_reason": "quota_full",
       "runtime_minutes": 0
@@ -722,8 +720,8 @@
         "division": "NFC West"
       },
       "records_before": {
-        "home": "5-2",
-        "away": "6-1"
+        "home": "6-2",
+        "away": "7-1"
       },
       "game_type": "interconference",
       "primetime": false,
@@ -764,8 +762,8 @@
         "division": "AFC South"
       },
       "records_before": {
-        "home": "3-5",
-        "away": "5-2"
+        "home": "4-5",
+        "away": "6-2"
       },
       "game_type": "interconference",
       "primetime": true,
@@ -804,8 +802,8 @@
         "division": "NFC East"
       },
       "records_before": {
-        "home": "5-2",
-        "away": "4-2-1"
+        "home": "6-2",
+        "away": "5-2-1"
       },
       "game_type": "conference",
       "primetime": true,
